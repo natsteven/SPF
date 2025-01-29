@@ -425,7 +425,7 @@ public class SymbolicStringConstraintsGeneral {
 			solver = Z3_INC;
 		} else if (string_dp[0].equals("wrapper")) {
 			solver = WRAPPER;
-		} else if (string_dp[0].equals("mas")) {
+		} else if (string_dp[0].equals("MAS")) {
 			solver = MAS;
 		} else {
 			/* No solver, return true */

@@ -82,7 +82,7 @@ public class Z3String3Processor {
 		queryReader.close();
 
 		if (SymbolicInstructionFactory.debugMode) {
-			System.out.println("current query... " + finalQuery.toString());	
+			System.out.println("current query... " + finalQuery.toString()+"\n======================");
 		}
 
 		// attempt to parse the query, if successful continue with checking satisfiability
