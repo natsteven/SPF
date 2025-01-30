@@ -3,29 +3,34 @@ package edu.boisestate.cs.modelling;
 import java.util.HashMap;
 
 public class MASOutput {
-    private boolean isSAT;
-    private String model;
-    private HashMap<String, String> solutions;
+    private final boolean isSAT;
+    private final String model;
+    private final HashMap<String, String> solutions;
 
-    public MASOutput(boolean isSAT, String model) {
-        this.isSAT = isSAT;
+    public MASOutput(String model) {
+        this.isSAT = model.startsWith("sat");
         this.model = model;
         this.solutions = new HashMap<>();
-    }
-
-    public void addSolution(String key, String value) {
-        solutions.put(key, value);
-    }
-
-    public HashMap<String, String> getSolutions() {
-        return solutions;
-    }
-
-    public String getModel() {
-        return model;
+        model = this.isSAT ? model.replaceFirst("sat,\n", "") : model.replaceFirst("unsat\n", "");
+        //System.out.println("Model: " + model);
+        String[] lines = model.split("\n");
+        for (String line : lines) {
+            String[] parts = line.split(":");
+            if (parts.length == 2) {
+                String var = parts[0].trim();
+                String value = parts[1].trim();
+                solutions.put(var, value);
+            }
+        }
     }
 
     public boolean isSAT() {
         return isSAT;
+    }
+    public String getModel() {
+        return model;
+    }
+    public HashMap<String, String> getSolutions() {
+        return solutions;
     }
 }

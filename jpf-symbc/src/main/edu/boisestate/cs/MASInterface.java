@@ -21,12 +21,13 @@ public class MASInterface {
 
         //debug
         System.out.println("*************************************");
-        System.out.println("The constraint is: " + smtlibQuery);
+        System.out.println("The smtlib query is: " + smtlibQuery);
 
         NaiveIntegration ni = new NaiveIntegration();
         try {
             String masOutput = ni.solve(smtlibQuery);
-            output = new MASOutput(true, masOutput);
+            System.out.println("MAS returned: ------------------------------\n" + masOutput + "---------------------------------");
+            output = new MASOutput(masOutput);
         } catch (Exception e) {
             e.printStackTrace();
         }

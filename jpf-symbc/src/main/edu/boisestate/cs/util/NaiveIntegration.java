@@ -12,17 +12,19 @@ public class NaiveIntegration {
         public String solve(String query) throws IOException, InterruptedException {
 
             // example query that SPF would provide (after z3 translation)
+            String tempPath = "jpf-symbc/src/main/edu/boisestate/cs/temp/";
 
             // We write to file because the SMT-Parser-Generator accepts a directory of files as input
-            try (FileWriter fw = new FileWriter(new File("input/test.smt2"))) {
+            try (FileWriter fw = new FileWriter(tempPath + "temp.smt2")) {
                 fw.write(query);
             } catch (IOException e) {
                 System.out.println("Error writing to file");
                 e.printStackTrace();
             }
 
+            System.out.println("Translating smtlib to MAS json......\n");
             // build a process for the translation
-            ProcessBuilder pb = new ProcessBuilder("java", "-cp", "../lib/SMT-Parser-Generator.jar", "edu.boisestate.cs.MainJSON", "input");
+            ProcessBuilder pb = new ProcessBuilder("java", "-cp", "jpf-symbc/src/main/edu/boisestate/cs/lib/SMT-Parser-Generator.jar", "edu.boisestate.cs.MainJSON", tempPath);
             Process p = pb.start();
 
             // Capture and print the error stream
@@ -34,9 +36,9 @@ public class NaiveIntegration {
             }
 
             p.waitFor();
-            System.out.println("Translation process finished");
+            System.out.println("Translation process finished\nSolving query with MAS......\n");
 
-            pb.command("java", "-cp", "..lib/MAS.jar", "edu.boisestate.cs.SolveMain", "output_input/test.smt2.json", "-s", "Inverse", "-v", "2", "-l", "4");
+            pb.command("java", "-cp", "jpf-symbc/src/main/edu/boisestate/cs/lib/MAS.jar", "edu.boisestate.cs.SolveMain", "output_temp/temp.smt2.json", "-s", "Inverse", "-v", "2", "-l", "15");
             p = pb.start();
 
             // Capture and print the error stream
