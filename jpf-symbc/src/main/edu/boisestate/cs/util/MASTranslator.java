@@ -39,10 +39,10 @@ public class MASTranslator {
         final StringConstraint strc = spc.header;
 
         // a string constraint has a comparator, a left, and a right
-        // each of these become their own PrintConstraint
-        // the left and righ tare string expressions we can be symbolic or constant
 
-        ConstraintTranslator ct = ;
+        // takes a String Constraint and returns three PrintConstraints
+        ConstraintTranslator ct = new ConstraintTranslator(this);
+
         List<PrintConstraint> constraints = ct.translate(strc);
 
 
@@ -52,14 +52,7 @@ public class MASTranslator {
         return null;
     }
 
-    public String getMASConstraint(StringExpression l) {
-        switch(l.toString()) {
-            case "CONSTANT":
-                return "CONSTANT";
-            case "SYMBOLIC":
-                return "SYMBOLIC";
-            default:
-                return "UNKNOWN";
-        }
+    public int getNextID() {
+        return id++;
     }
 }
