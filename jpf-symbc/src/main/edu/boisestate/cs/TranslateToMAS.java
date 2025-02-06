@@ -4,6 +4,8 @@ import java.util.logging.Logger;
 import java.util.HashMap;
 
 import edu.boisestate.cs.modelling.MASOutput;
+import edu.boisestate.cs.util.MASProcessor;
+import edu.boisestate.cs.util.MASTranslator;
 import gov.nasa.jpf.util.LogManager;
 import gov.nasa.jpf.symbc.string.StringPathCondition;
 
@@ -19,6 +21,6 @@ public class TranslateToMAS {
 
         output = processor.getOutput();
 
-
+        return output;
     }
  }
