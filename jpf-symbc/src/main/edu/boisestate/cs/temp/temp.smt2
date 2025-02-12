@@ -1,8 +1,8 @@
 
-(declare-const string_1 String)
+(declare-const var_1_1 String)
 
+(assert (= var_1_1 "Hello, World!"))
 
-(assert (not (= (str.at string_1 0) "p")))
 
 (check-sat)
 (get-model)

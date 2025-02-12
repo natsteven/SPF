@@ -7,8 +7,8 @@ symbolic.strings = true
 
 symbolic.dp=choco
 #symbolic.dp=z3
-symbolic.string_dp=z3str3
-#symbolic.string_dp=MAS
+#symbolic.string_dp=z3str3
+symbolic.string_dp=MAS
 #symbolic.string_dp=automata
 #symbolic.string_dp=igen
 #symbolic.string_dp=ABC

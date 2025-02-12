@@ -1,18 +1,12 @@
 package edu.boisestate.cs.util;
 
 import edu.boisestate.cs.graph.*;
-import edu.ucsb.cs.vlab.translate.NormalFormTranslator;
-import gov.nasa.jpf.symbc.string.StringComparator;
+
 import gov.nasa.jpf.symbc.string.StringConstraint;
-import gov.nasa.jpf.symbc.string.StringExpression;
 import gov.nasa.jpf.symbc.string.StringPathCondition;
 import org.jgrapht.DirectedGraph;
-import org.jgrapht.graph.DefaultDirectedGraph;
 
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 public class MASTranslator {
 
@@ -26,30 +20,33 @@ public class MASTranslator {
     public DirectedGraph<PrintConstraint, SymbolicEdge> translate(StringPathCondition spc) {
         // this will be essentially what SolveMain.loadGraph() does in MAS
 
-        DirectedGraph<PrintConstraint, SymbolicEdge> graph = new DefaultDirectedGraph<>(SymbolicEdge.class);
         InvDefaultDirectedGraph invGraph = new InvDefaultDirectedGraph(SymbolicEdge.class);
-
-        Map<Integer, PrintConstraint> constraintMap = new HashMap<>();
-		Map<PrintConstraint, List<Integer>> sourceConstraintMap = new HashMap<>();
-		List<Map<String, Object>> edgeData = new LinkedList<>();
-
         // alphabet and bounds. do we need an alphabet?
         int initialBound = 2;
         // string path condition object has place for count and solution....
-        final StringConstraint strc = spc.header;
+        StringConstraint strc = spc.header;
 
-        // a string constraint has a comparator, a left, and a right
-
-        // takes a String Constraint and returns three PrintConstraints
         ConstraintTranslator ct = new ConstraintTranslator(this);
+        // a string constraint has a comparator, a left, and a right
+        // TODO: will need to handle cases of multiple arg constraints
 
-        List<PrintConstraint> constraints = ct.translate(strc);
+        do {
+            // takes a String Constraint and returns three PrintConstraints
+            List<PrintConstraint> constraints = ct.translate(strc);
 
+            for (PrintConstraint pc : constraints) {
 
+                for (PrintConstraint source : pc.sourceConstraints){ // not source constraints are not used in MAS but we use them to hold incmonig edge data
+                    invGraph.addEdge(source, pc);
+                }
+                invGraph.addVertex(pc);
+            }
+            strc = strc.and();
+        } while (strc != null);
 
+        invGraph.computePredicateDependencies();
 
-
-        return null;
+        return invGraph;
     }
 
     public int getNextID() {

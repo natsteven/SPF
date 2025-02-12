@@ -20,6 +20,7 @@ public class ConstraintTranslator {
         final PrintConstraint leftConstraint = translate(left);
         final PrintConstraint rightConstraint = translate(right);
         final PrintConstraint comparatorConstraint = translate(comparator);
+
         comparatorConstraint.sourceConstraints.add(leftConstraint);
         comparatorConstraint.sourceConstraints.add(rightConstraint);
 

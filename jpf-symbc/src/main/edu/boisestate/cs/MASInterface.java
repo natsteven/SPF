@@ -23,6 +23,8 @@ public class MASInterface {
         System.out.println("*************************************");
         System.out.println("The smtlib query is: " + smtlibQuery);
 
+        System.out.println("*************************************");
+        System.out.println("Using NaiveIntegration to solve the query");
         NaiveIntegration ni = new NaiveIntegration();
         try {
             String masOutput = ni.solve(smtlibQuery);
@@ -31,6 +33,11 @@ public class MASInterface {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+//        System.out.println("*************************************");
+//        System.out.println("Using Native Integration to solve the query");
+//
+//        output = TranslateToMAS.solve(pc);
 
         return output;
     }
