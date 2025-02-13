@@ -47,7 +47,9 @@ public class MASTranslator {
             for (PrintConstraint pc : constraints) {
                 if (pc.sourceConstraints.size() > 1) { //sourceconstraints include themselves though i suppose we don't need to do that here
                     for (PrintConstraint source : pc.sourceConstraints) {
-                        invGraph.addEdge(source, pc);
+                        if (source != pc){
+                            invGraph.addEdge(source, pc);
+                        }
                     }
                 }
             }

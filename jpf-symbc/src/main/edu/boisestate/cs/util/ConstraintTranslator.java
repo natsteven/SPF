@@ -35,7 +35,7 @@ public class ConstraintTranslator {
     public PrintConstraint translate(StringExpression se) {
         if (se instanceof StringConstant) {
             StringConstant stringConstant = (StringConstant) se;
-            return new PrintConstraint(translator.getNextID(), stringConstant.toString(), stringConstant.value());
+            return new PrintConstraint(translator.getNextID(), stringConstant.toString(), "\"" + stringConstant.value() + "\"!:!<init>");
         } else if (se instanceof StringSymbolic) {
             StringSymbolic stringSymbolic = (StringSymbolic) se;
             int id = translator.getNextID();
