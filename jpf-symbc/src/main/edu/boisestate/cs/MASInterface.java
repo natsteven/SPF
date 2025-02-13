@@ -34,10 +34,10 @@ public class MASInterface {
             e.printStackTrace();
         }
 
-//        System.out.println("*************************************");
-//        System.out.println("Using Native Integration to solve the query");
-//
-//        output = TranslateToMAS.solve(pc);
+        System.out.println("*************************************");
+        System.out.println("Using Native Integration to solve the query");
+
+        output = TranslateToMAS.solve(pc);
 
         return output;
     }

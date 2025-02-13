@@ -10,7 +10,7 @@
 			"incomingEdges" :[
 			],
 			"sourceConstraints" : [ ],
-			"timeStamp" : 1739395817993,
+			"timeStamp" : 1739411507966,
 			"type" : 0,
 			"id" : 0,
 			"value" : "r0!:!getStringValue!!"
@@ -20,13 +20,13 @@
 			"incomingEdges" :[
 			],
 			"sourceConstraints" : [ ],
-			"timeStamp" : 1739395817994,
+			"timeStamp" : 1739411507966,
 			"type" : 0,
 			"id" : 1,
 			"value" : "\"Hello,_World!\"!:!<init>"
 		},{
 			"num" : 0,
-			"actualValue" : "true",
+			"actualValue" : "false",
 			"incomingEdges" :[
 				 {
 					"source" : 0,
@@ -36,7 +36,7 @@
 					"type" : "s1"
 				}],
 			"sourceConstraints" : [ ],
-			"timeStamp" : 1739395817994,
+			"timeStamp" : 1739411507966,
 			"type" : 0,
 			"id" : 2,
 			"value" : "equals!!Ljava/lang/Object;!:!0"
