@@ -1,4 +1,4 @@
-z3str3-integration.md
+;z3str3-integration.md
 
 ## z3str3 Support in SPF ##
 

@@ -4,12 +4,15 @@ import edu.boisestate.cs.graph.*;
 
 import gov.nasa.jpf.symbc.string.StringConstraint;
 import gov.nasa.jpf.symbc.string.StringPathCondition;
+import gov.nasa.jpf.util.LogManager;
 import org.jgrapht.DirectedGraph;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 public class MASTranslator {
 
+    static Logger logger = LogManager.getLogger("TranslateToMAS");
     // keep track of constraints using id?
     private int id;
 
@@ -19,6 +22,8 @@ public class MASTranslator {
 
     public DirectedGraph<PrintConstraint, SymbolicEdge> translate(StringPathCondition spc) {
         // this will be essentially what SolveMain.loadGraph() does in MAS
+
+        //System.out.println("CLASSPATH: " + System.getProperty("java.class.path"));
 
         InvDefaultDirectedGraph invGraph = new InvDefaultDirectedGraph(SymbolicEdge.class);
         // alphabet and bounds. do we need an alphabet?
@@ -36,10 +41,15 @@ public class MASTranslator {
 
             for (PrintConstraint pc : constraints) {
 
-                for (PrintConstraint source : pc.sourceConstraints){ // not source constraints are not used in MAS but we use them to hold incmonig edge data
-                    invGraph.addEdge(source, pc);
-                }
                 invGraph.addVertex(pc);
+
+            }
+            for (PrintConstraint pc : constraints) {
+                if (pc.sourceConstraints.size() > 1) { //sourceconstraints include themselves though i suppose we don't need to do that here
+                    for (PrintConstraint source : pc.sourceConstraints) {
+                        invGraph.addEdge(source, pc);
+                    }
+                }
             }
             strc = strc.and();
         } while (strc != null);

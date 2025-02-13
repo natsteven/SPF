@@ -1,6 +1,10 @@
 package edu.boisestate.cs.util;
 
+import edu.boisestate.cs.graph.InvDefaultDirectedGraph;
 import edu.boisestate.cs.modelling.MASOutput;
+import edu.boisestate.cs.SolveMain;
+
+import static edu.boisestate.cs.InputSolver.run_Acyclic_Inverse_r3;
 
 // this class will actualy run the MAS query using run acyclic method from SolveMain.
 public class MASProcessor {
@@ -8,10 +12,12 @@ public class MASProcessor {
 
     public MASProcessor() {}
 
-    public void query(Object graph) {
-    }
+    public static MASOutput query(Object g) {
+        InvDefaultDirectedGraph graph = (InvDefaultDirectedGraph) g;
 
-    public MASOutput getOutput() {
-        return output;
+        run_Acyclic_Inverse_r3(graph);
+
+
+        return null;
     }
 }

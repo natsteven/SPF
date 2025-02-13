@@ -52,15 +52,14 @@ public class ConstraintTranslator {
         String value = "true";
         switch (comparator) {
             case EQUALS:
-                op = "equals!!Ljava/lang/Object;!:!0";
             case EQ:
                 op = "equals!!Ljava/lang/Object;!:!0";
+                break;
             case NOTEQUALS:
-                op = "equals!!Ljava/lang/Object;!:!0";
-                value = "false";
             case NE:
                 op = "equals!!Ljava/lang/Object;!:!0";
                 value = "false";
+                break;
             default:
                 System.out.println("Unhandled StringComparator: " + comparator);
                 op = "";
