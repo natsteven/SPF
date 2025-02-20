@@ -3,6 +3,8 @@ package edu.boisestate.cs;
 import edu.boisestate.cs.modelling.MASOutput;
 import edu.boisestate.cs.util.MASProcessor;
 import edu.boisestate.cs.util.MASTranslator;
+import edu.boisestate.cs.automatonModel.Model_Acyclic_Inverse;
+import edu.boisestate.cs.graph.SolutionSet;
 import edu.boisestate.cs.util.NaiveIntegration;
 import edu.ucsb.cs.vlab.translate.smtlib.from.z3str3.Z3Translator;
 import gov.nasa.jpf.symbc.string.StringPathCondition;
@@ -13,7 +15,7 @@ import java.util.logging.Logger;
 
 public class MASInterface {
 
-    public static MASOutput solve(StringPathCondition pc) {
+    public static SolutionSet<Model_Acyclic_Inverse> solve(StringPathCondition pc) {
 
         // Naive implementation of the MAS interface
         // We take the SMTLIB string and put it through translation to MASjson, solve, and return MAS's output
@@ -40,9 +42,8 @@ public class MASInterface {
 
         MASTranslator translator = new MASTranslator();
         Object graph = translator.translate(pc);
-        MASOutput output = MASProcessor.query(graph);
 
-        return output;
+        return MASProcessor.query(graph);
     }
 
 }

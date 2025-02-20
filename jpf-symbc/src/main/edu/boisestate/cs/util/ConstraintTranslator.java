@@ -21,6 +21,9 @@ public class ConstraintTranslator {
         final PrintConstraint rightConstraint = translate(right);
         final PrintConstraint comparatorConstraint = translate(comparator);
 
+        // setting type based on left vs. right
+        leftConstraint.setType(0);
+        rightConstraint.setType(1);
         comparatorConstraint.sourceConstraints.add(leftConstraint);
         comparatorConstraint.sourceConstraints.add(rightConstraint);
 
@@ -33,9 +36,11 @@ public class ConstraintTranslator {
     }
 
     public PrintConstraint translate(StringExpression se) {
+        // constraints need types for their outgonig edges so we set that here
+        // this may need to be changed as i dont remember if and how this is relevant to solving
         if (se instanceof StringConstant) {
             StringConstant stringConstant = (StringConstant) se;
-            return new PrintConstraint(translator.getNextID(), stringConstant.toString(), "\"" + stringConstant.value() + "\"!:!<init>");
+            return new PrintConstraint(translator.getNextID(), stringConstant.toString().replace("CONST_",""), "\"" + stringConstant.value() + "\"!:!<init>");
         } else if (se instanceof StringSymbolic) {
             StringSymbolic stringSymbolic = (StringSymbolic) se;
             int id = translator.getNextID();

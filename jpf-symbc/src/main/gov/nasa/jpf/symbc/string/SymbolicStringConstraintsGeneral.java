@@ -25,7 +25,8 @@ import java.util.Timer;
 import java.util.logging.Logger;
 
 import edu.boisestate.cs.MASInterface;
-import edu.boisestate.cs.modelling.MASOutput;
+import edu.boisestate.cs.graph.SolutionSet;
+import edu.boisestate.cs.automatonModel.Model_Acyclic_Inverse;
 import edu.ucsb.cs.vlab.modelling.Output;
 import gov.nasa.jpf.symbc.SymbolicInstructionFactory;
 import gov.nasa.jpf.symbc.numeric.Comparator;
@@ -459,8 +460,9 @@ public class SymbolicStringConstraintsGeneral {
 		else if(solver.equals(MAS)) {
 			System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 			System.out.println("Calling MAS\n");
-			final MASOutput result = MASInterface.solve(pc);
+			final SolutionSet<Model_Acyclic_Inverse> result = MASInterface.solve(pc);
 			constraintCount = constraintCount + 1;
+			System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ - END CALL TO MAS");
 			return result.isSAT();
 		}
 		TIMEOUT = SymbolicInstructionFactory.stringTimeout;
