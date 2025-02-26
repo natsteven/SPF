@@ -8,6 +8,7 @@ import java.util.List;
 
 public class ConstraintTranslator {
     private final MASTranslator translator;
+    private final List<PrintConstraint> constraints = new ArrayList<>();
 
     public ConstraintTranslator(MASTranslator translator) {
         this.translator = translator;
@@ -27,7 +28,6 @@ public class ConstraintTranslator {
         comparatorConstraint.sourceConstraints.add(leftConstraint);
         comparatorConstraint.sourceConstraints.add(rightConstraint);
 
-        List<PrintConstraint> constraints = new ArrayList<>();
         constraints.add(leftConstraint);
         constraints.add(rightConstraint);
         constraints.add(comparatorConstraint);
@@ -46,7 +46,26 @@ public class ConstraintTranslator {
             int id = translator.getNextID();
             String val = "r" + id + "!:!getStringValue!!";
             return new PrintConstraint(id, stringSymbolic.toString(), val);
+        } else if (se instanceof DerivedStringExpression) {
+            DerivedStringExpression dse = (DerivedStringExpression) se;
+            StringOperator op = dse.op;
+            if (op == StringOperator.CONCAT) {
+                PrintConstraint left = translate(dse.left);
+                left.setType(0);
+                PrintConstraint right = translate(dse.right);
+                right.setType(1);
+                PrintConstraint concat = new PrintConstraint(translator.getNextID(), dse.left.toString() + dse.right.toString(), "concat!!Ljava/lang/String;!:!2");
+                concat.sourceConstraints.add(left);
+                concat.sourceConstraints.add(right);
+                constraints.add(left);
+                constraints.add(right);
+                return concat;
+            } else {
+                System.out.println("Unhandled DerivedStringExpression: " + dse);
+            }
         } else {
+            System.out.println(se.getClass());
+            System.out.println(se.getName());
             System.out.println("Unhandled StringExpression: " + se);
         }
         return null;

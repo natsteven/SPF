@@ -2,13 +2,11 @@ package edu.boisestate.cs.util;
 
 import edu.boisestate.cs.Alphabet;
 import edu.boisestate.cs.Parser_2;
-import edu.boisestate.cs.automatonModel.A_Model;
 import edu.boisestate.cs.automatonModel.Model_Acyclic_Inverse;
 import edu.boisestate.cs.automatonModel.Model_Acyclic_Inverse_Manager;
 import edu.boisestate.cs.graph.InvDefaultDirectedGraph;
 import edu.boisestate.cs.graph.SolutionSet;
 import edu.boisestate.cs.modelling.MASOutput;
-import edu.boisestate.cs.SolveMain;
 import edu.boisestate.cs.reporting.Reporter_Inverse;
 import edu.boisestate.cs.reporting.Reporter_Inverse_BFS;
 import edu.boisestate.cs.solvers.Solver_Inverse;
@@ -35,8 +33,7 @@ public class MASProcessor {
         Model_Acyclic_Inverse_Manager mFactory 					= new Model_Acyclic_Inverse_Manager(alpha, initialBound);
         Solver_Inverse<Model_Acyclic_Inverse> mSolver 		= new Solver_Inverse<Model_Acyclic_Inverse>(mFactory,	initialBound);
         Parser_2<Model_Acyclic_Inverse> mParser 				= new Parser_2<Model_Acyclic_Inverse>(mSolver, debug);
-        Reporter_Inverse<Model_Acyclic_Inverse> mReporter 	= new Reporter_Inverse_BFS<Model_Acyclic_Inverse>(graph, mParser, mSolver, debug); //new Reporter_Inverse<Model_Acyclic_Inverse>(graph, mParser, mSolver, debug);
-        ////Reporter_Inverse<Model_Acyclic_Inverse> mReporter 	= new Reporter_Inverse<Model_Acyclic_Inverse>(graph, mParser, mSolver, debug);
+        Reporter_Inverse<Model_Acyclic_Inverse> mReporter 	= new Reporter_Inverse_BFS<Model_Acyclic_Inverse>(graph, mParser, mSolver, debug);
         mSolver.setReduce(true);
         mReporter.run();
 

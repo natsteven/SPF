@@ -17,15 +17,13 @@ public class MASInterface {
 
     public static SolutionSet<Model_Acyclic_Inverse> solve(StringPathCondition pc) {
 
-        // Naive implementation of the MAS interface
-        // We take the SMTLIB string and put it through translation to MASjson, solve, and return MAS's output
-//        final Z3Translator translator = new Z3Translator();
-//        final String smtlibQuery = translator.translate(pc);
+        // get smtlib query for debugging
+        final Z3Translator t = new Z3Translator();
+        final String smtlibQuery = t.translate(pc);
+        System.out.println("*************************************");
+        System.out.println("The smtlib query is: " + smtlibQuery);
 
-        //debug
-//        System.out.println("*************************************");
-//        System.out.println("The smtlib query is: " + smtlibQuery);
-//
+
 //        System.out.println("*************************************");
 //        System.out.println("Using NaiveIntegration to solve the query");
 //        NaiveIntegration ni = new NaiveIntegration();
