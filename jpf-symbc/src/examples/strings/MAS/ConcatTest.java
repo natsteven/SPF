@@ -1,4 +1,4 @@
-package strings;
+package strings.MAS;
 
 public class ConcatTest {
     public static void main(String[] args) {

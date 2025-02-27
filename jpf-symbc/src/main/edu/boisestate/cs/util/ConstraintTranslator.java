@@ -1,14 +1,18 @@
 package edu.boisestate.cs.util;
 
 import edu.boisestate.cs.graph.PrintConstraint;
+import gov.nasa.jpf.symbc.numeric.Expression;
+import gov.nasa.jpf.symbc.numeric.IntegerConstant;
 import gov.nasa.jpf.symbc.string.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ConstraintTranslator {
     private final MASTranslator translator;
     private final List<PrintConstraint> constraints = new ArrayList<>();
+    private final HashMap<String, PrintConstraint> constraintsMap = new HashMap<>();
 
     public ConstraintTranslator(MASTranslator translator) {
         this.translator = translator;
@@ -48,21 +52,7 @@ public class ConstraintTranslator {
             return new PrintConstraint(id, stringSymbolic.toString(), val);
         } else if (se instanceof DerivedStringExpression) {
             DerivedStringExpression dse = (DerivedStringExpression) se;
-            StringOperator op = dse.op;
-            if (op == StringOperator.CONCAT) {
-                PrintConstraint left = translate(dse.left);
-                left.setType(0);
-                PrintConstraint right = translate(dse.right);
-                right.setType(1);
-                PrintConstraint concat = new PrintConstraint(translator.getNextID(), dse.left.toString() + dse.right.toString(), "concat!!Ljava/lang/String;!:!2");
-                concat.sourceConstraints.add(left);
-                concat.sourceConstraints.add(right);
-                constraints.add(left);
-                constraints.add(right);
-                return concat;
-            } else {
-                System.out.println("Unhandled DerivedStringExpression: " + dse);
-            }
+            return translate(dse);
         } else {
             System.out.println(se.getClass());
             System.out.println(se.getName());
@@ -84,12 +74,69 @@ public class ConstraintTranslator {
                 op = "equals!!Ljava/lang/Object;!:!0";
                 value = "false";
                 break;
+            case CONTAINS:
+                op = "contains!!Ljava/lang/CharSequence;!:!0";
+                break;
+            case NOTCONTAINS:
+                op = "contains!!Ljava/lang/CharSequence;!:!0";
+                value = "false";
+                break;
             default:
                 System.out.println("Unhandled StringComparator: " + comparator);
+                System.exit(1);
                 op = "";
         }
 
         return new PrintConstraint(translator.getNextID(), value, op);
+    }
+
+    public PrintConstraint translate(DerivedStringExpression dse) {
+        StringOperator op = dse.op;
+        switch(op) {
+            case CONCAT:
+                PrintConstraint left = translate(dse.left);
+                left.setType(0);
+                PrintConstraint right = translate(dse.right);
+                right.setType(1);
+                PrintConstraint concat = new PrintConstraint(translator.getNextID(), dse.left.toString() + dse.right.toString(), "concat!!Ljava/lang/String;!:!0");
+                concat.sourceConstraints.add(left);
+                concat.sourceConstraints.add(right);
+                constraints.add(left);
+                constraints.add(right);
+                return concat;
+            case SUBSTRING:
+                StringExpression str = (StringExpression) dse.oprlist[0];
+                IntegerConstant startIndex = (IntegerConstant) dse.oprlist[2];
+                IntegerConstant endIndex = (IntegerConstant) dse.oprlist[1];
+                PrintConstraint substring = new PrintConstraint(translator.getNextID(), str.toString().substring(startIndex.value(), endIndex.value()), "substring!!II!:!0");
+                PrintConstraint strConstraint = translate(str);
+                strConstraint.setType(0);
+                PrintConstraint start = translate(startIndex);
+                start.setType(1);
+                PrintConstraint end = translate(endIndex);
+                end.setType(2);
+
+                substring.sourceConstraints.add(strConstraint);
+                substring.sourceConstraints.add(start);
+                substring.sourceConstraints.add(end);
+                constraints.add(strConstraint);
+                constraints.add(start);
+                constraints.add(end);
+
+                return substring;
+            default:
+                System.out.println("Unhandled DerivedStringExpression: " + dse);
+                System.exit(1);
+                return null;
+        }
+    }
+
+    public PrintConstraint translate(IntegerConstant ic) {
+        return new PrintConstraint(translator.getNextID(), ic.toString().replace("CONST_",""), "\"" + ic.value() + "\"!:!<init>");
+    }
+
+    public void clearConstraintsList() {
+        constraints.clear();
     }
 
 

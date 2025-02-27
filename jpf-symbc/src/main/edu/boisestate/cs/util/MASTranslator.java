@@ -31,6 +31,19 @@ public class MASTranslator {
         // string path condition object has place for count and solution....
         StringConstraint strc = spc.header;
 
+        if (spc.getNpc().header != null) {
+            String npc = spc.getNpc().header.toString();
+            System.out.println("Numeric Path Condition Exists: " + npc);
+            if (npc.equals("Length_0_ != CONST_0")) {
+                System.out.println("isEmpty");
+            }
+        }
+
+        if (strc == null) {
+            System.out.println("No String Constraints");
+            System.exit(1);
+        }
+
         ConstraintTranslator ct = new ConstraintTranslator(this);
         // a string constraint has a comparator, a left, and a right
         // TODO: will need to handle cases of multiple arg constraints
@@ -56,12 +69,22 @@ public class MASTranslator {
                     for (PrintConstraint source : pc.sourceConstraints) {
                         if (source != pc){
                             SymbolicEdge edge = invGraph.addEdge(source, pc);
-                            String type = source.getType() == 0 ? "t" : "s1";
-                            edge.setType(type);
+                            int typ = source.getType();
+                            if (typ == 0) {
+                                edge.setType("t");
+                            } else if (typ == 1) {
+                                edge.setType("s1");
+                            } else if (typ == 2) {
+                                edge.setType("s2");
+                            } else {
+                                System.out.println("ERROR WITH TYPE " + typ + " FOR " + source);
+                                System.exit(1);
+                            }
                         }
                     }
                 }
             }
+            ct.clearConstraintsList();
             strc = strc.and();
         } while (strc != null);
 

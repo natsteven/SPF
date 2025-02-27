@@ -26,7 +26,7 @@ public class MASProcessor {
         InvDefaultDirectedGraph graph = (InvDefaultDirectedGraph) g;
 
         //define default alphabet (may want to try out limiting to present characters)
-        Alphabet alpha = new Alphabet("H,e,l,o,W,d,r"); //also may want ot expand? def need ot search concretes ofr addtnls
+        Alphabet alpha = new Alphabet("H,e,l,o,W,d,r,j"); //also may want ot expand? def need ot search concretes ofr addtnls
 
         // TODO: derive or use default bounds
 

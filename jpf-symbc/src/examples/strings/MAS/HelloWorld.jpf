@@ -1,4 +1,4 @@
-target=strings.ConcatTest
+target=strings.MAS.HelloWorld
 classpath=${jpf-symbc}/build/examples:/home/nat/Repos/SPF/jpf-symbc/lib/MAS.jar
 sourcepath=${jpf-symbc}/src/examples
 #classpath=/home/miroslav/Research/jpf/jpf-symbc/build/examples
@@ -14,7 +14,7 @@ symbolic.string_dp=MAS
 #symbolic.string_dp=ABC
 symbolic.string_dp_timeout_ms=3000
 symbolic.debug=true
-symbolic.method= strings.ConcatTest.test(sym#sym)
+symbolic.method= strings.MAS.HelloWorld.hello(sym)
 search.depth_limit = 10
 search.multiple_errors=true
 
