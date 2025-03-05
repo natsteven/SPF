@@ -246,6 +246,10 @@ public abstract class StringExpression extends Expression {
     return new DerivedStringExpression(StringOperator.TRIM, this);
   }
 
+  public StringExpression _toLowerCase() {
+	return new DerivedStringExpression(StringOperator.TOLOWERCASE, this);
+  }
+
 /* concat */
   public StringExpression _concat(String s) {
     return new DerivedStringExpression(this, StringOperator.CONCAT, new StringConstant(s));

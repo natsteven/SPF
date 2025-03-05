@@ -311,6 +311,8 @@ public class SymbolicStringHandler {
 					handleIsEmpty(invInst, th);
 					return invInst.getNext(th);
 				}
+			}else if (shortName.equals("toLowerCase")) {
+				handleToLowerCase(invInst, th);
 			}else {
 				throw new RuntimeException("ERROR: symbolic method not handled: " + shortName);
 				//return null;
@@ -1193,6 +1195,27 @@ public class SymbolicStringHandler {
 			sym_v1 = new StringConstant(val1);
 		}
 		StringExpression result = sym_v1._trim();
+
+		ElementInfo  objRef = th.getHeap().newString("", th); /*
+																																 * dummy String
+																																 * Object
+																																 */
+		sf.push(objRef.getObjectRef(), true);
+		sf.setOperandAttr(result);
+	}
+
+	public void handleToLowerCase(JVMInvokeInstruction invInst, ThreadInfo th) {
+		// throw new RuntimeException("ERROR: symbolic string method not Implemented - ToLowerCase");
+		StackFrame sf = th.getModifiableTopFrame();
+		StringExpression sym_v1 = (StringExpression) sf.getOperandAttr(0);
+		int s1 = sf.pop();
+
+		if (sym_v1 == null) {
+			ElementInfo e1 = th.getElementInfo(s1);
+			String val1 = e1.asString();
+			sym_v1 = new StringConstant(val1);
+		}
+		StringExpression result = sym_v1._toLowerCase();
 
 		ElementInfo  objRef = th.getHeap().newString("", th); /*
 																																 * dummy String

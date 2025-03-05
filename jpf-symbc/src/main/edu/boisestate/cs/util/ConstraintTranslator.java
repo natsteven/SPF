@@ -124,6 +124,13 @@ public class ConstraintTranslator {
                 constraints.add(end);
 
                 return substring;
+            case TOLOWERCASE:
+                PrintConstraint toLowerCase = new PrintConstraint(translator.getNextID(), dse.right.toString().toLowerCase(), "toLowerCase!!!:!0");
+                PrintConstraint strConstraint2 = translate(dse.right);
+                strConstraint2.setType(0);
+                toLowerCase.sourceConstraints.add(strConstraint2);
+                constraints.add(strConstraint2);
+                return toLowerCase;
             default:
                 System.out.println("Unhandled DerivedStringExpression: " + dse);
                 System.exit(1);
