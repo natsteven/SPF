@@ -1,5 +1,5 @@
 target=strings.HelloWorld
-classpath=${jpf-symbc}/build/examples:/home/nat/Repos/SPF/jpf-symbc/lib/MAS.jar
+classpath=${jpf-symbc}/build/examples
 sourcepath=${jpf-symbc}/src/examples
 #classpath=/home/miroslav/Research/jpf/jpf-symbc/build/examples
 #sourcepath=/home/miroslav/Research/jpf/jpf-symbc/src/examples

@@ -35,7 +35,7 @@ public class TestABCSymString extends TestJPF{
 	  String symMethodPrefix = "+symbolic.method=gov.nasa.jpf.symbc.strings.ExSymExeStringsDemo.";
 	  String methodSignature = "";
 
-	  	
+	  @Test
 	  public void TestAll() {
 		  	
 		  	

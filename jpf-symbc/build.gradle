@@ -155,6 +155,7 @@ test {
     exclude "**/TestSymbolicListener.class"
     include "**/TestSymbolicOutput.class"
     include "**/TestSymbolicJPF.class"
+//    include "**/strings/TestABCSymString.class"
 
     testLogging {
         events "passed", "skipped", "failed"
@@ -174,28 +175,20 @@ test {
     }
 }
 
-task testMAS(type: Test) {
+tasks.register('testMAS', Test) {
     description = "Runs the MAS tests."
 
-    // Set the classpath and source sets for the task
-    classpath = sourceSets.test.runtimeClasspath
-    testClassesDirs = sourceSets.test.output.classesDirs
+    dependsOn buildJars
 
-    // Include only certain tests
-    include "/gov/nasa/jpf/symbc/strings/TestABCSymString.class"
-
-    // Set other properties as needed
     forkEvery = 1
     enableAssertions = true
     maxHeapSize = "1024m"
 
-    // can add or remove std streams
-    testLogging {
-        events "passed", "skipped", "failed" , "standardOut", "standardError"
-    }
+    include "**/TestMAS.class"
 
-    // ensures tests are always run
-    outputs.upToDateWhen{ false }
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 
     afterSuite { testDescriptor, result ->
         if (!testDescriptor.parent) {
