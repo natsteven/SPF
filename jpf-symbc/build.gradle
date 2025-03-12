@@ -202,7 +202,6 @@ tasks.register('testMAS', Test) {
             println "Summary: " + summaryFields.join(", ")
         }
     }
-
 }
 
 /* This task is provided by the "maven-publish" plugin and it will publish 

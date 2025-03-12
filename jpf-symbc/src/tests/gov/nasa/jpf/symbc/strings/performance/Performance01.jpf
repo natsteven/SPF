@@ -21,7 +21,7 @@ symbolic.dp=choco
 # "none" (default), "cvc" (recommended), "automata" or 
 # "sat". At the moment symbolic.dp must be equal to 
 # "choco" for it to work.
-symbolic.string_dp=automata
+symbolic.string_dp=z3str3
 # As a side note for eclipse users, to run cvc3 
 # enabled programs, the eclipse plugin which allows 
 # you to right click on a .jpf test file and click 
@@ -30,4 +30,5 @@ symbolic.string_dp=automata
 
 symbolic.method=gov.nasa.jpf.symbc.strings.performance.Performance01.test2(sym#sym#sym) 
 
-listener = gov.nasa.jpf.symbc.SymbolicListenerClean
+# class not found? -nps
+#listener = gov.nasa.jpf.symbc.SymbolicListenerClean
