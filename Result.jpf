@@ -1,5 +1,5 @@
-target=strings.MAS.ConcatTest
-classpath=${jpf-symbc}/build/examples:/home/nat/Repos/SPF/jpf-symbc/lib/MAS.jar
+target=pcguyiv.beasties.Result
+classpath=/home/nat/Downloads/beasties_2.0.0:/home/nat/Repos/SPF/jpf-symbc/lib/MAS.jar
 sourcepath=${jpf-symbc}/src/examples
 
 symbolic.strings = true

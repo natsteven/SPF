@@ -1,0 +1,29 @@
+package gov.nasa.jpf.symbc.strings.MAS;
+
+public class EndsWithTest {
+    public static void main(String[] args) {
+        String s1 = "HelloWorld";
+        String s2 = "World";
+        testSym(s1, s2);
+        testConc(s2);
+    }
+
+    public static void testSym(String s1, String s2) {
+        if (s1.endsWith(s2)) {
+            System.out.println("s1 ends with s2");
+        } else if (s2.endsWith(s1)) {
+            System.out.println("s2 ends with s1");
+        } else {
+            System.out.println("s1 does not start with s2 and s2 does not start with s1");
+        }
+    }
+
+    public static void testConc(String s2) {
+        String s3 = "World";
+        if (s2.endsWith(s3)) {
+            System.out.println("s2 ends with World");
+        } else {
+            System.out.println("s2 does not ends with World");
+        }
+    }
+}

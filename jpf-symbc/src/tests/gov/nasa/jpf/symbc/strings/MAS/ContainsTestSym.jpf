@@ -1,0 +1,14 @@
+target=strings.MAS.ContainsTest
+classpath=${jpf-symbc}/build/examples:/home/nat/Repos/SPF/jpf-symbc/lib/MAS.jar
+sourcepath=${jpf-symbc}/src/examples
+symbolic.strings = true
+
+#symbolic.dp=choco
+symbolic.string_dp=MAS
+#symbolic.string_dp_timeout_ms=3000
+#symbolic.debug=true
+symbolic.method= strings.MAS.ContainsTest.testSym(sym#sym)
+search.depth_limit = 10
+#search.multiple_errors=true
+
+#vm.storage.class=nil

@@ -435,7 +435,7 @@ public class SymbolicStringConstraintsGeneral {
 		}
 		
 		logger.info("Using solver: " + solver);
-
+		System.out.println("---------------"+System.getProperty("java.library.path"));
 		if(solver.equals(ABC)){
 			boolean dpresult = TranslateToABC.isSat(pc);
 			constraintCount = constraintCount + 1;

@@ -45,7 +45,7 @@ public class TestZ3SymString extends TestJPF {
 	@Test
 	public void Test1 () {
 		for (String solver: solvers) {
-			String[] options = {"+symbolic.dp=z3",
+			String[] options = {"+symbolic.dp=choco",
 					"+symbolic.string_dp=" + solver,
 					"+symbolic.strings=true",
 					"+symbolic.debug=true",

@@ -1,0 +1,27 @@
+package gov.nasa.jpf.symbc.strings.MAS;
+
+public class ContainsTest {
+    public static void main(String[] args) {
+        String s1 = "HelloWorld";
+        String s2 = "World";
+        testSym(s1, s2);
+        testConc(s2);
+    }
+
+    public static void testSym(String s1, String s2) {
+        if (s1.contains(s2)) {
+            System.out.println("s1 contains s2");
+       } else {
+            System.out.println("s1 does not contain s2");
+        }
+    }
+
+    public static void testConc(String s2) {
+        String s3 = "HelloWorld";
+        if (s3.contains(s2)) {
+            System.out.println("Hello World contains s2");
+        } else if (s2.contains(s3)){
+            System.out.println("s2 contains Hello World");
+        }
+    }
+}

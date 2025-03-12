@@ -26,7 +26,7 @@ public class TestABCSymString extends TestJPF{
 	  }
 	  String[] options = {"",
 			  	"+symbolic.dp=choco",
-				"+symbolic.string_dp=" + "ABC",
+				"+symbolic.string_dp=" + "z3str3",
 				"+symbolic.string_dp_timeout_ms=0",
 				"+target=gov.nasa.jpf.symbc.strings.ExSymExeStringsDemo",
 				"+search.depth_limit = 23 ",
