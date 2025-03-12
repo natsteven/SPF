@@ -1,5 +1,7 @@
 package gov.nasa.jpf.symbc.strings.MAS;
 
+import gov.nasa.jpf.Config;
+import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.symbc.strings.ExSymExeStringsDemo;
 import gov.nasa.jpf.util.test.TestJPF;
 import org.junit.Test;
@@ -8,14 +10,18 @@ public class TestMAS extends TestJPF {
     String methodSignature;
     String clas;
     String path = "gov.nasa.jpf.symbc.strings.MAS.";
-    String[] options = {"+symbolic.method=",    //symbolic method info and signature
+    String[] options = {"+classpath=build/tests",
+            "+symbolic.method=",    //symbolic method info and signature
             "+symbolic.dp=choco",
             "+symbolic.string_dp=" + "MAS",
             "+symbolic.string_dp_timeout_ms=0",
             "+target=", //target class/method
             "+search.depth_limit = 23 ",
-            "+listener = gov.nasa.jpf.symbc.sequences.SymbolicSequenceListener", //still unsure what this does
-            "+symbolic.debug=true"};
+//            "+listener = gov.nasa.jpf.symbc.sequences.SymbolicSequenceListener", //still unsure what this does
+            "+symbolic.debug=true",
+            "+sourcepath=src/tests",
+            "+symbolic.strings=true"};
+
 
 //    @Test
 //    public void testMAS() {
@@ -31,35 +37,44 @@ public class TestMAS extends TestJPF {
 //        upperCaseTest();
 //    }
 
+    public static void main(String[] args) {
+        runTestsOfThisClass(args);
+    }
+
+
     @Test
     public void concatTest(){
         clas = "ConcatTest";
-        methodSignature = "test(sym#sym)";
+        methodSignature = ".test(sym#sym)";
         setOptions(clas, methodSignature);
 
         String a = "Hello";
         String b = "World";
 
+//        Config cf = JPF.createConfig(options);
+//        JPF jpf = new JPF(cf);
+//        jpf.run();
+//        runTests(ConcatTest.class, "test");
+
         if(verifyNoPropertyViolation(options)){
-            ConcatTest.test(a, b);
-//            ConcatTest.main(null);
+            ConcatTest.test(a,b);
         }
     }
 
     @Test
     public void containsTest(){
         clas = "ContainsTest";
-        methodSignature = "testSym(sym#sym)";
+        methodSignature = ".testSym(sym#sym)";
         setOptions(clas, methodSignature);
 
-        String a = "HelloWorld";
+        String a = "Hello World!";
         String b = "World";
 
         if(verifyNoPropertyViolation(options)){
             ContainsTest.testSym(a, b);
         }
 
-        methodSignature = "testConc(sym)";
+        methodSignature = ".testConc(sym)";
         setOptions(clas, methodSignature);
 
         if(verifyNoPropertyViolation(options)){
@@ -70,7 +85,7 @@ public class TestMAS extends TestJPF {
     @Test
     public void endsWithTest() {
         clas = "EndsWithTest";
-        methodSignature = "testSym(sym#sym)";
+        methodSignature = ".testSym(sym#sym)";
         setOptions(clas, methodSignature);
 
         String a = "Hello";
@@ -80,7 +95,7 @@ public class TestMAS extends TestJPF {
             EndsWithTest.testSym(a, b);
         }
 
-        methodSignature = "testConc(sym)";
+        methodSignature = ".testConc(sym)";
         setOptions(clas, methodSignature);
 
         if(verifyNoPropertyViolation(options)){
@@ -105,7 +120,7 @@ public class TestMAS extends TestJPF {
     @Test
     public void isEmptyTest(){
         clas = "IsEmptyTest";
-        methodSignature = "test(sym)";
+        methodSignature = ".test(sym)";
         setOptions(clas, methodSignature);
 
         String a = "Hello World!";
@@ -118,7 +133,7 @@ public class TestMAS extends TestJPF {
     @Test
     public void lowerCaseTest(){
         clas = "LowerCaseTest";
-        methodSignature = "test(sym)";
+        methodSignature = ".test(sym)";
         setOptions(clas, methodSignature);
 
         String a = "Hello World!";
@@ -131,7 +146,7 @@ public class TestMAS extends TestJPF {
     @Test
     public void replaceTest(){
         clas = "ReplaceTest";
-        methodSignature = "testFirst(sym)";
+        methodSignature = ".testFirst(sym)";
         setOptions(clas, methodSignature);
 
         String a = "Hello World!";
@@ -140,7 +155,7 @@ public class TestMAS extends TestJPF {
             ReplaceTest.testFirst(a);
         }
 
-        methodSignature = "testAll(sym)";
+        methodSignature = ".testAll(sym)";
         setOptions(clas, methodSignature);
 
         if(verifyNoPropertyViolation(options)){
@@ -151,7 +166,7 @@ public class TestMAS extends TestJPF {
     @Test
     public void startsWithTest(){
         clas = "StartsWithTest";
-        methodSignature = "testSym(sym#sym)";
+        methodSignature = ".testSym(sym#sym)";
         setOptions(clas, methodSignature);
 
         String a = "Hello";
@@ -161,7 +176,7 @@ public class TestMAS extends TestJPF {
             StartsWithTest.testSym(a, b);
         }
 
-        methodSignature = "testConc(sym)";
+        methodSignature = ".testConc(sym)";
         setOptions(clas, methodSignature);
 
         if(verifyNoPropertyViolation(options)){
@@ -172,7 +187,7 @@ public class TestMAS extends TestJPF {
     @Test
     public void subStringTest(){
         clas = "SubstringTest";
-        methodSignature = "test(sym)";
+        methodSignature = ".test(sym)";
         setOptions(clas, methodSignature);
 
         String a = "HelloWorld";
@@ -186,7 +201,7 @@ public class TestMAS extends TestJPF {
     @Test
     public void upperCaseTest(){
         clas = "UpperCaseTest";
-        methodSignature = "test(sym)";
+        methodSignature = ".test(sym)";
         setOptions(clas, methodSignature);
 
         String a = "Hello World!";
@@ -198,6 +213,7 @@ public class TestMAS extends TestJPF {
 
     // set target method and symbolic method info
     public void setOptions(String clas, String methodSignature){
-        options[0] += path + clas + methodSignature;
+        options[1] = "+symbolic.method="+ path + clas + methodSignature;
+        options[5] = "+target="+path + clas;
     }
 }
