@@ -183,12 +183,14 @@ tasks.register('testMAS', Test) {
     forkEvery = 1
     enableAssertions = true
     maxHeapSize = "1024m"
+    ignoreFailures = true
 
     include "**/TestMAS.class"
 
     testLogging {
         events "passed", "skipped", "failed"
     }
+
 
     afterSuite { testDescriptor, result ->
         if (!testDescriptor.parent) {

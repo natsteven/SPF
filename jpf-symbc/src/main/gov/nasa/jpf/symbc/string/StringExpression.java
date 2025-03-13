@@ -250,6 +250,10 @@ public abstract class StringExpression extends Expression {
 	return new DerivedStringExpression(StringOperator.TOLOWERCASE, this);
   }
 
+  public StringExpression _toUpperCase() {
+	return new DerivedStringExpression(StringOperator.TOUPPERCASE, this);
+  }
+
 /* concat */
   public StringExpression _concat(String s) {
     return new DerivedStringExpression(this, StringOperator.CONCAT, new StringConstant(s));

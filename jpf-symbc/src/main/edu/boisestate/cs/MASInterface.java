@@ -1,5 +1,6 @@
 package edu.boisestate.cs;
 
+import edu.boisestate.cs.graph.InvDefaultDirectedGraph;
 import edu.boisestate.cs.modelling.MASOutput;
 import edu.boisestate.cs.util.MASProcessor;
 import edu.boisestate.cs.util.MASTranslator;
@@ -39,7 +40,7 @@ public class MASInterface {
         System.out.println("Using Native Integration to solve the query");
 
         MASTranslator translator = new MASTranslator();
-        Object graph = translator.translate(pc);
+        InvDefaultDirectedGraph graph = (InvDefaultDirectedGraph) translator.translate(pc);
 
         return MASProcessor.query(graph);
     }

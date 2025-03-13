@@ -1,7 +1,0 @@
-target=strings.MAS.StartsWithTest
-classpath=${jpf-symbc}/build/examples:${jpf-symbc}/lib/MAS.jar
-sourcepath=${jpf-symbc}/src/examples
-symbolic.strings = true
-
-symbolic.string_dp=MAS
-symbolic.method= strings.MAS.StartsWithTest.testSym(sym#sym)

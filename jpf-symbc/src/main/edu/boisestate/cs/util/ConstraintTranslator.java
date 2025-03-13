@@ -12,19 +12,38 @@ import java.util.List;
 public class ConstraintTranslator {
     private final MASTranslator translator;
     private final List<PrintConstraint> constraints = new ArrayList<>();
-    private final HashMap<String, PrintConstraint> constraintsMap = new HashMap<>();
+    private final HashMap<String, PrintConstraint> symMap = new HashMap<>();
 
     public ConstraintTranslator(MASTranslator translator) {
         this.translator = translator;
     }
 
+    // Parsing SPF string constraints into a set of MAS constraints
+    // requires keeping track of constraints and their relationships, specifically symbolic strings.
     public List<PrintConstraint> translate(StringConstraint sc) {
         final StringComparator comparator = sc.getComparator();
         final StringExpression left = sc.getLeft();
         final StringExpression right = sc.getRight();
-        final PrintConstraint leftConstraint = translate(left);
-        final PrintConstraint rightConstraint = translate(right);
+        String lname = left.getName();
+        String rname = right.getName();
+        PrintConstraint leftConstraint = translate(left);
+        PrintConstraint rightConstraint = translate(right);
         final PrintConstraint comparatorConstraint = translate(comparator);
+        if (!symMap.isEmpty()) { // symMap is not empty and may contain an argument (e.g. a symbolic string constraints)
+            if (symMap.containsKey(lname)) {
+                leftConstraint = symMap.get(left.toString());
+            }
+            if (symMap.containsKey(rname)) {
+                rightConstraint = symMap.get(right.toString());
+            }
+        }
+        if (lname.contains("SYMSTRING")) {
+            symMap.put(lname, leftConstraint);
+        }
+        if (rname.contains("SYMSTRING")) {
+            symMap.put(rname, rightConstraint);
+        }
+
 
         // setting type based on left vs. right
         leftConstraint.setType(0);
@@ -44,7 +63,7 @@ public class ConstraintTranslator {
         // this may need to be changed as i dont remember if and how this is relevant to solving
         if (se instanceof StringConstant) {
             StringConstant stringConstant = (StringConstant) se;
-            return new PrintConstraint(translator.getNextID(), stringConstant.toString().replace("CONST_",""), "\"" + stringConstant.value() + "\"!:!<init>");
+            return new PrintConstraint(translator.getNextID(), stringConstant.toString().replace("CONST_", ""), "\"" + stringConstant.value() + "\"!:!<init>");
         } else if (se instanceof StringSymbolic) {
             StringSymbolic stringSymbolic = (StringSymbolic) se;
             int id = translator.getNextID();
@@ -56,7 +75,8 @@ public class ConstraintTranslator {
         } else {
             System.out.println(se.getClass());
             System.out.println(se.getName());
-            System.out.println("Unhandled StringExpression: " + se);
+            System.err.println("Unhandled StringExpression: " + se);
+            System.exit(1);
         }
         return null;
     }
@@ -81,8 +101,22 @@ public class ConstraintTranslator {
                 op = "contains!!Ljava/lang/CharSequence;!:!0";
                 value = "false";
                 break;
+            case ENDSWITH:
+                op = "endsWith!!Ljava/lang/String;!:!0";
+                break;
+            case NOTENDSWITH:
+                op = "endsWith!!Ljava/lang/String;!:!0";
+                value = "false";
+                break;
+            case STARTSWITH:
+                op = "startsWith!!Ljava/lang/String;!:!0";
+                break;
+            case NOTSTARTSWITH:
+                op = "startsWith!!Ljava/lang/String;!:!0";
+                value = "false";
+                break;
             default:
-                System.out.println("Unhandled StringComparator: " + comparator);
+                System.err.println("Unhandled StringComparator: " + comparator);
                 System.exit(1);
                 op = "";
         }
@@ -92,7 +126,7 @@ public class ConstraintTranslator {
 
     public PrintConstraint translate(DerivedStringExpression dse) {
         StringOperator op = dse.op;
-        switch(op) {
+        switch (op) {
             case CONCAT:
                 PrintConstraint left = translate(dse.left);
                 left.setType(0);
@@ -131,15 +165,61 @@ public class ConstraintTranslator {
                 toLowerCase.sourceConstraints.add(strConstraint2);
                 constraints.add(strConstraint2);
                 return toLowerCase;
+            case TOUPPERCASE:
+                PrintConstraint toUpperCase = new PrintConstraint(translator.getNextID(), dse.right.toString().toUpperCase(), "toUpperCase!!!:!0");
+                PrintConstraint strConstraint3 = translate(dse.right);
+                strConstraint3.setType(0);
+                toUpperCase.sourceConstraints.add(strConstraint3);
+                constraints.add(strConstraint3);
+                return toUpperCase;
+            case REPLACEFIRST:
+                StringExpression se = (StringExpression) dse.oprlist[0];
+                String find = dse.oprlist[1].toString();
+                String replace = dse.oprlist[2].toString();
+                PrintConstraint replaceFirst = new PrintConstraint(translator.getNextID(), se.toString().replaceFirst(find, replace), "replaceFirst!!Ljava/lang/String;!:!0");
+                PrintConstraint strConstraint4 = translate(se);
+                strConstraint4.setType(0);
+                PrintConstraint findConstraint = translate(new StringConstant(find));
+                findConstraint.setType(1);
+                PrintConstraint replaceConstraint = translate(new StringConstant(replace));
+                replaceConstraint.setType(2);
+
+                replaceFirst.sourceConstraints.add(strConstraint4);
+                replaceFirst.sourceConstraints.add(findConstraint);
+                replaceFirst.sourceConstraints.add(replaceConstraint);
+                constraints.add(strConstraint4);
+                constraints.add(findConstraint);
+                constraints.add(replaceConstraint);
+                return replaceFirst;
+            case REPLACEALL:
+                StringExpression se2 = (StringExpression) dse.oprlist[0];
+                String find2 = dse.oprlist[1].toString();
+                String replace2 = dse.oprlist[2].toString();
+                PrintConstraint replaceAll = new PrintConstraint(translator.getNextID(), se2.toString().replaceAll(find2, replace2), "replaceAll!!Ljava/lang/String;Ljava/lang/String;!:!0");
+                PrintConstraint strConstraint5 = translate(se2);
+                strConstraint5.setType(0);
+                PrintConstraint findConstraint2 = translate(new StringConstant(find2));
+                findConstraint2.setType(1);
+                PrintConstraint replaceConstraint2 = translate(new StringConstant(replace2));
+                replaceConstraint2.setType(2);
+
+                replaceAll.sourceConstraints.add(strConstraint5);
+                replaceAll.sourceConstraints.add(findConstraint2);
+                replaceAll.sourceConstraints.add(replaceConstraint2);
+                constraints.add(strConstraint5);
+                constraints.add(findConstraint2);
+                constraints.add(replaceConstraint2);
+                return replaceAll;
+
             default:
-                System.out.println("Unhandled DerivedStringExpression: " + dse);
+                System.err.println("Unhandled DerivedStringExpression: " + dse);
                 System.exit(1);
                 return null;
         }
     }
 
     public PrintConstraint translate(IntegerConstant ic) {
-        return new PrintConstraint(translator.getNextID(), ic.toString().replace("CONST_",""), "\"" + ic.value() + "\"!:!<init>");
+        return new PrintConstraint(translator.getNextID(), ic.toString().replace("CONST_", ""), "\"" + ic.value() + "\"!:!<init>");
     }
 
     public void clearConstraintsList() {

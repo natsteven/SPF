@@ -15,15 +15,17 @@ import static edu.boisestate.cs.InputSolver.run_Acyclic_Inverse_r3;
 
 // this class will actualy run the MAS query using run acyclic method from SolveMain.
 public class MASProcessor {
+    static boolean debug = true;
     private MASOutput output;
 
     public MASProcessor() {}
 
-    public static SolutionSet<Model_Acyclic_Inverse> query(Object g) {
-        boolean debug = true;
-        int initialBound = 14;
+    public static SolutionSet<Model_Acyclic_Inverse> query(InvDefaultDirectedGraph graph) {
+        int initialBound = 15;
 
-        InvDefaultDirectedGraph graph = (InvDefaultDirectedGraph) g;
+        if (debug) {
+            graph.printGraph();
+        }
 
         //define default alphabet (may want to try out limiting to present characters)
         Alphabet alpha = new Alphabet("0-z"); //also may want ot expand? def need ot search concretes ofr addtnls

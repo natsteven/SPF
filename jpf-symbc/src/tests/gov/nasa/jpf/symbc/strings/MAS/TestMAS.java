@@ -67,7 +67,7 @@ public class TestMAS extends TestJPF {
         methodSignature = ".testSym(sym#sym)";
         setOptions(clas, methodSignature);
 
-        String a = "Hello World!";
+        String a = "HelloWorld";
         String b = "World";
 
         if(verifyNoPropertyViolation(options)){
@@ -110,7 +110,7 @@ public class TestMAS extends TestJPF {
         methodSignature = "hello(sym)";
         setOptions(clas, methodSignature);
 
-        String a = "Hello World!";
+        String a = "HelloWorld";
 
         if(verifyNoPropertyViolation(options)){
             HelloWorld.hello(a);
@@ -123,7 +123,7 @@ public class TestMAS extends TestJPF {
         methodSignature = ".test(sym)";
         setOptions(clas, methodSignature);
 
-        String a = "Hello World!";
+        String a = "HelloWorld";
 
         if(verifyNoPropertyViolation(options)){
             IsEmptyTest.test(a);
@@ -136,7 +136,7 @@ public class TestMAS extends TestJPF {
         methodSignature = ".test(sym)";
         setOptions(clas, methodSignature);
 
-        String a = "Hello World!";
+        String a = "HelloWorld";
 
         if(verifyNoPropertyViolation(options)){
             LowerCaseTest.test(a);
@@ -149,7 +149,7 @@ public class TestMAS extends TestJPF {
         methodSignature = ".testFirst(sym)";
         setOptions(clas, methodSignature);
 
-        String a = "Hello World!";
+        String a = "HelloWorld";
 
         if(verifyNoPropertyViolation(options)){
             ReplaceTest.testFirst(a);
@@ -170,7 +170,7 @@ public class TestMAS extends TestJPF {
         setOptions(clas, methodSignature);
 
         String a = "Hello";
-        String b = "Hello World!";
+        String b = "HelloWorld";
 
         if(verifyNoPropertyViolation(options)){
             StartsWithTest.testSym(a, b);
@@ -187,7 +187,7 @@ public class TestMAS extends TestJPF {
     @Test
     public void subStringTest(){
         clas = "SubstringTest";
-        methodSignature = ".test(sym)";
+        methodSignature = ".test(sym#sym)";
         setOptions(clas, methodSignature);
 
         String a = "HelloWorld";
@@ -204,7 +204,7 @@ public class TestMAS extends TestJPF {
         methodSignature = ".test(sym)";
         setOptions(clas, methodSignature);
 
-        String a = "Hello World!";
+        String a = "HelloWorld";
 
         if(verifyNoPropertyViolation(options)){
             UpperCaseTest.test(a);

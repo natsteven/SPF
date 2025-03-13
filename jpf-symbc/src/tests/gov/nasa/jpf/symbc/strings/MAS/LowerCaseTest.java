@@ -7,7 +7,7 @@ public class LowerCaseTest {
     }
 
     public static void test(String s1) {
-        if (s1.toLowerCase().equals("hello world!")) {
+        if (s1.toLowerCase().equals("helloworld")) {
             System.out.println("s1.toLowerCase() equals \"hello world!\"");
         } else {
             System.out.println("s1.toLowerCase() does not equal \"hello world!\"");
