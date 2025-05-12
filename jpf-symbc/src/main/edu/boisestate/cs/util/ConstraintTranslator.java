@@ -176,7 +176,7 @@ public class ConstraintTranslator {
                 StringExpression se = (StringExpression) dse.oprlist[0];
                 String find = dse.oprlist[1].toString();
                 String replace = dse.oprlist[2].toString();
-                PrintConstraint replaceFirst = new PrintConstraint(translator.getNextID(), se.toString().replaceFirst(find, replace), "replaceFirst!!Ljava/lang/String;!:!0");
+                PrintConstraint replaceFirst = new PrintConstraint(translator.getNextID(), se.toString().replaceFirst(find, replace), "replaceFirst!!Ljava/lang/String;Ljava/lang/String;!:!0");
                 PrintConstraint strConstraint4 = translate(se);
                 strConstraint4.setType(0);
                 PrintConstraint findConstraint = translate(new StringConstant(find));
