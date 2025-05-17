@@ -8,7 +8,9 @@ import gov.nasa.jpf.symbc.string.StringPathCondition;
 import gov.nasa.jpf.util.LogManager;
 import org.jgrapht.DirectedGraph;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 
 public class MASTranslator {
@@ -16,9 +18,12 @@ public class MASTranslator {
     static Logger logger = LogManager.getLogger("TranslateToMAS");
     // keep track of constraints using id?
     private int id;
+    // Alphabet is just String of characters that the Alphabet class can make into an alphabet object
+    private Set<Character> alpha;
 
     public MASTranslator() {
         id = 0;
+        alpha= new HashSet<>();
     }
 
     public DirectedGraph<PrintConstraint, SymbolicEdge> translate(StringPathCondition spc) {
@@ -95,5 +100,35 @@ public class MASTranslator {
 
     public int getNextID() {
         return id++;
+    }
+
+    public void addCharToAlph(char c) {
+        alpha.add(c);
+    }
+
+    public void addWildCardToAlph() {
+        for (int i = 48; i < 122; i++) {
+            char currentSearch = (char) i;
+            boolean found = false;
+            for (Character c : alpha) {
+                if (c == currentSearch) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                alpha.add(currentSearch);
+                break;
+            }
+        }
+    }
+
+    public String getAlpha() {
+        StringBuilder sb = new StringBuilder();
+        for (Character c : alpha) {
+            sb.append(c);
+            sb.append(",");
+        }
+        return sb.deleteCharAt(sb.length()-1).toString();
     }
 }

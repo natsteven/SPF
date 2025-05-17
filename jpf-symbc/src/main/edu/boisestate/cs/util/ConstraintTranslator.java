@@ -63,7 +63,12 @@ public class ConstraintTranslator {
         // this may need to be changed as i dont remember if and how this is relevant to solving
         if (se instanceof StringConstant) {
             StringConstant stringConstant = (StringConstant) se;
-            return new PrintConstraint(translator.getNextID(), stringConstant.toString().replace("CONST_", ""), "\"" + stringConstant.value() + "\"!:!<init>");
+            String val = stringConstant.value.replace("CONST_", "");
+            // add concrete strings to alphabet
+            for (int i = 0; i < val.length(); i++) {
+                translator.addCharToAlph(val.charAt(i));
+            }
+            return new PrintConstraint(translator.getNextID(), val, "\"" + val + "\"!:!<init>");
         } else if (se instanceof StringSymbolic) {
             StringSymbolic stringSymbolic = (StringSymbolic) se;
             int id = translator.getNextID();
@@ -192,6 +197,7 @@ public class ConstraintTranslator {
                 constraints.add(replaceConstraint);
                 return replaceFirst;
             case REPLACEALL:
+            case REPLACE:
                 StringExpression se2 = (StringExpression) dse.oprlist[0];
                 String find2 = dse.oprlist[1].toString();
                 String replace2 = dse.oprlist[2].toString();

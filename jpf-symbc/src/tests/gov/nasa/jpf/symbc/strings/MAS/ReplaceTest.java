@@ -8,20 +8,20 @@ public class ReplaceTest {
     }
 
     public static void testFirst(String s1) {
-        String s2 = s1.replaceFirst("H", "h");
-        if (s2.equals("helloWorld")) {
-            System.out.println("s2 equals \"helloWorld\"");
+        String s2 = s1.replaceFirst("a", "b");
+        if (s2.equals("ba")) {
+            System.out.println("s2 equals \"ba\"");
         } else {
-            System.out.println("s2 does not equal \"helloWorld\"");
+            System.out.println("s2 does not equal \"aa\"");
         }
     }
 
     public static void testAll(String s1) {
-        String s2 = s1.replace("l", "L");
-        if (s2.equals("HeLLoWorLd")) {
-            System.out.println("s2 equals \"HeLLoWorLd\"");
+        String s2 = s1.replace("a", "b");
+        if (s2.equals("aa")) {
+            System.out.println("s2 equals \"muggy\"");
         } else {
-            System.out.println("s2 does not equal \"HeLLoWorLd\"");
+            System.out.println("s2 does not equal \"muggy\"");
         }
     }
 }

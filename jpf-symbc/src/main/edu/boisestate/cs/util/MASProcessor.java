@@ -15,25 +15,26 @@ import static edu.boisestate.cs.InputSolver.run_Acyclic_Inverse_r3;
 
 // this class will actualy run the MAS query using run acyclic method from SolveMain.
 public class MASProcessor {
-    static boolean debug = true;
+    private final boolean debug;
+    private int bound;
+    private Alphabet alpha;
     private MASOutput output;
 
-    public MASProcessor() {}
+    public MASProcessor(boolean debug, Alphabet alpha, int bound) {
+       this.bound = bound;
+       this.alpha = alpha;
+       this.debug = debug;
+    }
 
-    public static SolutionSet<Model_Acyclic_Inverse> query(InvDefaultDirectedGraph graph) {
-        int initialBound = 15;
-
+    public SolutionSet<Model_Acyclic_Inverse> query(InvDefaultDirectedGraph graph) {
         if (debug) {
             graph.printGraph();
         }
 
-        //define default alphabet (may want to try out limiting to present characters)
-        Alphabet alpha = new Alphabet("0-z"); //also may want ot expand? def need ot search concretes ofr addtnls
-
         // TODO: derive or use default bounds
 
-        Model_Acyclic_Inverse_Manager mFactory 					= new Model_Acyclic_Inverse_Manager(alpha, initialBound);
-        Solver_Inverse<Model_Acyclic_Inverse> mSolver 		= new Solver_Inverse<Model_Acyclic_Inverse>(mFactory,	initialBound);
+        Model_Acyclic_Inverse_Manager mFactory 					= new Model_Acyclic_Inverse_Manager(alpha, bound);
+        Solver_Inverse<Model_Acyclic_Inverse> mSolver 		= new Solver_Inverse<Model_Acyclic_Inverse>(mFactory, bound);
         Parser_2<Model_Acyclic_Inverse> mParser 				= new Parser_2<Model_Acyclic_Inverse>(mSolver, debug);
         Reporter_Inverse<Model_Acyclic_Inverse> mReporter 	= new Reporter_Inverse_BFS<Model_Acyclic_Inverse>(graph, mParser, mSolver, debug);
         mSolver.setReduce(true);

@@ -42,7 +42,16 @@ public class MASInterface {
         MASTranslator translator = new MASTranslator();
         InvDefaultDirectedGraph graph = (InvDefaultDirectedGraph) translator.translate(pc);
 
-        return MASProcessor.query(graph);
+        translator.addWildCardToAlph(); // add character not in queries concrete strings to alphabet
+        String alph = translator.getAlpha();
+        Alphabet alpha;
+        if (alph.isEmpty()){
+            alpha = new Alphabet("A,B,C");
+        }else {
+            alpha = new Alphabet(alph);
+        }
+        MASProcessor processor = new MASProcessor(false, alpha, 5);
+        return processor.query(graph);
     }
 
 }
