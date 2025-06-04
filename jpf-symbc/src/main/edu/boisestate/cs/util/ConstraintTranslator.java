@@ -68,6 +68,9 @@ public class ConstraintTranslator {
             for (int i = 0; i < val.length(); i++) {
                 translator.addCharToAlph(val.charAt(i));
             }
+            if (val.length() > translator.getLongestConcreteStringLength()) {
+                translator.setLongestConcreteStringLength(val.length());
+            }
             return new PrintConstraint(translator.getNextID(), val, "\"" + val + "\"!:!<init>");
         } else if (se instanceof StringSymbolic) {
             StringSymbolic stringSymbolic = (StringSymbolic) se;

@@ -50,7 +50,9 @@ public class MASInterface {
         }else {
             alpha = new Alphabet(alph);
         }
-        MASProcessor processor = new MASProcessor(false, alpha, 5);
+        int bound = translator.getLongestConcreteStringLength() + 1; // could also reason about concats but for now this is fine
+
+        MASProcessor processor = new MASProcessor(false, alpha, bound);
         return processor.query(graph);
     }
 

@@ -20,6 +20,7 @@ public class MASTranslator {
     private int id;
     // Alphabet is just String of characters that the Alphabet class can make into an alphabet object
     private Set<Character> alpha;
+    private int longestConcreteStringLength = 0;
 
     public MASTranslator() {
         id = 0;
@@ -130,5 +131,13 @@ public class MASTranslator {
             sb.append(",");
         }
         return sb.deleteCharAt(sb.length()-1).toString();
+    }
+
+    public void setLongestConcreteStringLength(int longestConcreteStringLength) {
+        this.longestConcreteStringLength = longestConcreteStringLength;
+    }
+
+    public int getLongestConcreteStringLength() {
+        return longestConcreteStringLength;
     }
 }
