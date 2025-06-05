@@ -47,7 +47,8 @@ public class MASTranslator {
 
         if (strc == null) {
             System.out.println("No String Constraints");
-            System.exit(1);
+//            System.exit(1);
+            return null;
         }
 
         ConstraintTranslator ct = new ConstraintTranslator(this);

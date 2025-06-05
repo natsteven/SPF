@@ -9,9 +9,16 @@ public class IsEmptyTest {
 
     public static void test(String s1) {
         if (s1.isEmpty()) {
-            System.out.println("s1 is empty");
-        } else {
-            System.out.println("s1 is not empty");
+            System.out.println("String is empty");
+        }
+    }
+
+    public static void testMixed(String s1, String s2) {
+        if (s1.contains(s2)) {
+            System.out.println("s1 contains" + s2);
+        }
+        if (s1.isEmpty()) {
+            System.out.println("s2 is empty");
         }
     }
 }

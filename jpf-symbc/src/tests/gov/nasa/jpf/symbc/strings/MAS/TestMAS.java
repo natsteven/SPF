@@ -128,6 +128,13 @@ public class TestMAS extends TestJPF {
         if(verifyNoPropertyViolation(options)){
             IsEmptyTest.test(a);
         }
+        methodSignature = ".testMixed(sym#sym)";
+        setOptions(clas, methodSignature);
+
+        String b = "";
+        if(verifyNoPropertyViolation(options)){
+            IsEmptyTest.testMixed(a, b);
+        }
     }
 
     @Test

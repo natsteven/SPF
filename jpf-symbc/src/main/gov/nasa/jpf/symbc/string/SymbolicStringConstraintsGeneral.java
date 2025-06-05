@@ -435,7 +435,7 @@ public class SymbolicStringConstraintsGeneral {
 		}
 		
 		logger.info("Using solver: " + solver);
-		System.out.println("---------------"+System.getProperty("java.library.path"));
+//		System.out.println("---------------"+System.getProperty("java.library.path"));
 		if(solver.equals(ABC)){
 			boolean dpresult = TranslateToABC.isSat(pc);
 			constraintCount = constraintCount + 1;
@@ -461,6 +461,10 @@ public class SymbolicStringConstraintsGeneral {
 			System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 			System.out.println("Calling MAS\n");
 			final SolutionSet<Model_Acyclic_Inverse> result = MASInterface.solve(pc);
+			if (result == null) {
+				System.err.println("MAS returned null, returning false");
+				return false;
+			}
 			constraintCount = constraintCount + 1;
 			System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ - END CALL TO MAS");
 			return result.isSAT();

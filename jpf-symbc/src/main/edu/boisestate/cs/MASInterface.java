@@ -37,10 +37,14 @@ public class MASInterface {
 //        }
 
         System.out.println("*************************************");
-        System.out.println("Using Native Integration to solve the query");
+//        System.out.println("Using Native Integration to solve the query");
 
         MASTranslator translator = new MASTranslator();
         InvDefaultDirectedGraph graph = (InvDefaultDirectedGraph) translator.translate(pc);
+        if (graph == null) {
+            System.out.println("No graph was created from the StringPathCondition.");
+            return null;
+        }
 
         translator.addWildCardToAlph(); // add character not in queries concrete strings to alphabet
         String alph = translator.getAlpha();
