@@ -5,13 +5,13 @@ import gov.nasa.jpf.symbc.numeric.Expression;
 import gov.nasa.jpf.symbc.numeric.IntegerConstant;
 import gov.nasa.jpf.symbc.string.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 public class ConstraintTranslator {
     private final MASTranslator translator;
-    private final List<PrintConstraint> constraints = new ArrayList<>();
+    private final HashSet<PrintConstraint> constraints = new HashSet<>();
     private final HashMap<String, PrintConstraint> symMap = new HashMap<>();
 
     public ConstraintTranslator(MASTranslator translator) {
@@ -20,38 +20,28 @@ public class ConstraintTranslator {
 
     // Parsing SPF string constraints into a set of MAS constraints
     // requires keeping track of constraints and their relationships, specifically symbolic strings.
-    public List<PrintConstraint> translate(StringConstraint sc) {
+    public HashSet<PrintConstraint> translate(StringConstraint sc) {
         final StringComparator comparator = sc.getComparator();
         final StringExpression left = sc.getLeft();
         final StringExpression right = sc.getRight();
-        String lname = left.getName();
-        String rname = right.getName();
-        PrintConstraint leftConstraint = translate(left);
+
+        PrintConstraint leftConstraint = null;
         PrintConstraint rightConstraint = translate(right);
         final PrintConstraint comparatorConstraint = translate(comparator);
-        if (!symMap.isEmpty()) { // symMap is not empty and may contain an argument (e.g. a symbolic string constraints)
-            if (symMap.containsKey(lname)) {
-                leftConstraint = symMap.get(left.toString());
-            }
-            if (symMap.containsKey(rname)) {
-                rightConstraint = symMap.get(right.toString());
-            }
-        }
-        if (lname.contains("SYMSTRING")) {
-            symMap.put(lname, leftConstraint);
-        }
-        if (rname.contains("SYMSTRING")) {
-            symMap.put(rname, rightConstraint);
-        }
 
 
         // setting type based on left vs. right
-        leftConstraint.setType(0);
-        rightConstraint.setType(1);
-        comparatorConstraint.sourceConstraints.add(leftConstraint);
+        if (left!=null){
+            leftConstraint = translate(left);
+            leftConstraint.setType(0);
+            comparatorConstraint.sourceConstraints.add(leftConstraint);
+            constraints.add(leftConstraint);
+            rightConstraint.setType(1);
+        } else {
+            rightConstraint.setType(0);
+        }
         comparatorConstraint.sourceConstraints.add(rightConstraint);
 
-        constraints.add(leftConstraint);
         constraints.add(rightConstraint);
         constraints.add(comparatorConstraint);
 
@@ -74,9 +64,15 @@ public class ConstraintTranslator {
             return new PrintConstraint(translator.getNextID(), val, "\"" + val + "\"!:!<init>");
         } else if (se instanceof StringSymbolic) {
             StringSymbolic stringSymbolic = (StringSymbolic) se;
+            String sym = stringSymbolic.toString();
+            if (symMap.containsKey(sym)) {
+                return symMap.get(sym);
+            }
             int id = translator.getNextID();
             String val = "r" + id + "!:!getStringValue!!";
-            return new PrintConstraint(id, stringSymbolic.toString(), val);
+            PrintConstraint symConstraint = new PrintConstraint(id, sym, val);
+            symMap.put(sym, symConstraint);
+            return symConstraint;
         } else if (se instanceof DerivedStringExpression) {
             DerivedStringExpression dse = (DerivedStringExpression) se;
             return translate(dse);
@@ -121,6 +117,13 @@ public class ConstraintTranslator {
                 break;
             case NOTSTARTSWITH:
                 op = "startsWith!!Ljava/lang/String;!:!0";
+                value = "false";
+                break;
+            case EMPTY:
+                op = "isEmpty!!!:!0";
+                break;
+            case NOTEMPTY:
+                op = "isEmpty!!!:!0";
                 value = "false";
                 break;
             default:
@@ -219,7 +222,32 @@ public class ConstraintTranslator {
                 constraints.add(findConstraint2);
                 constraints.add(replaceConstraint2);
                 return replaceAll;
+            case DELETE:
+                StringExpression se3 = (StringExpression) dse.oprlist[0]; //source
+                IntegerConstant index1 = (IntegerConstant) dse.oprlist[1]; // may not always be integer constat... TODO: handle symbolic indices
+                IntegerConstant index2 = (IntegerConstant) dse.oprlist[2];
 
+                StringBuilder sb = new StringBuilder(se3.toString());
+                sb.delete(index1.value(), index2.value());
+                PrintConstraint delete = new PrintConstraint(translator.getNextID(), sb.toString(), "delete!!II!:!0");
+                PrintConstraint strConstraint6 = translate(se3);
+
+                // could handle these in translate and likely will need to as IntegerConstant IntegerExpressions, see baove todo
+                String val1 = String.valueOf(index1.value());
+                String val2 = String.valueOf(index2.value());
+                PrintConstraint ind1 = new PrintConstraint(translator.getNextID(), val1, "\"" + val1 + "\"!:!<init>");
+                PrintConstraint ind2 = new PrintConstraint(translator.getNextID(), val2, "\"" + val2 + "\"!:!<init>");
+                strConstraint6.setType(0);
+                ind1.setType(1);
+                ind2.setType(2);
+
+                delete.sourceConstraints.add(strConstraint6);
+                delete.sourceConstraints.add(ind1);
+                delete.sourceConstraints.add(ind2);
+                constraints.add(strConstraint6);
+                constraints.add(ind1);
+                constraints.add(ind2);
+                return delete;
             default:
                 System.err.println("Unhandled DerivedStringExpression: " + dse);
                 System.exit(1);

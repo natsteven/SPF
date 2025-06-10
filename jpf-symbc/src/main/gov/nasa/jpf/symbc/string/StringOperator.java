@@ -60,7 +60,8 @@ public enum StringOperator {
   REPLACEALL("replaceall"),
   TOLOWERCASE("tolowercase"),
   TOUPPERCASE("touppercase"),
-  VALUEOF("valueof");
+  VALUEOF("valueof"),
+  DELETE("delete");
 
   private final String str;
 

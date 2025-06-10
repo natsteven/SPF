@@ -14,10 +14,10 @@ public class IsEmptyTest {
     }
 
     public static void testMixed(String s1, String s2) {
-        if (s1.contains(s2)) {
-            System.out.println("s1 contains" + s2);
+        if (!s1.contains(s2)) {
+            System.out.println("s1 doesn't contain" + s2);
         }
-        if (s1.isEmpty()) {
+        if (s2.isEmpty()) {
             System.out.println("s2 is empty");
         }
     }

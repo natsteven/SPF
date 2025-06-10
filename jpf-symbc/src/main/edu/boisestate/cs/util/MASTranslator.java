@@ -8,6 +8,7 @@ import gov.nasa.jpf.symbc.string.StringPathCondition;
 import gov.nasa.jpf.util.LogManager;
 import org.jgrapht.DirectedGraph;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -63,7 +64,7 @@ public class MASTranslator {
 
         do {
             // takes a String Constraint and returns three PrintConstraints
-            List<PrintConstraint> constraints = ct.translate(strc);
+            HashSet<PrintConstraint> constraints = ct.translate(strc);
 
             for (PrintConstraint pc : constraints) {
 
@@ -140,5 +141,25 @@ public class MASTranslator {
 
     public int getLongestConcreteStringLength() {
         return longestConcreteStringLength;
+    }
+
+    private InvDefaultDirectedGraph orderIDsTopologically(InvDefaultDirectedGraph graph) {
+        // MAS algorithm requires the constaints to be IDed in topological order otherwise the queue for evaluation will break
+        HashSet<PrintConstraint> processed = new HashSet<>();
+        HashSet<PrintConstraint> toProcess = new HashSet<>(graph.getPredicates());
+        int id = 0;
+        // we just need ot make sure all ancestors of a constraint are processed before the constraint itself
+        while (!toProcess.isEmpty()) {
+            PrintConstraint current = toProcess.iterator().next();
+            Set<SymbolicEdge> parentEdges = graph.outgoingEdgesOf(current);
+            for (SymbolicEdge edge : parentEdges) {
+                PrintConstraint parent = graph.getEdgeSource(edge);
+                if (!processed.contains(parent)) {
+                    toProcess.add(parent);
+                }
+            }
+
+        }
+        return null;
     }
 }

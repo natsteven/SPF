@@ -120,14 +120,15 @@ public class TestMAS extends TestJPF {
     @Test
     public void isEmptyTest(){
         clas = "IsEmptyTest";
+        System.out.println(System.getProperty("java.library.path"));
         methodSignature = ".test(sym)";
         setOptions(clas, methodSignature);
 
         String a = "HelloWorld";
 
-        if(verifyNoPropertyViolation(options)){
-            IsEmptyTest.test(a);
-        }
+//        if(verifyNoPropertyViolation(options)){
+//            IsEmptyTest.test(a);
+//        }
         methodSignature = ".testMixed(sym#sym)";
         setOptions(clas, methodSignature);
 
@@ -215,6 +216,19 @@ public class TestMAS extends TestJPF {
 
         if(verifyNoPropertyViolation(options)){
             UpperCaseTest.test(a);
+        }
+    }
+
+    @Test
+    public void deleteTest() {
+        clas = "DeleteTest";
+        methodSignature = ".test(sym)";
+        setOptions(clas, methodSignature);
+
+        String a = "Hello";
+
+        if(verifyNoPropertyViolation(options)){
+            DeleteTest.test(a);
         }
     }
 

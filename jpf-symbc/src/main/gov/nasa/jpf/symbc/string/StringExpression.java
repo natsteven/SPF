@@ -354,6 +354,40 @@ public StringExpression _subString(IntegerExpression t) {
     return new DerivedStringExpression(StringOperator.SUBSTRING, l );
   }
 
+  /* delete */
+
+	public StringExpression _delete(Integer int1, Integer int2) {
+		Expression l[] = new Expression[3];
+		l[0] = this;
+		l[1] = new IntegerConstant(int1);
+		l[2] = new IntegerConstant(int2);
+		return new DerivedStringExpression(StringOperator.DELETE, l );
+	}
+
+	public StringExpression _delete(IntegerExpression intex1, Integer int2) {
+		Expression l[] = new Expression[3];
+		l[0] = this;
+		l[1] = intex1;
+		l[2] = new IntegerConstant(int2);
+		return new DerivedStringExpression(StringOperator.DELETE, l );
+	}
+
+	public StringExpression _delete(Integer int1, IntegerExpression intex2) {
+		Expression l[] = new Expression[3];
+		l[0] = this;
+		l[1] = new IntegerConstant(int1);
+		l[2] = intex2;
+		return new DerivedStringExpression(StringOperator.DELETE, l );
+	}
+
+	public StringExpression _delete(IntegerExpression intex1, IntegerExpression intex2) {
+		Expression l[] = new Expression[3];
+		l[0] = this;
+		l[1] = intex1;
+		l[2] = intex2;
+		return new DerivedStringExpression(StringOperator.DELETE, l );
+	}
+
 /* Replace First */
 
   public StringExpression _replaceFirst(StringExpression t, StringExpression r) {
