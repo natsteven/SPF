@@ -95,7 +95,7 @@ public class MASTranslator {
             ct.clearConstraintsList();
             strc = strc.and();
         } while (strc != null);
-
+        invGraph.orderIDsTopologically();
         invGraph.computePredicateDependencies();
 
         return invGraph;
@@ -143,23 +143,4 @@ public class MASTranslator {
         return longestConcreteStringLength;
     }
 
-    private InvDefaultDirectedGraph orderIDsTopologically(InvDefaultDirectedGraph graph) {
-        // MAS algorithm requires the constaints to be IDed in topological order otherwise the queue for evaluation will break
-        HashSet<PrintConstraint> processed = new HashSet<>();
-        HashSet<PrintConstraint> toProcess = new HashSet<>(graph.getPredicates());
-        int id = 0;
-        // we just need ot make sure all ancestors of a constraint are processed before the constraint itself
-        while (!toProcess.isEmpty()) {
-            PrintConstraint current = toProcess.iterator().next();
-            Set<SymbolicEdge> parentEdges = graph.outgoingEdgesOf(current);
-            for (SymbolicEdge edge : parentEdges) {
-                PrintConstraint parent = graph.getEdgeSource(edge);
-                if (!processed.contains(parent)) {
-                    toProcess.add(parent);
-                }
-            }
-
-        }
-        return null;
-    }
 }
