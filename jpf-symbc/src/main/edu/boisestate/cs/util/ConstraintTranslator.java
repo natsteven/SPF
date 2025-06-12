@@ -1,8 +1,7 @@
 package edu.boisestate.cs.util;
 
 import edu.boisestate.cs.graph.PrintConstraint;
-import gov.nasa.jpf.symbc.numeric.Expression;
-import gov.nasa.jpf.symbc.numeric.IntegerConstant;
+import gov.nasa.jpf.symbc.numeric.*;
 import gov.nasa.jpf.symbc.string.*;
 
 import java.util.HashMap;
@@ -21,6 +20,9 @@ public class ConstraintTranslator {
     // Parsing SPF string constraints into a set of MAS constraints
     // requires keeping track of constraints and their relationships, specifically symbolic strings.
     public HashSet<PrintConstraint> translate(StringConstraint sc) {
+        if (sc == null) { //only Nuermic Constaints which were already handled and accumulaterd
+            return constraints;
+        }
         final StringComparator comparator = sc.getComparator();
         final StringExpression left = sc.getLeft();
         final StringExpression right = sc.getRight();
@@ -248,6 +250,7 @@ public class ConstraintTranslator {
                 constraints.add(ind1);
                 constraints.add(ind2);
                 return delete;
+
             default:
                 System.err.println("Unhandled DerivedStringExpression: " + dse);
                 System.exit(1);
@@ -255,8 +258,118 @@ public class ConstraintTranslator {
         }
     }
 
-    public PrintConstraint translate(IntegerConstant ic) {
-        return new PrintConstraint(translator.getNextID(), ic.toString().replace("CONST_", ""), "\"" + ic.value() + "\"!:!<init>");
+    // unfortunately we need to handle numeric constraints separately
+    // TODO: still unclear how handles actualy mixes of String and Integer PC
+    public void translate(Constraint numericConstraint) {
+        final Comparator comparator = numericConstraint.getComparator(); // not java.lang.Comparable
+        final IntegerExpression left = (IntegerExpression) numericConstraint.getLeft();
+        final IntegerExpression right = (IntegerExpression) numericConstraint.getRight();
+        PrintConstraint leftConstraint = null;
+        PrintConstraint rightConstraint = null;
+
+        // for now assuming constraint is comparator with charAt argument
+        if (left instanceof SymbolicCharAtInteger) {
+            // transform IntegerConstant into String i.e. Character equivalent
+            leftConstraint = translate(left);
+            rightConstraint = translate(charToString(right));
+            leftConstraint.setType(0);
+            rightConstraint.setType(1);
+        } else if (right instanceof SymbolicCharAtInteger) {
+            leftConstraint = translate(right);
+            rightConstraint = translate(charToString(left));
+            leftConstraint.setType(1);
+            rightConstraint.setType(0);
+        }
+
+        final PrintConstraint comparatorConstraint = translate(comparator);
+
+
+        // below may not be necessary for numeric constraints
+//        if (left!=null){
+//            leftConstraint = translate(left);
+//            leftConstraint.setType(0);
+            comparatorConstraint.sourceConstraints.add(leftConstraint);
+            constraints.add(leftConstraint);
+//            rightConstraint.setType(1);
+//        } else {
+//            rightConstraint.setType(0);
+//        }
+        comparatorConstraint.sourceConstraints.add(rightConstraint);
+
+        constraints.add(rightConstraint);
+        constraints.add(comparatorConstraint);
+    }
+
+    private PrintConstraint translate(Comparator comparator) {
+        String op;
+        String value;
+        switch (comparator) {
+            case EQ:
+                op = "equals!!Ljava/lang/Object;!:!0";
+                value = "true";
+                break;
+            case NE:
+                op = "equals!!Ljava/lang/Object;!:!0";
+                value = "false";
+                break;
+            case LT:
+                op = "lt!!I!:!0";
+                value = "true";
+                break;
+            case LE:
+                op = "le!!I!:!0";
+                value = "true";
+                break;
+            case GT:
+                op = "gt!!I!:!0";
+                value = "true";
+                break;
+            case GE:
+                op = "ge!!I!:!0";
+                value = "true";
+                break;
+            default:
+                System.err.println("Unhandled Numeric Comparator: " + comparator);
+                System.exit(1);
+                return null;
+        }
+        return new PrintConstraint(translator.getNextID(), value, op);
+    }
+
+
+    public PrintConstraint translate(IntegerExpression ie) {
+        if (ie instanceof IntegerConstant) {
+            IntegerConstant ic = (IntegerConstant) ie;
+            return new PrintConstraint(translator.getNextID(), String.valueOf(ic.value()), "\"" + ic.value() + "\"!:!<init>");
+        } else if (ie instanceof SymbolicCharAtInteger){
+            // need to create constraint for symbolic var, integer, and actual char op.
+            SymbolicCharAtInteger scai = (SymbolicCharAtInteger) ie;
+            StringSymbolic sym = (StringSymbolic) scai.getExpression();
+            IntegerExpression index = scai.getIndex();
+
+            PrintConstraint symConstraint = translate(sym);
+            PrintConstraint indexConstraint = translate(index);
+            symConstraint.setType(0);
+            indexConstraint.setType(1);
+
+            PrintConstraint charConstraint = new PrintConstraint(translator.getNextID(), scai.toString(), "charAt!!I!:!0");
+            charConstraint.sourceConstraints.add(symConstraint);
+            charConstraint.sourceConstraints.add(indexConstraint);
+
+            constraints.add(symConstraint);
+            constraints.add(indexConstraint);
+            return symConstraint;
+        } else {
+            System.err.println("Unhandled IntegerExpression: " + ie);
+        }
+        return null;
+    }
+
+    public StringConstant charToString(IntegerExpression ie) {
+        // converts IntegerConstant to StringConstant
+        // this is used for symbolic charAt expressions
+        IntegerConstant ic = (IntegerConstant) ie;
+        return new StringConstant(String.valueOf((char) ic.value()));
     }
 
     public void clearConstraintsList() {

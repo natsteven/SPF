@@ -85,7 +85,13 @@ public abstract class StringExpression extends Expression {
 
 /* length */
   static int lengthcount = 0;
-  
+
+  public StringExpression _charAt(int index) {
+	  Expression l[] = new Expression[2];
+	  l[0] = this;
+	  l[1] = new IntegerConstant(index);
+	  return new DerivedStringExpression(StringOperator.CHARAT, l);
+  }
   public IntegerExpression _charAt (IntegerExpression ie) {
 	  boolean quickSwitch = false;
 	  if (charAt == null) {

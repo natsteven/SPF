@@ -10,10 +10,11 @@ public class TestMAS extends TestJPF {
     String methodSignature;
     String clas;
     String path = "gov.nasa.jpf.symbc.strings.MAS.";
-    String[] options = {"+classpath=build/tests",
+    String[] solvers = {"z3str3", "MAS"};
+    String[] options = {"+classpath=build/tests", // unspecified values are set in setOptions()
             "+symbolic.method=",    //symbolic method info and signature
             "+symbolic.dp=choco",
-            "+symbolic.string_dp=" + "MAS",
+            "+symbolic.string_dp=", // symbolic string decision procedure
             "+symbolic.string_dp_timeout_ms=0",
             "+target=", //target class/method
             "+search.depth_limit = 23 ",
@@ -63,22 +64,24 @@ public class TestMAS extends TestJPF {
 
     @Test
     public void containsTest(){
-        clas = "ContainsTest";
-        methodSignature = ".testSym(sym#sym)";
-        setOptions(clas, methodSignature);
+        for (String solver : solvers) {
+            clas = "ContainsTest";
+            methodSignature = ".testSym(sym#sym)";
+            setOptions(clas, methodSignature, solver);
 
-        String a = "HelloWorld";
-        String b = "World";
+            String a = "HelloWorld";
+            String b = "World";
 
-        if(verifyNoPropertyViolation(options)){
-            ContainsTest.testSym(a, b);
-        }
+            if (verifyNoPropertyViolation(options)) {
+                ContainsTest.testSym(a, b);
+            }
 
-        methodSignature = ".testConc(sym)";
-        setOptions(clas, methodSignature);
+            methodSignature = ".testConc(sym)";
+            setOptions(clas, methodSignature, solver);
 
-        if(verifyNoPropertyViolation(options)){
-            ContainsTest.testConc(b);
+            if (verifyNoPropertyViolation(options)) {
+                ContainsTest.testConc(b);
+            }
         }
     }
 
@@ -126,9 +129,9 @@ public class TestMAS extends TestJPF {
 
         String a = "HelloWorld";
 
-//        if(verifyNoPropertyViolation(options)){
-//            IsEmptyTest.test(a);
-//        }
+        if(verifyNoPropertyViolation(options)){
+            IsEmptyTest.test(a);
+        }
         methodSignature = ".testMixed(sym#sym)";
         setOptions(clas, methodSignature);
 
@@ -232,9 +235,29 @@ public class TestMAS extends TestJPF {
         }
     }
 
+    @Test
+    public void charAtTest() {
+        for (String solver : solvers) {
+            clas = "CharAtTest";
+            methodSignature = ".test(sym)";
+            setOptions(clas, methodSignature, solver);
+
+            String a = "Hello";
+
+            if (verifyNoPropertyViolation(options)) {
+                CharAtTest.test(a);
+            }
+        }
+    }
+
     // set target method and symbolic method info
-    public void setOptions(String clas, String methodSignature){
+    public void setOptions(String clas, String methodSignature, String solver){
         options[1] = "+symbolic.method="+ path + clas + methodSignature;
         options[5] = "+target="+path + clas;
+        options[3] = "+symbolic.string_dp=" + solver;
+    }
+
+    public void setOptions(String clas, String methodSignature) { // default solver is MAS
+        setOptions(clas, methodSignature, "MAS");
     }
 }

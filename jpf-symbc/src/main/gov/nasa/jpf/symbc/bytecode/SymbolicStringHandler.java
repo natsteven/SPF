@@ -202,6 +202,10 @@ public class SymbolicStringHandler {
 				handleLastIndexOf(invInst, th);
 			} else if (shortName.equals("charAt")) {
 				handleCharAt (invInst, th); // returns boolean that is ignored
+//				Instruction handled = handleCharAt(invInst, th);
+//				if (handled != null) {
+//					return handled;
+//				}
 				//return invInst;
 			} else if (shortName.equals("replace")) {
 				Instruction handled = handleReplace(invInst, th);
@@ -379,7 +383,7 @@ public class SymbolicStringHandler {
 		return null;// nps: unsure why method signature is returns Instruction
 	}
 
-	private boolean handleCharAt (JVMInvokeInstruction invInst, ThreadInfo th) {
+	private Instruction handleCharAt (JVMInvokeInstruction invInst, ThreadInfo th) {
 		StackFrame sf = th.getModifiableTopFrame();
 		IntegerExpression sym_v1 = (IntegerExpression) sf.getOperandAttr(0);
 		StringExpression sym_v2 = (StringExpression) sf.getOperandAttr(1);
@@ -390,11 +394,13 @@ public class SymbolicStringHandler {
 			int s1 = sf.pop();
 			int s2 = sf.pop();
 
+			StringExpression resultMAS = null;
 			IntegerExpression result = null;
 			if (sym_v1 == null) { // operand 0 is concrete
-
+				// nps: always true (for now)
 				int val = s1;
 				result = sym_v2._charAt(new IntegerConstant(val));
+//				resultMAS = sym_v2._charAt(val);
 			} else {
 
 				if (sym_v2 == null) {
@@ -409,10 +415,16 @@ public class SymbolicStringHandler {
 				//System.out.println("[handleCharAt] Ignoring: " + result.toString());
 				//th.push(0, false);
 			}
+//			ElementInfo objRef = th.getHeap().newString("", th);
+//			sf.push(objRef.getObjectRef(), true);
+//			sf.setOperandAttr(resultMAS);
+
 			sf.push(0, false);
 			sf.setOperandAttr(result);
+
 		}
-		return bresult; // not used
+//		return bresult; // not used
+		return null;
 
 	}
 

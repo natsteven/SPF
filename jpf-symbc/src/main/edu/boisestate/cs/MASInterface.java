@@ -23,7 +23,7 @@ public class MASInterface {
         final String smtlibQuery = t.translate(pc);
         System.out.println("*************************************");
         System.out.println("The smtlib query is: " + smtlibQuery);
-
+//
 
 //        System.out.println("*************************************");
 //        System.out.println("Using NaiveIntegration to solve the query");
@@ -38,6 +38,7 @@ public class MASInterface {
 
         System.out.println("*************************************");
 //        System.out.println("Using Native Integration to solve the query");
+//        System.out.println("PATH CONSTRAINT FROM SPF: " + pc);
 
         MASTranslator translator = new MASTranslator();
         InvDefaultDirectedGraph graph = (InvDefaultDirectedGraph) translator.translate(pc);

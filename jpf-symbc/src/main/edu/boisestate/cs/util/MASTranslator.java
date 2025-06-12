@@ -3,6 +3,8 @@ package edu.boisestate.cs.util;
 import edu.boisestate.cs.Alphabet;
 import edu.boisestate.cs.graph.*;
 
+import gov.nasa.jpf.symbc.numeric.Constraint;
+import gov.nasa.jpf.symbc.numeric.PathCondition;
 import gov.nasa.jpf.symbc.string.StringConstraint;
 import gov.nasa.jpf.symbc.string.StringPathCondition;
 import gov.nasa.jpf.util.LogManager;
@@ -35,28 +37,30 @@ public class MASTranslator {
 
         InvDefaultDirectedGraph invGraph = new InvDefaultDirectedGraph(SymbolicEdge.class);
 
+        ConstraintTranslator ct = new ConstraintTranslator(this);
         // string path condition object has place for count and solution....
         StringConstraint strc = spc.header;
 
         if (spc.getNpc().header != null) {
-            String npc = spc.getNpc().header.toString();
-            System.out.println("Numeric Path Condition Exists: " + npc);
-            if (npc.equals("Length_0_ != CONST_0")) {
-                System.out.println("isEmpty");
-            }
+            PathCondition npc = spc.getNpc();
+            Constraint pc = npc.header;
+            System.out.println("Numeric Path Condition Exists: " + npc.header.toString());
+            do {
+                ct.translate(pc); // constraint translator will add the numeric constraints but wait to return till after string constraints are processed
+                pc = npc.header.and;
+            } while (pc!=null);
         }
 
         if (strc == null) {
             System.out.println("No String Constraints");
 //            System.exit(1);
-            return null;
+//            return null;
         }
 
-        ConstraintTranslator ct = new ConstraintTranslator(this);
-        // a string constraint has a comparator, a left, and a right
+        // a string constraint has a comparator (or operator), a left, and a right
         // TODO: will need to handle cases of multiple arg constraints
 
-        // TODO: edge type issues
+        // TODO: edge type issues?
         // currenttly we set a type for the constraints, but this is inaccurate as it may have multiple edges with different types.
         // maybe just order??
         // def need to in future hold maps from SPF constraitn to MAS constraints
