@@ -484,7 +484,26 @@ public RealExpression _RvalueOf() {
 		// FIXME unimplemented method
 		return 0;
 	}
- 
+
+	/* insert */
+
+	public StringExpression _insert(StringExpression str1, Integer int2) {
+		Expression l[] = new Expression[3];
+		l[0] = this;
+		l[1] = str1;
+		l[2] = new IntegerConstant(int2);
+		return new DerivedStringExpression(StringOperator.INSERT, l );
+	}
+
+	public StringExpression _insert(StringExpression str1, IntegerExpression intex2) {
+		Expression l[] = new Expression[3];
+		l[0] = this;
+		l[1] = str1;
+		l[2] = intex2;
+		return new DerivedStringExpression(StringOperator.INSERT, l );
+	}
+
+
 //    public static class StringDependentNode {
 //	    StringDependentNode next;
 //	    DerivedStringExpression dependent;

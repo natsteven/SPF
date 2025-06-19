@@ -47,15 +47,19 @@ public class MASInterface {
             return null;
         }
 
-        translator.addWildCardToAlph(); // add character not in queries concrete strings to alphabet
         String alph = translator.getAlpha();
         Alphabet alpha;
         if (alph.isEmpty()){
             alpha = new Alphabet("A,B,C");
         }else {
+            // ugg that was dumb
+            translator.addWildCardToAlph(); // add character not in queries concrete strings to alphabet
+            alph = translator.getAlpha();
             alpha = new Alphabet(alph);
         }
-        int bound = translator.getLongestConcreteStringLength() + 1; // could also reason about concats but for now this is fine
+        int bound = translator.getLongestConcreteStringLength() + 1;
+        if (bound < 4) bound = 4;// could also reason about concats but for now this is fine
+        // maybe the depth of the tree, i.e. we can reason about how long strings can/would be given the number of operations/type of ops
 
         MASProcessor processor = new MASProcessor(false, alpha, bound);
         return processor.query(graph);

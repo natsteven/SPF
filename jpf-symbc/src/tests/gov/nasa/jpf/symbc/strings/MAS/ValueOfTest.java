@@ -1,0 +1,14 @@
+package gov.nasa.jpf.symbc.strings.MAS;
+
+public class ValueOfTest {
+
+    public static void test(String a) {
+        if (a.equals(String.valueOf(true)))  System.out.println("Boolean value: " + a);
+        else if (a.equals(String.valueOf(123))) System.out.println("Integer value: " + a);
+        else if (a.equals(String.valueOf(45.67))) System.out.println("Double value: " + a);
+        else if (a.equals(String.valueOf('a'))) System.out.println("Character value: " + a);
+        else if (a.equals(String.valueOf(new char[]{'H', 'e', 'l', 'l', 'o'}))) System.out.println("Char Array value: " + a);
+        else System.out.println("Unknown value: " + a);
+    }
+
+}

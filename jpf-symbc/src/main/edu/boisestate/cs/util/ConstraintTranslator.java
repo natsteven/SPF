@@ -251,6 +251,37 @@ public class ConstraintTranslator {
                 constraints.add(ind2);
                 return delete;
 
+            case TRIM:
+                StringExpression se4 = (StringExpression) dse.right;
+                PrintConstraint trim = new PrintConstraint(translator.getNextID(), se4.toString().trim(), "trim!!!:!0");
+                PrintConstraint strConstraint7 = translate(se4);
+                strConstraint7.setType(0);
+                trim.sourceConstraints.add(strConstraint7);
+                constraints.add(strConstraint7);
+                return trim;
+            case INSERT:
+                StringExpression se5 = (StringExpression) dse.oprlist[0]; //source
+                IntegerConstant index3 = (IntegerConstant) dse.oprlist[2]; // may not always be integer constant... TODO: handle symbolic indices
+                StringExpression insertStr = (StringExpression) dse.oprlist[1]; // string to insert
+
+                StringBuilder sb2 = new StringBuilder(se5.toString());
+                sb2.insert(index3.value(), insertStr.toString());
+                PrintConstraint insert = new PrintConstraint(translator.getNextID(), sb2.toString(), "insert!!ILjava/lang/String;!:!0");
+
+                PrintConstraint strConstraint8 = translate(se5);
+                PrintConstraint ind3 = translate(index3);
+                PrintConstraint insertStrConstraint = translate(insertStr);
+                strConstraint8.setType(0);
+                ind3.setType(1); // unsure if s1/s2 order matter here
+                insertStrConstraint.setType(2);
+
+                insert.sourceConstraints.add(strConstraint8);
+                insert.sourceConstraints.add(ind3);
+                insert.sourceConstraints.add(insertStrConstraint);
+                constraints.add(strConstraint8);
+                constraints.add(ind3);
+                constraints.add(insertStrConstraint);
+                return insert;
             default:
                 System.err.println("Unhandled DerivedStringExpression: " + dse);
                 System.exit(1);
@@ -267,7 +298,7 @@ public class ConstraintTranslator {
         PrintConstraint leftConstraint = null;
         PrintConstraint rightConstraint = null;
 
-        // for now assuming constraint is comparator with charAt argument
+        // TODO: assumes this/root is predicate
         if (left instanceof SymbolicCharAtInteger) {
             // transform IntegerConstant into String i.e. Character equivalent
             leftConstraint = translate(left);
@@ -279,6 +310,19 @@ public class ConstraintTranslator {
             rightConstraint = translate(charToString(left));
             leftConstraint.setType(1);
             rightConstraint.setType(0);
+        } else if (left instanceof SymbolicIndexOfInteger) { // hard to generalize this because for example charAt needs to know the integer that is the other arg is a char not an in
+            leftConstraint = translate(left);
+            rightConstraint = translate(right);
+            leftConstraint.setType(0);
+            rightConstraint.setType(1);
+        } else if (right instanceof SymbolicIndexOfInteger) {
+            leftConstraint = translate(right);
+            rightConstraint = translate(left);
+            leftConstraint.setType(1);
+            rightConstraint.setType(0);
+        } else {
+            System.err.println("Unhandled Numeric Constraint: " + numericConstraint);
+            System.exit(1);
         }
 
         final PrintConstraint comparatorConstraint = translate(comparator);
@@ -341,7 +385,14 @@ public class ConstraintTranslator {
         if (ie instanceof IntegerConstant) {
             IntegerConstant ic = (IntegerConstant) ie;
             return new PrintConstraint(translator.getNextID(), String.valueOf(ic.value()), "\"" + ic.value() + "\"!:!<init>");
-        } else if (ie instanceof SymbolicCharAtInteger){
+        } else if (ie instanceof SymbolicLengthInteger) {
+            SymbolicLengthInteger sli = (SymbolicLengthInteger) ie;
+            // should probably figure this one out........ ummmmmmmm yeah....
+            StringSymbolic sym = (StringSymbolic) sli.getExpression();
+            sym.getName();
+            System.err.println("Unhandled SymbolicLengthInteger: " + sli);
+            System.exit(1);
+        }else if (ie instanceof SymbolicCharAtInteger) {
             // need to create constraint for symbolic var, integer, and actual char op.
             SymbolicCharAtInteger scai = (SymbolicCharAtInteger) ie;
             StringSymbolic sym = (StringSymbolic) scai.getExpression();
@@ -358,7 +409,24 @@ public class ConstraintTranslator {
 
             constraints.add(symConstraint);
             constraints.add(indexConstraint);
-            return symConstraint;
+            return charConstraint;
+        } else if (ie instanceof SymbolicIndexOfInteger) {
+            SymbolicIndexOfInteger sii = (SymbolicIndexOfInteger) ie;
+            StringExpression t = sii.getSource();
+            StringExpression s1 = sii.getExpression();
+
+            PrintConstraint tConstraint = translate(t);
+            PrintConstraint s1Constraint = translate(s1);
+            tConstraint.setType(0);
+            s1Constraint.setType(1);
+
+            PrintConstraint indexOfConstraint = new PrintConstraint(translator.getNextID(), sii.toString(), "indexOf!!Ljava/lang/String;!:!0");
+            indexOfConstraint.sourceConstraints.add(tConstraint);
+            indexOfConstraint.sourceConstraints.add(s1Constraint);
+
+            constraints.add(tConstraint);
+            constraints.add(s1Constraint);
+            return indexOfConstraint;
         } else {
             System.err.println("Unhandled IntegerExpression: " + ie);
         }
@@ -368,6 +436,10 @@ public class ConstraintTranslator {
     public StringConstant charToString(IntegerExpression ie) {
         // converts IntegerConstant to StringConstant
         // this is used for symbolic charAt expressions
+        if (!(ie instanceof IntegerConstant)) {
+            System.err.println("Expected IntegerConstant but got: " + ie.getClass());
+            System.exit(1);
+        }
         IntegerConstant ic = (IntegerConstant) ie;
         return new StringConstant(String.valueOf((char) ic.value()));
     }

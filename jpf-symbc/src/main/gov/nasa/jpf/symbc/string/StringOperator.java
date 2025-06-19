@@ -62,7 +62,8 @@ public enum StringOperator {
   TOUPPERCASE("touppercase"),
   VALUEOF("valueof"),
   DELETE("delete"),
-  CHARAT("charAt");
+  CHARAT("charAt"),
+  INSERT("insert");
 
   private final String str;
 

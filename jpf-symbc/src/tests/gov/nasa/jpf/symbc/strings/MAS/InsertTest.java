@@ -1,0 +1,25 @@
+package gov.nasa.jpf.symbc.strings.MAS;
+
+public class InsertTest {
+    public static void testConc(String s1) {
+        StringBuilder sb = new StringBuilder(s1);
+        if (sb.toString().equals("Hello")) {
+            System.out.println("s1 is Hello");
+        }
+        String s2 = sb.insert(0,"World").toString();
+        if (s2.equals("HelloWorld")) {
+            System.out.println("s1 + 'World' equals 'HelloWorld'");
+        }
+    }
+
+    public static void testSym(String s1, String s2) {
+        StringBuilder sb = new StringBuilder(s1);
+        if (sb.toString().equals("Hello")) {
+            System.out.println("s1 is Hello");
+        }
+        String s3 = sb.insert(0,s2).toString();
+        if (s3.equals("HelloWorld")) {
+            System.out.println("s1 + s2 equals 'HelloWorld'");
+        }
+    }
+}

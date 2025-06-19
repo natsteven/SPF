@@ -122,22 +122,24 @@ public class TestMAS extends TestJPF {
 
     @Test
     public void isEmptyTest(){
-        clas = "IsEmptyTest";
-        System.out.println(System.getProperty("java.library.path"));
-        methodSignature = ".test(sym)";
-        setOptions(clas, methodSignature);
+        for (String solver : solvers) {
+            clas = "IsEmptyTest";
+            System.out.println(System.getProperty("java.library.path"));
+            methodSignature = ".test(sym)";
+            setOptions(clas, methodSignature, solver);
 
-        String a = "HelloWorld";
+            String a = "HelloWorld";
 
-        if(verifyNoPropertyViolation(options)){
-            IsEmptyTest.test(a);
-        }
-        methodSignature = ".testMixed(sym#sym)";
-        setOptions(clas, methodSignature);
+            if (verifyNoPropertyViolation(options)) {
+                IsEmptyTest.test(a);
+            }
+            methodSignature = ".testMixed(sym#sym)";
+            setOptions(clas, methodSignature, solver);
 
-        String b = "";
-        if(verifyNoPropertyViolation(options)){
-            IsEmptyTest.testMixed(a, b);
+            String b = "";
+            if (verifyNoPropertyViolation(options)) {
+                IsEmptyTest.testMixed(a, b);
+            }
         }
     }
 
@@ -237,16 +239,82 @@ public class TestMAS extends TestJPF {
 
     @Test
     public void charAtTest() {
-        for (String solver : solvers) {
+//        for (String solver : solvers) {
             clas = "CharAtTest";
             methodSignature = ".test(sym)";
-            setOptions(clas, methodSignature, solver);
+            setOptions(clas, methodSignature);
 
             String a = "Hello";
 
             if (verifyNoPropertyViolation(options)) {
                 CharAtTest.test(a);
             }
+//        }
+    }
+
+    @Test
+    public void indexOfTest() {
+        clas = "IndexOfTest";
+        methodSignature = ".testConc(sym)";
+        setOptions(clas, methodSignature);
+
+        String a = "HelloWorld";
+
+        if(verifyNoPropertyViolation(options)){
+            IndexOfTest.testConc(a);
+        }
+
+        methodSignature = ".testSym(sym#sym)";
+        setOptions(clas, methodSignature);
+
+        String b = "Hello";
+
+        if(verifyNoPropertyViolation(options)){
+            IndexOfTest.testSym(a, b);
+        }
+    }
+
+    // trivial/usless test as SPF handles valueOf internally, i.e. the constraints have them as stirng constants
+    @Test
+    public void valueOfTest() {
+        clas = "ValueOfTest";
+        methodSignature = ".test(sym)";
+        setOptions(clas, methodSignature);
+
+        if(verifyNoPropertyViolation(options)){
+            ValueOfTest.test("Hello");
+        }
+
+    }
+
+    @Test
+    public void trimTest() {
+        clas = "TrimTest";
+        methodSignature = ".test(sym)";
+        setOptions(clas, methodSignature);
+
+        String a = " Hi ";
+
+        if(verifyNoPropertyViolation(options)){
+            TrimTest.test(a);
+        }
+    }
+
+    @Test
+    public void insertTest() {
+        clas = "InsertTest";
+        methodSignature = ".testConc(sym)";
+        setOptions(clas, methodSignature);
+
+        String a = "Hello";
+        if(verifyNoPropertyViolation(options)){
+            InsertTest.testConc(a);
+        }
+        methodSignature = ".testSym(sym#sym)";
+        setOptions(clas, methodSignature);
+        String b = "World";
+        if(verifyNoPropertyViolation(options)){
+            InsertTest.testSym(a, b);
         }
     }
 

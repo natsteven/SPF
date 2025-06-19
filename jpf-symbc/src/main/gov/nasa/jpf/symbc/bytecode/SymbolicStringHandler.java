@@ -321,13 +321,69 @@ public class SymbolicStringHandler {
 				handleToUpperCase(invInst, th);
 			} else if (shortName.equals("delete")){
 				handleDelete(invInst, th);
-			}else {
+			}else if (shortName.equals("insert")) {
+				handleInsert(invInst, th);
+			} else {
 				throw new RuntimeException("ERROR: symbolic method not handled: " + shortName);
 				//return null;
 			}
 			return invInst.getNext(th);
 		} else {
 			return null;
+		}
+
+	}
+
+	private void handleInsert(JVMInvokeInstruction invInst, ThreadInfo th) {
+		StackFrame sf = th.getModifiableTopFrame();
+		//nps 6-19-25: no idea whats going on with the arguments here. unsure how to handle SymbolicStringBuilder
+		StringExpression sym_v1 = (StringExpression) sf.getOperandAttr(0);
+		IntegerExpression sym_v2 = (IntegerExpression) sf.getOperandAttr(1);
+		StringExpression sym_v3 = ((SymbolicStringBuilder) sf.getOperandAttr(2)).getstr();
+
+		if (sym_v1 == null && sym_v2 == null && sym_v3 == null) {
+			throw new RuntimeException("ERROR: symbolic string method must have one symbolic operand: HandleDelete");
+		} else {
+			int s1 = sf.pop();
+			int s2 = sf.pop(); // indices get popped in reverse order
+			int s3 = sf.pop();
+			StringExpression result = null;
+			if (sym_v1 == null) { //string arg concrete
+				ElementInfo e1 = th.getElementInfo(s1);
+				String val1 = e1.asString();
+				sym_v1 = new StringConstant(val1);
+				if (sym_v2 == null) {//int arg concrete so stringbuilder symbolic
+					int val2 = s2;
+					result = sym_v3._insert(sym_v1, val2);
+				} else {//int arg symbolic
+					if (sym_v3 == null) { //concrete string
+						ElementInfo e3 = th.getElementInfo(s3);
+						String val3 = e3.asString();
+						sym_v3 = new StringConstant(val3);
+					}
+					result = sym_v3._insert(sym_v1, sym_v2);
+				}
+			} else { // string arg symbolic
+				if (sym_v2 == null) {
+					if (sym_v3 == null) {
+						ElementInfo e3 = th.getElementInfo(s3);
+						String val3 = e3.asString();
+						sym_v3 = new StringConstant(val3);
+					}
+					int val2 = s2;
+					result = sym_v3._insert(sym_v1, val2);
+				} else {
+					if (sym_v3 == null) {
+						ElementInfo e3 = th.getElementInfo(s3);
+						String val3 = e3.asString();
+						sym_v3 = new StringConstant(val3);
+					}
+					result = sym_v3._insert(sym_v1, sym_v2);
+				}
+			}
+			ElementInfo objRef = th.getHeap().newString("", th);
+			sf.push(objRef.getObjectRef(), true);
+			sf.setOperandAttr(result);
 		}
 
 	}

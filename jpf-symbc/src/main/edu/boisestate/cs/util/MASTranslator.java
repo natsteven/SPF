@@ -45,10 +45,10 @@ public class MASTranslator {
             PathCondition npc = spc.getNpc();
             Constraint pc = npc.header;
             System.out.println("Numeric Path Condition Exists: " + npc.header.toString());
-            do {
+            while (pc!=null){
                 ct.translate(pc); // constraint translator will add the numeric constraints but wait to return till after string constraints are processed
                 pc = npc.header.and;
-            } while (pc!=null);
+            }
         }
 
         if (strc == null) {
@@ -63,8 +63,8 @@ public class MASTranslator {
         // TODO: edge type issues?
         // currenttly we set a type for the constraints, but this is inaccurate as it may have multiple edges with different types.
         // maybe just order??
-        // def need to in future hold maps from SPF constraitn to MAS constraints
-        // TODO: Constraints Map
+        // def need to in future hold maps from SPF constraitn to MAS constraints. (do we though?)
+
 
         do {
             // takes a String Constraint and returns three PrintConstraints
@@ -97,7 +97,7 @@ public class MASTranslator {
                 }
             }
             ct.clearConstraintsList();
-            strc = strc.and();
+            strc = strc != null ? strc.and() : null; // not great design but when only numeric we still want to return the graph at the top of this loop
         } while (strc != null);
         invGraph.orderIDsTopologically();
         invGraph.computePredicateDependencies();
@@ -135,6 +135,9 @@ public class MASTranslator {
         for (Character c : alpha) {
             sb.append(c);
             sb.append(",");
+        }
+        if (sb.length() == 0) {
+            return "";
         }
         return sb.deleteCharAt(sb.length()-1).toString();
     }
