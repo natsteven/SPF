@@ -266,7 +266,7 @@ public class ConstraintTranslator {
 
                 StringBuilder sb2 = new StringBuilder(se5.toString());
                 sb2.insert(index3.value(), insertStr.toString());
-                PrintConstraint insert = new PrintConstraint(translator.getNextID(), sb2.toString(), "insert!!ILjava/lang/String;!:!0");
+                PrintConstraint insert = new PrintConstraint(translator.getNextID(), sb2.toString(), "insert!!ILjava/lang/CharSequence;!:!0");
 
                 PrintConstraint strConstraint8 = translate(se5);
                 PrintConstraint ind3 = translate(index3);

@@ -6,7 +6,7 @@ public class InsertTest {
         if (sb.toString().equals("Hello")) {
             System.out.println("s1 is Hello");
         }
-        String s2 = sb.insert(0,"World").toString();
+        String s2 = sb.insert(5,"World").toString();
         if (s2.equals("HelloWorld")) {
             System.out.println("s1 + 'World' equals 'HelloWorld'");
         }
@@ -17,7 +17,7 @@ public class InsertTest {
         if (sb.toString().equals("Hello")) {
             System.out.println("s1 is Hello");
         }
-        String s3 = sb.insert(0,s2).toString();
+        String s3 = sb.insert(5,s2).toString();
         if (s3.equals("HelloWorld")) {
             System.out.println("s1 + s2 equals 'HelloWorld'");
         }
