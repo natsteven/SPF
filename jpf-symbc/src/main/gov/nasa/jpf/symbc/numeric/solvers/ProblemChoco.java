@@ -48,6 +48,9 @@ import choco.real.constraint.MixedEqXY;
 /* Rody: add typecasts long->int everywhere now. Needs a nice solution where the user
  * is notified to use another solver with longs.
  */
+
+// choco is best used to check for unsat, i.e., safety properties,
+// but not for sat, i.e., verification properties, due to its limited integer range.
 public class ProblemChoco extends ProblemGeneral {
 	RealProblem pb;
 	public static int timeBound;// = 30000;
@@ -57,7 +60,16 @@ public class ProblemChoco extends ProblemGeneral {
 	}
 
 	public IntDomainVar makeIntVar(String name, long min, long max) {
-		assert(min>=Integer.MIN_VALUE && max<=Integer.MAX_VALUE);
+		// Choco recommends staying within Integer.MIN_VALUE / 100 and Integer.MAX_VALUE / 100
+		// to avoid arithmetic overflows during constraint propagation.
+		// Reference: Choco 4.0.5 User Guide, Page 6
+		// https://www.dcs.gla.ac.uk/~pat/cpM/choco4/user_guide-4.0.5.pdf
+		if (min < (Integer.MIN_VALUE / 100) || max > (Integer.MAX_VALUE / 100)) {
+			throw new IllegalArgumentException(String.format(
+					"## Error Choco Invalid bounds for '%s': [%d, %d] exceed safe range [%d, %d] for Choco.",
+					name, min, max, Integer.MIN_VALUE / 100, Integer.MAX_VALUE / 100
+			));
+		}
 		return pb.makeBoundIntVar(name, (int) min, (int) max);
 	}
 
@@ -324,8 +336,12 @@ public class ProblemChoco extends ProblemGeneral {
         pb.getSolver().setTimeLimit(ProblemChoco.timeBound);
 
         Boolean result = pb.solve();
-//        if (result == null)
- //       	System.out.println("Choco PC"+pb.pretty());
+
+		if (result == null) {
+			throw new RuntimeException("# Error: Choco returned null (possibly due to timeout).\n" +
+					"Time limit: " + ProblemChoco.timeBound + "\n" +
+					"Problem state:\n" + pb.pretty());
+		}
 
 		return result;
 	}
