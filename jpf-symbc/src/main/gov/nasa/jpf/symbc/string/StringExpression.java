@@ -69,7 +69,7 @@ import gov.nasa.jpf.symbc.string.graph.PreProcessGraph;
 //TODO: Repeat the fix found in _charAt in other constraints
 public abstract class StringExpression extends Expression {
 
-  SymbolicInteger length = null;
+  Map<StringExpression, SymbolicLengthInteger> length = null;
   Map<String, SymbolicCharAtInteger> charAt = null;
   Map<StringExpression, SymbolicIndexOfInteger> indexOf = null;
   Map<StringExpression, SymbolicLastIndexOfInteger> lastIndexOf = null;
@@ -105,12 +105,16 @@ public abstract class StringExpression extends Expression {
 	  return result;
   }
   
-  public IntegerExpression _length() {
-    if (length == null) {
-      length = new SymbolicLengthInteger("Length_" + lengthcount + "_", 0, PreProcessGraph.MAXIMUM_LENGTH, this);
+  public IntegerExpression _length() {// if we encounter a symbolic string for which we've created a symbolic length, we just return that.
+		if(length!=null && length.get(this)!=null)
+			return length.get(this);
+	  SymbolicLengthInteger result = new SymbolicLengthInteger("Length_" + lengthcount + "_", 0, PreProcessGraph.MAXIMUM_LENGTH, this);
       lengthcount++;
-    }
-    return length;
+	  if (length == null) {
+		  length = new HashMap<StringExpression, SymbolicLengthInteger>();
+	  }
+      length.put(this, result);
+    return result;
   }
 
 /* indexOf */
@@ -434,6 +438,7 @@ public RealExpression _RvalueOf() {
 	@Override
 	public int compareTo(Expression expr) {
 		// FIXME unimplemented method
+		//One way of fixing that could be by concretrizing the length of the string, then doing the comparison over that fixed length
 		return 0;
 	}
  
