@@ -1,0 +1,26 @@
+#target=npe.StringContainsTest
+#target=npe.StringEqualsTest
+#target=npe.StringStartsWithTest
+#target=npe.StringEndsWithTest
+#target=npe.StringIsEmptyTest
+target=npe.StringNullAndNonNullTest
+
+classpath=${jpf-symbc}/build/examples
+symbolic.dp=z3bitvector
+symbolic.min_int=-2147483648
+symbolic.max_int=2147483647
+symbolic.min_double=-10000.0
+symbolic.max_double=10000.0
+symbolic.bvlength=64
+search.depth_limit=13
+symbolic.strings=true
+symbolic.string_dp=z3str3
+nullPointer.exception=true
+runtime.exception=true
+symbolic.lazy=on
+symbolic.jrarrays=true
+veritestingMode = 5
+recursiveDepth= 200
+singlePathOptimization=true
+listener = .symbc.SymbolicListener
+symbolic.debug=true
