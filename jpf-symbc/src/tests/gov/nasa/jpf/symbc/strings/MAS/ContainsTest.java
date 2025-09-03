@@ -1,11 +1,10 @@
 package gov.nasa.jpf.symbc.strings.MAS;
 
 public class ContainsTest {
+
     public static void main(String[] args) {
-        String s1 = "HelloWorld";
-        String s2 = "World";
-        testSym(s1, s2);
-        testConc(s2);
+        testSym("HelloWorld", "World");
+        testConc("Hello");
     }
 
     public static void testSym(String s1, String s2) {

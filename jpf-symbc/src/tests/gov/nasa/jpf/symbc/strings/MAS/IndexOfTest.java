@@ -1,6 +1,13 @@
 package gov.nasa.jpf.symbc.strings.MAS;
 
 public class IndexOfTest {
+    public static void main(String[] args) {
+        String s1 = "HelloWorld";
+        String s2 = "Hello";
+        testSym(s1, s2);
+        testConc(s2);
+    }
+
     public static void testConc(String s1) {
         if (s1.indexOf("Hello") == 0) {
             System.out.println("s1 starts with 'Hello'");

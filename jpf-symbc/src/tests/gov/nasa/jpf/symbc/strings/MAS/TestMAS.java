@@ -45,29 +45,28 @@ public class TestMAS extends TestJPF {
 
     @Test
     public void concatTest(){
-        clas = "ConcatTest";
-        methodSignature = ".test(sym#sym)";
-        setOptions(clas, methodSignature);
+            clas = "ConcatTest";
+            methodSignature = ".test(sym#sym)";
+            setOptions(clas, methodSignature);
 
-        String a = "Hello";
-        String b = "World";
+            String a = "Hello";
+            String b = "World";
 
 //        Config cf = JPF.createConfig(options);
 //        JPF jpf = new JPF(cf);
 //        jpf.run();
 //        runTests(ConcatTest.class, "test");
 
-        if(verifyNoPropertyViolation(options)){
-            ConcatTest.test(a,b);
-        }
+            if (verifyNoPropertyViolation(options)) {
+                ConcatTest.test(a, b);
+            }
     }
 
     @Test
     public void containsTest(){
-        for (String solver : solvers) {
             clas = "ContainsTest";
             methodSignature = ".testSym(sym#sym)";
-            setOptions(clas, methodSignature, solver);
+            setOptions(clas, methodSignature);
 
             String a = "HelloWorld";
             String b = "World";
@@ -77,12 +76,11 @@ public class TestMAS extends TestJPF {
             }
 
             methodSignature = ".testConc(sym)";
-            setOptions(clas, methodSignature, solver);
+            setOptions(clas, methodSignature);
 
             if (verifyNoPropertyViolation(options)) {
                 ContainsTest.testConc(b);
             }
-        }
     }
 
     @Test
@@ -122,11 +120,10 @@ public class TestMAS extends TestJPF {
 
     @Test
     public void isEmptyTest(){
-        for (String solver : solvers) {
             clas = "IsEmptyTest";
             System.out.println(System.getProperty("java.library.path"));
             methodSignature = ".test(sym)";
-            setOptions(clas, methodSignature, solver);
+            setOptions(clas, methodSignature);
 
             String a = "HelloWorld";
 
@@ -134,13 +131,12 @@ public class TestMAS extends TestJPF {
                 IsEmptyTest.test(a);
             }
             methodSignature = ".testMixed(sym#sym)";
-            setOptions(clas, methodSignature, solver);
+            setOptions(clas, methodSignature);
 
             String b = "";
             if (verifyNoPropertyViolation(options)) {
                 IsEmptyTest.testMixed(a, b);
             }
-        }
     }
 
     @Test
@@ -239,17 +235,15 @@ public class TestMAS extends TestJPF {
 
     @Test
     public void charAtTest() {
-//        for (String solver : solvers) {
             clas = "CharAtTest";
             methodSignature = ".test(sym)";
-            setOptions(clas, methodSignature);
+            setOptions(clas, methodSignature, "z3str3");
 
             String a = "Hello";
 
             if (verifyNoPropertyViolation(options)) {
                 CharAtTest.test(a);
             }
-//        }
     }
 
     @Test

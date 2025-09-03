@@ -2,6 +2,10 @@ package gov.nasa.jpf.symbc.strings.MAS;
 
 public class ValueOfTest {
 
+    public static void main(String[] args) {
+        test("true");
+    }
+
     public static void test(String a) {
         if (a.equals(String.valueOf(true)))  System.out.println("Boolean value: " + a);
         else if (a.equals(String.valueOf(123))) System.out.println("Integer value: " + a);

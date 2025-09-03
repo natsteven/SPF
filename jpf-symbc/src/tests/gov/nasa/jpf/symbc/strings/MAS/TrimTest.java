@@ -1,6 +1,10 @@
 package gov.nasa.jpf.symbc.strings.MAS;
 
 public class TrimTest {
+    public static void main(String[] args) {
+        test("  Hi  ");
+    }
+
     public static void test(String s) {
         if (s.contains(" ")) System.out.println("String contains spaces: "+s);
         String trimmed = s.trim();

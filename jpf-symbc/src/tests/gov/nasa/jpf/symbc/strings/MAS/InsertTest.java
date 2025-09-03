@@ -1,6 +1,13 @@
 package gov.nasa.jpf.symbc.strings.MAS;
 
 public class InsertTest {
+    public static void main(String[] args) {
+        String s1 = "Hello";
+        String s2 = "World";
+        testConc(s1);
+        testSym(s1, s2);
+    }
+
     public static void testConc(String s1) {
         StringBuilder sb = new StringBuilder(s1);
         if (sb.toString().equals("Hello")) {

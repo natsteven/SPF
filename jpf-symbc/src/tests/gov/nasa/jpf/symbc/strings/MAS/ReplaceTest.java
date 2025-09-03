@@ -2,9 +2,8 @@ package gov.nasa.jpf.symbc.strings.MAS;
 
 public class ReplaceTest {
     public static void main(String[] args) {
-        String s1 = "HelloWorld";
-        testFirst(s1);
-        testAll(s1);
+        testFirst("aa");
+        testAll("aa");
     }
 
     public static void testFirst(String s1) {

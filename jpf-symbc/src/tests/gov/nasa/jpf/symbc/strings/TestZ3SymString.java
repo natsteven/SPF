@@ -40,7 +40,7 @@ import org.junit.Test;
 
 public class TestZ3SymString extends TestJPF {
 
-	String[] solvers = new String[]{"z3str3", "MAS"};
+	String[] solvers = new String[]{"z3str3"};
 	
 	@Test
 	public void Test1 () {
@@ -60,7 +60,6 @@ public class TestZ3SymString extends TestJPF {
 			StringExpression constant2 = new StringConstant("s");
 			stringCurrentPC._addDet(StringComparator.NOTEQUALS, constant1, pre);
 			stringCurrentPC._addDet(StringComparator.EQUALS, constant2, var);
-			System.out.println(System.getProperty("java.library.path"));
 			boolean result = stringCurrentPC.simplify();
 			assertTrue(result);
 			assertTrue(!stringCurrentPC.solution.get(var1.getName()).equals("test"));

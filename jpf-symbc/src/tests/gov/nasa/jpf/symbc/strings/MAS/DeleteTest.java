@@ -1,6 +1,11 @@
 package gov.nasa.jpf.symbc.strings.MAS;
 
 public class DeleteTest {
+
+    public static void main(String[] args) {
+        test("Hello");
+    }
+
     public static void test(String s1) {
         StringBuilder sb = new StringBuilder(s1);
         if (sb.toString().equals("Hello")) {

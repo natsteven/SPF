@@ -2,8 +2,7 @@ package gov.nasa.jpf.symbc.strings.MAS;
 
 public class LowerCaseTest {
     public static void main(String[] args) {
-        String s1 = "Hello World!";
-        test(s1);
+        test("HelloWorld");
     }
 
     public static void test(String s1) {

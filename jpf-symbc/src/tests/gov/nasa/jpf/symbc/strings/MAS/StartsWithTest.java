@@ -1,7 +1,7 @@
 package gov.nasa.jpf.symbc.strings.MAS;
 
 public class StartsWithTest {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         String s1 = "HelloWorld";
         String s2 = "Hello";
         testSym(s1, s2);

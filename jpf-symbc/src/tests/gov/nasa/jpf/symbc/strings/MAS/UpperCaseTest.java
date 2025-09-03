@@ -2,8 +2,7 @@ package gov.nasa.jpf.symbc.strings.MAS;
 
 public class UpperCaseTest {
     public static void main(String[] args) {
-        String s1 = "HelloWorld";
-        test(s1);
+        test("HelloWorld");
     }
 
     public static void test(String s1) {

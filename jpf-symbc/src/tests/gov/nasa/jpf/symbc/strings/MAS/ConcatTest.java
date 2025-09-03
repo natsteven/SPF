@@ -1,6 +1,7 @@
 package gov.nasa.jpf.symbc.strings.MAS;
 
 public class ConcatTest {
+
     public static void main(String[] args) {
         test("Hello", "World");
     }

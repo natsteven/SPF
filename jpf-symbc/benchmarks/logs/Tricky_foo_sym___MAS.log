@@ -1,0 +1,57 @@
+Running Symbolic PathFinder ...
+symbolic.dp=choco
+symbolic.string_dp_timeout_ms=0
+symbolic.string_dp_alpha=A-Z
+symbolic.string_dp_alphaSize=26
+symbolic.string_dp_upper=10
+symbolic.string_dp_lower=1
+symbolic.string_dp=MAS
+symbolic.choco_time_bound=30000
+symbolic.max_pc_length=2147483647
+symbolic.max_pc_msec=0
+symbolic.bvlength=32
+symbolic.min_int=-2147483648
+symbolic.min_long=-9223372036854775808
+symbolic.min_short=-32768
+symbolic.min_byte=-128
+symbolic.min_char=0
+symbolic.max_int=2147483647
+symbolic.max_long=9223372036854775807
+symbolic.max_short=32767
+symbolic.max_byte=127
+symbolic.max_char=65535
+symbolic.min_double=4.9E-324
+symbolic.max_double=1.7976931348623157E308
+JavaPathfinder core system v8.0 (rev 2159fbb2c05f69380516caefe22c5ed16838876d) - (C) 2005-2014 United States Government. All rights reserved.
+
+
+====================================================== system under test
+strings.Tricky.main()
+
+====================================================== search started: 9/3/25 12:50 PM
+New sym int n_1_SYMINT min=-2147483648, max=2147483647
+numeric PC: constraint # = 1
+n_1_SYMINT >= CONST_2 -> true
+
+### PCs: total:1 sat:1 unsat:0
+
+string analysis: SPC # = 0
+NPC constraint # = 1
+n_1_SYMINT >= CONST_2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+*************************************
+The smtlib query is: 
+
+(declare-const n_1_SYMINT Int)
+
+(assert (>= n_1_SYMINT 2))
+
+(check-sat)
+(get-model)
+
+*************************************
+Numeric Path Condition Exists: n_1_SYMINT >= CONST_2
+Unhandled Numeric Constraint: n_1_SYMINT >= CONST_2
+Runtime(ms) :592

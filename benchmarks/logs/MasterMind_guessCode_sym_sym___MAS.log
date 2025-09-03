@@ -1,0 +1,60 @@
+Running Symbolic PathFinder ...
+symbolic.dp=choco
+symbolic.string_dp_timeout_ms=0
+symbolic.string_dp_alpha=A-Z
+symbolic.string_dp_alphaSize=26
+symbolic.string_dp_upper=10
+symbolic.string_dp_lower=1
+symbolic.string_dp=MAS
+symbolic.choco_time_bound=30000
+symbolic.max_pc_length=2147483647
+symbolic.max_pc_msec=0
+symbolic.bvlength=32
+symbolic.min_int=-2147483648
+symbolic.min_long=-9223372036854775808
+symbolic.min_short=-32768
+symbolic.min_byte=-128
+symbolic.min_char=0
+symbolic.max_int=2147483647
+symbolic.max_long=9223372036854775807
+symbolic.max_short=32767
+symbolic.max_byte=127
+symbolic.max_char=65535
+symbolic.min_double=4.9E-324
+symbolic.max_double=1.7976931348623157E308
+JavaPathfinder core system v8.0 (rev 2159fbb2c05f69380516caefe22c5ed16838876d) - (C) 2005-2014 United States Government. All rights reserved.
+
+
+====================================================== system under test
+strings.MasterMind.main()
+
+====================================================== search started: 9/3/25 2:03 PM
+New sym int str_1_SYMSTRING.length min=-2147483648, max=2147483647
+New sym int target_2_SYMSTRING.length min=-2147483648, max=2147483647
+Guess a 4-digit number with no duplicate digits: ## Warning: empty path condition
+### PCs: total:1 sat:1 unsat:0
+
+string analysis: SPC # = 1
+( notinteger .trim(str_1_SYMSTRING))
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+*************************************
+The smtlib query is: 
+(declare-const str_1 String)
+(declare-const out_str String)
+
+(assert (not (or (not (= (str.to_int out_str) -1)) (and (= (str.at out_str 0) "-") (not (= (str.to_int (str.substr out_str 1 (str.len out_str))) -1))))))
+
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (and (str.in_re str_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+(check-sat)
+(get-model)
+
+*************************************
+Unhandled StringComparator:  notinteger 
+Runtime(ms) :529

@@ -147,7 +147,7 @@ test {
     exclude "**/TestCoverage.class"
     exclude "**/TestDIV.class"
     exclude "**/TestExJPF.class"
-    exclude "**/TestLazy*.class"    
+    exclude "**/TestLazy*.class"
     exclude "**/TestPathCondition.class"
 //    exclude "**/strings/*.class"
 //    exclude "/gov/nasa/jpf/symbc/strings/*.class"
@@ -173,6 +173,19 @@ test {
             println "Summary: " + summaryFields.join(", ")
         }
     }
+}
+
+//
+tasks.register('bench', JavaExec) {
+    group = 'SPF Bench'
+    description = 'Runs solver benchmarks and writes CSV under build/benchmarks/results.csv'
+    classpath = sourceSets.test.runtimeClasspath + files('build/examples')
+    mainClass = 'bench.BenchmarkRunner'
+    args '/home/nat/Repos/SPF/jpf-symbc/src/examples/strings' // '/home/nat/Repos/SPF/jpf-symbc/src/tests/gov/nasa/jpf/symbc/strings/MAS'
+    dependsOn buildJars
+
+    // Example: 10-minute timeout per run
+    jvmArgs '-Dbench.timeoutSec=30'
 }
 
 tasks.register('testMAS', Test) {
