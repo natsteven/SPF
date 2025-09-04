@@ -1,0 +1,44 @@
+************************************
+(declare-const n_1_SYMINT Int)
+
+(assert (>= 1 n_1_SYMINT))
+(assert (< 0 n_1_SYMINT))
+(assert (< n_1_SYMINT 2))
+------------------------------------
+z3str3:
+Satisfiable: true
+
+************************************
+(declare-const n_1_SYMINT Int)
+
+(assert (< 0 n_1_SYMINT))
+(assert (< n_1_SYMINT 2))
+------------------------------------
+z3str3:
+Satisfiable: true
+
+************************************
+(declare-const n_1_SYMINT Int)
+
+(assert (>= 0 n_1_SYMINT))
+(assert (< n_1_SYMINT 2))
+------------------------------------
+z3str3:
+Satisfiable: true
+
+************************************
+(declare-const n_1_SYMINT Int)
+
+(assert (< n_1_SYMINT 2))
+------------------------------------
+z3str3:
+Satisfiable: true
+
+************************************
+(declare-const n_1_SYMINT Int)
+
+(assert (>= n_1_SYMINT 2))
+------------------------------------
+z3str3:
+Satisfiable: true
+

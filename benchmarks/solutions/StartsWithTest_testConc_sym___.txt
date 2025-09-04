@@ -1,0 +1,26 @@
+************************************
+(declare-const s2_1 String)
+
+(assert (str.prefixof "Hello" s2_1))
+------------------------------------
+z3str3:
+Satisfiable: true
+s2_1 => "Hello"
+
+MAS:
+sat,
+1: "Hello"
+
+************************************
+(declare-const s2_1 String)
+
+(assert (not (str.prefixof "Hello" s2_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+s2_1 => "HellA"
+
+MAS:
+sat,
+1: ""
+

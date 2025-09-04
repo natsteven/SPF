@@ -14,27 +14,20 @@ import java.util.regex.Pattern;
 
 public class BenchmarkRunner {
 
-    // Configure your benchmarks here: program FQCN and symbolic method signature
-    // Example: methodSig must be the JPF "symbolic.method" suffix like ".test(sym#sym)"
     private static List<Benchmark> programs = new ArrayList<>();
 
-    // Solvers to compare
     private static final List<String> SOLVERS = Arrays.asList("z3str3", "MAS");
 
-    // Per-run timeout (seconds)
     private static final long TIMEOUT_SEC = Long.getLong("bench.timeoutSec", 30L);
     private static final long KILL_SEC = 5L;
 
-    // Status tracker
-    private static HashMap<String, int[]> statusCounts = new HashMap<>(); // Solver : OK, SAT, UNSAT, TIMEOUT, ERROR
+    private static HashMap<String, int[]> statusCounts = new HashMap<>(); // Solver : OK, UNSUPPORTED, TIMEOUT, ERROR
     private static List<String> errors = new ArrayList<>();
     private static HashMap<String, Integer> runtimes = new HashMap<>();
 
-    // Where to write results
     private static final Path OUT_DIR = Paths.get("../benchmarks");
     private static final Path OUT_CSV = OUT_DIR.resolve("results.csv");
 
-    // JPF options common to all runs
     private static final List<String> COMMON_JPF_OPTS = Arrays.asList(
             "+symbolic.dp=choco",
             "+symbolic.strings=true",
@@ -53,7 +46,12 @@ public class BenchmarkRunner {
             } else if (Files.isRegularFile(path)) {
                 System.out.println("Processing file: " + path);
                 String root = System.getProperty("user.dir");
-                String fqcn = path.toString().substring(root.length() + 11); // +11 to skip "src/tests/" TODO: make more robust
+                String fqcn = null;
+                if (path.toString().contains("tests")) {
+                    fqcn = path.toString().substring(root.length() + 11); // +11 to skip "src/tests/"
+                } else if (path.toString().contains("examples")) {
+                    fqcn = path.toString().substring(root.length() + 14); // +13 to skip "src/examples/"
+                }
                 fqcn = fqcn.replace(File.separatorChar, '.').replace(".java", "");
                 for (String sig : methodSignaturesFromReflection(fqcn)) {
                     programs.add(new Benchmark(fqcn, sig));
@@ -68,223 +66,265 @@ public class BenchmarkRunner {
         }
         // Initialize status counts
         for (String solver : SOLVERS) {
-            statusCounts.put(solver, new int[5]);
+            statusCounts.put(solver, new int[4]);
             runtimes.put(solver, 0);
         }
 
         Files.createDirectories(OUT_DIR);
-//        boolean newFile = Files.notExists(OUT_CSV);
+        Path solutionsDir = OUT_DIR.resolve("solutions");
+        Files.createDirectories(solutionsDir);
+
+
         try (BufferedWriter w = Files.newBufferedWriter(OUT_CSV, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
 //            if (newFile) {
-                w.write("timestamp,program,method,solver,status,wall_ms,exitCode\n");
+            w.write("timestamp,program,method,solver,status,wall_ms,exitCode\n");
 //            }
             for (Benchmark b : programs) {
+                String methodFile = (b.fqcn.substring(b.fqcn.lastIndexOf('.') + 1) + b.methodSig).replaceAll("[^A-Za-z0-9_]+", "_") + "__" + ".txt";
+                HashMap<String, ArrayList<String>> solutions = new HashMap<>();
+
                 for (String solver : SOLVERS) {
                     Result r = runOnce(b, solver);
-                    w.write(String.format(Locale.ROOT, "%s,%s,%s,%s,%s,%d,%d%n",
-                            Instant.now(), b.fqcn, b.methodSig, solver, r.status, r.wallMs, r.exitCode));
+                    w.write(String.format(Locale.ROOT, "%s,%s,%s,%s,%s,%d,%d%n", Instant.now(), b.fqcn, b.methodSig, solver, r.status, r.wallMs, r.exitCode));
                     w.flush();
-                    System.out.printf("-> %s in %d ms (exit %d)%n",
-                            r.status, r.wallMs, r.exitCode);
+                    System.out.printf("-> %s in %d ms (exit %d)%n", r.status, r.wallMs, r.exitCode);
+                    for (Map.Entry<String, String> e : r.sols.entrySet()) {
+                        solutions.computeIfAbsent(e.getKey(), k -> new ArrayList<>()).add(solver + ":\n" + e.getValue());
+                    }
+                }
+                try (BufferedWriter solW = Files.newBufferedWriter(solutionsDir.resolve(methodFile), StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
+                    solW.write(printSolutions(solutions));
                 }
             }
         }
+
         System.out.println("Status counts: ");
         for (String solver : SOLVERS) {
             int[] counts = statusCounts.get(solver);
-            System.out.printf("  %s: OK=%d, SAT=%d, UNSAT=%d, TIMEOUT=%d, ERROR=%d%n",
-                    solver, counts[0], counts[1], counts[2], counts[3], counts[4]);
+            System.out.printf("  %s: OK=%d, UNSUPPORTED=%d, TIMEOUT=%d, ERROR=%d%n",
+                    solver, counts[0], counts[1], counts[2], counts[3]);
         }
         for (String err : errors) {
             System.err.println("Error in : " + err);
         }
         System.out.println("Results written to: " + OUT_CSV.toAbsolutePath());
         System.out.println("Total runtimes (ms): " + runtimes);
-        if (statusCounts.get("MAS")[0]>0) System.out.println("MAS avg: " + (runtimes.get("MAS")/statusCounts.get("MAS")[0]) + " ms");
-        if (statusCounts.get("MAS")[0]>0) System.out.println("Z3 avg: " + (runtimes.get("z3str3")/statusCounts.get("z3str3")[0]) + " ms");
+        if (statusCounts.get("MAS")[0] > 0)
+            System.out.println("MAS avg: " + (runtimes.get("MAS") / statusCounts.get("MAS")[0]) + " ms");
+        if (statusCounts.get("MAS")[0] > 0)
+            System.out.println("Z3 avg: " + (runtimes.get("z3str3") / statusCounts.get("z3str3")[0]) + " ms");
     }
 
 
-    private static Result runOnce(Benchmark b, String solver) throws IOException, InterruptedException {
-        System.out.println("Running: " + b.fqcn + b.methodSig + " with solver " + solver + " at " + Instant.now().toString().split("T")[1].split("\\.")[0]);
-        // Reuse current classpath so child sees jpf-core, jpf-symbc, tests, and deps
-        String parentCp = System.getProperty("java.class.path");
 
-        List<String> cmd = new ArrayList<>();
-        cmd.add(System.getProperty("java.home") + File.separator + "bin" + File.separator + "java");
-        cmd.add("-Xmx1024m");
-        cmd.add("-ea");
+private static Result runOnce(Benchmark b, String solver) throws IOException, InterruptedException {
+    System.out.println("Running: " + b.fqcn + b.methodSig + " with solver " + solver + " at " + Instant.now().toString().split("T")[1].split("\\.")[0]);
+    // Reuse current classpath so child sees jpf-core, jpf-symbc, tests, and deps
+    String parentCp = System.getProperty("java.class.path");
 
-        cmd.add("-cp");
-        cmd.add(parentCp);
+    List<String> cmd = new ArrayList<>();
+    cmd.add(System.getProperty("java.home") + File.separator + "bin" + File.separator + "java");
+    cmd.add("-Xmx1024m");
+    cmd.add("-ea");
 
-        cmd.add("gov.nasa.jpf.tool.RunJPF");
+    cmd.add("-cp");
+    cmd.add(parentCp);
 
-        // Build JPF options
-        cmd.addAll(COMMON_JPF_OPTS);
-        cmd.add("+symbolic.string_dp=" + solver);
-        cmd.add("+symbolic.method=" + b.fqcn + b.methodSig);
-        cmd.add("+target=" + b.fqcn);
-        // Ensure target classes are visible to JPF's internal classloader
-        cmd.add("+classpath=build/tests:build/examples");
+    cmd.add("gov.nasa.jpf.tool.RunJPF");
 
-        ProcessBuilder pb = new ProcessBuilder(cmd);
-        pb.redirectErrorStream(true);
+    // Build JPF options
+    cmd.addAll(COMMON_JPF_OPTS);
+    cmd.add("+symbolic.string_dp=" + solver);
+    cmd.add("+symbolic.method=" + b.fqcn + b.methodSig);
+    cmd.add("+target=" + b.fqcn);
+    // Ensure target classes are visible to JPF's internal classloader
+    cmd.add("+classpath=build/tests:build/examples");
 
-        // Pre-create per-run log path and redirect output there
-        String className = b.fqcn.substring(b.fqcn.lastIndexOf('.') + 1);
-        Path logsDir = OUT_DIR.resolve("logs");
-        Files.createDirectories(logsDir);
-        String methodFile = (className + b.methodSig).replaceAll("[^A-Za-z0-9_]+", "_") + "__" + solver + ".log";
-        Path log = logsDir.resolve(methodFile);
-        pb.redirectOutput(log.toFile());
+    ProcessBuilder pb = new ProcessBuilder(cmd);
+    pb.redirectErrorStream(true);
 
-        Instant t0 = Instant.now();
-        Process p = pb.start();
+    // Pre-create per-run log path and redirect output there
+    String className = b.fqcn.substring(b.fqcn.lastIndexOf('.') + 1);
+    Path logsDir = OUT_DIR.resolve("logs");
+    Files.createDirectories(logsDir);
+    String methodFile = (className + b.methodSig).replaceAll("[^A-Za-z0-9_]+", "_") + "__" + solver + ".log";
+    Path log = logsDir.resolve(methodFile);
+    pb.redirectOutput(log.toFile());
 
-        // Wait up to timeout
-        boolean finished = p.waitFor(TIMEOUT_SEC, TimeUnit.SECONDS);
-        if (!finished) {
-            p.destroyForcibly();
-            boolean died = p.waitFor(KILL_SEC, TimeUnit.SECONDS); // ensure the process is actually terminated
-            if (!died) {
-                System.err.println("Failed to kill process after timeout: " + String.join(" ", cmd));
+    Instant t0 = Instant.now();
+    Process p = pb.start();
+
+    // Wait up to timeout
+    boolean finished = p.waitFor(TIMEOUT_SEC, TimeUnit.SECONDS);
+    if (!finished) {
+        p.destroyForcibly();
+        boolean died = p.waitFor(KILL_SEC, TimeUnit.SECONDS); // ensure the process is actually terminated
+        if (!died) {
+            System.err.println("Failed to kill process after timeout: " + String.join(" ", cmd));
+        }
+    }
+
+    // Take end time only after termination (natural or forced)
+    Instant tEnd = Instant.now();
+
+    int exit = finished ? p.exitValue() : 124; // conventional timeout code
+    long wall = Duration.between(t0, tEnd).toMillis();
+
+    // Read output from the log file (keeps wall independent from I/O time)
+    String out = new String(Files.readAllBytes(log), StandardCharsets.UTF_8);
+
+    // Classify and get solutions
+    String status = finished ? classify(out, exit, solver) : "TIMEOUT";
+    HashMap<String, String> solutions = getSolutions(out);
+
+    // Optional: count TIMEOUT explicitly
+    if (!finished) {
+        statusCounts.get(solver)[2]++;
+    } else if ("ERROR".equals(status)) {
+        errors.add(String.format("%s %s %s", b.fqcn, b.methodSig, solver));
+    }
+
+    if (status.equals("OK")) {
+        runtimes.put(solver, runtimes.get(solver) + (int) wall);
+    }
+    try (BufferedWriter w = Files.newBufferedWriter(log, StandardCharsets.UTF_8, StandardOpenOption.APPEND)) {
+        w.write("Runtime(ms) :" + String.valueOf(wall));
+    }
+    return new Result(status, wall, exit, solutions);
+}
+
+private static void parseDirectoryBenchmarks(Path dir) throws Exception {
+    List<Benchmark> loaded = new ArrayList<>();
+    try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, "*.java")) {
+        for (Path entry : stream) {
+            String root = System.getProperty("user.dir");
+            String fqcn = null;
+            if (entry.toString().contains("tests")) {
+                fqcn = entry.toString().substring(root.length() + 11); // +11 to skip "src/tests/"
+            } else if (entry.toString().contains("examples")) {
+                fqcn = entry.toString().substring(root.length() + 14); // +13 to skip "src/examples/"
+            }
+            fqcn = fqcn.replace(File.separatorChar, '.').replace(".java", "");
+            for (String sig : methodSignaturesFromReflection(fqcn)) {
+                loaded.add(new Benchmark(fqcn, sig));
             }
         }
-
-        // Take end time only after termination (natural or forced)
-        Instant tEnd = Instant.now();
-
-        int exit = finished ? p.exitValue() : 124; // conventional timeout code
-        long wall = Duration.between(t0, tEnd).toMillis();
-
-        // Read output from the log file (keeps wall independent from I/O time)
-        String out = new String(Files.readAllBytes(log), StandardCharsets.UTF_8);
-
-        // Classify
-        String status = finished ? classify(out, exit, solver) : "TIMEOUT";
-
-        // Optional: count TIMEOUT explicitly
-        if (!finished) {
-            statusCounts.get(solver)[3]++;
-        } else if ("ERROR".equals(status)) {
-            errors.add(String.format("%s %s %s", b.fqcn, b.methodSig, solver));
-        }
-
-        if (status.equals("OK")){
-            runtimes.put(solver, runtimes.get(solver) + (int) wall);
-        }
-        try (BufferedWriter w = Files.newBufferedWriter(log, StandardCharsets.UTF_8, StandardOpenOption.APPEND)) {
-            w.write("Runtime(ms) :" + String.valueOf(wall));
-        }
-        return new Result(status, wall, exit);
     }
+    if (!loaded.isEmpty()) {
+        System.out.println("Loaded " + loaded.size() + " benchmarks from " + dir);
+        programs = loaded;
+    } else {
+        System.out.println("No valid benchmark files found in " + dir);
+        System.exit(1);
+    }
+}
 
-    private static void parseDirectoryBenchmarks(Path dir) throws Exception {
-        List<Benchmark> loaded = new ArrayList<>();
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, "*.java")) {
-            for (Path entry : stream) {
-                String root = System.getProperty("user.dir");
-                String fqcn = null;
-                if (entry.toString().contains("tests")) {
-                    fqcn = entry.toString().substring(root.length() + 11); // +11 to skip "src/tests/"
-                } else if (entry.toString().contains("examples")) {
-                    fqcn = entry.toString().substring(root.length() + 14); // +13 to skip "src/examples/"
-                }
-                fqcn = fqcn.replace(File.separatorChar, '.').replace(".java", "");
-                for (String sig : methodSignaturesFromReflection(fqcn)) {
-                    loaded.add(new Benchmark(fqcn, sig));
-                }
+private static List<String> methodSignaturesFromReflection(String cls) throws Exception {
+    List<String> sigs = new ArrayList<>();
+    try {
+        Class<?> clss = Class.forName(cls);
+        for (Method m : clss.getDeclaredMethods()) {
+            String name = m.getName();
+            if (name.equals("main")) continue; // skip main method
+            int params = m.getParameterCount();
+            StringBuilder sig = new StringBuilder(".").append(name).append("(");
+            for (int i = 0; i < params; i++) {
+                if (i > 0) sig.append("#");
+                sig.append("sym"); // assume all params symbolic
             }
+            sig.append(")");
+            sigs.add(sig.toString());
         }
-        if (!loaded.isEmpty()) {
-            System.out.println("Loaded " + loaded.size() + " benchmarks from " + dir);
-            programs = loaded;
-        } else {
-            System.out.println("No valid benchmark files found in " + dir);
-            System.exit(1);
-        }
+    } catch (ClassNotFoundException e) {
+        e.printStackTrace();
     }
+    return sigs;
+}
 
-    private static List<String> methodSignaturesFromReflection(String cls) throws Exception {
-        List<String> sigs = new ArrayList<>();
-        try {
-            Class<?> clss = Class.forName(cls);
-            for (Method m : clss.getDeclaredMethods()) {
-                String name = m.getName();
-                if (name.equals("main")) continue; // skip main method
-                int params = m.getParameterCount();
-                StringBuilder sig = new StringBuilder(".").append(name).append("(");
-                for (int i = 0; i < params; i++) {
-                    if (i > 0) sig.append("#");
-                    sig.append("sym"); // assume all params symbolic
-                }
-                sig.append(")");
-                sigs.add(sig.toString());
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return sigs;
+private static String classify(String out, int exit, String solver) {
+    if (out.contains("Unhandled")) {
+        statusCounts.get(solver)[1]++;
+        return "UNSUPPORTED";
     }
-    //
-//    private static List<String> methodSignaturesFromFile(Path file) throws IOException {
-//        Pattern methodPattern = Pattern.compile("public static void (\\w+)\\s*\\(([^)]*)\\)");
-//        List<String> methodSigs = new ArrayList<>();
-//        List<String> lines = Files.readAllLines(file, StandardCharsets.UTF_8);
-//
-//        try {
-//            Files.lines(file).forEach(line -> {
-//                Matcher m = methodPattern.matcher(line);
-//                if (m.find()) {
-//                    String methodName = m.group(1);
-//                    String argSignature = m.group(2);
-//                    methodSigs.add(methodName + argSignature);
-//                }
-//
-//            });
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        return methodSigs;
-//    }
-    // TODO: parse output for specific path results, including solutions
-    private static String classify(String out, int exit, String solver) {
-//        if (out.contains("Unsatisfiable") || out.contains("unsat")) return "UNSAT";
-//        if (out.contains("Satisfiable") || out.contains("sat")) return "SAT";
-        if (out.contains("[SEVERE]") || out.contains("ERROR")) {
-            statusCounts.get(solver)[4]++;
-            return "ERROR";
-        }
-        if (exit == 0) {
-            statusCounts.get(solver)[0]++;
-            return "OK";
-        }
-        statusCounts.get(solver)[4]++;
+    if (out.contains("[SEVERE]") || out.contains("ERROR")) {
+        statusCounts.get(solver)[3]++;
         return "ERROR";
     }
+    if (exit == 0) {
+        statusCounts.get(solver)[0]++;
+        return "OK";
+    }
+    statusCounts.get(solver)[3]++;
+    return "ERROR";
+}
 
-    private static final class Benchmark {
-        final String fqcn;
-        final String methodSig;
-
-        Benchmark(String fqcn, String methodSig) {
-            this.fqcn = fqcn;
-            this.methodSig = methodSig;
+private static HashMap<String, String> getSolutions(String out) {
+    // first grab the smt-lib part which starts after a line with "query" and ends at "==="
+    // then grab the solutions betwwen "****"
+    HashMap<String, String> solutions = new HashMap<>();
+    String[] lines = out.split("\n");
+    StringBuilder smt = new StringBuilder();
+    StringBuilder sol = new StringBuilder();
+    Iterator<String> it = Arrays.asList(lines).iterator();
+    while (it.hasNext()) {
+        // we will grab the smt and then the sol and then add it to the map
+        String line = it.next();
+        if (line.contains("query")) {
+            String next = it.next();
+            while (!next.contains("===") && it.hasNext()) {
+                smt.append(next).append("\n");
+                next = it.next();
+            }
         }
+        if (line.contains("****")) {
+            String next = it.next();
+            while (!next.contains("****") && it.hasNext()) {
+                sol.append(next).append("\n");
+                next = it.next();
+            }
+            solutions.put(smt.toString().trim(), sol.toString());
+            smt.setLength(0);
+            sol.setLength(0);
+        }
+    }
+    return solutions;
+}
 
+private static String printSolutions(HashMap<String, ArrayList<String>> solutions) {
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<String, ArrayList<String>> e : solutions.entrySet()) {
+            sb.append("************************************\n");
+            sb.append(e.getKey()).append("\n");
+            sb.append("------------------------------------\n");
+            for (String s : e.getValue()) {
+                sb.append(s).append("\n");
+            }
+        }
+        return sb.toString();
+}
+
+private static final class Benchmark {
+    final String fqcn;
+    final String methodSig;
+
+    Benchmark(String fqcn, String methodSig) {
+        this.fqcn = fqcn;
+        this.methodSig = methodSig;
     }
 
-    private static final class Result {
-        final String status;
-        final long wallMs;
-        final int exitCode;
+}
 
-        Result(String status, long wallMs, int exitCode) {
-            this.status = status;
-            this.wallMs = wallMs;
-            this.exitCode = exitCode;
-        }
+private static final class Result {
+    final String status;
+    final long wallMs;
+    final int exitCode;
+    final HashMap<String, String> sols;
+
+    Result(String status, long wallMs, int exitCode, HashMap<String, String> solutions) {
+        this.status = status;
+        this.wallMs = wallMs;
+        this.exitCode = exitCode;
+        this.sols = solutions;
     }
+}
 }

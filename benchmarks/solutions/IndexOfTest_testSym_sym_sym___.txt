@@ -1,0 +1,34 @@
+************************************
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+
+(assert (= (str.indexof s1_1 s2_2) 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => "A"
+s2_2 => "A"
+
+MAS:
+sat,
+1: ""
+2: ""
+
+************************************
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+
+(assert (not (= (str.indexof s1_1 s2_2) 0)))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => "BA"
+s2_2 => "A"
+
+MAS:
+sat,
+1: "A"
+2: ""
+

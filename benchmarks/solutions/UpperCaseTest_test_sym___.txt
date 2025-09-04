@@ -1,0 +1,18 @@
+************************************
+(declare-const s1_1 String)
+
+(assert (= (toUpperCase s1_1) "HELLOWORLD"))
+------------------------------------
+MAS:
+sat,
+1: "HELLOWORLD"
+
+************************************
+(declare-const s1_1 String)
+
+(assert (not (= (toUpperCase s1_1) "HELLOWORLD")))
+------------------------------------
+MAS:
+sat,
+1: ""
+

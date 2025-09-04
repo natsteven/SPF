@@ -1,0 +1,16 @@
+************************************
+(declare-const num_1_SYMINT Int)
+
+(assert (<= num_1_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+
+************************************
+(declare-const num_1_SYMINT Int)
+
+(assert (> num_1_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+

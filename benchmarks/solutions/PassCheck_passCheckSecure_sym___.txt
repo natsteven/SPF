@@ -1,0 +1,612 @@
+************************************
+(declare-const p_1 String)
+
+
+(assert (not (= (str.at p_1 4) "w")))
+(assert (< 4 (str.len p_1)))
+(assert (not (= (str.at p_1 3) "$")))
+(assert (< 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABCDE"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (= (str.at p_1 6) "r"))
+(assert (< 6 (str.len p_1)))
+(assert (not (= (str.at p_1 5) "0")))
+(assert (< 5 (str.len p_1)))
+(assert (not (= (str.at p_1 4) "w")))
+(assert (< 4 (str.len p_1)))
+(assert (not (= (str.at p_1 3) "$")))
+(assert (< 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABCDEFr"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "AB"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "A"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (< 4 (str.len p_1)))
+(assert (not (= (str.at p_1 3) "$")))
+(assert (< 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABCDE"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "A"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABC"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (= (str.at p_1 7) "d"))
+(assert (< 7 (str.len p_1)))
+(assert (not (= (str.at p_1 6) "r")))
+(assert (< 6 (str.len p_1)))
+(assert (not (= (str.at p_1 5) "0")))
+(assert (< 5 (str.len p_1)))
+(assert (not (= (str.at p_1 4) "w")))
+(assert (< 4 (str.len p_1)))
+(assert (not (= (str.at p_1 3) "$")))
+(assert (< 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABCDEFGd"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (< 6 (str.len p_1)))
+(assert (not (= (str.at p_1 5) "0")))
+(assert (< 5 (str.len p_1)))
+(assert (not (= (str.at p_1 4) "w")))
+(assert (< 4 (str.len p_1)))
+(assert (not (= (str.at p_1 3) "$")))
+(assert (< 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABCDEFG"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (>= 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABC"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (>= 8 (str.len p_1)))
+(assert (not (= (str.at p_1 7) "d")))
+(assert (< 7 (str.len p_1)))
+(assert (not (= (str.at p_1 6) "r")))
+(assert (< 6 (str.len p_1)))
+(assert (not (= (str.at p_1 5) "0")))
+(assert (< 5 (str.len p_1)))
+(assert (not (= (str.at p_1 4) "w")))
+(assert (< 4 (str.len p_1)))
+(assert (not (= (str.at p_1 3) "$")))
+(assert (< 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABCDEFGH"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (>= 4 (str.len p_1)))
+(assert (not (= (str.at p_1 3) "$")))
+(assert (< 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABCD"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (= (str.at p_1 0) "P"))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "P"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (>= 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "A"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (not (= (str.at p_1 3) "$")))
+(assert (< 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABCD"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (not (= (str.at p_1 7) "d")))
+(assert (< 7 (str.len p_1)))
+(assert (not (= (str.at p_1 6) "r")))
+(assert (< 6 (str.len p_1)))
+(assert (not (= (str.at p_1 5) "0")))
+(assert (< 5 (str.len p_1)))
+(assert (not (= (str.at p_1 4) "w")))
+(assert (< 4 (str.len p_1)))
+(assert (not (= (str.at p_1 3) "$")))
+(assert (< 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABCDEFGH"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (= (str.at p_1 2) "$"))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "AB$"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (>= 6 (str.len p_1)))
+(assert (not (= (str.at p_1 5) "0")))
+(assert (< 5 (str.len p_1)))
+(assert (not (= (str.at p_1 4) "w")))
+(assert (< 4 (str.len p_1)))
+(assert (not (= (str.at p_1 3) "$")))
+(assert (< 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABCDEF"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (< 8 (str.len p_1)))
+(assert (not (= (str.at p_1 7) "d")))
+(assert (< 7 (str.len p_1)))
+(assert (not (= (str.at p_1 6) "r")))
+(assert (< 6 (str.len p_1)))
+(assert (not (= (str.at p_1 5) "0")))
+(assert (< 5 (str.len p_1)))
+(assert (not (= (str.at p_1 4) "w")))
+(assert (< 4 (str.len p_1)))
+(assert (not (= (str.at p_1 3) "$")))
+(assert (< 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABCDEFGHI"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (< 5 (str.len p_1)))
+(assert (not (= (str.at p_1 4) "w")))
+(assert (< 4 (str.len p_1)))
+(assert (not (= (str.at p_1 3) "$")))
+(assert (< 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABCDEF"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (not (= (str.at p_1 6) "r")))
+(assert (< 6 (str.len p_1)))
+(assert (not (= (str.at p_1 5) "0")))
+(assert (< 5 (str.len p_1)))
+(assert (not (= (str.at p_1 4) "w")))
+(assert (< 4 (str.len p_1)))
+(assert (not (= (str.at p_1 3) "$")))
+(assert (< 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABCDEFG"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABC"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (= (str.at p_1 4) "w"))
+(assert (< 4 (str.len p_1)))
+(assert (not (= (str.at p_1 3) "$")))
+(assert (< 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABCDw"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (= (str.at p_1 5) "0"))
+(assert (< 5 (str.len p_1)))
+(assert (not (= (str.at p_1 4) "w")))
+(assert (< 4 (str.len p_1)))
+(assert (not (= (str.at p_1 3) "$")))
+(assert (< 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABCDE0"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (< 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABCD"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (>= 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => ""
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (>= 7 (str.len p_1)))
+(assert (not (= (str.at p_1 6) "r")))
+(assert (< 6 (str.len p_1)))
+(assert (not (= (str.at p_1 5) "0")))
+(assert (< 5 (str.len p_1)))
+(assert (not (= (str.at p_1 4) "w")))
+(assert (< 4 (str.len p_1)))
+(assert (not (= (str.at p_1 3) "$")))
+(assert (< 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABCDEFG"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (>= 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "AB"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (= (str.at p_1 3) "$"))
+(assert (< 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABC$"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (>= 5 (str.len p_1)))
+(assert (not (= (str.at p_1 4) "w")))
+(assert (< 4 (str.len p_1)))
+(assert (not (= (str.at p_1 3) "$")))
+(assert (< 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABCDE"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (= (str.at p_1 1) "a"))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "Aa"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (not (= (str.at p_1 5) "0")))
+(assert (< 5 (str.len p_1)))
+(assert (not (= (str.at p_1 4) "w")))
+(assert (< 4 (str.len p_1)))
+(assert (not (= (str.at p_1 3) "$")))
+(assert (< 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABCDEF"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (< 7 (str.len p_1)))
+(assert (not (= (str.at p_1 6) "r")))
+(assert (< 6 (str.len p_1)))
+(assert (not (= (str.at p_1 5) "0")))
+(assert (< 5 (str.len p_1)))
+(assert (not (= (str.at p_1 4) "w")))
+(assert (< 4 (str.len p_1)))
+(assert (not (= (str.at p_1 3) "$")))
+(assert (< 3 (str.len p_1)))
+(assert (not (= (str.at p_1 2) "$")))
+(assert (< 2 (str.len p_1)))
+(assert (not (= (str.at p_1 1) "a")))
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "ABCDEFGH"
+
+************************************
+(declare-const p_1 String)
+
+
+(assert (< 1 (str.len p_1)))
+(assert (not (= (str.at p_1 0) "P")))
+(assert (< 0 (str.len p_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+p_1 => "AB"
+

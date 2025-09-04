@@ -23,4 +23,4 @@ symbolic.max_char=65535
 symbolic.min_double=4.9E-324
 symbolic.max_double=1.7976931348623157E308
 [SEVERE] no static entry method: strings.LZ77T.main([Ljava/lang/String;)V
-Runtime(ms) :378
+Runtime(ms) :302

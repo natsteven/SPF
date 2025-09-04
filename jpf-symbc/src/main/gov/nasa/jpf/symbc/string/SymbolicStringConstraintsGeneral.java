@@ -466,7 +466,7 @@ public class SymbolicStringConstraintsGeneral {
 				return false;
 			}
 			constraintCount = constraintCount + 1;
-			System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ - END CALL TO MAS");
+			System.out.println("************************************");
 			return result.isSAT();
 		}
 		TIMEOUT = SymbolicInstructionFactory.stringTimeout;

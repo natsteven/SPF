@@ -1,0 +1,24 @@
+************************************
+(declare-const s1_1 String)
+
+(assert (= (str.replace s1_1 "Ǉ" "ǅ") "aa"))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+MAS:
+sat,
+3: "aa"
+
+************************************
+(declare-const s1_1 String)
+
+(assert (not (= (str.replace s1_1 "Ǉ" "ǅ") "aa")))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+MAS:
+sat,
+3: ""
+

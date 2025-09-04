@@ -1,0 +1,20 @@
+************************************
+(declare-const s_2 String)
+
+
+(assert (< 0 (str.len s_2)))
+------------------------------------
+z3str3:
+Satisfiable: true
+s_2 => "A"
+
+************************************
+(declare-const s_2 String)
+
+
+(assert (>= 0 (str.len s_2)))
+------------------------------------
+z3str3:
+Satisfiable: true
+s_2 => ""
+

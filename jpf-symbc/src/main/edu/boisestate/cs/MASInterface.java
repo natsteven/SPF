@@ -21,8 +21,13 @@ public class MASInterface {
         // get smtlib query for debugging
         final Z3Translator t = new Z3Translator();
         final String smtlibQuery = t.translate(pc);
-        System.out.println("*************************************");
-        System.out.println("The smtlib query is: " + smtlibQuery);
+        String[] lines = smtlibQuery.split("\n");
+
+        System.out.print("The smtlib query is: ");
+        int i = 0;
+        while (i < lines.length - 3){ // remove (check-sat) and (get-model) lines
+            System.out.println(lines[i++]);
+        }
 //
 
 //        System.out.println("*************************************");
@@ -36,7 +41,7 @@ public class MASInterface {
 //            e.printStackTrace();
 //        }
 
-        System.out.println("*************************************");
+        System.out.println("=======================================");
 //        System.out.println("Using Native Integration to solve the query");
 //        System.out.println("PATH CONSTRAINT FROM SPF: " + pc);
 

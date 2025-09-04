@@ -1,0 +1,252 @@
+************************************
+(declare-const cmd_1 String)
+
+
+(assert (= (str.indexof cmd_1 "/" 6) (- 1)))
+(assert (not (= (str.indexof cmd_1 "/" 5) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 4) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 3) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 2) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 1) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 0) (- 1))))
+------------------------------------
+z3str3:
+Satisfiable: true
+cmd_1 => "//////"
+
+************************************
+(declare-const cmd_1 String)
+
+
+(assert (not (= (str.indexof cmd_1 "/" 5) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 4) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 3) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 2) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 1) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 0) (- 1))))
+------------------------------------
+z3str3:
+Satisfiable: true
+cmd_1 => "/HJLN/"
+
+************************************
+(declare-const cmd_1 String)
+
+
+(assert (= (str.indexof cmd_1 "/" 0) (- 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+cmd_1 => ""
+
+************************************
+(declare-const cmd_1 String)
+
+
+(assert (not (= (str.indexof cmd_1 "/" 6) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 5) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 4) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 3) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 2) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 1) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 0) (- 1))))
+------------------------------------
+z3str3:
+Satisfiable: true
+cmd_1 => "/ELHIN/"
+
+************************************
+(declare-const cmd_1 String)
+
+
+(assert (= (str.indexof cmd_1 "ǃ") (- 1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const cmd_1 String)
+
+
+(assert (= (str.indexof cmd_1 "/" 4) (- 1)))
+(assert (not (= (str.indexof cmd_1 "/" 3) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 2) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 1) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 0) (- 1))))
+------------------------------------
+z3str3:
+Satisfiable: true
+cmd_1 => "////"
+
+************************************
+(declare-const cmd_1 String)
+
+
+(assert (= (str.indexof cmd_1 "/" 7) (- 1)))
+(assert (not (= (str.indexof cmd_1 "/" 6) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 5) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 4) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 3) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 2) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 1) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 0) (- 1))))
+------------------------------------
+z3str3:
+Satisfiable: true
+cmd_1 => "////B//"
+
+************************************
+(declare-const cmd_1 String)
+
+
+(assert (= (str.indexof cmd_1 "/" 2) (- 1)))
+(assert (not (= (str.indexof cmd_1 "/" 1) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 0) (- 1))))
+------------------------------------
+z3str3:
+Satisfiable: true
+cmd_1 => "//"
+
+************************************
+(declare-const cmd_1 String)
+
+
+(assert (not (= (str.indexof cmd_1 "/" 2) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 1) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 0) (- 1))))
+------------------------------------
+z3str3:
+Satisfiable: true
+cmd_1 => "///"
+
+************************************
+(declare-const cmd_1 String)
+
+
+(assert (not (= (str.indexof cmd_1 "/" 0) (- 1))))
+------------------------------------
+z3str3:
+Satisfiable: true
+cmd_1 => "A/"
+
+************************************
+(declare-const cmd_1 String)
+
+
+(assert (not (= (str.indexof cmd_1 "ǃ") (- 1))))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const cmd_1 String)
+
+
+(assert (not (= (str.indexof cmd_1 "/" 7) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 6) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 5) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 4) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 3) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 2) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 1) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 0) (- 1))))
+------------------------------------
+z3str3:
+Satisfiable: true
+cmd_1 => "G/FAI///"
+
+************************************
+(declare-const cmd_1 String)
+
+
+(assert (= (str.indexof cmd_1 "/" 3) (- 1)))
+(assert (not (= (str.indexof cmd_1 "/" 2) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 1) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 0) (- 1))))
+------------------------------------
+z3str3:
+Satisfiable: true
+cmd_1 => "///"
+
+************************************
+(declare-const cmd_1 String)
+
+
+(assert (= (str.indexof cmd_1 "/" 1) (- 1)))
+(assert (not (= (str.indexof cmd_1 "/" 0) (- 1))))
+------------------------------------
+z3str3:
+Satisfiable: true
+cmd_1 => "/"
+
+************************************
+(declare-const cmd_1 String)
+
+
+(assert (= (str.indexof cmd_1 "/" 8) (- 1)))
+(assert (not (= (str.indexof cmd_1 "/" 7) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 6) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 5) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 4) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 3) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 2) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 1) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 0) (- 1))))
+------------------------------------
+z3str3:
+Satisfiable: true
+cmd_1 => "/B/A////"
+
+************************************
+(declare-const cmd_1 String)
+
+
+(assert (not (= (str.indexof cmd_1 "/" 4) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 3) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 2) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 1) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 0) (- 1))))
+------------------------------------
+z3str3:
+Satisfiable: true
+cmd_1 => "ID/J/"
+
+************************************
+(declare-const cmd_1 String)
+
+
+(assert (not (= (str.indexof cmd_1 "/" 3) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 2) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 1) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 0) (- 1))))
+------------------------------------
+z3str3:
+Satisfiable: true
+cmd_1 => "//FH/"
+
+************************************
+(declare-const cmd_1 String)
+
+
+(assert (= (str.indexof cmd_1 "/" 5) (- 1)))
+(assert (not (= (str.indexof cmd_1 "/" 4) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 3) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 2) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 1) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 0) (- 1))))
+------------------------------------
+z3str3:
+Satisfiable: true
+cmd_1 => "/AF//"
+
+************************************
+(declare-const cmd_1 String)
+
+
+(assert (not (= (str.indexof cmd_1 "/" 1) (- 1))))
+(assert (not (= (str.indexof cmd_1 "/" 0) (- 1))))
+------------------------------------
+z3str3:
+Satisfiable: true
+cmd_1 => "AB/"
+

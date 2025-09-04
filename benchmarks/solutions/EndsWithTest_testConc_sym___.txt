@@ -1,0 +1,26 @@
+************************************
+(declare-const s2_1 String)
+
+(assert (not (str.suffixof "World" s2_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+s2_1 => "BArld"
+
+MAS:
+sat,
+1: ""
+
+************************************
+(declare-const s2_1 String)
+
+(assert (str.suffixof "World" s2_1))
+------------------------------------
+z3str3:
+Satisfiable: true
+s2_1 => "World"
+
+MAS:
+sat,
+1: "World"
+

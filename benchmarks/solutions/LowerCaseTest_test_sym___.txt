@@ -1,0 +1,18 @@
+************************************
+(declare-const s1_1 String)
+
+(assert (= (toLowerCase s1_1) "helloworld"))
+------------------------------------
+MAS:
+sat,
+1: "helloworld"
+
+************************************
+(declare-const s1_1 String)
+
+(assert (not (= (toLowerCase s1_1) "helloworld")))
+------------------------------------
+MAS:
+sat,
+1: ""
+

@@ -56,7 +56,7 @@ public class MASTranslator {
 //            System.exit(1);
 //            return null;
         }
-
+        System.out.println("*****************************");
         // a string constraint has a comparator (or operator), a left, and a right
         // TODO: will need to handle cases of multiple arg constraints
 

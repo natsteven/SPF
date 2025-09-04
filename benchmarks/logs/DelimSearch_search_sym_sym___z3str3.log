@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=4.9E-324
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 2159fbb2c05f69380516caefe22c5ed16838876d) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev 82e9512831f6880a12cdb606c891cf70f824134e) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 strings.DelimSearch.main()
 
-====================================================== search started: 9/3/25 2:03 PM
+====================================================== search started: 9/4/25 1:53 PM
 New sym int text_1_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int delims_2_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int Length_0_ min=0, max=30
@@ -38204,7 +38204,7 @@ Symbolic Exp [ CONST_Delimiter [.concat(.valueof[(CharAt(Length_0_)_63_)]).conca
 no errors detected
 
 ====================================================== statistics
-elapsed time:       00:00:09
+elapsed time:       00:00:05
 states:             new=265,visited=0,backtracked=265,end=121
 search:             maxDepth=23,constraints=22
 choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=132
@@ -38213,5 +38213,5 @@ instructions:       13124
 max memory:         477MB
 loaded code:        classes=83,methods=1769
 
-====================================================== search finished: 9/3/25 2:03 PM
-Runtime(ms) :9367
+====================================================== search finished: 9/4/25 1:54 PM
+Runtime(ms) :6167

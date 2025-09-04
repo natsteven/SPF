@@ -1,0 +1,59 @@
+************************************
+(declare-const s1_1 String)
+
+(assert (= class gov.nasa.jpf.symbc.string.DerivedStringExpression-not-implemented "HelloWorld"))
+(assert (not (= s1_1 "Hello")))
+------------------------------------
+MAS:
+unsat
+
+************************************
+(declare-const s1_1 String)
+
+(assert (not (= s1_1 "Hello")))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => ""
+
+MAS:
+sat,
+1: ""
+
+************************************
+(declare-const s1_1 String)
+
+(assert (not (= class gov.nasa.jpf.symbc.string.DerivedStringExpression-not-implemented "HelloWorld")))
+(assert (not (= s1_1 "Hello")))
+------------------------------------
+MAS:
+sat,
+4: "00000World"
+
+************************************
+(declare-const s1_1 String)
+
+(assert (= class gov.nasa.jpf.symbc.string.DerivedStringExpression-not-implemented "HelloWorld"))
+(assert (= s1_1 "Hello"))
+------------------------------------
+MAS:
+unsat
+
+************************************
+(declare-const s1_1 String)
+
+(assert (= s1_1 "Hello"))
+------------------------------------
+MAS:
+sat,
+1: "Hello"
+
+************************************
+(declare-const s1_1 String)
+
+(assert (not (= class gov.nasa.jpf.symbc.string.DerivedStringExpression-not-implemented "HelloWorld")))
+(assert (= s1_1 "Hello"))
+------------------------------------
+MAS:
+unsat
+

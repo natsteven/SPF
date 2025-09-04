@@ -1,0 +1,20 @@
+************************************
+(declare-const s_1 String)
+
+
+(assert (<= (str.indexof s_1 (str.at s_1 2)) 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+s_1 => ""
+
+************************************
+(declare-const s_1 String)
+
+
+(assert (> (str.indexof s_1 (str.at s_1 2)) 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+s_1 => "ABB"
+
