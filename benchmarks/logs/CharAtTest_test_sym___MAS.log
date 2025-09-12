@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=4.9E-324
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 82e9512831f6880a12cdb606c891cf70f824134e) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev 361a22b5d3778c164b604eba73ffb01df7b0a354) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 gov.nasa.jpf.symbc.strings.MAS.CharAtTest.main()
 
-====================================================== search started: 9/4/25 2:00 PM
+====================================================== search started: 9/12/25 3:40 PM
 New sym int s1_1_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int CharAt(CONST_0)_0_ min=0, max=65535
 numeric PC: constraint # = 1
@@ -50,6 +50,8 @@ The smtlib query is:
 =======================================
 Numeric Path Condition Exists: CharAt(CONST_0)_0_ != CONST_72
 No String Constraints
+Using Alphabet: 0H
+Using bound: 4
 *****************************
 sat,
 2: "0"
@@ -73,6 +75,8 @@ The smtlib query is:
 =======================================
 Numeric Path Condition Exists: CharAt(CONST_0)_0_ == CONST_72
 No String Constraints
+Using Alphabet: 0H
+Using bound: 4
 *****************************
 sat,
 2: "H"
@@ -97,6 +101,8 @@ The smtlib query is:
 (assert (= (str.at s1_1 0) "H"))
 =======================================
 Numeric Path Condition Exists: CharAt(CONST_0)_0_ == CONST_72
+Using Alphabet: 0Hel
+Using bound: 5
 *****************************
 sat,
 3: "H"
@@ -120,6 +126,8 @@ The smtlib query is:
 (assert (= (str.at s1_1 0) "H"))
 =======================================
 Numeric Path Condition Exists: CharAt(CONST_0)_0_ == CONST_72
+Using Alphabet: 0Hel
+Using bound: 5
 *****************************
 unsat
 ************************************
@@ -142,6 +150,8 @@ The smtlib query is:
 (assert (not (= (str.at s1_1 0) "H")))
 =======================================
 Numeric Path Condition Exists: CharAt(CONST_0)_0_ != CONST_72
+Using Alphabet: 0Hel
+Using bound: 5
 *****************************
 sat,
 3: "0"
@@ -165,6 +175,8 @@ The smtlib query is:
 (assert (not (= (str.at s1_1 0) "H")))
 =======================================
 Numeric Path Condition Exists: CharAt(CONST_0)_0_ != CONST_72
+Using Alphabet: 0Hel
+Using bound: 5
 *****************************
 sat,
 3: "0Hell"
@@ -184,5 +196,5 @@ instructions:       6338
 max memory:         477MB
 loaded code:        classes=81,methods=1618
 
-====================================================== search finished: 9/4/25 2:00 PM
-Runtime(ms) :486
+====================================================== search finished: 9/12/25 3:40 PM
+Runtime(ms) :464

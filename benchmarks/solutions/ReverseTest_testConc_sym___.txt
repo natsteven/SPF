@@ -1,0 +1,14 @@
+************************************
+(assert (not (= class gov.nasa.jpf.symbc.string.DerivedStringExpression-not-implemented "desserts")))
+------------------------------------
+MAS:
+sat,
+1: ""
+
+************************************
+(assert (= class gov.nasa.jpf.symbc.string.DerivedStringExpression-not-implemented "desserts"))
+------------------------------------
+MAS:
+sat,
+1: "stressed"
+

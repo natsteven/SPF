@@ -1,0 +1,20 @@
+************************************
+(declare-const s2_2 String)
+
+(assert (= class gov.nasa.jpf.symbc.string.DerivedStringExpression-not-implemented s2_2))
+------------------------------------
+MAS:
+sat,
+1: ""
+3: ""
+
+************************************
+(declare-const s2_2 String)
+
+(assert (not (= class gov.nasa.jpf.symbc.string.DerivedStringExpression-not-implemented s2_2)))
+------------------------------------
+MAS:
+sat,
+1: "A"
+3: ""
+

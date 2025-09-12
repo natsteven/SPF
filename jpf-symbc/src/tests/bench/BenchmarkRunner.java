@@ -17,6 +17,7 @@ public class BenchmarkRunner {
     private static List<Benchmark> programs = new ArrayList<>();
 
     private static final List<String> SOLVERS = Arrays.asList("z3str3", "MAS");
+    private static boolean z3OK = true; //for average runtime calc only accumulate when z3 succeeds
 
     private static final long TIMEOUT_SEC = Long.getLong("bench.timeoutSec", 30L);
     private static final long KILL_SEC = 5L;
@@ -116,181 +117,188 @@ public class BenchmarkRunner {
     }
 
 
+    private static Result runOnce(Benchmark b, String solver) throws IOException, InterruptedException {
+        System.out.println("Running: " + b.fqcn + b.methodSig + " with solver " + solver + " at " + Instant.now().toString().split("T")[1].split("\\.")[0]);
+        // Reuse current classpath so child sees jpf-core, jpf-symbc, tests, and deps
+        String parentCp = System.getProperty("java.class.path");
 
-private static Result runOnce(Benchmark b, String solver) throws IOException, InterruptedException {
-    System.out.println("Running: " + b.fqcn + b.methodSig + " with solver " + solver + " at " + Instant.now().toString().split("T")[1].split("\\.")[0]);
-    // Reuse current classpath so child sees jpf-core, jpf-symbc, tests, and deps
-    String parentCp = System.getProperty("java.class.path");
+        List<String> cmd = new ArrayList<>();
+        cmd.add(System.getProperty("java.home") + File.separator + "bin" + File.separator + "java");
+        cmd.add("-Xmx1024m");
+        cmd.add("-ea");
 
-    List<String> cmd = new ArrayList<>();
-    cmd.add(System.getProperty("java.home") + File.separator + "bin" + File.separator + "java");
-    cmd.add("-Xmx1024m");
-    cmd.add("-ea");
+        cmd.add("-cp");
+        cmd.add(parentCp);
 
-    cmd.add("-cp");
-    cmd.add(parentCp);
+        cmd.add("gov.nasa.jpf.tool.RunJPF");
 
-    cmd.add("gov.nasa.jpf.tool.RunJPF");
+        // Build JPF options
+        cmd.addAll(COMMON_JPF_OPTS);
+        cmd.add("+symbolic.string_dp=" + solver);
+        cmd.add("+symbolic.method=" + b.fqcn + b.methodSig);
+        cmd.add("+target=" + b.fqcn);
+        // Ensure target classes are visible to JPF's internal classloader
+        cmd.add("+classpath=build/tests:build/examples");
 
-    // Build JPF options
-    cmd.addAll(COMMON_JPF_OPTS);
-    cmd.add("+symbolic.string_dp=" + solver);
-    cmd.add("+symbolic.method=" + b.fqcn + b.methodSig);
-    cmd.add("+target=" + b.fqcn);
-    // Ensure target classes are visible to JPF's internal classloader
-    cmd.add("+classpath=build/tests:build/examples");
+        ProcessBuilder pb = new ProcessBuilder(cmd);
+        pb.redirectErrorStream(true);
 
-    ProcessBuilder pb = new ProcessBuilder(cmd);
-    pb.redirectErrorStream(true);
+        // Pre-create per-run log path and redirect output there
+        String className = b.fqcn.substring(b.fqcn.lastIndexOf('.') + 1);
+        Path logsDir = OUT_DIR.resolve("logs");
+        Files.createDirectories(logsDir);
+        String methodFile = (className + b.methodSig).replaceAll("[^A-Za-z0-9_]+", "_") + "__" + solver + ".log";
+        Path log = logsDir.resolve(methodFile);
+        pb.redirectOutput(log.toFile());
 
-    // Pre-create per-run log path and redirect output there
-    String className = b.fqcn.substring(b.fqcn.lastIndexOf('.') + 1);
-    Path logsDir = OUT_DIR.resolve("logs");
-    Files.createDirectories(logsDir);
-    String methodFile = (className + b.methodSig).replaceAll("[^A-Za-z0-9_]+", "_") + "__" + solver + ".log";
-    Path log = logsDir.resolve(methodFile);
-    pb.redirectOutput(log.toFile());
+        Instant t0 = Instant.now();
+        Process p = pb.start();
 
-    Instant t0 = Instant.now();
-    Process p = pb.start();
+        // Wait up to timeout
+        boolean finished = p.waitFor(TIMEOUT_SEC, TimeUnit.SECONDS);
+        if (!finished) {
+            p.destroyForcibly();
+            boolean died = p.waitFor(KILL_SEC, TimeUnit.SECONDS); // ensure the process is actually terminated
+            if (!died) {
+                System.err.println("Failed to kill process after timeout: " + String.join(" ", cmd));
+            }
+        }
 
-    // Wait up to timeout
-    boolean finished = p.waitFor(TIMEOUT_SEC, TimeUnit.SECONDS);
-    if (!finished) {
-        p.destroyForcibly();
-        boolean died = p.waitFor(KILL_SEC, TimeUnit.SECONDS); // ensure the process is actually terminated
-        if (!died) {
-            System.err.println("Failed to kill process after timeout: " + String.join(" ", cmd));
+        // Take end time only after termination (natural or forced)
+        Instant tEnd = Instant.now();
+
+        int exit = finished ? p.exitValue() : 124; // conventional timeout code
+        long wall = Duration.between(t0, tEnd).toMillis();
+
+        // Read output from the log file (keeps wall independent from I/O time)
+        String out = new String(Files.readAllBytes(log), StandardCharsets.UTF_8);
+
+        // Classify and get solutions
+        String status = finished ? classify(out, exit, solver) : "TIMEOUT";
+        HashMap<String, String> solutions = getSolutions(out);
+
+        // Optional: count TIMEOUT explicitly
+        if (!finished) {
+            statusCounts.get(solver)[2]++;
+            if (solver.equals("z3str3")) z3OK = false; // do not accumulate runtime if z3 unsupported
+        } else if (status.equals("ERROR") || status.equals("UNSUPPORTED")) {
+            errors.add(String.format("%s %s %s", b.fqcn, b.methodSig, solver));
+        }
+
+        if (status.equals("OK")) {
+            if ((solver.equals("MAS") && z3OK) || solver.equals("z3str3")) {
+                z3OK = true;
+                // accumulate runtime only if z3 was OK or we are measuring z3
+                runtimes.put(solver, runtimes.get(solver) + (int) wall);
+            }
+        }
+        try (BufferedWriter w = Files.newBufferedWriter(log, StandardCharsets.UTF_8, StandardOpenOption.APPEND)) {
+            w.write("Runtime(ms) :" + String.valueOf(wall));
+        }
+        return new Result(status, wall, exit, solutions);
+    }
+
+    private static void parseDirectoryBenchmarks(Path dir) throws Exception {
+        List<Benchmark> loaded = new ArrayList<>();
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, "*.java")) {
+            for (Path entry : stream) {
+                String root = System.getProperty("user.dir");
+                String fqcn = null;
+                if (entry.toString().contains("tests")) {
+                    fqcn = entry.toString().substring(root.length() + 11); // +11 to skip "src/tests/"
+                } else if (entry.toString().contains("examples")) {
+                    fqcn = entry.toString().substring(root.length() + 14); // +13 to skip "src/examples/"
+                }
+                fqcn = fqcn.replace(File.separatorChar, '.').replace(".java", "");
+                for (String sig : methodSignaturesFromReflection(fqcn)) {
+                    loaded.add(new Benchmark(fqcn, sig));
+                }
+            }
+        }
+        if (!loaded.isEmpty()) {
+            System.out.println("Loaded " + loaded.size() + " benchmarks from " + dir);
+            programs = loaded;
+        } else {
+            System.out.println("No valid benchmark files found in " + dir);
+            System.exit(1);
         }
     }
 
-    // Take end time only after termination (natural or forced)
-    Instant tEnd = Instant.now();
-
-    int exit = finished ? p.exitValue() : 124; // conventional timeout code
-    long wall = Duration.between(t0, tEnd).toMillis();
-
-    // Read output from the log file (keeps wall independent from I/O time)
-    String out = new String(Files.readAllBytes(log), StandardCharsets.UTF_8);
-
-    // Classify and get solutions
-    String status = finished ? classify(out, exit, solver) : "TIMEOUT";
-    HashMap<String, String> solutions = getSolutions(out);
-
-    // Optional: count TIMEOUT explicitly
-    if (!finished) {
-        statusCounts.get(solver)[2]++;
-    } else if ("ERROR".equals(status)) {
-        errors.add(String.format("%s %s %s", b.fqcn, b.methodSig, solver));
-    }
-
-    if (status.equals("OK")) {
-        runtimes.put(solver, runtimes.get(solver) + (int) wall);
-    }
-    try (BufferedWriter w = Files.newBufferedWriter(log, StandardCharsets.UTF_8, StandardOpenOption.APPEND)) {
-        w.write("Runtime(ms) :" + String.valueOf(wall));
-    }
-    return new Result(status, wall, exit, solutions);
-}
-
-private static void parseDirectoryBenchmarks(Path dir) throws Exception {
-    List<Benchmark> loaded = new ArrayList<>();
-    try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, "*.java")) {
-        for (Path entry : stream) {
-            String root = System.getProperty("user.dir");
-            String fqcn = null;
-            if (entry.toString().contains("tests")) {
-                fqcn = entry.toString().substring(root.length() + 11); // +11 to skip "src/tests/"
-            } else if (entry.toString().contains("examples")) {
-                fqcn = entry.toString().substring(root.length() + 14); // +13 to skip "src/examples/"
+    private static List<String> methodSignaturesFromReflection(String cls) throws Exception {
+        List<String> sigs = new ArrayList<>();
+        try {
+            Class<?> clss = Class.forName(cls);
+            for (Method m : clss.getDeclaredMethods()) {
+                String name = m.getName();
+                if (name.equals("main")) continue; // skip main method
+                int params = m.getParameterCount();
+                StringBuilder sig = new StringBuilder(".").append(name).append("(");
+                for (int i = 0; i < params; i++) {
+                    if (i > 0) sig.append("#");
+                    sig.append("sym"); // assume all params symbolic
+                }
+                sig.append(")");
+                sigs.add(sig.toString());
             }
-            fqcn = fqcn.replace(File.separatorChar, '.').replace(".java", "");
-            for (String sig : methodSignaturesFromReflection(fqcn)) {
-                loaded.add(new Benchmark(fqcn, sig));
-            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
+        return sigs;
     }
-    if (!loaded.isEmpty()) {
-        System.out.println("Loaded " + loaded.size() + " benchmarks from " + dir);
-        programs = loaded;
-    } else {
-        System.out.println("No valid benchmark files found in " + dir);
-        System.exit(1);
-    }
-}
 
-private static List<String> methodSignaturesFromReflection(String cls) throws Exception {
-    List<String> sigs = new ArrayList<>();
-    try {
-        Class<?> clss = Class.forName(cls);
-        for (Method m : clss.getDeclaredMethods()) {
-            String name = m.getName();
-            if (name.equals("main")) continue; // skip main method
-            int params = m.getParameterCount();
-            StringBuilder sig = new StringBuilder(".").append(name).append("(");
-            for (int i = 0; i < params; i++) {
-                if (i > 0) sig.append("#");
-                sig.append("sym"); // assume all params symbolic
-            }
-            sig.append(")");
-            sigs.add(sig.toString());
+    private static String classify(String out, int exit, String solver) {
+        if (out.contains("Unhandled") || out.contains("unsupported")) {
+            statusCounts.get(solver)[1]++;
+            if (solver.equals("z3str3")) z3OK = false; // do not accumulate runtime if z3 unsupported
+            return "UNSUPPORTED";
         }
-    } catch (ClassNotFoundException e) {
-        e.printStackTrace();
-    }
-    return sigs;
-}
-
-private static String classify(String out, int exit, String solver) {
-    if (out.contains("Unhandled")) {
-        statusCounts.get(solver)[1]++;
-        return "UNSUPPORTED";
-    }
-    if (out.contains("[SEVERE]") || out.contains("ERROR")) {
+        if (out.contains("[SEVERE]") || out.contains("ERROR")) {
+            statusCounts.get(solver)[3]++;
+            if (solver.equals("z3str3")) z3OK = false; // do not accumulate runtime if z3 unsupported
+            return "ERROR";
+        }
+        if (exit == 0) {
+            statusCounts.get(solver)[0]++;
+            return "OK";
+        }
         statusCounts.get(solver)[3]++;
+        if (solver.equals("z3str3")) z3OK = false; // do not accumulate runtime if z3 unsupported
         return "ERROR";
     }
-    if (exit == 0) {
-        statusCounts.get(solver)[0]++;
-        return "OK";
-    }
-    statusCounts.get(solver)[3]++;
-    return "ERROR";
-}
 
-private static HashMap<String, String> getSolutions(String out) {
-    // first grab the smt-lib part which starts after a line with "query" and ends at "==="
-    // then grab the solutions betwwen "****"
-    HashMap<String, String> solutions = new HashMap<>();
-    String[] lines = out.split("\n");
-    StringBuilder smt = new StringBuilder();
-    StringBuilder sol = new StringBuilder();
-    Iterator<String> it = Arrays.asList(lines).iterator();
-    while (it.hasNext()) {
-        // we will grab the smt and then the sol and then add it to the map
-        String line = it.next();
-        if (line.contains("query")) {
-            String next = it.next();
-            while (!next.contains("===") && it.hasNext()) {
-                smt.append(next).append("\n");
-                next = it.next();
+    private static HashMap<String, String> getSolutions(String out) {
+        // first grab the smt-lib part which starts after a line with "query" and ends at "==="
+        // then grab the solutions betwwen "****"
+        HashMap<String, String> solutions = new HashMap<>();
+        String[] lines = out.split("\n");
+        StringBuilder smt = new StringBuilder();
+        StringBuilder sol = new StringBuilder();
+        Iterator<String> it = Arrays.asList(lines).iterator();
+        while (it.hasNext()) {
+            // we will grab the smt and then the sol and then add it to the map
+            String line = it.next();
+            if (line.contains("query")) {
+                String next = it.next();
+                while (!next.contains("===") && it.hasNext()) {
+                    smt.append(next).append("\n");
+                    next = it.next();
+                }
+            }
+            if (line.contains("****")) {
+                String next = it.next();
+                while (!next.contains("****") && it.hasNext()) {
+                    sol.append(next).append("\n");
+                    next = it.next();
+                }
+                solutions.put(smt.toString().trim(), sol.toString());
+                smt.setLength(0);
+                sol.setLength(0);
             }
         }
-        if (line.contains("****")) {
-            String next = it.next();
-            while (!next.contains("****") && it.hasNext()) {
-                sol.append(next).append("\n");
-                next = it.next();
-            }
-            solutions.put(smt.toString().trim(), sol.toString());
-            smt.setLength(0);
-            sol.setLength(0);
-        }
+        return solutions;
     }
-    return solutions;
-}
 
-private static String printSolutions(HashMap<String, ArrayList<String>> solutions) {
+    private static String printSolutions(HashMap<String, ArrayList<String>> solutions) {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<String, ArrayList<String>> e : solutions.entrySet()) {
             sb.append("************************************\n");
@@ -301,30 +309,30 @@ private static String printSolutions(HashMap<String, ArrayList<String>> solution
             }
         }
         return sb.toString();
-}
-
-private static final class Benchmark {
-    final String fqcn;
-    final String methodSig;
-
-    Benchmark(String fqcn, String methodSig) {
-        this.fqcn = fqcn;
-        this.methodSig = methodSig;
     }
 
-}
+    private static final class Benchmark {
+        final String fqcn;
+        final String methodSig;
 
-private static final class Result {
-    final String status;
-    final long wallMs;
-    final int exitCode;
-    final HashMap<String, String> sols;
+        Benchmark(String fqcn, String methodSig) {
+            this.fqcn = fqcn;
+            this.methodSig = methodSig;
+        }
 
-    Result(String status, long wallMs, int exitCode, HashMap<String, String> solutions) {
-        this.status = status;
-        this.wallMs = wallMs;
-        this.exitCode = exitCode;
-        this.sols = solutions;
     }
-}
+
+    private static final class Result {
+        final String status;
+        final long wallMs;
+        final int exitCode;
+        final HashMap<String, String> sols;
+
+        Result(String status, long wallMs, int exitCode, HashMap<String, String> solutions) {
+            this.status = status;
+            this.wallMs = wallMs;
+            this.exitCode = exitCode;
+            this.sols = solutions;
+        }
+    }
 }

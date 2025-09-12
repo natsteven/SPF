@@ -322,7 +322,9 @@ public class SymbolicStringHandler {
 			} else if (shortName.equals("delete")){
 				handleDelete(invInst, th);
 			}else if (shortName.equals("insert")) {
-				handleInsert(invInst, th);
+                handleInsert(invInst, th);
+            } else if (shortName.equals("reverse")) {
+                handleReverse(invInst, th);
 			} else {
 				throw new RuntimeException("ERROR: symbolic method not handled: " + shortName);
 				//return null;
@@ -333,6 +335,22 @@ public class SymbolicStringHandler {
 		}
 
 	}
+
+    private void handleReverse(JVMInvokeInstruction invInst, ThreadInfo th) {
+        StackFrame sf = ((ThreadInfo) th).getModifiableTopFrame();
+        StringExpression sym_v1 = ((SymbolicStringBuilder) sf.getOperandAttr(0)).getstr();
+        if (sym_v1 == null) {
+            throw new RuntimeException("ERROR: symbolic string method must have one symbolic operand: HandleReverse");
+        } else {
+            int s1 = sf.pop();
+            StringExpression result = sym_v1._reverse();
+
+            ElementInfo objRef = th.getHeap().newString("", th);
+
+            sf.push(objRef.getObjectRef(), true);
+            sf.setOperandAttr(result);
+        }
+    }
 
 	private void handleInsert(JVMInvokeInstruction invInst, ThreadInfo th) {
 		StackFrame sf = th.getModifiableTopFrame();

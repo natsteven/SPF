@@ -62,10 +62,13 @@ public class MASInterface {
             alph = translator.getAlpha();
             alpha = new Alphabet(alph);
         }
-        int bound = translator.getLongestConcreteStringLength() + 1;
+        int bound = translator.getSuggestedBound();
         if (bound < 4) bound = 4;// could also reason about concats but for now this is fine
         // maybe the depth of the tree, i.e. we can reason about how long strings can/would be given the number of operations/type of ops
 
+        System.out.println("Using Alphabet: " + alpha.getCharSet());
+        System.out.println("Using bound: " + bound);
+        System.out.println("*****************************");
         MASProcessor processor = new MASProcessor(false, alpha, bound);
         return processor.query(graph);
     }

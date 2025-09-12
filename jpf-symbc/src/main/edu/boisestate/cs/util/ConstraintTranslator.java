@@ -282,6 +282,17 @@ public class ConstraintTranslator {
                 constraints.add(ind3);
                 constraints.add(insertStrConstraint);
                 return insert;
+            case REVERSE:
+                StringExpression se6 = (StringExpression) dse.oprlist[0];
+                StringBuilder rev = new StringBuilder(se6.toString());
+                rev.reverse();
+                PrintConstraint reverse = new PrintConstraint(translator.getNextID(), rev.toString(), "reverse!!Ljava/lang/String;!:!0");
+
+                PrintConstraint strConstraint9 = translate(se6);
+                strConstraint9.setType(0);
+                reverse.sourceConstraints.add(strConstraint9);
+                constraints.add(strConstraint9);
+                return reverse;
             default:
                 System.err.println("Unhandled DerivedStringExpression: " + dse);
                 System.exit(1);
@@ -384,6 +395,9 @@ public class ConstraintTranslator {
     public PrintConstraint translate(IntegerExpression ie) {
         if (ie instanceof IntegerConstant) {
             IntegerConstant ic = (IntegerConstant) ie;
+            if (ic.value() > translator.getLargestIntegerConstant()){
+                translator.setLargestIntegerConstant(ic.value());
+            }
             return new PrintConstraint(translator.getNextID(), String.valueOf(ic.value()), "\"" + ic.value() + "\"!:!<init>");
         } else if (ie instanceof SymbolicLengthInteger) {
             SymbolicLengthInteger sli = (SymbolicLengthInteger) ie;

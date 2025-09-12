@@ -24,6 +24,7 @@ public class MASTranslator {
     // Alphabet is just String of characters that the Alphabet class can make into an alphabet object
     private Set<Character> alpha;
     private int longestConcreteStringLength = 0;
+    private int largestIntegerConstant = 0;
 
     public MASTranslator() {
         id = 0;
@@ -56,7 +57,6 @@ public class MASTranslator {
 //            System.exit(1);
 //            return null;
         }
-        System.out.println("*****************************");
         // a string constraint has a comparator (or operator), a left, and a right
         // TODO: will need to handle cases of multiple arg constraints
 
@@ -148,6 +148,18 @@ public class MASTranslator {
 
     public int getLongestConcreteStringLength() {
         return longestConcreteStringLength;
+    }
+
+    public void setLargestIntegerConstant(int val) {
+        this.largestIntegerConstant = val;
+    }
+
+    public int getLargestIntegerConstant() {
+        return largestIntegerConstant;
+    }
+
+    public int getSuggestedBound() {
+        return Math.max(largestIntegerConstant, longestConcreteStringLength) + 1;
     }
 
 }

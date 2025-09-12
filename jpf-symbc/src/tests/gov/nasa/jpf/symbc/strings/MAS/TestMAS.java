@@ -312,6 +312,24 @@ public class TestMAS extends TestJPF {
         }
     }
 
+    @Test
+    public void reverseTest() {
+        clas = "ReverseTest";
+        methodSignature = ".testConc(sym)";
+        setOptions(clas, methodSignature);
+
+        String a = "stressed";
+        if(verifyNoPropertyViolation(options)){
+            ReverseTest.testConc(a);
+        }
+        methodSignature = ".testSym(sym#sym)";
+        setOptions(clas, methodSignature);
+        String b = "desserts";
+        if(verifyNoPropertyViolation(options)){
+            ReverseTest.testSym(a, b);
+        }
+    }
+
     // set target method and symbolic method info
     public void setOptions(String clas, String methodSignature, String solver){
         options[1] = "+symbolic.method="+ path + clas + methodSignature;
@@ -320,6 +338,6 @@ public class TestMAS extends TestJPF {
     }
 
     public void setOptions(String clas, String methodSignature) { // default solver is MAS
-        setOptions(clas, methodSignature, "MAS");
+        setOptions(clas, methodSignature, "z3str3");
     }
 }

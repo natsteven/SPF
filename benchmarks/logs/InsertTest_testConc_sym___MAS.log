@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=4.9E-324
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 82e9512831f6880a12cdb606c891cf70f824134e) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev 361a22b5d3778c164b604eba73ffb01df7b0a354) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 gov.nasa.jpf.symbc.strings.MAS.InsertTest.main()
 
-====================================================== search started: 9/4/25 2:01 PM
+====================================================== search started: 9/12/25 3:40 PM
 New sym int s1_1_SYMSTRING.length min=-2147483648, max=2147483647
 ## Warning: empty path condition
 ### PCs: total:1 sat:1 unsat:0
@@ -45,6 +45,8 @@ The smtlib query is:
 (assert (not (= s1_1 "Hello")))
 
 =======================================
+Using Alphabet: 0Helo
+Using bound: 6
 *****************************
 sat,
 1: ""
@@ -65,9 +67,11 @@ The smtlib query is:
 (assert (not (= s1_1 "Hello")))
 
 =======================================
+Using Alphabet: 0HWdelor
+Using bound: 11
 *****************************
 sat,
-4: "00000World"
+4: "00000"
 ************************************
 s1 is Hello
 s1 + s2 equals 'HelloWorld'
@@ -87,6 +91,8 @@ The smtlib query is:
 (assert (not (= s1_1 "Hello")))
 
 =======================================
+Using Alphabet: 0HWdelor
+Using bound: 11
 *****************************
 unsat
 ************************************
@@ -105,6 +111,8 @@ The smtlib query is:
 (assert (= s1_1 "Hello"))
 
 =======================================
+Using Alphabet: 0Helo
+Using bound: 6
 *****************************
 sat,
 1: "Hello"
@@ -126,6 +134,8 @@ The smtlib query is:
 (assert (= s1_1 "Hello"))
 
 =======================================
+Using Alphabet: 0HWdelor
+Using bound: 11
 *****************************
 unsat
 ************************************
@@ -145,22 +155,28 @@ The smtlib query is:
 (assert (= s1_1 "Hello"))
 
 =======================================
+Using Alphabet: 0HWdelor
+Using bound: 11
 *****************************
-unsat
+sat,
+4: "Hello"
 ************************************
+s1 + 'World' equals 'HelloWorld'
+s1 is Hello
+s1 + s2 equals 'HelloWorld'
 
 ====================================================== results
 no errors detected
 
 ====================================================== statistics
 elapsed time:       00:00:00
-states:             new=7,visited=0,backtracked=7,end=1
+states:             new=7,visited=0,backtracked=7,end=2
 search:             maxDepth=3,constraints=0
 choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=3
-heap:               new=483,released=26,maxLive=461,gcCycles=4
-instructions:       6462
+heap:               new=493,released=44,maxLive=463,gcCycles=5
+instructions:       6586
 max memory:         477MB
 loaded code:        classes=83,methods=1770
 
-====================================================== search finished: 9/4/25 2:01 PM
-Runtime(ms) :509
+====================================================== search finished: 9/12/25 3:40 PM
+Runtime(ms) :516

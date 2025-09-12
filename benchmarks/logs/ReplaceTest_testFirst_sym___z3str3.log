@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=4.9E-324
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 82e9512831f6880a12cdb606c891cf70f824134e) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev 361a22b5d3778c164b604eba73ffb01df7b0a354) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 gov.nasa.jpf.symbc.strings.MAS.ReplaceTest.main()
 
-====================================================== search started: 9/4/25 2:00 PM
+====================================================== search started: 9/12/25 3:40 PM
 New sym int s1_1_SYMSTRING.length min=-2147483648, max=2147483647
 ## Warning: empty path condition
 ### PCs: total:1 sat:1 unsat:0
@@ -58,9 +58,9 @@ java.lang.RuntimeException: ERROR: unsupported string operation
 	at gov.nasa.jpf.symbc.string.StringPathCondition.simplify(StringPathCondition.java:145)
 	at gov.nasa.jpf.symbc.numeric.PathCondition.simplifyOld(PathCondition.java:409)
 	at gov.nasa.jpf.symbc.numeric.PathCondition.simplify(PathCondition.java:340)
-	at gov.nasa.jpf.symbc.bytecode.SymbolicStringHandler.handleBooleanStringInstructions(SymbolicStringHandler.java:1028)
-	at gov.nasa.jpf.symbc.bytecode.SymbolicStringHandler.handleEquals(SymbolicStringHandler.java:2356)
-	at gov.nasa.jpf.symbc.bytecode.SymbolicStringHandler.handleObjectEquals(SymbolicStringHandler.java:2352)
+	at gov.nasa.jpf.symbc.bytecode.SymbolicStringHandler.handleBooleanStringInstructions(SymbolicStringHandler.java:1046)
+	at gov.nasa.jpf.symbc.bytecode.SymbolicStringHandler.handleEquals(SymbolicStringHandler.java:2374)
+	at gov.nasa.jpf.symbc.bytecode.SymbolicStringHandler.handleObjectEquals(SymbolicStringHandler.java:2370)
 	at gov.nasa.jpf.symbc.bytecode.SymbolicStringHandler.handleSymbolicStrings(SymbolicStringHandler.java:149)
 	at gov.nasa.jpf.symbc.bytecode.BytecodeUtils.execute(BytecodeUtils.java:218)
 	at gov.nasa.jpf.symbc.bytecode.INVOKEVIRTUAL.execute(INVOKEVIRTUAL.java:51)
@@ -78,4 +78,4 @@ java.lang.RuntimeException: ERROR: unsupported string operation
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at gov.nasa.jpf.tool.Run.call(Run.java:80)
 	at gov.nasa.jpf.tool.RunJPF.main(RunJPF.java:116)
-Runtime(ms) :437
+Runtime(ms) :447

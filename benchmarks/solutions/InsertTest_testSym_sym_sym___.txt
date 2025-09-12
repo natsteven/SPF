@@ -5,7 +5,9 @@
 (assert (not (= s1_1 "Hello")))
 ------------------------------------
 MAS:
-unsat
+sat,
+1: ""
+4: "HelloWorld"
 
 ************************************
 (declare-const s1_1 String)
@@ -27,7 +29,9 @@ sat,
 (assert (not (= s1_1 "Hello")))
 ------------------------------------
 MAS:
-unsat
+sat,
+1: ""
+4: "00000"
 
 ************************************
 (declare-const s1_1 String)
@@ -36,7 +40,9 @@ unsat
 (assert (= s1_1 "Hello"))
 ------------------------------------
 MAS:
-unsat
+sat,
+1: "World"
+4: "Hello"
 
 ************************************
 (declare-const s1_1 String)
@@ -54,5 +60,7 @@ sat,
 (assert (= s1_1 "Hello"))
 ------------------------------------
 MAS:
-unsat
+sat,
+1: ""
+4: "Hello"
 

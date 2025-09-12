@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=4.9E-324
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 82e9512831f6880a12cdb606c891cf70f824134e) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev 361a22b5d3778c164b604eba73ffb01df7b0a354) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 gov.nasa.jpf.symbc.strings.MAS.SubstringTest.main()
 
-====================================================== search started: 9/4/25 2:00 PM
+====================================================== search started: 9/12/25 3:40 PM
 New sym int s1_1_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int s2_2_SYMSTRING.length min=-2147483648, max=2147483647
 ## Warning: empty path condition
@@ -47,9 +47,14 @@ The smtlib query is:
 (assert (not (= (str.substr s1_1 5 (- 10 5)) s2_2)))
 
 =======================================
+Using Alphabet: ABC
+Using bound: 11
 *****************************
-unsat
+sat,
+3: "AAAAAAAAAA"
+5: ""
 ************************************
+s1.substring(5) does not equal s2
 ## Warning: empty path condition
 ### PCs: total:2 sat:2 unsat:0
 
@@ -66,22 +71,27 @@ The smtlib query is:
 (assert (= (str.substr s1_1 5 (- 10 5)) s2_2))
 
 =======================================
+Using Alphabet: ABC
+Using bound: 11
 *****************************
-unsat
+sat,
+3: "AAAAAAAAAA"
+5: "AAAAA"
 ************************************
+s1.substring(5) equals s2
 
 ====================================================== results
 no errors detected
 
 ====================================================== statistics
 elapsed time:       00:00:00
-states:             new=3,visited=0,backtracked=3,end=0
+states:             new=3,visited=0,backtracked=3,end=2
 search:             maxDepth=2,constraints=0
 choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=1
-heap:               new=456,released=4,maxLive=0,gcCycles=1
-instructions:       6312
+heap:               new=460,released=26,maxLive=452,gcCycles=3
+instructions:       6331
 max memory:         477MB
 loaded code:        classes=81,methods=1618
 
-====================================================== search finished: 9/4/25 2:00 PM
-Runtime(ms) :456
+====================================================== search finished: 9/12/25 3:40 PM
+Runtime(ms) :455

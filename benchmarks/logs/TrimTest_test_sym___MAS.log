@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=4.9E-324
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 82e9512831f6880a12cdb606c891cf70f824134e) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev 361a22b5d3778c164b604eba73ffb01df7b0a354) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 gov.nasa.jpf.symbc.strings.MAS.TrimTest.main()
 
-====================================================== search started: 9/4/25 2:00 PM
+====================================================== search started: 9/12/25 3:40 PM
 New sym int s_1_SYMSTRING.length min=-2147483648, max=2147483647
 ## Warning: empty path condition
 ### PCs: total:1 sat:1 unsat:0
@@ -45,6 +45,8 @@ The smtlib query is:
 (assert (not (str.contains s_1 " ")))
 
 =======================================
+Using Alphabet:  0
+Using bound: 4
 *****************************
 sat,
 1: ""
@@ -70,6 +72,8 @@ The smtlib query is:
 (assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
 (assert (and (str.in_re s_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
 =======================================
+Using Alphabet:  0Hi
+Using bound: 4
 *****************************
 sat,
 2: ""
@@ -96,6 +100,8 @@ The smtlib query is:
 (assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
 (assert (and (str.in_re s_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
 =======================================
+Using Alphabet:  0Hi
+Using bound: 4
 *****************************
 sat,
 2: "Hi"
@@ -116,6 +122,8 @@ The smtlib query is:
 (assert (str.contains s_1 " "))
 
 =======================================
+Using Alphabet:  0
+Using bound: 4
 *****************************
 sat,
 1: " "
@@ -142,6 +150,8 @@ The smtlib query is:
 (assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
 (assert (and (str.in_re s_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
 =======================================
+Using Alphabet:  0Hi
+Using bound: 4
 *****************************
 sat,
 2: " "
@@ -168,6 +178,8 @@ The smtlib query is:
 (assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
 (assert (and (str.in_re s_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
 =======================================
+Using Alphabet:  0Hi
+Using bound: 4
 *****************************
 unsat
 ************************************
@@ -185,5 +197,5 @@ instructions:       6391
 max memory:         477MB
 loaded code:        classes=83,methods=1769
 
-====================================================== search finished: 9/4/25 2:00 PM
-Runtime(ms) :478
+====================================================== search finished: 9/12/25 3:40 PM
+Runtime(ms) :489

@@ -26,7 +26,7 @@ JavaPathfinder core system v8.0 (rev 361a22b5d3778c164b604eba73ffb01df7b0a354) -
 
 
 ====================================================== system under test
-gov.nasa.jpf.symbc.strings.MAS.UpperCaseTest.main()
+gov.nasa.jpf.symbc.strings.MAS.ReverseTest.main()
 
 ====================================================== search started: 9/12/25 3:40 PM
 New sym int s1_1_SYMSTRING.length min=-2147483648, max=2147483647
@@ -34,21 +34,21 @@ New sym int s1_1_SYMSTRING.length min=-2147483648, max=2147483647
 ### PCs: total:1 sat:1 unsat:0
 
 string analysis: SPC # = 1
-(.touppercase(s1_1_SYMSTRING) notequals CONST_HELLOWORLD)
+(.reverse[(s1_1_SYMSTRING)] notequals CONST_desserts)
 NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling Z3str3
 
 current query... 
-(declare-const s1_1 String)
 
-(assert (not (= (toUpperCase s1_1) "HELLOWORLD")))
+
+(assert (not (= class gov.nasa.jpf.symbc.string.DerivedStringExpression-not-implemented "desserts")))
 
 
 
 
 ======================
-Z3 exception: (error "line 4 column 33: unknown constant toUpperCase (String) ")
+Z3 exception: (error "line 4 column 16: unknown constant class")
 
 java.lang.RuntimeException: ERROR: unsupported string operation
 	at edu.ucsb.cs.vlab.versions.Z3String3Processor.getOutput(Z3String3Processor.java:139)
@@ -78,4 +78,4 @@ java.lang.RuntimeException: ERROR: unsupported string operation
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at gov.nasa.jpf.tool.Run.call(Run.java:80)
 	at gov.nasa.jpf.tool.RunJPF.main(RunJPF.java:116)
-Runtime(ms) :437
+Runtime(ms) :438

@@ -5,7 +5,7 @@ symbolic.string_dp_alpha=A-Z
 symbolic.string_dp_alphaSize=26
 symbolic.string_dp_upper=10
 symbolic.string_dp_lower=1
-symbolic.string_dp=z3str3
+symbolic.string_dp=MAS
 symbolic.choco_time_bound=30000
 symbolic.max_pc_length=2147483647
 symbolic.max_pc_msec=0
@@ -44,4 +44,4 @@ max memory:         477MB
 loaded code:        classes=83,methods=1723
 
 ====================================================== search finished: 9/12/25 3:40 PM
-Runtime(ms) :354
+Runtime(ms) :366

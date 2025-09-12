@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=4.9E-324
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 82e9512831f6880a12cdb606c891cf70f824134e) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev 361a22b5d3778c164b604eba73ffb01df7b0a354) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 gov.nasa.jpf.symbc.strings.MAS.TestMAS.main()
 
-====================================================== search started: 9/4/25 2:01 PM
+====================================================== search started: 9/12/25 3:40 PM
 
 ====================================================== results
 no errors detected
@@ -41,7 +41,7 @@ choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule
 heap:               new=487,released=16,maxLive=0,gcCycles=1
 instructions:       6382
 max memory:         477MB
-loaded code:        classes=83,methods=1722
+loaded code:        classes=83,methods=1723
 
-====================================================== search finished: 9/4/25 2:01 PM
-Runtime(ms) :329
+====================================================== search finished: 9/12/25 3:40 PM
+Runtime(ms) :340

@@ -503,6 +503,12 @@ public RealExpression _RvalueOf() {
 		return new DerivedStringExpression(StringOperator.INSERT, l );
 	}
 
+    public StringExpression _reverse() {
+        Expression l[] = new Expression[1];
+        l[0] = this;
+        return new DerivedStringExpression(StringOperator.REVERSE, l );
+    }
+
 
 //    public static class StringDependentNode {
 //	    StringDependentNode next;

@@ -10,7 +10,9 @@ s1_1 => ""
 s2_2 => "K"
 
 MAS:
-unsat
+sat,
+3: "AAAAAAAAAA"
+5: ""
 
 ************************************
 (declare-const s1_1 String)
@@ -24,5 +26,7 @@ s1_1 => ""
 s2_2 => ""
 
 MAS:
-unsat
+sat,
+3: "AAAAAAAAAA"
+5: "AAAAA"
 

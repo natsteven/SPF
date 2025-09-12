@@ -1,6 +1,9 @@
 package gov.nasa.jpf.symbc.strings.MAS;
 
 public class HelloWorld {
+    public static void main(String[] args) {
+        hello("HelloWorld");
+    }
 
 	public static void hello(String var_1) {
 		if (var_1.equals("HelloWorld")){ //| var_1.charAt(3) == 'r') {
