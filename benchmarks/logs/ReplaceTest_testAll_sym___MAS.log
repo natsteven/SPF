@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=4.9E-324
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev f8bf1746c7fa6a2f8ce9545f4c87928335418fdb) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev 8b1bc8794df56da628ab28751976f701ceb0c72f) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
-gov.nasa.jpf.symbc.strings.MAS.ReplaceTest.main()
+edu.boisestate.cs.MAS.ReplaceTest.main()
 
-====================================================== search started: 9/15/25 3:07 PM
+====================================================== search started: 9/15/25 4:08 PM
 s2 equals "ba"
 New sym int s1_1_SYMSTRING.length min=-2147483648, max=2147483647
 ## Warning: empty path condition
@@ -91,5 +91,5 @@ instructions:       6350
 max memory:         477MB
 loaded code:        classes=81,methods=1619
 
-====================================================== search finished: 9/15/25 3:07 PM
-Runtime(ms) :1226
+====================================================== search finished: 9/15/25 4:08 PM
+Runtime(ms) :932

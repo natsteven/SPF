@@ -1,15 +1,12 @@
-package gov.nasa.jpf.symbc.strings.MAS;
+package edu.boisestate.cs.MAS;
 
-import gov.nasa.jpf.Config;
-import gov.nasa.jpf.JPF;
-import gov.nasa.jpf.symbc.strings.ExSymExeStringsDemo;
 import gov.nasa.jpf.util.test.TestJPF;
 import org.junit.Test;
 
 public class TestMAS extends TestJPF {
     String methodSignature;
     String clas;
-    String path = "gov.nasa.jpf.symbc.strings.MAS.";
+    String path = "edu.boisestate.cs.MAS.";
     String[] solvers = {"z3str3", "MAS"};
     String[] options = {"+classpath=build/tests", // unspecified values are set in setOptions()
             "+symbolic.method=",    //symbolic method info and signature

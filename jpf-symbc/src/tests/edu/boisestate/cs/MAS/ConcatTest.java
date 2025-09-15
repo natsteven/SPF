@@ -1,4 +1,4 @@
-package gov.nasa.jpf.symbc.strings.MAS;
+package edu.boisestate.cs.MAS;
 
 public class ConcatTest {
 

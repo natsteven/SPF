@@ -1,4 +1,4 @@
-package bench;
+package edu.boisestate.cs;
 
 import java.io.*;
 import java.lang.reflect.Method;
