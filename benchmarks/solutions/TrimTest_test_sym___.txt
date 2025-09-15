@@ -16,38 +16,6 @@ sat,
 (declare-const out_str String)
 
 (assert (not (= out_str "Hi")))
-(assert (str.contains s_1 " "))
-
-(declare-const nwc RegLan)
-(declare-const ws RegLan)
-(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
-(assert (and (str.in_re s_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
-------------------------------------
-MAS:
-sat,
-2: " "
-
-************************************
-(declare-const s_1 String)
-(declare-const out_str String)
-
-(assert (= out_str "Hi"))
-(assert (not (str.contains s_1 " ")))
-
-(declare-const nwc RegLan)
-(declare-const ws RegLan)
-(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
-(assert (and (str.in_re s_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
-------------------------------------
-MAS:
-sat,
-2: "Hi"
-
-************************************
-(declare-const s_1 String)
-(declare-const out_str String)
-
-(assert (not (= out_str "Hi")))
 (assert (not (str.contains s_1 " ")))
 
 (declare-const nwc RegLan)
@@ -63,18 +31,6 @@ out_str => ""
 nwc => "\u{0}" " ")))
 ws => ""
 
-************************************
-(declare-const s_1 String)
-(declare-const out_str String)
-
-(assert (not (= out_str "Hi")))
-(assert (not (str.contains s_1 " ")))
-
-(declare-const nwc RegLan)
-(declare-const ws RegLan)
-(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
-(assert (and (str.in_re s_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
-------------------------------------
 MAS:
 sat,
 2: ""
@@ -99,6 +55,10 @@ out_str => "Hi"
 nwc => "\u{0}" " ")))
 ws => ""
 
+MAS:
+sat,
+2: "Hi"
+
 ************************************
 (declare-const s_1 String)
 (declare-const out_str String)
@@ -118,6 +78,10 @@ s_1 => " "
 out_str => ""
 nwc => "\u{0}" " ")))
 ws => ""
+
+MAS:
+sat,
+2: " "
 
 ************************************
 (declare-const s_1 String)
@@ -139,6 +103,9 @@ out_str => "Hi"
 nwc => "\u{0}" " ")))
 ws => ""
 
+MAS:
+unsat
+
 ************************************
 (declare-const s_1 String)
 
@@ -151,19 +118,4 @@ s_1 => ""
 MAS:
 sat,
 1: ""
-
-************************************
-(declare-const s_1 String)
-(declare-const out_str String)
-
-(assert (= out_str "Hi"))
-(assert (str.contains s_1 " "))
-
-(declare-const nwc RegLan)
-(declare-const ws RegLan)
-(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
-(assert (and (str.in_re s_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
-------------------------------------
-MAS:
-unsat
 

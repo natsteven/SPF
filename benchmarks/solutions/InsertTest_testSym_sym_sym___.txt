@@ -1,13 +1,40 @@
 ************************************
 (declare-const s1_1 String)
+(declare-const s2_2 String)
 
-(assert (= class gov.nasa.jpf.symbc.string.DerivedStringExpression-not-implemented "HelloWorld"))
+(assert (= (str.++ (str.substr s1_1 0 5) s2_2 (str.substr s1_1 5 (str.len s1_1))) "HelloWorld"))
 (assert (not (= s1_1 "Hello")))
+
+(assert (<= 5 (str.len s1_1)))
 ------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => "Hellorld"
+s2_2 => "Wo"
+
 MAS:
 sat,
 1: ""
 4: "HelloWorld"
+
+************************************
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (not (= (str.++ (str.substr s1_1 0 5) s2_2 (str.substr s1_1 5 (str.len s1_1))) "HelloWorld")))
+(assert (not (= s1_1 "Hello")))
+
+(assert (<= 5 (str.len s1_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => "ABCDEF"
+s2_2 => "!0!"
+
+MAS:
+sat,
+1: ""
+4: "00000"
 
 ************************************
 (declare-const s1_1 String)
@@ -24,24 +51,21 @@ sat,
 
 ************************************
 (declare-const s1_1 String)
+(declare-const s2_2 String)
 
-(assert (not (= class gov.nasa.jpf.symbc.string.DerivedStringExpression-not-implemented "HelloWorld")))
-(assert (not (= s1_1 "Hello")))
+(assert (not (= (str.++ (str.substr s1_1 0 5) s2_2 (str.substr s1_1 5 (str.len s1_1))) "HelloWorld")))
+(assert (= s1_1 "Hello"))
+
+(assert (<= 5 (str.len s1_1)))
 ------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => "Hello"
+s2_2 => ""
+
 MAS:
 sat,
 1: ""
-4: "00000"
-
-************************************
-(declare-const s1_1 String)
-
-(assert (= class gov.nasa.jpf.symbc.string.DerivedStringExpression-not-implemented "HelloWorld"))
-(assert (= s1_1 "Hello"))
-------------------------------------
-MAS:
-sat,
-1: "World"
 4: "Hello"
 
 ************************************
@@ -49,18 +73,30 @@ sat,
 
 (assert (= s1_1 "Hello"))
 ------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => "Hello"
+
 MAS:
 sat,
 1: "Hello"
 
 ************************************
 (declare-const s1_1 String)
+(declare-const s2_2 String)
 
-(assert (not (= class gov.nasa.jpf.symbc.string.DerivedStringExpression-not-implemented "HelloWorld")))
+(assert (= (str.++ (str.substr s1_1 0 5) s2_2 (str.substr s1_1 5 (str.len s1_1))) "HelloWorld"))
 (assert (= s1_1 "Hello"))
+
+(assert (<= 5 (str.len s1_1)))
 ------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => "Hello"
+s2_2 => "World"
+
 MAS:
 sat,
-1: ""
+1: "World"
 4: "Hello"
 

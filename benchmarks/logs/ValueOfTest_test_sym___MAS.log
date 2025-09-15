@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=4.9E-324
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 361a22b5d3778c164b604eba73ffb01df7b0a354) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev f8bf1746c7fa6a2f8ce9545f4c87928335418fdb) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 gov.nasa.jpf.symbc.strings.MAS.ValueOfTest.main()
 
-====================================================== search started: 9/12/25 3:40 PM
+====================================================== search started: 9/15/25 3:07 PM
 New sym int a_1_SYMSTRING.length min=-2147483648, max=2147483647
 ## Warning: empty path condition
 ### PCs: total:1 sat:1 unsat:0
@@ -43,6 +43,7 @@ The smtlib query is:
 (declare-const a_1 String)
 
 (assert (not (= a_1 "true")))
+
 
 =======================================
 Using Alphabet: 0ertu
@@ -66,6 +67,7 @@ The smtlib query is:
 (assert (not (= a_1 "123")))
 (assert (not (= a_1 "true")))
 
+
 =======================================
 Using Alphabet: 0123ertu
 Using bound: 5
@@ -88,6 +90,7 @@ The smtlib query is:
 (assert (not (= a_1 "45.67")))
 (assert (not (= a_1 "123")))
 (assert (not (= a_1 "true")))
+
 
 =======================================
 Using Alphabet: .01234567ertu
@@ -113,6 +116,7 @@ The smtlib query is:
 (assert (not (= a_1 "123")))
 (assert (not (= a_1 "true")))
 
+
 =======================================
 Using Alphabet: .01234567aertu
 Using bound: 6
@@ -137,6 +141,7 @@ The smtlib query is:
 (assert (not (= a_1 "45.67")))
 (assert (not (= a_1 "123")))
 (assert (not (= a_1 "true")))
+
 
 =======================================
 Using Alphabet: .01234567Haelortu
@@ -164,6 +169,7 @@ The smtlib query is:
 (assert (not (= a_1 "123")))
 (assert (not (= a_1 "true")))
 
+
 =======================================
 Using Alphabet: .01234567Haelortu
 Using bound: 6
@@ -189,6 +195,7 @@ The smtlib query is:
 (assert (not (= a_1 "123")))
 (assert (not (= a_1 "true")))
 
+
 =======================================
 Using Alphabet: .01234567aertu
 Using bound: 6
@@ -213,6 +220,7 @@ The smtlib query is:
 (assert (not (= a_1 "123")))
 (assert (not (= a_1 "true")))
 
+
 =======================================
 Using Alphabet: .01234567ertu
 Using bound: 6
@@ -236,6 +244,7 @@ The smtlib query is:
 (assert (= a_1 "123"))
 (assert (not (= a_1 "true")))
 
+
 =======================================
 Using Alphabet: 0123ertu
 Using bound: 5
@@ -257,6 +266,7 @@ The smtlib query is:
 (declare-const a_1 String)
 
 (assert (= a_1 "true"))
+
 
 =======================================
 Using Alphabet: 0ertu
@@ -280,5 +290,5 @@ instructions:       6568
 max memory:         477MB
 loaded code:        classes=84,methods=1949
 
-====================================================== search finished: 9/12/25 3:40 PM
-Runtime(ms) :474
+====================================================== search finished: 9/15/25 3:07 PM
+Runtime(ms) :867

@@ -200,7 +200,7 @@ public class BenchmarkRunner {
 
     private static void parseDirectoryBenchmarks(Path dir) throws Exception {
         List<Benchmark> loaded = new ArrayList<>();
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, "*.java")) {
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, "*Test.java")) {
             for (Path entry : stream) {
                 String root = System.getProperty("user.dir");
                 String fqcn = null;
@@ -252,7 +252,7 @@ public class BenchmarkRunner {
             if (solver.equals("z3str3")) z3OK = false; // do not accumulate runtime if z3 unsupported
             return "UNSUPPORTED";
         }
-        if (out.contains("[SEVERE]") || out.contains("ERROR")) {
+        if (out.contains("[SEVERE]") || out.contains("ERROR") || out.contains("Exception")) {
             statusCounts.get(solver)[3]++;
             if (solver.equals("z3str3")) z3OK = false; // do not accumulate runtime if z3 unsupported
             return "ERROR";
@@ -268,7 +268,7 @@ public class BenchmarkRunner {
 
     private static HashMap<String, String> getSolutions(String out) {
         // first grab the smt-lib part which starts after a line with "query" and ends at "==="
-        // then grab the solutions betwwen "****"
+        // then grab the solutions between "****"
         HashMap<String, String> solutions = new HashMap<>();
         String[] lines = out.split("\n");
         StringBuilder smt = new StringBuilder();

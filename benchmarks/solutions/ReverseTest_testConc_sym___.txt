@@ -1,14 +1,36 @@
 ************************************
-(assert (not (= class gov.nasa.jpf.symbc.string.DerivedStringExpression-not-implemented "desserts")))
-------------------------------------
-MAS:
-sat,
-1: ""
+(declare-const s1_1 String)
+(declare-const out_str String)
 
-************************************
-(assert (= class gov.nasa.jpf.symbc.string.DerivedStringExpression-not-implemented "desserts"))
+(assert (= out_str "desserts"))
+
+(define-fun-rec reverse ((x String) (y String)) Bool (or (and (= x "") (= y "")) (and (not (= x "")) (not (= y "")) (let ((x_head (str.at x 0)) (y_head (str.at y (- (str.len y) 1))) (x_tail (str.substr x 1 (- (str.len x) 1))) (y_tail (str.substr y 0 (- (str.len y) 1)))) (and (= x_head y_head) (reverse x_tail y_tail))))))
+(assert (reverse s1_1 out_str))
 ------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => "stressed"
+out_str => "desserts"
+
 MAS:
 sat,
 1: "stressed"
+
+************************************
+(declare-const s1_1 String)
+(declare-const out_str String)
+
+(assert (not (= out_str "desserts")))
+
+(define-fun-rec reverse ((x String) (y String)) Bool (or (and (= x "") (= y "")) (and (not (= x "")) (not (= y "")) (let ((x_head (str.at x 0)) (y_head (str.at y (- (str.len y) 1))) (x_tail (str.substr x 1 (- (str.len x) 1))) (y_tail (str.substr y 0 (- (str.len y) 1)))) (and (= x_head y_head) (reverse x_tail y_tail))))))
+(assert (reverse s1_1 out_str))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => ""
+out_str => ""
+
+MAS:
+sat,
+1: ""
 

@@ -1,22 +1,16 @@
 ************************************
 (declare-const s1_1 String)
 
-(assert (not (= class gov.nasa.jpf.symbc.string.DerivedStringExpression-not-implemented "ello")))
-(assert (not (= s1_1 "Hello")))
-------------------------------------
-MAS:
-sat,
-4: "0"
+(assert (not (= (str.++ (str.substr s1_1 0 0) (str.substr s1_1 1 (str.len s1_1))) "ello")))
+(assert (= s1_1 "Hello"))
 
-************************************
-(declare-const s1_1 String)
-
-(assert (= class gov.nasa.jpf.symbc.string.DerivedStringExpression-not-implemented "ello"))
-(assert (not (= s1_1 "Hello")))
+(assert (<= 1 (str.len s1_1)))
 ------------------------------------
+z3str3:
+Satisfiable: false
+
 MAS:
-sat,
-4: "0ello"
+unsat
 
 ************************************
 (declare-const s1_1 String)
@@ -34,17 +28,28 @@ sat,
 ************************************
 (declare-const s1_1 String)
 
-(assert (not (= class gov.nasa.jpf.symbc.string.DerivedStringExpression-not-implemented "ello")))
-(assert (= s1_1 "Hello"))
+(assert (= (str.++ (str.substr s1_1 0 0) (str.substr s1_1 1 (str.len s1_1))) "ello"))
+(assert (not (= s1_1 "Hello")))
+
+(assert (<= 1 (str.len s1_1)))
 ------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => "Aello"
+
 MAS:
-unsat
+sat,
+4: "0ello"
 
 ************************************
 (declare-const s1_1 String)
 
 (assert (= s1_1 "Hello"))
 ------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => "Hello"
+
 MAS:
 sat,
 1: "Hello"
@@ -52,10 +57,32 @@ sat,
 ************************************
 (declare-const s1_1 String)
 
-(assert (= class gov.nasa.jpf.symbc.string.DerivedStringExpression-not-implemented "ello"))
+(assert (= (str.++ (str.substr s1_1 0 0) (str.substr s1_1 1 (str.len s1_1))) "ello"))
 (assert (= s1_1 "Hello"))
+
+(assert (<= 1 (str.len s1_1)))
 ------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => "Hello"
+
 MAS:
 sat,
 4: "Hello"
+
+************************************
+(declare-const s1_1 String)
+
+(assert (not (= (str.++ (str.substr s1_1 0 0) (str.substr s1_1 1 (str.len s1_1))) "ello")))
+(assert (not (= s1_1 "Hello")))
+
+(assert (<= 1 (str.len s1_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => "AB"
+
+MAS:
+sat,
+4: "0"
 

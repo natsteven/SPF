@@ -25,7 +25,7 @@ public class MASInterface {
 
         System.out.print("The smtlib query is: ");
         int i = 0;
-        while (i < lines.length - 3){ // remove (check-sat) and (get-model) lines
+        while (i < lines.length - 2){ // remove (check-sat) and (get-model) lines
             System.out.println(lines[i++]);
         }
 //

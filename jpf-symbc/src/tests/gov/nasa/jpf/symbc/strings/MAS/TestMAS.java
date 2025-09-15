@@ -144,12 +144,11 @@ public class TestMAS extends TestJPF {
         clas = "LowerCaseTest";
         methodSignature = ".test(sym)";
         setOptions(clas, methodSignature);
-
         String a = "HelloWorld";
-
         if(verifyNoPropertyViolation(options)){
             LowerCaseTest.test(a);
         }
+
     }
 
     @Test

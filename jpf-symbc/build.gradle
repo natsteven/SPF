@@ -184,7 +184,7 @@ tasks.register('bench', JavaExec) {
     args '/home/nat/Repos/SPF/jpf-symbc/src/tests/gov/nasa/jpf/symbc/strings/MAS'
     dependsOn buildJars
 
-    jvmArgs '-Dbench.timeoutSec=30'
+    jvmArgs '-Dbench.timeoutSec=5'
 }
 
 tasks.register('testMAS', Test) {
