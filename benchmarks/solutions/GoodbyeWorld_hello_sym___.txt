@@ -1,0 +1,56 @@
+************************************
+(declare-const var_1_1 String)
+
+
+(assert (not (= (str.at var_1_1 1) "H")))
+------------------------------------
+z3str3:
+Satisfiable: true
+var_1_1 => ""
+
+MAS:
+sat,
+2: "00"
+
+************************************
+(declare-const var_1_1 String)
+
+(assert (= var_1_1 "Goodbye, World!"))
+(assert (not (= (str.at var_1_1 1) "H")))
+------------------------------------
+z3str3:
+Satisfiable: true
+var_1_1 => "Goodbye, World!"
+
+MAS:
+sat,
+3: "Goodbye, World!"
+
+************************************
+(declare-const var_1_1 String)
+
+(assert (not (= var_1_1 "Goodbye, World!")))
+(assert (not (= (str.at var_1_1 1) "H")))
+------------------------------------
+z3str3:
+Satisfiable: true
+var_1_1 => ""
+
+MAS:
+sat,
+3: "  "
+
+************************************
+(declare-const var_1_1 String)
+
+
+(assert (= (str.at var_1_1 1) "H"))
+------------------------------------
+z3str3:
+Satisfiable: true
+var_1_1 => "AH"
+
+MAS:
+sat,
+2: "0H"
+

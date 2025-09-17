@@ -37,7 +37,8 @@ Satisfiable: true
 s1_1 => "Hell"
 
 MAS:
-unsat
+sat,
+3: "Hell"
 
 ************************************
 (declare-const s1_1 String)

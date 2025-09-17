@@ -1,0 +1,26 @@
+************************************
+(declare-const b_2 String)
+
+(assert (= (str.++ "a" b_2) "abc"))
+------------------------------------
+z3str3:
+Satisfiable: true
+b_2 => "bc"
+
+MAS:
+sat,
+1: "bc"
+
+************************************
+(declare-const b_2 String)
+
+(assert (not (= (str.++ "a" b_2) "abc")))
+------------------------------------
+z3str3:
+Satisfiable: true
+b_2 => ""
+
+MAS:
+sat,
+1: ""
+

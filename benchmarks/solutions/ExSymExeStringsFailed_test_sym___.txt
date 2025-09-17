@@ -1,0 +1,89 @@
+************************************
+(declare-const a_1 String)
+
+(assert (str.contains a_1 "a"))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "a"
+
+MAS:
+sat,
+1: "a"
+
+************************************
+
+------------------------------------
+z3str3:
+Satisfiable: true
+
+MAS:
+unsat
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (str.contains a_1 "a")))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => ""
+
+MAS:
+sat,
+1: ""
+
+************************************
+(declare-const a_1 String)
+
+(assert (str.prefixof "a" a_1))
+(assert (not (str.contains a_1 "a")))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+MAS:
+unsat
+
+************************************
+(declare-const a_1 String)
+
+(assert (str.prefixof "a" a_1))
+(assert (str.contains a_1 "a"))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "a"
+
+MAS:
+sat,
+2: "a"
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (str.prefixof "a" a_1)))
+(assert (not (str.contains a_1 "a")))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => ""
+
+MAS:
+sat,
+2: ""
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (str.prefixof "a" a_1)))
+(assert (str.contains a_1 "a"))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "ABa"
+
+MAS:
+sat,
+2: "0a"
+

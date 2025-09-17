@@ -1,0 +1,20 @@
+************************************
+(declare-const s_1 String)
+(declare-const i_2_SYMINT Int)
+(declare-const j_3_SYMINT Int)
+(assert (not (= (str.substr s_1 i_2_SYMINT (- j_3_SYMINT i_2_SYMINT)) "two")))
+------------------------------------
+z3str3:
+Satisfiable: true
+s_1 => "AB"
+
+************************************
+(declare-const s_1 String)
+(declare-const i_2_SYMINT Int)
+(declare-const j_3_SYMINT Int)
+(assert (= (str.substr s_1 i_2_SYMINT (- j_3_SYMINT i_2_SYMINT)) "two"))
+------------------------------------
+z3str3:
+Satisfiable: true
+s_1 => "two"
+

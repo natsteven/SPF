@@ -1,0 +1,82 @@
+Running Symbolic PathFinder ...
+symbolic.dp=choco
+symbolic.string_dp_timeout_ms=0
+symbolic.string_dp_alpha=A-Z
+symbolic.string_dp_alphaSize=26
+symbolic.string_dp_upper=10
+symbolic.string_dp_lower=1
+symbolic.string_dp=MAS
+symbolic.choco_time_bound=30000
+symbolic.max_pc_length=2147483647
+symbolic.max_pc_msec=0
+symbolic.bvlength=32
+symbolic.min_int=-2147483648
+symbolic.min_long=-9223372036854775808
+symbolic.min_short=-32768
+symbolic.min_byte=-128
+symbolic.min_char=0
+symbolic.max_int=2147483647
+symbolic.max_long=9223372036854775807
+symbolic.max_short=32767
+symbolic.max_byte=127
+symbolic.max_char=65535
+symbolic.min_double=4.9E-324
+symbolic.max_double=1.7976931348623157E308
+JavaPathfinder core system v8.0 (rev b754a0305ac7423e9b25fba66388b99d5c823c4e) - (C) 2005-2014 United States Government. All rights reserved.
+
+
+====================================================== system under test
+gov.nasa.jpf.symbc.strings.ExSymExeStrings05.main()
+
+====================================================== search started: 9/17/25 12:17 PM
+New sym int a_1_SYMSTRING.length min=-2147483648, max=2147483647
+New sym int b_2_SYMSTRING.length min=-2147483648, max=2147483647
+## Warning: empty path condition
+### PCs: total:1 sat:1 unsat:0
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING notstartswith CONST_aa)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+
+(assert (not (str.prefixof "aa" a_1)))
+
+
+=======================================
+Using Alphabet: 0a
+Using bound: 4
+*****************************
+sat,
+1: ""
+************************************
+New sym int IndexOf_0_ min=-1, max=30
+numeric PC: constraint # = 1
+IndexOf_0_ <= CONST_0 -> true
+
+### PCs: total:2 sat:2 unsat:0
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING notstartswith CONST_aa)
+NPC constraint # = 1
+IndexOf_0_ <= CONST_0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+
+(assert (not (str.prefixof "aa" a_1)))
+(assert (<= (str.indexof a_1 "aab") 0))
+
+=======================================
+Numeric Path Condition Exists: IndexOf_0_ <= CONST_0
+Using Alphabet: 0ab
+Using bound: 4
+*****************************
+WARNING: Unhandled constraint in Reporter_Inverse.buildICG_r3() of type... UNDEFINED  7  le!!I!:!0
+WARNING: UNDEFINED constraint in Reporter_Inverse.buildICG_r3() of type... 7  le!!I!:!0
+Runtime(ms) :450

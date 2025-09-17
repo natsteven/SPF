@@ -1,0 +1,521 @@
+Running Symbolic PathFinder ...
+symbolic.dp=choco
+symbolic.string_dp_timeout_ms=0
+symbolic.string_dp_alpha=A-Z
+symbolic.string_dp_alphaSize=26
+symbolic.string_dp_upper=10
+symbolic.string_dp_lower=1
+symbolic.string_dp=z3str3
+symbolic.choco_time_bound=30000
+symbolic.max_pc_length=2147483647
+symbolic.max_pc_msec=0
+symbolic.bvlength=32
+symbolic.min_int=-2147483648
+symbolic.min_long=-9223372036854775808
+symbolic.min_short=-32768
+symbolic.min_byte=-128
+symbolic.min_char=0
+symbolic.max_int=2147483647
+symbolic.max_long=9223372036854775807
+symbolic.max_short=32767
+symbolic.max_byte=127
+symbolic.max_char=65535
+symbolic.min_double=4.9E-324
+symbolic.max_double=1.7976931348623157E308
+JavaPathfinder core system v8.0 (rev b754a0305ac7423e9b25fba66388b99d5c823c4e) - (C) 2005-2014 United States Government. All rights reserved.
+
+
+====================================================== system under test
+strings.Tricky.main()
+
+====================================================== search started: 9/17/25 12:42 PM
+New sym int n_1_SYMINT min=-2147483648, max=2147483647
+New sym int k_2_SYMINT min=-2147483648, max=2147483647
+New sym int op_3_SYMSTRING.length min=-2147483648, max=2147483647
+numeric PC: constraint # = 1
+k_2_SYMINT != CONST_0 -> true
+
+### PCs: total:1 sat:1 unsat:0
+
+string analysis: SPC # = 0
+NPC constraint # = 1
+k_2_SYMINT != CONST_0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+
+(declare-const k_2_SYMINT Int)
+
+(assert (not (= k_2_SYMINT 0)))
+
+
+
+======================
+(define-fun k_2_SYMINT () Int
+  1)
+Returned solutions: 
+(define-fun k_2_SYMINT () Int  1)
+*************************************
+Satisfiable: true
+*************************************
+
+numeric PC: constraint # = 1
+k_2_SYMINT == CONST_0 -> true
+
+### PCs: total:2 sat:2 unsat:0
+
+string analysis: SPC # = 0
+NPC constraint # = 1
+k_2_SYMINT == CONST_0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+
+(declare-const k_2_SYMINT Int)
+
+(assert (= k_2_SYMINT 0))
+
+
+
+======================
+(define-fun k_2_SYMINT () Int
+  0)
+Returned solutions: 
+(define-fun k_2_SYMINT () Int  0)
+*************************************
+Satisfiable: true
+*************************************
+
+New sym int n_4_SYMINT min=-2147483648, max=2147483647
+New sym int k_5_SYMINT min=-2147483648, max=2147483647
+New sym int op_6_SYMSTRING.length min=-2147483648, max=2147483647
+numeric PC: constraint # = 2
+k_5_SYMINT != CONST_0 &&
+k_2_SYMINT == CONST_0 -> true
+
+### PCs: total:3 sat:3 unsat:0
+
+string analysis: SPC # = 0
+NPC constraint # = 2
+k_5_SYMINT != CONST_0 &&
+k_2_SYMINT == CONST_0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+
+(declare-const k_5_SYMINT Int)
+(declare-const k_2_SYMINT Int)
+
+(assert (not (= k_5_SYMINT 0)))
+(assert (= k_2_SYMINT 0))
+
+
+
+======================
+(define-fun k_5_SYMINT () Int
+  1)
+(define-fun k_2_SYMINT () Int
+  0)
+Returned solutions: 
+(define-fun k_5_SYMINT () Int  1)
+(define-fun k_2_SYMINT () Int  0)
+*************************************
+Satisfiable: true
+*************************************
+
+numeric PC: constraint # = 2
+k_5_SYMINT == CONST_0 &&
+k_2_SYMINT == CONST_0 -> true
+
+### PCs: total:4 sat:4 unsat:0
+
+string analysis: SPC # = 0
+NPC constraint # = 2
+k_5_SYMINT == CONST_0 &&
+k_2_SYMINT == CONST_0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+
+(declare-const k_5_SYMINT Int)
+(declare-const k_2_SYMINT Int)
+
+(assert (= k_5_SYMINT 0))
+(assert (= k_2_SYMINT 0))
+
+
+
+======================
+(define-fun k_2_SYMINT () Int
+  0)
+(define-fun k_5_SYMINT () Int
+  0)
+Returned solutions: 
+(define-fun k_2_SYMINT () Int  0)
+(define-fun k_5_SYMINT () Int  0)
+*************************************
+Satisfiable: true
+*************************************
+
+(((((5
+numeric PC: constraint # = 2
+k_5_SYMINT == CONST_0 &&
+k_2_SYMINT == CONST_0 -> true
+
+string analysis: SPC # = 0
+NPC constraint # = 2
+k_5_SYMINT[0] == CONST_0 &&
+k_2_SYMINT[0] == CONST_0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+
+(declare-const k_5_SYMINT Int)
+(declare-const k_2_SYMINT Int)
+
+(assert (= k_5_SYMINT 0))
+(assert (= k_2_SYMINT 0))
+
+
+
+======================
+(define-fun k_2_SYMINT () Int
+  0)
+(define-fun k_5_SYMINT () Int
+  0)
+Returned solutions: 
+(define-fun k_2_SYMINT () Int  0)
+(define-fun k_5_SYMINT () Int  0)
+*************************************
+Satisfiable: true
+*************************************
+
+New sym int n_7_SYMINT min=-2147483648, max=2147483647
+New sym int k_8_SYMINT min=-2147483648, max=2147483647
+New sym int op_9_SYMSTRING.length min=-2147483648, max=2147483647
+numeric PC: constraint # = 3
+k_8_SYMINT != CONST_0 &&
+k_5_SYMINT != CONST_0 &&
+k_2_SYMINT == CONST_0 -> true
+
+### PCs: total:5 sat:5 unsat:0
+
+string analysis: SPC # = 0
+NPC constraint # = 3
+k_8_SYMINT != CONST_0 &&
+k_5_SYMINT != CONST_0 &&
+k_2_SYMINT == CONST_0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+
+(declare-const k_5_SYMINT Int)
+(declare-const k_8_SYMINT Int)
+(declare-const k_2_SYMINT Int)
+
+(assert (not (= k_8_SYMINT 0)))
+(assert (not (= k_5_SYMINT 0)))
+(assert (= k_2_SYMINT 0))
+
+
+
+======================
+(define-fun k_5_SYMINT () Int
+  1)
+(define-fun k_8_SYMINT () Int
+  1)
+(define-fun k_2_SYMINT () Int
+  0)
+Returned solutions: 
+(define-fun k_5_SYMINT () Int  1)
+(define-fun k_8_SYMINT () Int  1)
+(define-fun k_2_SYMINT () Int  0)
+*************************************
+Satisfiable: true
+*************************************
+
+numeric PC: constraint # = 3
+k_8_SYMINT == CONST_0 &&
+k_5_SYMINT != CONST_0 &&
+k_2_SYMINT == CONST_0 -> true
+
+### PCs: total:6 sat:6 unsat:0
+
+string analysis: SPC # = 0
+NPC constraint # = 3
+k_8_SYMINT == CONST_0 &&
+k_5_SYMINT != CONST_0 &&
+k_2_SYMINT == CONST_0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+
+(declare-const k_5_SYMINT Int)
+(declare-const k_8_SYMINT Int)
+(declare-const k_2_SYMINT Int)
+
+(assert (= k_8_SYMINT 0))
+(assert (not (= k_5_SYMINT 0)))
+(assert (= k_2_SYMINT 0))
+
+
+
+======================
+(define-fun k_5_SYMINT () Int
+  1)
+(define-fun k_2_SYMINT () Int
+  0)
+(define-fun k_8_SYMINT () Int
+  0)
+Returned solutions: 
+(define-fun k_5_SYMINT () Int  1)
+(define-fun k_2_SYMINT () Int  0)
+(define-fun k_8_SYMINT () Int  0)
+*************************************
+Satisfiable: true
+*************************************
+
+New sym int Length_0_ min=0, max=30
+numeric PC: constraint # = 4
+Length_0_ <= CONST_100 &&
+k_8_SYMINT == CONST_0 &&
+k_5_SYMINT != CONST_0 &&
+k_2_SYMINT == CONST_0 -> true
+
+### PCs: total:7 sat:7 unsat:0
+
+string analysis: SPC # = 0
+NPC constraint # = 4
+Length_0_ <= CONST_100 &&
+k_8_SYMINT == CONST_0 &&
+k_5_SYMINT != CONST_0 &&
+k_2_SYMINT == CONST_0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const out_str String)
+(declare-const op_6 String)
+(declare-const k_5_SYMINT Int)
+(declare-const k_8_SYMINT Int)
+(declare-const k_2_SYMINT Int)
+(declare-const n_4_SYMINT Int)
+
+(assert (<= (str.len (str.++ "(((((5" out_str)) 100))
+(assert (= k_8_SYMINT 0))
+(assert (not (= k_5_SYMINT 0)))
+(assert (= k_2_SYMINT 0))
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (and (str.in_re (str.++ (str.++ (str.++ (str.++ (str.++ "" op_6) (ite ( < n_4_SYMINT 0) (str.++ "-" (str.from_int (- n_4_SYMINT))) (str.from_int n_4_SYMINT))) "]") "") " ") (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+
+
+======================
+*************************************
+Satisfiable: false
+*************************************
+
+numeric PC: constraint # = 4
+Length_0_ > CONST_100 &&
+k_8_SYMINT == CONST_0 &&
+k_5_SYMINT != CONST_0 &&
+k_2_SYMINT == CONST_0 -> false
+
+### PCs: total:8 sat:7 unsat:1
+
+Symbolic Exp [ CONST_(((((5.concat(.trim(CONST_.concat(op_6_SYMSTRING).concat(.valueof[(n_4_SYMINT)]).concat(CONST_]).concat(CONST_).concat(CONST_ )))]
+numeric PC: constraint # = 3
+k_8_SYMINT == CONST_0 &&
+k_5_SYMINT != CONST_0 &&
+k_2_SYMINT == CONST_0 -> true
+
+string analysis: SPC # = 0
+NPC constraint # = 3
+k_8_SYMINT[0] == CONST_0 &&
+k_5_SYMINT[-2147483648] != CONST_0 &&
+k_2_SYMINT[0] == CONST_0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+
+(declare-const k_5_SYMINT Int)
+(declare-const k_8_SYMINT Int)
+(declare-const k_2_SYMINT Int)
+
+(assert (= k_8_SYMINT 0))
+(assert (not (= k_5_SYMINT 0)))
+(assert (= k_2_SYMINT 0))
+
+
+
+======================
+(define-fun k_5_SYMINT () Int
+  1)
+(define-fun k_2_SYMINT () Int
+  0)
+(define-fun k_8_SYMINT () Int
+  0)
+Returned solutions: 
+(define-fun k_5_SYMINT () Int  1)
+(define-fun k_2_SYMINT () Int  0)
+(define-fun k_8_SYMINT () Int  0)
+*************************************
+Satisfiable: true
+*************************************
+
+New sym int n_10_SYMINT min=-2147483648, max=2147483647
+New sym int k_11_SYMINT min=-2147483648, max=2147483647
+New sym int op_12_SYMSTRING.length min=-2147483648, max=2147483647
+numeric PC: constraint # = 4
+k_11_SYMINT != CONST_0 &&
+k_8_SYMINT != CONST_0 &&
+k_5_SYMINT != CONST_0 &&
+k_2_SYMINT == CONST_0 -> true
+
+### PCs: total:9 sat:8 unsat:1
+
+string analysis: SPC # = 0
+NPC constraint # = 4
+k_11_SYMINT != CONST_0 &&
+k_8_SYMINT != CONST_0 &&
+k_5_SYMINT != CONST_0 &&
+k_2_SYMINT == CONST_0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+
+(declare-const k_11_SYMINT Int)
+(declare-const k_5_SYMINT Int)
+(declare-const k_8_SYMINT Int)
+(declare-const k_2_SYMINT Int)
+
+(assert (not (= k_11_SYMINT 0)))
+(assert (not (= k_8_SYMINT 0)))
+(assert (not (= k_5_SYMINT 0)))
+(assert (= k_2_SYMINT 0))
+
+
+
+======================
+(define-fun k_5_SYMINT () Int
+  1)
+(define-fun k_8_SYMINT () Int
+  1)
+(define-fun k_11_SYMINT () Int
+  1)
+(define-fun k_2_SYMINT () Int
+  0)
+Returned solutions: 
+(define-fun k_5_SYMINT () Int  1)
+(define-fun k_8_SYMINT () Int  1)
+(define-fun k_11_SYMINT () Int  1)
+(define-fun k_2_SYMINT () Int  0)
+*************************************
+Satisfiable: true
+*************************************
+
+numeric PC: constraint # = 4
+k_11_SYMINT == CONST_0 &&
+k_8_SYMINT != CONST_0 &&
+k_5_SYMINT != CONST_0 &&
+k_2_SYMINT == CONST_0 -> true
+
+### PCs: total:10 sat:9 unsat:1
+
+string analysis: SPC # = 0
+NPC constraint # = 4
+k_11_SYMINT == CONST_0 &&
+k_8_SYMINT != CONST_0 &&
+k_5_SYMINT != CONST_0 &&
+k_2_SYMINT == CONST_0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+
+(declare-const k_11_SYMINT Int)
+(declare-const k_5_SYMINT Int)
+(declare-const k_8_SYMINT Int)
+(declare-const k_2_SYMINT Int)
+
+(assert (= k_11_SYMINT 0))
+(assert (not (= k_8_SYMINT 0)))
+(assert (not (= k_5_SYMINT 0)))
+(assert (= k_2_SYMINT 0))
+
+
+
+======================
+(define-fun k_5_SYMINT () Int
+  1)
+(define-fun k_8_SYMINT () Int
+  1)
+(define-fun k_2_SYMINT () Int
+  0)
+(define-fun k_11_SYMINT () Int
+  0)
+Returned solutions: 
+(define-fun k_5_SYMINT () Int  1)
+(define-fun k_8_SYMINT () Int  1)
+(define-fun k_2_SYMINT () Int  0)
+(define-fun k_11_SYMINT () Int  0)
+*************************************
+Satisfiable: true
+*************************************
+
+New sym int Length_1_ min=0, max=30
+numeric PC: constraint # = 5
+Length_1_ <= CONST_100 &&
+k_11_SYMINT == CONST_0 &&
+k_8_SYMINT != CONST_0 &&
+k_5_SYMINT != CONST_0 &&
+k_2_SYMINT == CONST_0 -> true
+
+### PCs: total:11 sat:10 unsat:1
+
+string analysis: SPC # = 0
+NPC constraint # = 5
+Length_1_ <= CONST_100 &&
+k_11_SYMINT == CONST_0 &&
+k_8_SYMINT != CONST_0 &&
+k_5_SYMINT != CONST_0 &&
+k_2_SYMINT == CONST_0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const out_str String)
+(declare-const op_6 String)
+(declare-const op_9 String)
+(declare-const n_7_SYMINT Int)
+(declare-const k_11_SYMINT Int)
+(declare-const k_5_SYMINT Int)
+(declare-const k_8_SYMINT Int)
+(declare-const k_2_SYMINT Int)
+(declare-const n_4_SYMINT Int)
+
+(assert (<= (str.len (str.++ "(((((5" out_str)) 100))
+(assert (= k_11_SYMINT 0))
+(assert (not (= k_8_SYMINT 0)))
+(assert (not (= k_5_SYMINT 0)))
+(assert (= k_2_SYMINT 0))
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (and (str.in_re (str.++ (str.++ (str.++ (str.++ (str.++ (str.++ (str.++ "" op_6) (ite ( < n_4_SYMINT 0) (str.++ "-" (str.from_int (- n_4_SYMINT))) (str.from_int n_4_SYMINT))) "]") "") " ") (str.++ (str.++ (str.++ (str.++ (str.++ "" op_9) (ite ( < n_7_SYMINT 0) (str.++ "-" (str.from_int (- n_7_SYMINT))) (str.from_int n_7_SYMINT))) "]") "") " ")) " ") (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+
+
+======================
+Runtime(ms) :5017

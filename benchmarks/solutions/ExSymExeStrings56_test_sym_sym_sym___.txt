@@ -1,0 +1,20 @@
+************************************
+(declare-const a_1 String)
+
+
+(assert (> (str.indexof a_1 "a" 1) (- 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "BAaa"
+
+************************************
+(declare-const a_1 String)
+
+
+(assert (<= (str.indexof a_1 "a" 1) (- 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => ""
+

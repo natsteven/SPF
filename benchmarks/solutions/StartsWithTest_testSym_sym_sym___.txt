@@ -1,4 +1,10 @@
 ************************************
+
+------------------------------------
+MAS:
+unsat
+
+************************************
 (declare-const s1_1 String)
 (declare-const s2_2 String)
 
@@ -10,9 +16,7 @@ s1_1 => "B"
 s2_2 => "A"
 
 MAS:
-sat,
-1: ""
-2: ""
+unsat
 
 ************************************
 (declare-const s1_1 String)
@@ -42,11 +46,6 @@ Satisfiable: true
 s1_1 => "CAD"
 s2_2 => "CADE"
 
-MAS:
-sat,
-1: ""
-2: ""
-
 ************************************
 (declare-const s1_1 String)
 (declare-const s2_2 String)
@@ -58,9 +57,4 @@ z3str3:
 Satisfiable: true
 s1_1 => "A"
 s2_2 => "B"
-
-MAS:
-sat,
-1: ""
-2: ""
 

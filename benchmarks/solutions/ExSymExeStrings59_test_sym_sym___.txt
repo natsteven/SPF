@@ -1,0 +1,3852 @@
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (= (str.at a_1 7) "c"))
+(assert (= (str.at a_1 6) "b"))
+(assert (= (str.at a_1 5) "a"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcababcaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 11) "c")))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "c")))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAabab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "c")))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAabab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 11) "c"))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaaaabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaba"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 5) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 10) "b")))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "c")))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAaba"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 10) "c")))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 11) "c"))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcABCabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaAaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "c"))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (= (str.at a_1 7) "c"))
+(assert (= (str.at a_1 6) "b"))
+(assert (= (str.at a_1 5) "a"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcababca"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAaaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (= (str.at a_1 8) "c"))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabcab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 10) "b")))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaABa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 8) "a")))
+(assert (= (str.at a_1 7) "c"))
+(assert (= (str.at a_1 6) "b"))
+(assert (= (str.at a_1 5) "a"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcababc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 11) "c"))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaAaabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (= (str.at a_1 8) "c"))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "c"))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (not (= (str.at a_1 10) "c")))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 11) "c"))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabaabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 1) "b")))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "a"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 10) "c")))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaAab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 10) "c"))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcababc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaABab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "c")))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcABa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 11) "c")))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaaaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (= (str.at a_1 7) "c"))
+(assert (= (str.at a_1 6) "b"))
+(assert (= (str.at a_1 5) "a"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcababcab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (not (= (str.at a_1 10) "c")))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcABab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (not (= (str.at a_1 10) "c")))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (= (str.at a_1 10) "c"))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcababc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 6) "b")))
+(assert (= (str.at a_1 5) "a"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcaba"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 11) "c"))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaABabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 10) "b")))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "c")))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaaba"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (not (= (str.at a_1 10) "c")))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (= (str.at a_1 7) "c"))
+(assert (= (str.at a_1 6) "b"))
+(assert (= (str.at a_1 5) "a"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcababcab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAaaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 10) "c"))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcABabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 11) "c"))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAaaabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 8) "a")))
+(assert (= (str.at a_1 9) "c"))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (not (= (str.at a_1 9) "c")))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 7) "c"))
+(assert (= (str.at a_1 6) "b"))
+(assert (= (str.at a_1 5) "a"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcababc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 10) "b")))
+(assert (= (str.at a_1 9) "a"))
+(assert (= (str.at a_1 8) "c"))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabca"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 4) "a")))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 11) "c"))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "c")))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAababc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 10) "c")))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 11) "c"))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaaAabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 5) "a")))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaaAa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaABa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (= (str.at a_1 7) "c"))
+(assert (= (str.at a_1 6) "b"))
+(assert (= (str.at a_1 5) "a"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcababca"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcABa"
+
+************************************
+(declare-const x_2_SYMINT Int)
+
+(assert (< x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaaAab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 8) "a")))
+(assert (= (str.at a_1 8) "c"))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 7) "c")))
+(assert (= (str.at a_1 6) "b"))
+(assert (= (str.at a_1 5) "a"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcababA"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 11) "c"))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcABaabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "a"))
+(assert (= (str.at a_1 8) "c"))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabca"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 10) "c")))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcABab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 10) "b")))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "c")))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAaba"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaAab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcABaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 10) "b")))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaaAa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 11) "c")))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "c")))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaabab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 10) "c")))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (= (str.at a_1 10) "c"))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaaabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaAa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabAa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "c")))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaabab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaA"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 4) "b")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abca"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcABa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (not (= (str.at a_1 9) "c")))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (= (str.at a_1 9) "c"))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 0) "a")))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => ""
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 11) "c")))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 10) "b")))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAaBa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAaBa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaAaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaAa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaba"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 7) "c"))
+(assert (= (str.at a_1 6) "b"))
+(assert (= (str.at a_1 5) "a"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcababc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaaaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 11) "c"))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabAabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcABab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 10) "b")))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabAa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 7) "a")))
+(assert (= (str.at a_1 7) "c"))
+(assert (= (str.at a_1 6) "b"))
+(assert (= (str.at a_1 5) "a"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcababc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (= (str.at a_1 10) "c"))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcABabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "c")))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaaba"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 11) "c"))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (= (str.at a_1 8) "c"))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabcabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "a"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 11) "c")))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabAab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 10) "b")))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaAaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabAab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 5) "a"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcaba"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcABaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabca"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 11) "c")))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaaAab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabca"
+
+************************************
+(declare-const x_2_SYMINT Int)
+
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 10) "c"))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaaabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 11) "c"))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (= (str.at a_1 7) "c"))
+(assert (= (str.at a_1 6) "b"))
+(assert (= (str.at a_1 5) "a"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcababcaabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (= (str.at a_1 10) "c"))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (= (str.at a_1 7) "c"))
+(assert (= (str.at a_1 6) "b"))
+(assert (= (str.at a_1 5) "a"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcababcabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 11) "c")))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcABCab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 11) "c")))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcABaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 7) "a")))
+(assert (= (str.at a_1 8) "c"))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabca"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaba"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 6) "b"))
+(assert (= (str.at a_1 5) "a"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcABCab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 10) "c"))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (= (str.at a_1 7) "c"))
+(assert (= (str.at a_1 6) "b"))
+(assert (= (str.at a_1 5) "a"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcababcabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 10) "c"))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaAabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaAa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 9) "c")))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 10) "b")))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcABaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAaBab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 11) "c"))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "c")))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaababc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaaaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 8) "a")))
+(assert (= (str.at a_1 9) "c"))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 11) "c")))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (= (str.at a_1 8) "c"))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabcab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 11) "c"))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAaBabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 11) "c")))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAaaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abca"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (not (= (str.at a_1 10) "c")))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 10) "c"))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAaabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (= (str.at a_1 10) "c"))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAaabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 11) "c")))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAaBab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 10) "b")))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcABCa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 1) "a")))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 10) "b")))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaaaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "c")))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (= (str.at a_1 7) "c"))
+(assert (= (str.at a_1 6) "b"))
+(assert (= (str.at a_1 5) "a"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcababcaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 11) "c")))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaAaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 10) "b")))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 8) "b")))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAaaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (= (str.at a_1 9) "c"))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabca"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 2) "c")))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "ab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 8) "a"))
+(assert (= (str.at a_1 7) "c"))
+(assert (= (str.at a_1 6) "b"))
+(assert (= (str.at a_1 5) "a"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcababca"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 8) "c")))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "ab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (not (= (str.at a_1 10) "c")))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaAab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 10) "c")))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (= (str.at a_1 7) "c"))
+(assert (= (str.at a_1 6) "b"))
+(assert (= (str.at a_1 5) "a"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcababcab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 10) "b")))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (= (str.at a_1 7) "c"))
+(assert (= (str.at a_1 6) "b"))
+(assert (= (str.at a_1 5) "a"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcababcaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 9) "a")))
+(assert (= (str.at a_1 10) "c"))
+(assert (= (str.at a_1 9) "b"))
+(assert (= (str.at a_1 8) "a"))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaAabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 8) "c"))
+(assert (= (str.at a_1 7) "b"))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcabc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 11) "c")))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 9) "b")))
+(assert (= (str.at a_1 8) "a"))
+(assert (= (str.at a_1 7) "c"))
+(assert (= (str.at a_1 6) "b"))
+(assert (= (str.at a_1 5) "a"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcababcaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 3) "a")))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abc"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcABCa"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 11) "c")))
+(assert (= (str.at a_1 10) "b"))
+(assert (= (str.at a_1 9) "a"))
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 7) "a")))
+(assert (not (= (str.at a_1 7) "b")))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcaABab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 8) "a")))
+(assert (not (= (str.at a_1 9) "c")))
+(assert (= (str.at a_1 8) "b"))
+(assert (= (str.at a_1 7) "a"))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "c"))
+(assert (= (str.at a_1 4) "b"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abcabcAab"
+
+************************************
+(declare-const a_1 String)
+(declare-const x_2_SYMINT Int)
+
+(assert (not (= (str.at a_1 2) "a")))
+(assert (= (str.at a_1 2) "c"))
+(assert (= (str.at a_1 1) "b"))
+(assert (= (str.at a_1 0) "a"))
+(assert (>= x_2_SYMINT 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "abc"
+

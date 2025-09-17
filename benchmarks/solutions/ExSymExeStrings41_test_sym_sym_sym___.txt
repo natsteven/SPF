@@ -1,0 +1,57 @@
+************************************
+(declare-const a_1 String)
+
+(assert (= (str.substr a_1 2(- (str.len a_1) 2)) "hello"))
+(assert (= (str.indexof a_1 "aaa") 2))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (= (str.substr a_1 2(- (str.len a_1) 2)) "hello")))
+(assert (not (= (str.indexof a_1 "aaa") 2)))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaa"
+
+************************************
+(declare-const a_1 String)
+
+(assert (= (str.substr a_1 2(- (str.len a_1) 2)) "hello"))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "ABhello"
+
+************************************
+(declare-const a_1 String)
+
+(assert (= (str.substr a_1 2(- (str.len a_1) 2)) "hello"))
+(assert (not (= (str.indexof a_1 "aaa") 2)))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aahello"
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (= (str.substr a_1 2(- (str.len a_1) 2)) "hello")))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => ""
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (= (str.substr a_1 2(- (str.len a_1) 2)) "hello")))
+(assert (= (str.indexof a_1 "aaa") 2))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aAaaa"
+

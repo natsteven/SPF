@@ -1,0 +1,65 @@
+************************************
+
+------------------------------------
+z3str3:
+Satisfiable: true
+
+************************************
+(declare-const a_1 String)
+
+
+(assert (<= (str.len a_1) 3))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => ""
+
+************************************
+(declare-const a_1 String)
+
+(assert (str.contains a_1 "hello"))
+(assert (> (str.len a_1) 3))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "hello"
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (str.contains a_1 "hello")))
+(assert (> (str.len a_1) 3))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "ABCD"
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (str.contains a_1 "hello")))
+(assert (<= (str.len a_1) 3))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => ""
+
+************************************
+(declare-const a_1 String)
+
+(assert (str.contains a_1 "hello"))
+(assert (<= (str.len a_1) 3))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const a_1 String)
+
+
+(assert (> (str.len a_1) 3))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "ABCD"
+

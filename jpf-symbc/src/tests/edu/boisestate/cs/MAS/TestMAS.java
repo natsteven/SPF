@@ -15,7 +15,7 @@ public class TestMAS extends TestJPF {
             "+symbolic.string_dp_timeout_ms=0",
             "+target=", //target class/method
             "+search.depth_limit = 23 ",
-//            "+listener = gov.nasa.jpf.symbc.sequences.SymbolicSequenceListener", //still unsure what this does
+			"+listener=gov.nasa.jpf.symbc.sequences.SymbolicSequenceListener,gov.nasa.jpf.symbc.SymbolicListener",
             "+symbolic.debug=true",
             "+sourcepath=src/tests",
             "+symbolic.strings=true"};
@@ -233,7 +233,7 @@ public class TestMAS extends TestJPF {
     public void charAtTest() {
             clas = "CharAtTest";
             methodSignature = ".test(sym)";
-            setOptions(clas, methodSignature, "z3str3");
+            setOptions(clas, methodSignature);
 
             String a = "Hello";
 
@@ -334,6 +334,6 @@ public class TestMAS extends TestJPF {
     }
 
     public void setOptions(String clas, String methodSignature) { // default solver is MAS
-        setOptions(clas, methodSignature, "z3str3");
+        setOptions(clas, methodSignature, "MAS");
     }
 }

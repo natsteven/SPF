@@ -1,0 +1,65 @@
+************************************
+(declare-const a_1 String)
+
+(assert (str.prefixof "aa" a_1))
+(assert (<= (str.indexof a_1 "aab") 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aa"
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (str.prefixof "aa" a_1)))
+(assert (<= (str.indexof a_1 "aab") 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => ""
+
+MAS:
+WARNING: Unhandled constraint in Reporter_Inverse.buildICG_r3() of type... UNDEFINED  7  le!!I!:!0
+
+************************************
+(declare-const a_1 String)
+
+(assert (str.prefixof "aa" a_1))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aa"
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (str.prefixof "aa" a_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aA"
+
+MAS:
+sat,
+1: ""
+
+************************************
+(declare-const a_1 String)
+
+(assert (str.prefixof "aa" a_1))
+(assert (> (str.indexof a_1 "aab") 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaab"
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (str.prefixof "aa" a_1)))
+(assert (> (str.indexof a_1 "aab") 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "Aaab"
+

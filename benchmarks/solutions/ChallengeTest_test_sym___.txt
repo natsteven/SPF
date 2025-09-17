@@ -1,0 +1,1763 @@
+************************************
+(declare-const in_1 String)
+
+
+(assert (not (= (str.indexof "" (str.++ "" (str.at in_1 12))) (- 1))))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 17 (str.len in_1)))
+(assert (< 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNOPQ"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "AB"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (= (str.indexof "" (str.++ "" (str.at in_1 18))) (- 1)))
+(assert (< 18 (str.len in_1)))
+(assert (< 17 (str.len in_1)))
+(assert (< 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNOPQRS"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 21 (str.len in_1)))
+(assert (< 20 (str.len in_1)))
+(assert (< 19 (str.len in_1)))
+(assert (< 18 (str.len in_1)))
+(assert (< 17 (str.len in_1)))
+(assert (< 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNOPQRSTU"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (not (= (str.indexof "" (str.++ "" (str.at in_1 17))) (- 1))))
+(assert (< 17 (str.len in_1)))
+(assert (< 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLM"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLM"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (not (= (str.indexof "" (str.++ "" (str.at in_1 1))) (- 1))))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (= (str.indexof "" (str.++ "" (str.at in_1 20))) (- 1)))
+(assert (< 20 (str.len in_1)))
+(assert (< 19 (str.len in_1)))
+(assert (< 18 (str.len in_1)))
+(assert (< 17 (str.len in_1)))
+(assert (< 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNOPQRSTU"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNO"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (not (= (str.indexof "" (str.++ "" (str.at in_1 15))) (- 1))))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (not (= (str.indexof "" (str.++ "" (str.at in_1 5))) (- 1))))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "A"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (not (= (str.indexof "" (str.++ "" (str.at in_1 13))) (- 1))))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (= (str.indexof "" (str.++ "" (str.at in_1 16))) (- 1)))
+(assert (< 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNOPQ"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (= (str.indexof "" (str.++ "" (str.at in_1 11))) (- 1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKL"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJ"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (= (str.indexof "" (str.++ "" (str.at in_1 6))) (- 1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFG"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABC"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNOPQ"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCD"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNOP"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (= (str.indexof "" (str.++ "" (str.at in_1 3))) (- 1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCD"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGH"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDE"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFG"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (not (= (str.indexof "" (str.++ "" (str.at in_1 14))) (- 1))))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (not (= (str.indexof "" (str.++ "" (str.at in_1 6))) (- 1))))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMN"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKL"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHI"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJK"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEF"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (not (= (str.indexof "" (str.++ "" (str.at in_1 3))) (- 1))))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 18 (str.len in_1)))
+(assert (< 17 (str.len in_1)))
+(assert (< 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNOPQR"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (not (= (str.indexof "" (str.++ "" (str.at in_1 10))) (- 1))))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (not (= (str.indexof "" (str.++ "" (str.at in_1 9))) (- 1))))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 19 (str.len in_1)))
+(assert (< 18 (str.len in_1)))
+(assert (< 17 (str.len in_1)))
+(assert (< 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNOPQRS"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (= (str.indexof "" (str.++ "" (str.at in_1 0))) (- 1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "A"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 18 (str.len in_1)))
+(assert (< 17 (str.len in_1)))
+(assert (< 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNOPQRS"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (= (str.indexof "" (str.++ "" (str.at in_1 17))) (- 1)))
+(assert (< 17 (str.len in_1)))
+(assert (< 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNOPQR"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "AB"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 20 (str.len in_1)))
+(assert (< 19 (str.len in_1)))
+(assert (< 18 (str.len in_1)))
+(assert (< 17 (str.len in_1)))
+(assert (< 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNOPQRST"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (= (str.indexof "" (str.++ "" (str.at in_1 9))) (- 1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJ"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 21 (str.len in_1)))
+(assert (< 20 (str.len in_1)))
+(assert (< 19 (str.len in_1)))
+(assert (< 18 (str.len in_1)))
+(assert (< 17 (str.len in_1)))
+(assert (< 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNOPQRSTUV"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABC"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (= (str.indexof "" (str.++ "" (str.at in_1 14))) (- 1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNO"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (not (= (str.indexof "" (str.++ "" (str.at in_1 11))) (- 1))))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (not (= (str.indexof "" (str.++ "" (str.at in_1 18))) (- 1))))
+(assert (< 18 (str.len in_1)))
+(assert (< 17 (str.len in_1)))
+(assert (< 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (= (str.indexof "" (str.++ "" (str.at in_1 8))) (- 1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHI"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (not (= (str.indexof "" (str.++ "" (str.at in_1 7))) (- 1))))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHI"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDE"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 19 (str.len in_1)))
+(assert (< 18 (str.len in_1)))
+(assert (< 17 (str.len in_1)))
+(assert (< 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNOPQRST"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (= (str.indexof "" (str.++ "" (str.at in_1 13))) (- 1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMN"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJK"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGH"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (= (str.indexof "" (str.++ "" (str.at in_1 2))) (- 1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABC"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (not (= (str.indexof "" (str.++ "" (str.at in_1 20))) (- 1))))
+(assert (< 20 (str.len in_1)))
+(assert (< 19 (str.len in_1)))
+(assert (< 18 (str.len in_1)))
+(assert (< 17 (str.len in_1)))
+(assert (< 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (= (str.indexof "" (str.++ "" (str.at in_1 1))) (- 1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "AB"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 20 (str.len in_1)))
+(assert (< 19 (str.len in_1)))
+(assert (< 18 (str.len in_1)))
+(assert (< 17 (str.len in_1)))
+(assert (< 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNOPQRSTU"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (= (str.indexof "" (str.++ "" (str.at in_1 19))) (- 1)))
+(assert (< 19 (str.len in_1)))
+(assert (< 18 (str.len in_1)))
+(assert (< 17 (str.len in_1)))
+(assert (< 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNOPQRST"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (not (= (str.indexof "" (str.++ "" (str.at in_1 16))) (- 1))))
+(assert (< 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (= (str.indexof "" (str.++ "" (str.at in_1 7))) (- 1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGH"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (not (= (str.indexof "" (str.++ "" (str.at in_1 19))) (- 1))))
+(assert (< 19 (str.len in_1)))
+(assert (< 18 (str.len in_1)))
+(assert (< 17 (str.len in_1)))
+(assert (< 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (= (str.indexof "" (str.++ "" (str.at in_1 15))) (- 1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNOP"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (= (str.indexof "" (str.++ "" (str.at in_1 4))) (- 1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDE"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFG"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCD"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (not (= (str.indexof "" (str.++ "" (str.at in_1 8))) (- 1))))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNOP"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => ""
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJ"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (>= 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMN"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "A"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (= (str.indexof "" (str.++ "" (str.at in_1 5))) (- 1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEF"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNO"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 17 (str.len in_1)))
+(assert (< 16 (str.len in_1)))
+(assert (< 15 (str.len in_1)))
+(assert (< 14 (str.len in_1)))
+(assert (< 13 (str.len in_1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLMNOPQR"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (= (str.indexof "" (str.++ "" (str.at in_1 10))) (- 1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJK"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (not (= (str.indexof "" (str.++ "" (str.at in_1 2))) (- 1))))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (not (= (str.indexof "" (str.++ "" (str.at in_1 4))) (- 1))))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEF"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKL"
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (not (= (str.indexof "" (str.++ "" (str.at in_1 0))) (- 1))))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const in_1 String)
+
+
+(assert (= (str.indexof "" (str.++ "" (str.at in_1 12))) (- 1)))
+(assert (< 12 (str.len in_1)))
+(assert (< 11 (str.len in_1)))
+(assert (< 10 (str.len in_1)))
+(assert (< 9 (str.len in_1)))
+(assert (< 8 (str.len in_1)))
+(assert (< 7 (str.len in_1)))
+(assert (< 6 (str.len in_1)))
+(assert (< 5 (str.len in_1)))
+(assert (< 4 (str.len in_1)))
+(assert (< 3 (str.len in_1)))
+(assert (< 2 (str.len in_1)))
+(assert (< 1 (str.len in_1)))
+(assert (< 0 (str.len in_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+in_1 => "ABCDEFGHIJKLM"
+

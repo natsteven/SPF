@@ -1,4 +1,13 @@
 ************************************
+
+------------------------------------
+z3str3:
+Satisfiable: true
+
+MAS:
+unsat
+
+************************************
 (declare-const s1_1 String)
 (declare-const s2_2 String)
 
@@ -26,9 +35,7 @@ z3str3:
 Satisfiable: false
 
 MAS:
-sat,
-1: ""
-2: ""
+unsat
 
 ************************************
 (declare-const s1_1 String)
@@ -77,7 +84,7 @@ s2_2 => "A"
 MAS:
 sat,
 1: ""
-2: ""
+2: "A"
 
 ************************************
 (declare-const s1_1 String)

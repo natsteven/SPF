@@ -1,4 +1,13 @@
 ************************************
+
+------------------------------------
+z3str3:
+Satisfiable: true
+
+MAS:
+unsat
+
+************************************
 (declare-const s1_1 String)
 
 (assert (not (= (str.++ (str.substr s1_1 0 0) (str.substr s1_1 1 (str.len s1_1))) "ello")))

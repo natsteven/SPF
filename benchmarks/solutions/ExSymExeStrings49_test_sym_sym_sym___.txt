@@ -1,0 +1,26 @@
+************************************
+(declare-const a_1 String)
+
+(assert (not (str.contains "hello" a_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "A"
+
+MAS:
+sat,
+2: "0"
+
+************************************
+(declare-const a_1 String)
+
+(assert (str.contains "hello" a_1))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "l"
+
+MAS:
+sat,
+2: ""
+

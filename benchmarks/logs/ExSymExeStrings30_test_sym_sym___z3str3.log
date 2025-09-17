@@ -1,0 +1,418 @@
+Running Symbolic PathFinder ...
+symbolic.dp=choco
+symbolic.string_dp_timeout_ms=0
+symbolic.string_dp_alpha=A-Z
+symbolic.string_dp_alphaSize=26
+symbolic.string_dp_upper=10
+symbolic.string_dp_lower=1
+symbolic.string_dp=z3str3
+symbolic.choco_time_bound=30000
+symbolic.max_pc_length=2147483647
+symbolic.max_pc_msec=0
+symbolic.bvlength=32
+symbolic.min_int=-2147483648
+symbolic.min_long=-9223372036854775808
+symbolic.min_short=-32768
+symbolic.min_byte=-128
+symbolic.min_char=0
+symbolic.max_int=2147483647
+symbolic.max_long=9223372036854775807
+symbolic.max_short=32767
+symbolic.max_byte=127
+symbolic.max_char=65535
+symbolic.min_double=4.9E-324
+symbolic.max_double=1.7976931348623157E308
+JavaPathfinder core system v8.0 (rev b754a0305ac7423e9b25fba66388b99d5c823c4e) - (C) 2005-2014 United States Government. All rights reserved.
+
+
+====================================================== system under test
+gov.nasa.jpf.symbc.strings.ExSymExeStrings30.main()
+
+====================================================== search started: 9/17/25 12:16 PM
+New sym int a_1_SYMSTRING.length min=-2147483648, max=2147483647
+New sym int b_2_SYMSTRING.length min=-2147483648, max=2147483647
+## Warning: empty path condition
+### PCs: total:1 sat:1 unsat:0
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING notstartswith CONST_abc)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (not (str.prefixof "abc" a_1)))
+
+
+
+
+======================
+(define-fun a_1 () String
+  "abA")
+Returned solutions: 
+(define-fun a_1 () String  "abA")
+*************************************
+Satisfiable: true
+a_1 => "abA"
+*************************************
+
+New sym int Length_0_ min=0, max=30
+numeric PC: constraint # = 1
+Length_0_ <= CONST_5 -> true
+
+### PCs: total:2 sat:2 unsat:0
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING notstartswith CONST_abc)
+NPC constraint # = 1
+Length_0_ <= CONST_5
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (not (str.prefixof "abc" a_1)))
+(assert (<= (str.len a_1) 5))
+
+
+
+======================
+(define-fun a_1 () String
+  "")
+Returned solutions: 
+(define-fun a_1 () String  "")
+*************************************
+Satisfiable: true
+a_1 => ""
+*************************************
+
+numeric PC: constraint # = 1
+Length_0_ > CONST_5 -> true
+
+### PCs: total:3 sat:3 unsat:0
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING notstartswith CONST_abc)
+NPC constraint # = 1
+Length_0_ > CONST_5
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (not (str.prefixof "abc" a_1)))
+(assert (> (str.len a_1) 5))
+
+
+
+======================
+(define-fun a_1 () String
+  "abACDE")
+Returned solutions: 
+(define-fun a_1 () String  "abACDE")
+*************************************
+Satisfiable: true
+a_1 => "abACDE"
+*************************************
+
+aaa
+This is the PC at the end:constraint # = 1
+Length_0_ > CONST_5
+numeric PC: constraint # = 1
+Length_0_ > CONST_5 -> true
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING notstartswith CONST_abc)
+NPC constraint # = 1
+Length_0_[6] > CONST_5
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (not (str.prefixof "abc" a_1)))
+(assert (> (str.len a_1) 5))
+
+
+
+======================
+(define-fun a_1 () String
+  "abACDE")
+Returned solutions: 
+(define-fun a_1 () String  "abACDE")
+*************************************
+Satisfiable: true
+a_1 => "abACDE"
+*************************************
+
+This is the PC at the end:constraint # = 1
+Length_0_ <= CONST_5
+numeric PC: constraint # = 1
+Length_0_ <= CONST_5 -> true
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING[**UNDEFINED**] notstartswith CONST_abc)
+NPC constraint # = 1
+Length_0_[0] <= CONST_5
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (not (str.prefixof "abc" a_1)))
+(assert (<= (str.len a_1) 5))
+
+
+
+======================
+(define-fun a_1 () String
+  "")
+Returned solutions: 
+(define-fun a_1 () String  "")
+*************************************
+Satisfiable: true
+a_1 => ""
+*************************************
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING[**UNDEFINED**] notstartswith CONST_abc)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (not (str.prefixof "abc" a_1)))
+
+
+
+
+======================
+(define-fun a_1 () String
+  "abA")
+Returned solutions: 
+(define-fun a_1 () String  "abA")
+*************************************
+Satisfiable: true
+a_1 => "abA"
+*************************************
+
+## Warning: empty path condition
+### PCs: total:4 sat:4 unsat:0
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING startswith CONST_abc)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (str.prefixof "abc" a_1))
+
+
+
+
+======================
+(define-fun a_1 () String
+  "abc")
+Returned solutions: 
+(define-fun a_1 () String  "abc")
+*************************************
+Satisfiable: true
+a_1 => "abc"
+*************************************
+
+boo
+numeric PC: constraint # = 1
+Length_0_ <= CONST_5 -> true
+
+### PCs: total:5 sat:5 unsat:0
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING startswith CONST_abc)
+NPC constraint # = 1
+Length_0_ <= CONST_5
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (str.prefixof "abc" a_1))
+(assert (<= (str.len a_1) 5))
+
+
+
+======================
+(define-fun a_1 () String
+  "abc")
+Returned solutions: 
+(define-fun a_1 () String  "abc")
+*************************************
+Satisfiable: true
+a_1 => "abc"
+*************************************
+
+numeric PC: constraint # = 1
+Length_0_ > CONST_5 -> true
+
+### PCs: total:6 sat:6 unsat:0
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING startswith CONST_abc)
+NPC constraint # = 1
+Length_0_ > CONST_5
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (str.prefixof "abc" a_1))
+(assert (> (str.len a_1) 5))
+
+
+
+======================
+(define-fun a_1 () String
+  "abcABC")
+Returned solutions: 
+(define-fun a_1 () String  "abcABC")
+*************************************
+Satisfiable: true
+a_1 => "abcABC"
+*************************************
+
+aaa
+This is the PC at the end:constraint # = 1
+Length_0_ > CONST_5
+numeric PC: constraint # = 1
+Length_0_ > CONST_5 -> true
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING startswith CONST_abc)
+NPC constraint # = 1
+Length_0_[6] > CONST_5
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (str.prefixof "abc" a_1))
+(assert (> (str.len a_1) 5))
+
+
+
+======================
+(define-fun a_1 () String
+  "abcABC")
+Returned solutions: 
+(define-fun a_1 () String  "abcABC")
+*************************************
+Satisfiable: true
+a_1 => "abcABC"
+*************************************
+
+This is the PC at the end:constraint # = 1
+Length_0_ <= CONST_5
+numeric PC: constraint # = 1
+Length_0_ <= CONST_5 -> true
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING[**UNDEFINED**] startswith CONST_abc)
+NPC constraint # = 1
+Length_0_[0] <= CONST_5
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (str.prefixof "abc" a_1))
+(assert (<= (str.len a_1) 5))
+
+
+
+======================
+(define-fun a_1 () String
+  "abc")
+Returned solutions: 
+(define-fun a_1 () String  "abc")
+*************************************
+Satisfiable: true
+a_1 => "abc"
+*************************************
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING[**UNDEFINED**] startswith CONST_abc)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (str.prefixof "abc" a_1))
+
+
+
+
+======================
+(define-fun a_1 () String
+  "abc")
+Returned solutions: 
+(define-fun a_1 () String  "abc")
+*************************************
+Satisfiable: true
+a_1 => "abc"
+*************************************
+
+
+====================================================== Method Sequences
+[test(**UNDEFINED**,**UNDEFINED**)]
+
+====================================================== JUnit 4.0 test class
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+public class gov_nasa_jpf_symbc_strings_ExSymExeStrings30Test {
+
+	private gov.nasa.jpf.symbc.strings.ExSymExeStrings30 gov_nasa_jpf_symbc_strings_exsymexestrings30;
+
+	@Before
+	public void setUp() throws Exception {
+		gov_nasa_jpf_symbc_strings_exsymexestrings30 = new gov.nasa.jpf.symbc.strings.ExSymExeStrings30();
+	}
+
+	@Test
+	public void test0() {
+		gov_nasa_jpf_symbc_strings_exsymexestrings30.test(**UNDEFINED**,**UNDEFINED**);
+	}
+}
+
+====================================================== results
+no errors detected
+
+====================================================== statistics
+elapsed time:       00:00:00
+states:             new=8,visited=0,backtracked=8,end=4
+search:             maxDepth=4,constraints=0
+choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=4
+heap:               new=482,released=40,maxLive=458,gcCycles=8
+instructions:       6414
+max memory:         477MB
+loaded code:        classes=82,methods=1665
+
+====================================================== search finished: 9/17/25 12:16 PM
+Runtime(ms) :957

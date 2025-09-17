@@ -1,0 +1,377 @@
+Running Symbolic PathFinder ...
+symbolic.dp=choco
+symbolic.string_dp_timeout_ms=0
+symbolic.string_dp_alpha=A-Z
+symbolic.string_dp_alphaSize=26
+symbolic.string_dp_upper=10
+symbolic.string_dp_lower=1
+symbolic.string_dp=z3str3
+symbolic.choco_time_bound=30000
+symbolic.max_pc_length=2147483647
+symbolic.max_pc_msec=0
+symbolic.bvlength=32
+symbolic.min_int=-2147483648
+symbolic.min_long=-9223372036854775808
+symbolic.min_short=-32768
+symbolic.min_byte=-128
+symbolic.min_char=0
+symbolic.max_int=2147483647
+symbolic.max_long=9223372036854775807
+symbolic.max_short=32767
+symbolic.max_byte=127
+symbolic.max_char=65535
+symbolic.min_double=4.9E-324
+symbolic.max_double=1.7976931348623157E308
+JavaPathfinder core system v8.0 (rev b754a0305ac7423e9b25fba66388b99d5c823c4e) - (C) 2005-2014 United States Government. All rights reserved.
+
+
+====================================================== system under test
+gov.nasa.jpf.symbc.strings.ExSymExeStrings62.main()
+
+====================================================== search started: 9/17/25 12:16 PM
+New sym int str_1_SYMSTRING.length min=-2147483648, max=2147483647
+## Warning: empty path condition
+### PCs: total:1 sat:1 unsat:0
+
+string analysis: SPC # = 1
+(str_1_SYMSTRING notcontains CONST_a)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const str_1 String)
+
+(assert (not (str.contains str_1 "a")))
+
+
+
+
+======================
+(define-fun str_1 () String
+  "")
+Returned solutions: 
+(define-fun str_1 () String  "")
+*************************************
+Satisfiable: true
+str_1 => ""
+*************************************
+
+This is the PC at the end:constraint # = 0
+string analysis: SPC # = 1
+(str_1_SYMSTRING notcontains CONST_a)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const str_1 String)
+
+(assert (not (str.contains str_1 "a")))
+
+
+
+
+======================
+(define-fun str_1 () String
+  "")
+Returned solutions: 
+(define-fun str_1 () String  "")
+*************************************
+Satisfiable: true
+str_1 => ""
+*************************************
+
+## Warning: empty path condition
+### PCs: total:2 sat:2 unsat:0
+
+string analysis: SPC # = 1
+(str_1_SYMSTRING contains CONST_a)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const str_1 String)
+
+(assert (str.contains str_1 "a"))
+
+
+
+
+======================
+(define-fun str_1 () String
+  "a")
+Returned solutions: 
+(define-fun str_1 () String  "a")
+*************************************
+Satisfiable: true
+str_1 => "a"
+*************************************
+
+New sym int Length_0_ min=0, max=30
+numeric PC: constraint # = 1
+Length_0_ >= CONST_3 -> true
+
+### PCs: total:3 sat:3 unsat:0
+
+string analysis: SPC # = 1
+(str_1_SYMSTRING contains CONST_a)
+NPC constraint # = 1
+Length_0_ >= CONST_3
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const str_1 String)
+
+(assert (str.contains str_1 "a"))
+(assert (>= (str.len str_1) 3))
+
+
+
+======================
+(define-fun str_1 () String
+  "ABa")
+Returned solutions: 
+(define-fun str_1 () String  "ABa")
+*************************************
+Satisfiable: true
+str_1 => "ABa"
+*************************************
+
+numeric PC: constraint # = 1
+Length_0_ < CONST_3 -> true
+
+### PCs: total:4 sat:4 unsat:0
+
+string analysis: SPC # = 1
+(str_1_SYMSTRING contains CONST_a)
+NPC constraint # = 1
+Length_0_ < CONST_3
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const str_1 String)
+
+(assert (str.contains str_1 "a"))
+(assert (< (str.len str_1) 3))
+
+
+
+======================
+(define-fun str_1 () String
+  "a")
+Returned solutions: 
+(define-fun str_1 () String  "a")
+*************************************
+Satisfiable: true
+str_1 => "a"
+*************************************
+
+New sym int Length_1_ min=0, max=30
+numeric PC: constraint # = 2
+CONST_0 >= Length_1_ &&
+Length_0_ < CONST_3 -> true
+
+### PCs: total:5 sat:5 unsat:0
+
+string analysis: SPC # = 1
+(str_1_SYMSTRING contains CONST_a)
+NPC constraint # = 2
+CONST_0 >= Length_1_ &&
+Length_0_ < CONST_3
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const str_1 String)
+
+(assert (str.contains str_1 "a"))
+(assert (>= 0 (str.len (str.replace_all str_1 "b" "a"))))
+(assert (< (str.len str_1) 3))
+
+
+
+======================
+*************************************
+Satisfiable: false
+*************************************
+
+numeric PC: constraint # = 2
+CONST_0 < Length_1_ &&
+Length_0_ < CONST_3 -> true
+
+### PCs: total:6 sat:6 unsat:0
+
+string analysis: SPC # = 1
+(str_1_SYMSTRING contains CONST_a)
+NPC constraint # = 2
+CONST_0 < Length_1_ &&
+Length_0_ < CONST_3
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const str_1 String)
+
+(assert (str.contains str_1 "a"))
+(assert (< 0 (str.len (str.replace_all str_1 "b" "a"))))
+(assert (< (str.len str_1) 3))
+
+
+
+======================
+*************************************
+Satisfiable: false
+*************************************
+
+New sym int CharAt(CONST_0)_2_ min=0, max=65535
+numeric PC: constraint # = 2
+CharAt(CONST_0)_2_ != CONST_97 &&
+Length_0_ < CONST_3 -> true
+
+### PCs: total:7 sat:7 unsat:0
+
+string analysis: SPC # = 1
+(str_1_SYMSTRING contains CONST_a)
+NPC constraint # = 2
+CharAt(CONST_0)_2_ != CONST_97 &&
+Length_0_ < CONST_3
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const str_1 String)
+
+(assert (str.contains str_1 "a"))
+(assert (not (= (str.at (str.replace_all str_1 "b" "a") 0) "a")))
+(assert (< (str.len str_1) 3))
+
+
+
+======================
+*************************************
+Satisfiable: false
+*************************************
+
+numeric PC: constraint # = 2
+CharAt(CONST_0)_2_ == CONST_97 &&
+Length_0_ < CONST_3 -> true
+
+### PCs: total:8 sat:8 unsat:0
+
+string analysis: SPC # = 1
+(str_1_SYMSTRING contains CONST_a)
+NPC constraint # = 2
+CharAt(CONST_0)_2_ == CONST_97 &&
+Length_0_ < CONST_3
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const str_1 String)
+
+(assert (str.contains str_1 "a"))
+(assert (= (str.at (str.replace_all str_1 "b" "a") 0) "a"))
+(assert (< (str.len str_1) 3))
+
+
+
+======================
+*************************************
+Satisfiable: false
+*************************************
+
+--------->property violated
+pc 1 constraint # = 1
+Length_0_ < CONST_3
+numeric PC: constraint # = 1
+Length_0_ < CONST_3 -> true
+
+string analysis: SPC # = 1
+(str_1_SYMSTRING contains CONST_a)
+NPC constraint # = 1
+Length_0_[0] < CONST_3
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const str_1 String)
+
+(assert (str.contains str_1 "a"))
+(assert (< (str.len str_1) 3))
+
+
+
+======================
+(define-fun str_1 () String
+  "a")
+Returned solutions: 
+(define-fun str_1 () String  "a")
+*************************************
+Satisfiable: true
+str_1 => "a"
+*************************************
+
+
+====================================================== error 1
+gov.nasa.jpf.vm.NoUncaughtExceptionsProperty
+java.lang.RuntimeException: Gats
+	at gov.nasa.jpf.symbc.strings.ExSymExeStrings62.fixedtest(ExSymExeStrings62.java:49)
+	at gov.nasa.jpf.symbc.strings.ExSymExeStrings62.main(ExSymExeStrings62.java:30)
+
+
+====================================================== snapshot #1
+thread java.lang.Thread:{id:0,name:main,status:RUNNING,priority:5,isDaemon:false,lockCount:0,suspendCount:0}
+  call stack:
+	at gov.nasa.jpf.symbc.strings.ExSymExeStrings62.fixedtest(ExSymExeStrings62.java:49)
+	at gov.nasa.jpf.symbc.strings.ExSymExeStrings62.main(ExSymExeStrings62.java:30)
+
+
+====================================================== Method Sequences
+[fixedtest(**UNDEFINED**)]
+[(expected = java.lang.RuntimeException.class), fixedtest(**UNDEFINED**), ##EXCEPTION## "java.lang.RuntimeException: Gats..."]
+
+====================================================== JUnit 4.0 test class
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+public class gov_nasa_jpf_symbc_strings_ExSymExeStrings62Test {
+
+	private gov.nasa.jpf.symbc.strings.ExSymExeStrings62 gov_nasa_jpf_symbc_strings_exsymexestrings62;
+
+	@Before
+	public void setUp() throws Exception {
+		gov_nasa_jpf_symbc_strings_exsymexestrings62 = new gov.nasa.jpf.symbc.strings.ExSymExeStrings62();
+	}
+
+	@Test
+	public void test0() {
+		gov_nasa_jpf_symbc_strings_exsymexestrings62.fixedtest(**UNDEFINED**);
+	}
+
+	@Test(expected = java.lang.RuntimeException.class)
+	public void test1() {
+		gov_nasa_jpf_symbc_strings_exsymexestrings62.fixedtest(**UNDEFINED**);
+		//should lead to ##EXCEPTION## "java.lang.RuntimeException: Gats..."
+	}
+}
+
+====================================================== results
+error #1: gov.nasa.jpf.vm.NoUncaughtExceptionsProperty "java.lang.RuntimeException: Gats  at gov.nasa.jpf...."
+
+====================================================== statistics
+elapsed time:       00:00:00
+states:             new=5,visited=0,backtracked=1,end=1
+search:             maxDepth=4,constraints=0
+choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=3
+heap:               new=479,released=13,maxLive=450,gcCycles=4
+instructions:       6386
+max memory:         477MB
+loaded code:        classes=86,methods=1703
+
+====================================================== search finished: 9/17/25 12:16 PM
+Runtime(ms) :559

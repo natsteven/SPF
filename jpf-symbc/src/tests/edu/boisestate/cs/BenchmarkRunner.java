@@ -34,7 +34,8 @@ public class BenchmarkRunner {
             "+symbolic.strings=true",
             "+symbolic.debug=true",
             "+symbolic.string_dp_timeout_ms=0",
-            "+search.depth_limit=23"
+            "+search.depth_limit=23",
+			"+listener=gov.nasa.jpf.symbc.sequences.SymbolicSequenceListener"
     );
 
     public static void main(String[] args) throws Exception {
@@ -74,12 +75,12 @@ public class BenchmarkRunner {
         Files.createDirectories(OUT_DIR);
         Path solutionsDir = OUT_DIR.resolve("solutions");
         Files.createDirectories(solutionsDir);
+		boolean newFile = !Files.exists(OUT_CSV);
 
-
-        try (BufferedWriter w = Files.newBufferedWriter(OUT_CSV, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
-//            if (newFile) {
-            w.write("timestamp,program,method,solver,status,wall_ms,exitCode\n");
-//            }
+        try (BufferedWriter w = Files.newBufferedWriter(OUT_CSV, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
+            if (newFile) {
+            	w.write("timestamp,program,method,solver,status,wall_ms,exitCode\n");
+            }
             for (Benchmark b : programs) {
                 String methodFile = (b.fqcn.substring(b.fqcn.lastIndexOf('.') + 1) + b.methodSig).replaceAll("[^A-Za-z0-9_]+", "_") + "__" + ".txt";
                 HashMap<String, ArrayList<String>> solutions = new HashMap<>();
@@ -211,6 +212,7 @@ public class BenchmarkRunner {
                 }
                 fqcn = fqcn.replace(File.separatorChar, '.').replace(".java", "");
                 for (String sig : methodSignaturesFromReflection(fqcn)) {
+//					if (fqcn.contains("Test")) continue; // skip test classes
                     loaded.add(new Benchmark(fqcn, sig));
                 }
             }
@@ -247,12 +249,12 @@ public class BenchmarkRunner {
     }
 
     private static String classify(String out, int exit, String solver) {
-        if (out.contains("Unhandled") || out.contains("unsupported")) {
+        if (out.contains("unsupported")) {
             statusCounts.get(solver)[1]++;
             if (solver.equals("z3str3")) z3OK = false; // do not accumulate runtime if z3 unsupported
             return "UNSUPPORTED";
         }
-        if (out.contains("[SEVERE]") || out.contains("ERROR") || out.contains("Exception")) {
+        if (out.contains("[SEVERE]") || out.contains("ERROR")) {
             statusCounts.get(solver)[3]++;
             if (solver.equals("z3str3")) z3OK = false; // do not accumulate runtime if z3 unsupported
             return "ERROR";
@@ -278,14 +280,14 @@ public class BenchmarkRunner {
             // we will grab the smt and then the sol and then add it to the map
             String line = it.next();
             if (line.contains("query")) {
-                String next = it.next();
+                String next = it.hasNext()? it.next() : "";
                 while (!next.contains("===") && it.hasNext()) {
                     smt.append(next).append("\n");
                     next = it.next();
                 }
             }
             if (line.contains("****")) {
-                String next = it.next();
+                String next = it.hasNext()? it.next() : "";
                 while (!next.contains("****") && it.hasNext()) {
                     sol.append(next).append("\n");
                     next = it.next();

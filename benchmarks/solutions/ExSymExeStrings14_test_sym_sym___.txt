@@ -1,0 +1,22 @@
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (= (str.substr a_1 1(- (str.len a_1) 1)) b_2))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => ""
+b_2 => ""
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (not (= (str.substr a_1 1(- (str.len a_1) 1)) b_2)))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => ""
+b_2 => "B"
+

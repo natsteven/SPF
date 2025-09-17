@@ -283,7 +283,7 @@ public class ConstraintTranslator {
                 constraints.add(insertStrConstraint);
                 return insert;
             case REVERSE:
-                StringExpression se6 = (StringExpression) dse.oprlist[0];
+                StringExpression se6 = (StringExpression) dse.right;
                 StringBuilder rev = new StringBuilder(se6.toString());
                 rev.reverse();
                 PrintConstraint reverse = new PrintConstraint(translator.getNextID(), rev.toString(), "reverse!!Ljava/lang/String;!:!0");

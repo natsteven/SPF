@@ -1,0 +1,32 @@
+************************************
+(declare-const d_2_SYMINT Int)
+(assert (= (str.substr (ite ( < d_2_SYMINT 0) (str.++ "-" (str.from_int (- d_2_SYMINT))) (str.from_int d_2_SYMINT)) 1(- (str.len (ite ( < d_2_SYMINT 0) (str.++ "-" (str.from_int (- d_2_SYMINT))) (str.from_int d_2_SYMINT))) 1)) "10"))
+(assert (< d_2_SYMINT 5))
+------------------------------------
+z3str3:
+Satisfiable: true
+
+************************************
+(declare-const d_2_SYMINT Int)
+
+(assert (>= d_2_SYMINT 5))
+------------------------------------
+z3str3:
+Satisfiable: true
+
+************************************
+(declare-const d_2_SYMINT Int)
+
+(assert (< d_2_SYMINT 5))
+------------------------------------
+z3str3:
+Satisfiable: true
+
+************************************
+(declare-const d_2_SYMINT Int)
+(assert (not (= (str.substr (ite ( < d_2_SYMINT 0) (str.++ "-" (str.from_int (- d_2_SYMINT))) (str.from_int d_2_SYMINT)) 1(- (str.len (ite ( < d_2_SYMINT 0) (str.++ "-" (str.from_int (- d_2_SYMINT))) (str.from_int d_2_SYMINT))) 1)) "10")))
+(assert (< d_2_SYMINT 5))
+------------------------------------
+z3str3:
+Satisfiable: true
+

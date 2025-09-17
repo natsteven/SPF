@@ -1,0 +1,86 @@
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (not (str.prefixof "bol" b_2)))
+(assert (not (= (str.indexof b_2 a_1) 2)))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "A"
+b_2 => "bA"
+
+MAS:
+sat,
+1: "0"
+3: ""
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (str.prefixof "bol" b_2))
+(assert (not (= (str.indexof b_2 a_1) 2)))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => ""
+b_2 => "bol"
+
+MAS:
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (str.prefixof "bol" b_2))
+(assert (= (str.indexof b_2 a_1) 2))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "l"
+b_2 => "bol"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (not (str.prefixof "bol" b_2)))
+(assert (= (str.indexof b_2 a_1) 2))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "B"
+b_2 => "ACB"
+
+MAS:
+sat,
+1: "0"
+3: "000"
+
+************************************
+(declare-const b_2 String)
+
+(assert (not (str.prefixof "bol" b_2)))
+------------------------------------
+z3str3:
+Satisfiable: true
+b_2 => "boA"
+
+MAS:
+sat,
+1: ""
+
+************************************
+(declare-const b_2 String)
+
+(assert (str.prefixof "bol" b_2))
+------------------------------------
+z3str3:
+Satisfiable: true
+b_2 => "bol"
+
+MAS:
+sat,
+1: "bol"
+

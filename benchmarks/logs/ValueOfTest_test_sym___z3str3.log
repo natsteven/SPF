@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=4.9E-324
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 8b1bc8794df56da628ab28751976f701ceb0c72f) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev b754a0305ac7423e9b25fba66388b99d5c823c4e) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 edu.boisestate.cs.MAS.ValueOfTest.main()
 
-====================================================== search started: 9/15/25 4:08 PM
+====================================================== search started: 9/17/25 12:35 PM
 New sym int a_1_SYMSTRING.length min=-2147483648, max=2147483647
 ## Warning: empty path condition
 ### PCs: total:1 sat:1 unsat:0
@@ -176,6 +176,34 @@ a_1 => ""
 *************************************
 
 Symbolic Exp [ CONST_Unknown value: .concat(a_1_SYMSTRING)]
+string analysis: SPC # = 5
+(a_1_SYMSTRING notequals CONST_Hello) && (a_1_SYMSTRING notequals CONST_a) && (a_1_SYMSTRING notequals CONST_45.67) && (a_1_SYMSTRING notequals CONST_123) && (a_1_SYMSTRING notequals CONST_true)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (not (= a_1 "Hello")))
+(assert (not (= a_1 "a")))
+(assert (not (= a_1 "45.67")))
+(assert (not (= a_1 "123")))
+(assert (not (= a_1 "true")))
+
+
+
+
+======================
+(define-fun a_1 () String
+  "")
+Returned solutions: 
+(define-fun a_1 () String  "")
+*************************************
+Satisfiable: true
+a_1 => ""
+*************************************
+
 ## Warning: empty path condition
 ### PCs: total:6 sat:6 unsat:0
 
@@ -208,6 +236,61 @@ a_1 => "Hello"
 *************************************
 
 Symbolic Exp [ CONST_Char Array value: .concat(a_1_SYMSTRING)]
+string analysis: SPC # = 5
+(a_1_SYMSTRING equals CONST_Hello) && (a_1_SYMSTRING notequals CONST_a) && (a_1_SYMSTRING notequals CONST_45.67) && (a_1_SYMSTRING notequals CONST_123) && (a_1_SYMSTRING notequals CONST_true)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (= a_1 "Hello"))
+(assert (not (= a_1 "a")))
+(assert (not (= a_1 "45.67")))
+(assert (not (= a_1 "123")))
+(assert (not (= a_1 "true")))
+
+
+
+
+======================
+(define-fun a_1 () String
+  "Hello")
+Returned solutions: 
+(define-fun a_1 () String  "Hello")
+*************************************
+Satisfiable: true
+a_1 => "Hello"
+*************************************
+
+string analysis: SPC # = 4
+(a_1_SYMSTRING[**UNDEFINED**] notequals CONST_a) && (a_1_SYMSTRING[**UNDEFINED**] notequals CONST_45.67) && (a_1_SYMSTRING[**UNDEFINED**] notequals CONST_123) && (a_1_SYMSTRING[**UNDEFINED**] notequals CONST_true)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (not (= a_1 "a")))
+(assert (not (= a_1 "45.67")))
+(assert (not (= a_1 "123")))
+(assert (not (= a_1 "true")))
+
+
+
+
+======================
+(define-fun a_1 () String
+  "")
+Returned solutions: 
+(define-fun a_1 () String  "")
+*************************************
+Satisfiable: true
+a_1 => ""
+*************************************
+
 ## Warning: empty path condition
 ### PCs: total:7 sat:7 unsat:0
 
@@ -239,6 +322,59 @@ a_1 => "a"
 *************************************
 
 Symbolic Exp [ CONST_Character value: .concat(a_1_SYMSTRING)]
+string analysis: SPC # = 4
+(a_1_SYMSTRING equals CONST_a) && (a_1_SYMSTRING notequals CONST_45.67) && (a_1_SYMSTRING notequals CONST_123) && (a_1_SYMSTRING notequals CONST_true)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (= a_1 "a"))
+(assert (not (= a_1 "45.67")))
+(assert (not (= a_1 "123")))
+(assert (not (= a_1 "true")))
+
+
+
+
+======================
+(define-fun a_1 () String
+  "a")
+Returned solutions: 
+(define-fun a_1 () String  "a")
+*************************************
+Satisfiable: true
+a_1 => "a"
+*************************************
+
+string analysis: SPC # = 3
+(a_1_SYMSTRING[**UNDEFINED**] notequals CONST_45.67) && (a_1_SYMSTRING[**UNDEFINED**] notequals CONST_123) && (a_1_SYMSTRING[**UNDEFINED**] notequals CONST_true)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (not (= a_1 "45.67")))
+(assert (not (= a_1 "123")))
+(assert (not (= a_1 "true")))
+
+
+
+
+======================
+(define-fun a_1 () String
+  "")
+Returned solutions: 
+(define-fun a_1 () String  "")
+*************************************
+Satisfiable: true
+a_1 => ""
+*************************************
+
 ## Warning: empty path condition
 ### PCs: total:8 sat:8 unsat:0
 
@@ -269,6 +405,57 @@ a_1 => "45.67"
 *************************************
 
 Symbolic Exp [ CONST_Double value: .concat(a_1_SYMSTRING)]
+string analysis: SPC # = 3
+(a_1_SYMSTRING equals CONST_45.67) && (a_1_SYMSTRING notequals CONST_123) && (a_1_SYMSTRING notequals CONST_true)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (= a_1 "45.67"))
+(assert (not (= a_1 "123")))
+(assert (not (= a_1 "true")))
+
+
+
+
+======================
+(define-fun a_1 () String
+  "45.67")
+Returned solutions: 
+(define-fun a_1 () String  "45.67")
+*************************************
+Satisfiable: true
+a_1 => "45.67"
+*************************************
+
+string analysis: SPC # = 2
+(a_1_SYMSTRING[**UNDEFINED**] notequals CONST_123) && (a_1_SYMSTRING[**UNDEFINED**] notequals CONST_true)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (not (= a_1 "123")))
+(assert (not (= a_1 "true")))
+
+
+
+
+======================
+(define-fun a_1 () String
+  "")
+Returned solutions: 
+(define-fun a_1 () String  "")
+*************************************
+Satisfiable: true
+a_1 => ""
+*************************************
+
 ## Warning: empty path condition
 ### PCs: total:9 sat:9 unsat:0
 
@@ -298,6 +485,55 @@ a_1 => "123"
 *************************************
 
 Symbolic Exp [ CONST_Integer value: .concat(a_1_SYMSTRING)]
+string analysis: SPC # = 2
+(a_1_SYMSTRING equals CONST_123) && (a_1_SYMSTRING notequals CONST_true)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (= a_1 "123"))
+(assert (not (= a_1 "true")))
+
+
+
+
+======================
+(define-fun a_1 () String
+  "123")
+Returned solutions: 
+(define-fun a_1 () String  "123")
+*************************************
+Satisfiable: true
+a_1 => "123"
+*************************************
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING[**UNDEFINED**] notequals CONST_true)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (not (= a_1 "true")))
+
+
+
+
+======================
+(define-fun a_1 () String
+  "")
+Returned solutions: 
+(define-fun a_1 () String  "")
+*************************************
+Satisfiable: true
+a_1 => ""
+*************************************
+
 ## Warning: empty path condition
 ### PCs: total:10 sat:10 unsat:0
 
@@ -326,19 +562,66 @@ a_1 => "true"
 *************************************
 
 Symbolic Exp [ CONST_Boolean value: .concat(a_1_SYMSTRING)]
+string analysis: SPC # = 1
+(a_1_SYMSTRING equals CONST_true)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (= a_1 "true"))
+
+
+
+
+======================
+(define-fun a_1 () String
+  "true")
+Returned solutions: 
+(define-fun a_1 () String  "true")
+*************************************
+Satisfiable: true
+a_1 => "true"
+*************************************
+
+
+====================================================== Method Sequences
+[test(**UNDEFINED**)]
+
+====================================================== JUnit 4.0 test class
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+public class edu_boisestate_cs_MAS_ValueOfTestTest {
+
+	private edu.boisestate.cs.MAS.ValueOfTest edu_boisestate_cs_mas_valueoftest;
+
+	@Before
+	public void setUp() throws Exception {
+		edu_boisestate_cs_mas_valueoftest = new edu.boisestate.cs.MAS.ValueOfTest();
+	}
+
+	@Test
+	public void test0() {
+		edu_boisestate_cs_mas_valueoftest.test(**UNDEFINED**);
+	}
+}
 
 ====================================================== results
 no errors detected
 
 ====================================================== statistics
 elapsed time:       00:00:00
-states:             new=11,visited=0,backtracked=11,end=6
-search:             maxDepth=6,constraints=0
-choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=5
-heap:               new=549,released=114,maxLive=451,gcCycles=11
+states:             new=12,visited=0,backtracked=12,end=6
+search:             maxDepth=7,constraints=0
+choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=6
+heap:               new=549,released=114,maxLive=451,gcCycles=12
 instructions:       6568
 max memory:         477MB
 loaded code:        classes=84,methods=1949
 
-====================================================== search finished: 9/15/25 4:08 PM
-Runtime(ms) :610
+====================================================== search finished: 9/17/25 12:35 PM
+Runtime(ms) :1169

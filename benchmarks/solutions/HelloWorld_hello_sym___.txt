@@ -1,0 +1,26 @@
+************************************
+(declare-const var_1_1 String)
+
+(assert (not (= var_1_1 "HelloWorld")))
+------------------------------------
+z3str3:
+Satisfiable: true
+var_1_1 => ""
+
+MAS:
+sat,
+1: ""
+
+************************************
+(declare-const var_1_1 String)
+
+(assert (= var_1_1 "HelloWorld"))
+------------------------------------
+z3str3:
+Satisfiable: true
+var_1_1 => "HelloWorld"
+
+MAS:
+sat,
+1: "HelloWorld"
+

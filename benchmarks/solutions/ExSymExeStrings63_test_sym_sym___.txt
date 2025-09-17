@@ -1,0 +1,50 @@
+************************************
+(declare-const a_1 String)
+
+
+(assert (not (= (str.at a_1 0) "<")))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => ""
+
+MAS:
+sat,
+2: "0"
+
+************************************
+(declare-const a_1 String)
+
+
+(assert (= (str.at a_1 0) "<"))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "<"
+
+MAS:
+sat,
+2: "<"
+
+************************************
+(declare-const a_1 String)
+
+
+(assert (< 14 (str.len a_1)))
+(assert (= (str.at a_1 0) "<"))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "<ABCDEFGHIJKLMN"
+
+************************************
+(declare-const a_1 String)
+
+
+(assert (>= 14 (str.len a_1)))
+(assert (= (str.at a_1 0) "<"))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "<"
+
