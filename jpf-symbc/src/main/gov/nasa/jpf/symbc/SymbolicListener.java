@@ -18,6 +18,8 @@
 
 package gov.nasa.jpf.symbc;
 
+import static gov.nasa.jpf.symbc.witness.WitnessSymbolicState.*;
+
 import gov.nasa.jpf.Config;
 import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.PropertyListenerAdapter;
@@ -46,7 +48,7 @@ import gov.nasa.jpf.symbc.bytecode.BytecodeUtils;
 import gov.nasa.jpf.symbc.bytecode.INVOKESTATIC;
 import gov.nasa.jpf.symbc.concolic.PCAnalyzer;
 
-import gov.nasa.jpf.symbc.numeric.Comparator;
+
 import gov.nasa.jpf.symbc.numeric.Expression;
 import gov.nasa.jpf.symbc.numeric.IntegerConstant;
 import gov.nasa.jpf.symbc.numeric.IntegerExpression;
@@ -58,9 +60,9 @@ import gov.nasa.jpf.symbc.numeric.SymbolicInteger;
 import gov.nasa.jpf.symbc.numeric.SymbolicReal;
 
 import gov.nasa.jpf.symbc.numeric.SymbolicConstraintsGeneral;
-//import gov.nasa.jpf.symbc.numeric.SymbolicInteger;
 
 import gov.nasa.jpf.util.Pair;
+
 
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -132,6 +134,10 @@ public class SymbolicListener extends PropertyListenerAdapter implements Publish
             }
             cg = prev_cg;
         }
+
+        // serialize an empty witness
+        createEmptyWitness();
+
         if ((cg instanceof PCChoiceGenerator) && ((PCChoiceGenerator) cg).getCurrentPC() != null) {
             PathCondition pc = ((PCChoiceGenerator) cg).getCurrentPC();
             String error = search.getLastError().getDetails();
@@ -158,9 +164,13 @@ public class SymbolicListener extends PropertyListenerAdapter implements Publish
                 methodSummary = new MethodSummary();
             methodSummary.addPathCondition(pcPair);
             allSummaries.put(currentMethodName, methodSummary);
+
             System.out.println("Property Violated: PC is " + pc.toString());
             System.out.println("Property Violated: result is  " + error);
             System.out.println("****************************");
+
+            populateWitnessGraph(pc);
+
         }
         // }
     }
@@ -169,11 +179,16 @@ public class SymbolicListener extends PropertyListenerAdapter implements Publish
     public void instructionExecuted(VM vm, ThreadInfo currentThread, Instruction nextInstruction,
             Instruction executedInstruction) {
 
+        collectPgmNameForSymVar(executedInstruction);
+
         if (!vm.getSystemState().isIgnored()) {
             Instruction insn = executedInstruction;
             // SystemState ss = vm.getSystemState();
             ThreadInfo ti = currentThread;
             Config conf = vm.getConfig();
+
+            // fill the assumption scope if not filled already
+            oneTimeFillAssumptionScope(ti);
 
             if (insn instanceof JVMInvokeInstruction) {
                 JVMInvokeInstruction md = (JVMInvokeInstruction) insn;
@@ -184,6 +199,11 @@ public class SymbolicListener extends PropertyListenerAdapter implements Publish
                 ClassInfo ci = mi.getClassInfo();
                 String className = ci.getName();
 
+                //maintain the state of whether we are still trying to intercept creation of symbolic variables
+//                catch the invokestatic.Verifier.nondet~~
+                // and store the line number and type
+                maintainWitnessInterceptionState(executedInstruction);
+
                 StackFrame sf = ti.getTopFrame();
                 String shortName = methodName;
                 String longName = mi.getLongName();
@@ -192,6 +212,9 @@ public class SymbolicListener extends PropertyListenerAdapter implements Publish
 
                 if (!mi.equals(sf.getMethodInfo()))
                     return;
+                // catch the invokestatic.Verifier.nondet~~
+                // and store the line number and type
+//                collectVerifierCalls(className, methodName, md);
 
                 if ((BytecodeUtils.isClassSymbolic(conf, className, mi, methodName))
                         || BytecodeUtils.isMethodSymbolic(conf, mi.getFullName(), numberOfArgs, null)) {
@@ -264,6 +287,9 @@ public class SymbolicListener extends PropertyListenerAdapter implements Publish
                     String methodName = mi.getName();
                     String longName = mi.getLongName();
                     int numberOfArgs = mi.getNumberOfArguments();
+
+                    //collect the state of symbolic variables from native return statements, if any
+                    collectSymNativeReturn(insn, ti);
 
                     if (((BytecodeUtils.isClassSymbolic(conf, className, mi, methodName))
                             || BytecodeUtils.isMethodSymbolic(conf, mi.getFullName(), numberOfArgs, null))) {
@@ -370,20 +396,29 @@ public class SymbolicListener extends PropertyListenerAdapter implements Publish
                              * pa.solve(pc,solver); } else pc.solve();
                              */
 
-                            
-                              String pcString = pc.toString(); pcPair = new Pair<String,String>(pcString,returnString);
-                              MethodSummary methodSummary = allSummaries.get(longName); Vector<Pair> pcs =
-                              methodSummary.getPathConditions(); if ((!pcs.contains(pcPair)) &&
-                              (pcString.contains("SYM"))) { methodSummary.addPathCondition(pcPair); }
-                              
-                              if(allSummaries.get(longName)!=null) // recursive call longName = longName +
-                              methodSummary.hashCode(); // differentiate the key for recursive calls
-                              allSummaries.put(longName,methodSummary); if (SymbolicInstructionFactory.debugMode) {
-                              System.out.println("*************Summary***************");
-                              System.out.println("PC is:"+pc.toString()); if(result!=null){
-                              System.out.println("Return is:  "+result);
-                              System.out.println("***********************************"); } }
-                              // YN
+
+                            String pcString = pc.toString();
+                            pcPair = new Pair<String, String>(pcString, returnString);
+                            MethodSummary methodSummary = allSummaries.get(longName);
+                            Vector<Pair> pcs =
+                                    methodSummary.getPathConditions();
+                            if ((!pcs.contains(pcPair)) &&
+                                    (pcString.contains("SYM"))) {
+                                methodSummary.addPathCondition(pcPair);
+                            }
+
+                            if (allSummaries.get(longName) != null) // recursive call longName = longName +
+                                methodSummary.hashCode(); // differentiate the key for recursive calls
+                            allSummaries.put(longName, methodSummary);
+                            if (SymbolicInstructionFactory.debugMode) {
+                                System.out.println("*************Summary***************");
+                                System.out.println("PC is:" + pc.toString());
+                                if (result != null) {
+                                    System.out.println("Return is:  " + result);
+                                    System.out.println("***********************************");
+                                }
+                            }
+                            // YN
                         }
                     }
                 }

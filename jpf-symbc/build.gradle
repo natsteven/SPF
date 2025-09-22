@@ -83,6 +83,7 @@ task createJpfClassesJar(type: Jar) {
     from sourceSets.main.java.outputDir
     from sourceSets.annotations.java.outputDir
     from sourceSets.classes.java.outputDir
+    from sourceSets.main.resources.srcDirs
 }
 
 task createJpfJar(type: Jar) {
@@ -99,6 +100,7 @@ task createJpfJar(type: Jar) {
     from sourceSets.peers.java.outputDir
     from sourceSets.annotations.java.outputDir
     from sourceSets.classes.java.outputDir
+    from sourceSets.main.resources.srcDirs 
 
     manifest {
         attributes "Implementation-Title": "Symbolic Pathfinder system"
@@ -160,51 +162,6 @@ test {
     testLogging {
         events "passed", "skipped", "failed"
     }
-
-    afterSuite { testDescriptor, result ->
-        if (!testDescriptor.parent) {
-            println "Test Execution: ${result.resultType}"
-
-            def summaryFields = ["${result.testCount} tests",
-                                 "${result.successfulTestCount} passed",
-                                 "${result.failedTestCount} failed",
-                                 "${result.skippedTestCount} skipped"]
-
-            println "Summary: " + summaryFields.join(", ")
-        }
-    }
-}
-
-//
-tasks.register('bench', JavaExec) {
-    group = 'SPF Bench'
-    description = 'Runs solver benchmarks and writes CSV under <project-root>/benchmarks/results.csv'
-    classpath = sourceSets.test.runtimeClasspath + files('build/examples') //need to include benchmarks in classpath
-    mainClass = 'edu.boisestate.cs.BenchmarkRunner'
-    args "${projectDir}/src/tests/edu/boisestate/cs/MAS" //path to MAS benchmarks (filter TestMas in BenchmarkRunner.java, specify *Test.java)
-//    args "${projectDir}/src/tests/gov/nasa/jpf/symbc/strings" // make sure to add filter for *Test* in BenchmarkRunner.java
-//    args "${projectDir}/src/examples/strings" //path to benchmarks
-    dependsOn buildJars
-
-    jvmArgs '-Dbench.timeoutSec=5'
-}
-
-tasks.register('testMAS', Test) {
-    description = "Runs the MAS tests."
-
-    dependsOn buildJars
-
-    forkEvery = 1
-    enableAssertions = true
-    maxHeapSize = "1024m"
-    ignoreFailures = true
-
-    include "**/TestMAS.class"
-
-    testLogging {
-        events "passed", "skipped", "failed"
-    }
-
 
     afterSuite { testDescriptor, result ->
         if (!testDescriptor.parent) {

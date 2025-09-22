@@ -38,6 +38,7 @@
 package gov.nasa.jpf.symbc.numeric.solvers;
 
 //import choco.Problem;
+import gov.nasa.jpf.symbc.SymbolicInstructionFactory;
 import gov.nasa.jpf.symbc.numeric.RealProblem;
 import choco.integer.*;
 import choco.integer.var.IntTerm;
@@ -48,16 +49,29 @@ import choco.real.constraint.MixedEqXY;
 /* Rody: add typecasts long->int everywhere now. Needs a nice solution where the user
  * is notified to use another solver with longs.
  */
+
+// choco is best used to check for unsat, i.e., safety properties,
+// but not for sat, i.e., verification properties, due to its limited integer range.
 public class ProblemChoco extends ProblemGeneral {
 	RealProblem pb;
-	public static int timeBound;// = 30000;
+	public int timeBound;
 	public ProblemChoco() {
 		pb = new RealProblem();
 		//pb.setPrecision(1e-8);// need to check this
+		timeBound = SymbolicInstructionFactory.dpTimeout;
 	}
 
 	public IntDomainVar makeIntVar(String name, long min, long max) {
-		assert(min>=Integer.MIN_VALUE && max<=Integer.MAX_VALUE);
+		// Choco recommends staying within Integer.MIN_VALUE / 100 and Integer.MAX_VALUE / 100
+		// to avoid arithmetic overflows during constraint propagation.
+		// Reference: Choco 4.0.5 User Guide, Page 6
+		// https://www.dcs.gla.ac.uk/~pat/cpM/choco4/user_guide-4.0.5.pdf
+		if (min < (Integer.MIN_VALUE / 100) || max > (Integer.MAX_VALUE / 100)) {
+			throw new IllegalArgumentException(String.format(
+					"## Error Choco Invalid bounds for '%s': [%d, %d] exceed safe range [%d, %d] for Choco.",
+					name, min, max, Integer.MIN_VALUE / 100, Integer.MAX_VALUE / 100
+			));
+		}
 		return pb.makeBoundIntVar(name, (int) min, (int) max);
 	}
 
@@ -321,11 +335,15 @@ public class ProblemChoco extends ProblemGeneral {
 	}
 
 	public Boolean solve() {
-        pb.getSolver().setTimeLimit(ProblemChoco.timeBound);
+        pb.getSolver().setTimeLimit(timeBound);
 
         Boolean result = pb.solve();
-//        if (result == null)
- //       	System.out.println("Choco PC"+pb.pretty());
+
+		if (result == null) {
+			throw new RuntimeException("# Error: Choco returned null.\n" +
+					"Time limit: " + timeBound + "\n" +
+					"Problem state:\n" + pb.pretty());
+		}
 
 		return result;
 	}

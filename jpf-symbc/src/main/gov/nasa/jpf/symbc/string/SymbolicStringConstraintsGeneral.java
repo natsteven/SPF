@@ -24,9 +24,6 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.logging.Logger;
 
-import edu.boisestate.cs.MASInterface;
-import edu.boisestate.cs.graph.SolutionSet;
-import edu.boisestate.cs.automatonModel.Model_Acyclic_Inverse;
 import edu.ucsb.cs.vlab.modelling.Output;
 import gov.nasa.jpf.symbc.SymbolicInstructionFactory;
 import gov.nasa.jpf.symbc.numeric.Comparator;
@@ -70,12 +67,10 @@ import gov.nasa.jpf.symbc.string.translate.TranslateToAutomata;
 import gov.nasa.jpf.symbc.string.translate.TranslateToAutomata2;
 import gov.nasa.jpf.symbc.string.translate.TranslateToCVC;
 import gov.nasa.jpf.symbc.string.translate.TranslateToCVCInc;
-import gov.nasa.jpf.symbc.string.translate.TranslateToIGEN;
 import gov.nasa.jpf.symbc.string.translate.TranslateToSAT;
 import gov.nasa.jpf.symbc.string.translate.TranslateToZ3;
 import gov.nasa.jpf.symbc.string.translate.TranslateToZ3Inc;
 import gov.nasa.jpf.symbc.string.translate.TranslateToZ3str2;
-import gov.nasa.jpf.symbc.string.translate.TranslateToZ3str3;
 import gov.nasa.jpf.util.LogManager;
 
 /**
@@ -89,7 +84,7 @@ import gov.nasa.jpf.util.LogManager;
  * 4. Solve the string constriants with automata/sat/cvc
  * 5. if step 4 gives unsat, and there is more integer values that satisfy step 3, go to step 3
  * 6. Translate the StringGraph to the original symbolic strings.
- *
+ * 
  * Visit http://www1.sun.ac.za/redmine/projects/jpfbugs/issues to log bugs
  * 
  * @author GJ Redelinghuys
@@ -129,8 +124,7 @@ public class SymbolicStringConstraintsGeneral {
 	public static final String Z3_INC = "Z3_INC";
 	public static final String WRAPPER = "WRAPPER"; //automata+z3
 	public static final String IGEN = "IGEN"; // BSU Input generator
-	public static final String MAS = "MAS"; // BSU Automata solver
-	
+
 	/* Default solver */
 	public static String solver = AUTOMATA;
 	
@@ -426,8 +420,6 @@ public class SymbolicStringConstraintsGeneral {
 			solver = Z3_INC;
 		} else if (string_dp[0].equals("wrapper")) {
 			solver = WRAPPER;
-		} else if (string_dp[0].equals("MAS")) {
-			solver = MAS;
 		} else {
 			/* No solver, return true */
 			//println ("[isSatisfiable] No Solver");
@@ -435,7 +427,7 @@ public class SymbolicStringConstraintsGeneral {
 		}
 		
 		logger.info("Using solver: " + solver);
-//		System.out.println("---------------"+System.getProperty("java.library.path"));
+
 		if(solver.equals(ABC)){
 			boolean dpresult = TranslateToABC.isSat(pc);
 			constraintCount = constraintCount + 1;
@@ -449,7 +441,7 @@ public class SymbolicStringConstraintsGeneral {
 			constraintCount = constraintCount + 1;
 			return dpresult.isSAT();
 		}
-		
+
 		else if(solver.equals(Z3STR3)){
 			System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 			System.out.println("Calling Z3str3\n");
@@ -457,18 +449,8 @@ public class SymbolicStringConstraintsGeneral {
 			constraintCount = constraintCount + 1;
 			return dpresult.isSAT();
 		}
-		else if(solver.equals(MAS)) {
-			System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-			System.out.println("Calling MAS\n");
-			final SolutionSet<Model_Acyclic_Inverse> result = MASInterface.solve(pc);
-			if (result == null) {
-				System.err.println("MAS returned null, returning false");
-				return false;
-			}
-			constraintCount = constraintCount + 1;
-			System.out.println("************************************");
-			return result.isSAT();
-		}
+
+		
 		TIMEOUT = SymbolicInstructionFactory.stringTimeout;
 		SymbolicStringConstraintsGeneral.timedOut = false;
 
@@ -577,26 +559,26 @@ public class SymbolicStringConstraintsGeneral {
 //					System.out.println("global graph start -----------------------------");
 //					System.out.println(global_graph.toDot());
 //					System.out.println("global graph end -----------------------------");
-					
-					
+
+
 //					System.out.println("========= npc: " + pc.getNpc().toString());
 //					System.out.println("========= spc: " + pc.stringPC());
-					
+
 					// pc is a string path condition, containing a numeric pc from the numeric solver.
-					// this inner npc has 
+					// this inner npc has
 					decisionProcedure = TranslateToIGEN.isSat(global_graph, pc.getNpc());
-					
-					
+
+
 					// **** instead of passing solution in GG, pass it back in pc.solution Map<String,String>
 					// --- no ---- populate setOfSolution with strings from pc.solution.
 					// after setOfSolutions is rebuilt from global_graph, match TranslateToIGEN.solution<String,String>
 					// back to entries in setOfSolutions
-					
+
 					// report results, return decisionProcedure
-					
-					
-					
-				} 
+
+
+
+				}
 				else if (solver.equals(ABC)) {
 					logger.info ("[isSatisfiable] Using ABC Solver");
 					//decisionProcedure = TranslateToSAT.isSat(global_graph, pc.npc);
@@ -774,7 +756,7 @@ public class SymbolicStringConstraintsGeneral {
 				}
 			}
 			//}
-			
+
 			// MJR: At this point setOfSolution has been rebuilt from the global graph
 			// in the case of IGEN, the global graph did not have solutions encoded in it
 			// add code here to update the setOfSolutions with the solutions from TranslateToIGEN
@@ -785,7 +767,7 @@ public class SymbolicStringConstraintsGeneral {
 					ss.solution = TranslateToIGEN.solution.get(ss.getName());
 				}
 			}
-			
+
 			StringPathCondition.flagSolved = true;
 			//println ("StringPC: " + getSolution());
 			cancelTimer();
