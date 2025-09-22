@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=4.9E-324
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev b754a0305ac7423e9b25fba66388b99d5c823c4e) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev ee183a59bf874ae42294c969fb85ce0f71998fd5) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 edu.boisestate.cs.MAS.CharAtTest.main()
 
-====================================================== search started: 9/17/25 12:35 PM
+====================================================== search started: 9/23/25 2:41 PM
 New sym int s1_1_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int CharAt(CONST_0)_0_ min=0, max=65535
 numeric PC: constraint # = 1
@@ -415,5 +415,5 @@ instructions:       6347
 max memory:         477MB
 loaded code:        classes=81,methods=1618
 
-====================================================== search finished: 9/17/25 12:35 PM
-Runtime(ms) :1129
+====================================================== search finished: 9/23/25 2:41 PM
+Runtime(ms) :924

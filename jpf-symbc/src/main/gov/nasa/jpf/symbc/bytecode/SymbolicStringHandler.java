@@ -98,7 +98,7 @@ public class SymbolicStringHandler {
 				|| cname.equals("java.lang.Char")
 				|| cname.equals("java.lang.Boolean")
 				|| cname.equals("java.lang.Object")) {
-	        
+
 			StackFrame sf = th.getModifiableTopFrame();
 
 			int numStackSlots = invInst.getArgSize();
@@ -118,11 +118,11 @@ public class SymbolicStringHandler {
 					} else {
 						return true;
 					}
-					
+
 				}
 			}
 			return false;
-		}	
+		}
 		else return false;
 	}
 
@@ -315,7 +315,17 @@ public class SymbolicStringHandler {
 					handleIsEmpty(invInst, th);
 					return invInst.getNext(th);
 				}
-			}else if (shortName.equals("toLowerCase")) {
+			} else if(shortName.equals("isLetter")) {
+                ChoiceGenerator<?> cg;
+                if (!th.isFirstStepInsn()) { // first time around
+                    cg = new PCChoiceGenerator(5);
+                    th.getVM().setNextChoiceGenerator(cg);
+                    return invInst;
+                } else {
+                    handleIsLetter(invInst, th);
+                    return invInst.getNext(th);
+                }
+            } else if (shortName.equals("toLowerCase")) {
 				handleToLowerCase(invInst, th);
 			} else if (shortName.equals("toUpperCase")) {
 				handleToUpperCase(invInst, th);
@@ -406,6 +416,48 @@ public class SymbolicStringHandler {
 
 	}
 
+	public void handleToLowerCase(JVMInvokeInstruction invInst, ThreadInfo th) {
+		// throw new RuntimeException("ERROR: symbolic string method not Implemented - ToLowerCase");
+		StackFrame sf = th.getModifiableTopFrame();
+		StringExpression sym_v1 = (StringExpression) sf.getOperandAttr(0);
+		int s1 = sf.pop();
+
+		if (sym_v1 == null) {
+			ElementInfo e1 = th.getElementInfo(s1);
+			String val1 = e1.asString();
+			sym_v1 = new StringConstant(val1);
+		}
+		StringExpression result = sym_v1._toLowerCase();
+
+		ElementInfo  objRef = th.getHeap().newString("", th); /*
+		 * dummy String
+		 * Object
+		 */
+		sf.push(objRef.getObjectRef(), true);
+		sf.setOperandAttr(result);
+	}
+
+	public void handleToUpperCase(JVMInvokeInstruction invInst, ThreadInfo th) {
+		// throw new RuntimeException("ERROR: symbolic string method not Implemented - ToUpperCase");
+		StackFrame sf = th.getModifiableTopFrame();
+		StringExpression sym_v1 = (StringExpression) sf.getOperandAttr(0);
+		int s1 = sf.pop();
+
+		if (sym_v1 == null) {
+			ElementInfo e1 = th.getElementInfo(s1);
+			String val1 = e1.asString();
+			sym_v1 = new StringConstant(val1);
+		}
+		StringExpression result = sym_v1._toUpperCase();
+
+		ElementInfo  objRef = th.getHeap().newString("", th); /*
+		 * dummy String
+		 * Object
+		 */
+		sf.push(objRef.getObjectRef(), true);
+		sf.setOperandAttr(result);
+	}
+
 	private Instruction handleDelete(JVMInvokeInstruction invInst, ThreadInfo th) {
 		StackFrame sf = th.getModifiableTopFrame();
 		IntegerExpression sym_v1 = (IntegerExpression) sf.getOperandAttr(0);
@@ -468,13 +520,11 @@ public class SymbolicStringHandler {
 			int s1 = sf.pop();
 			int s2 = sf.pop();
 
-			StringExpression resultMAS = null;
 			IntegerExpression result = null;
 			if (sym_v1 == null) { // operand 0 is concrete
-				// nps: always true (for now)
+
 				int val = s1;
 				result = sym_v2._charAt(new IntegerConstant(val));
-//				resultMAS = sym_v2._charAt(val);
 			} else {
 
 				if (sym_v2 == null) {
@@ -489,17 +539,11 @@ public class SymbolicStringHandler {
 				//System.out.println("[handleCharAt] Ignoring: " + result.toString());
 				//th.push(0, false);
 			}
-//			ElementInfo objRef = th.getHeap().newString("", th);
-//			sf.push(objRef.getObjectRef(), true);
-//			sf.setOperandAttr(resultMAS);
-
 			sf.push(0, false);
 			sf.setOperandAttr(result);
 
 		}
-//		return bresult; // not used
-		return null;
-
+		return bresult; // not used
 	}
 
 	public void handleLength(JVMInvokeInstruction invInst, ThreadInfo th) {
@@ -549,7 +593,7 @@ public class SymbolicStringHandler {
 			IntegerExpression result = null;
 			if (sym_v1 != null) {
 					if (sym_v2 != null) { // both are symbolic values
-						if (s2char) 
+						if (s2char)
 							result = sym_v1._indexOf((IntegerExpression)sym_v2);
 						else
 							result = sym_v1._indexOf((StringExpression)sym_v2);
@@ -944,10 +988,10 @@ public class SymbolicStringHandler {
 	 */
 
 	public Instruction handleInit(JVMInvokeInstruction invInst,  ThreadInfo th) {
+		StackFrame sf = th.getModifiableTopFrame();
 
 		String cname = invInst.getInvokedMethodClassName();
 		if (cname.equals("java.lang.StringBuilder") || cname.equals("java.lang.StringBuffer")) {
-			StackFrame sf = th.getModifiableTopFrame();
 			StringExpression sym_v1 = (StringExpression) sf.getOperandAttr(0);
 			SymbolicStringBuilder sym_v2 = (SymbolicStringBuilder) sf.getOperandAttr(1);
 			if (sym_v1 == null) {
@@ -959,11 +1003,24 @@ public class SymbolicStringHandler {
 				sf.setOperandAttr(sym_v2);
 				return invInst.getNext();
 			}
-		} else {
-			// Corina TODO: we should allow symbolic string analysis to kick in only when desired
-			//throw new RuntimeException("Warning Symbolic String Analysis: Initialization type not handled in symbc/bytecode/SymbolicStringHandler init");
-			return null;
+		} else if (cname.equals("java.lang.String")) {
+//			System.out.println("stop right here");
+			StringExpression sym_v1 = (StringExpression) sf.getOperandAttr(0);
+			Object sym_v2 = sf.getOperandAttr(1);
+
+			if (sym_v1 != null && sym_v2==null) { // case where a new string is based on a symbolic one
+//				sf.setOperandAttr(1, sym_v1);
+				sf.pop(); /* string object */
+				sf.pop(); /* one Symbolic String Object */
+
+				sf.setOperandAttr(sym_v1);
+				return invInst.getNext();
+			}
+
 		}
+		// Corina TODO: we should allow symbolic string analysis to kick in only when desired
+		//throw new RuntimeException("Warning Symbolic String Analysis: Initialization type not handled in symbc/bytecode/SymbolicStringHandler init");
+		return null;
 	}
 
 	/***************************** Symbolic Big Decimal Routines end ****************/
@@ -1153,6 +1210,29 @@ public class SymbolicStringHandler {
 	}
 
 	public Instruction handleSubString1(JVMInvokeInstruction invInst, ThreadInfo th) {
+		// pc is updated with the pc stored in the choice generator above
+		// get the path condition from the
+		// previous choice generator of the same type
+		ChoiceGenerator<?> cg = th.getVM().getChoiceGenerator();
+		assert (cg instanceof PCChoiceGenerator) : "expected PCChoiceGenerator, got: " + cg;
+		PathCondition pc;
+
+		// pc is updated with the pc stored in the choice generator above
+		// get the path condition from the
+		// previous choice generator of the same type
+
+		ChoiceGenerator<?> prev_cg = cg.getPreviousChoiceGenerator();
+		while (!((prev_cg == null) || (prev_cg instanceof PCChoiceGenerator))) {
+			prev_cg = prev_cg.getPreviousChoiceGenerator();
+		}
+
+		if (prev_cg == null) {
+			pc = new PathCondition();
+		} else {
+			pc = ((PCChoiceGenerator) prev_cg).getCurrentPC();
+		}
+
+		assert pc != null;
 		StackFrame sf = th.getModifiableTopFrame();
 		IntegerExpression sym_v1 = (IntegerExpression) sf.getOperandAttr(0);
 		StringExpression sym_v2 = (StringExpression) sf.getOperandAttr(1);
@@ -1167,6 +1247,13 @@ public class SymbolicStringHandler {
 			if (sym_v1 == null) { // operand 0 is concrete
 				int val = s1;
 				result = sym_v2._subString(val);
+				IntegerExpression strLengthExp = sym_v2._length();
+				pc._addDet(Comparator.GE, strLengthExp, val);
+				if (!pc.simplify()) {// not satisfiable
+					th.getVM().getSystemState().setIgnored(true); //place to raise the runtime exception
+				} else {
+					((PCChoiceGenerator) cg).setCurrentPC(pc);
+				}
 			} else {
 				if (sym_v2 == null) {
 					ElementInfo e1 = th.getElementInfo(s2);
@@ -1176,12 +1263,19 @@ public class SymbolicStringHandler {
 				} else {
 					result = sym_v2._subString(sym_v1);
 				}
+				IntegerExpression strLengthExp = sym_v2._length();
+				pc._addDet(Comparator.GE, strLengthExp, sym_v1);
+				if (!pc.simplify()) {// not satisfiable
+					th.getVM().getSystemState().setIgnored(true);  //place to raise the runtime exception
+				} else {
+					((PCChoiceGenerator) cg).setCurrentPC(pc);
+				}
 			}
 			ElementInfo objRef = th.getHeap().newString("", th); /*
-																																	 * dummy
-																																	 * String
-																																	 * Object
-																																	 */
+			 * dummy
+			 * String
+			 * Object
+			 */
 			sf.push(objRef.getObjectRef(), true);
 			sf.setOperandAttr(result);
 		}
@@ -1189,6 +1283,29 @@ public class SymbolicStringHandler {
 	}
 
 	public Instruction handleSubString2(JVMInvokeInstruction invInst, ThreadInfo th) {
+		// pc is updated with the pc stored in the choice generator above
+		// get the path condition from the
+		// previous choice generator of the same type
+		ChoiceGenerator<?> cg = th.getVM().getChoiceGenerator();
+		assert (cg instanceof PCChoiceGenerator) : "expected PCChoiceGenerator, got: " + cg;
+		PathCondition pc;
+
+		// pc is updated with the pc stored in the choice generator above
+		// get the path condition from the
+		// previous choice generator of the same type
+
+		ChoiceGenerator<?> prev_cg = cg.getPreviousChoiceGenerator();
+		while (!((prev_cg == null) || (prev_cg instanceof PCChoiceGenerator))) {
+			prev_cg = prev_cg.getPreviousChoiceGenerator();
+		}
+
+		if (prev_cg == null) {
+			pc = new PathCondition();
+		} else {
+			pc = ((PCChoiceGenerator) prev_cg).getCurrentPC();
+		}
+
+		assert pc != null;
 		//System.out.println("[SymbolicStringHandler] doing");
 		StackFrame sf = th.getModifiableTopFrame();
 		IntegerExpression sym_v1 = (IntegerExpression) sf.getOperandAttr(0);
@@ -1207,43 +1324,53 @@ public class SymbolicStringHandler {
 				int val = s1;
 				if (sym_v2 == null) { // sym_v3 has to be symbolic
 					int val1 = s2;
-					result = sym_v3._subString(val, val1);
-					//System.out.println("[SymbolicStringHandler] special push");
-					/* Only if both arguments are concrete, something else needs
-					 * to be pushed?
-					 */
-					//sf.push(s3, true); /* symbolic string element */
+					result = sym_v3._subString(val + 1, val1);
 				} else {
 					if (sym_v3 == null) { // only sym_v2 is symbolic
 						ElementInfo e3 = th.getElementInfo(s3);
 						String val2 = e3.asString();
 						sym_v3 = new StringConstant(val2);
-						result = sym_v3._subString(val, sym_v2);
+						result = sym_v3._subString(val + 1, sym_v2);
 					} else {
-						result = sym_v3._subString(val, sym_v2);
+						result = sym_v3._subString(val + 1, sym_v2);
 					}
 				}
+				IntegerExpression strLengthExp = sym_v3._length();
+				pc._addDet(Comparator.GE, strLengthExp, val);
+				if (!pc.simplify()) {// not satisfiable
+					th.getVM().getSystemState().setIgnored(true); //place to raise the runtime exception
+				} else {
+					((PCChoiceGenerator) cg).setCurrentPC(pc);
+				}
 			} else { // sym_v1 is symbolic
+				IntegerExpression endBound = new BinaryLinearIntegerExpression(sym_v1, Operator.PLUS, new IntegerConstant(1));
 				if (sym_v2 == null) {
 					if (sym_v3 == null) {
 						int val1 = s2;
 						ElementInfo e3 = th.getElementInfo(s3);
 						String val2 = e3.asString();
 						sym_v3 = new StringConstant(val2);
-						result = sym_v3._subString(sym_v1, val1);
+						result = sym_v3._subString(endBound, val1);
 					} else {
 						int val1 = s2;
-						result = sym_v3._subString(sym_v1, val1);
+						result = sym_v3._subString(endBound, val1);
 					}
 				} else {
 					if (sym_v3 == null) {
 						ElementInfo e3 = th.getElementInfo(s3);
 						String val2 = e3.asString();
 						sym_v3 = new StringConstant(val2);
-						result = sym_v3._subString(sym_v1, sym_v2);
+						result = sym_v3._subString(endBound, sym_v2);
 					} else {
-						result = sym_v3._subString(sym_v1, sym_v2);
+						result = sym_v3._subString(endBound, sym_v2);
 					}
+				}
+				IntegerExpression strLengthExp = sym_v3._length();
+				pc._addDet(Comparator.GE, strLengthExp, sym_v1);
+				if (!pc.simplify()) {// not satisfiable
+					th.getVM().getSystemState().setIgnored(true);  //place to raise the runtime exception
+				} else {
+					((PCChoiceGenerator) cg).setCurrentPC(pc);
 				}
 			}
 			ElementInfo objRef = th.getHeap().newString("", th);
@@ -1336,48 +1463,6 @@ public class SymbolicStringHandler {
 			sym_v1 = new StringConstant(val1);
 		}
 		StringExpression result = sym_v1._trim();
-
-		ElementInfo  objRef = th.getHeap().newString("", th); /*
-																																 * dummy String
-																																 * Object
-																																 */
-		sf.push(objRef.getObjectRef(), true);
-		sf.setOperandAttr(result);
-	}
-
-	public void handleToLowerCase(JVMInvokeInstruction invInst, ThreadInfo th) {
-		// throw new RuntimeException("ERROR: symbolic string method not Implemented - ToLowerCase");
-		StackFrame sf = th.getModifiableTopFrame();
-		StringExpression sym_v1 = (StringExpression) sf.getOperandAttr(0);
-		int s1 = sf.pop();
-
-		if (sym_v1 == null) {
-			ElementInfo e1 = th.getElementInfo(s1);
-			String val1 = e1.asString();
-			sym_v1 = new StringConstant(val1);
-		}
-		StringExpression result = sym_v1._toLowerCase();
-
-		ElementInfo  objRef = th.getHeap().newString("", th); /*
-																																 * dummy String
-																																 * Object
-																																 */
-		sf.push(objRef.getObjectRef(), true);
-		sf.setOperandAttr(result);
-	}
-
-	public void handleToUpperCase(JVMInvokeInstruction invInst, ThreadInfo th) {
-		// throw new RuntimeException("ERROR: symbolic string method not Implemented - ToUpperCase");
-		StackFrame sf = th.getModifiableTopFrame();
-		StringExpression sym_v1 = (StringExpression) sf.getOperandAttr(0);
-		int s1 = sf.pop();
-
-		if (sym_v1 == null) {
-			ElementInfo e1 = th.getElementInfo(s1);
-			String val1 = e1.asString();
-			sym_v1 = new StringConstant(val1);
-		}
-		StringExpression result = sym_v1._toUpperCase();
 
 		ElementInfo  objRef = th.getHeap().newString("", th); /*
 																																 * dummy String
@@ -1485,7 +1570,6 @@ public class SymbolicStringHandler {
 		return null;
 	}
 	public void handleIsEmpty(JVMInvokeInstruction invInst,  ThreadInfo th) {
-
 		StackFrame sf = th.getModifiableTopFrame();
 		StringExpression sym_v1 = (StringExpression) sf.getOperandAttr(0);
 		if (sym_v1 == null) {
@@ -2278,7 +2362,40 @@ public class SymbolicStringHandler {
 		return null;
 	}
 
+	/**
+	 * handle the case where we have a String.valueOf(charArrayObject)
+	 * TODO: should handle runtime exception here.
+	 * @param invInst
+	 * @param th
+	 * @return
+	 */
 	public Instruction handleCharArrayValueOf(JVMInvokeInstruction invInst, ThreadInfo th) {
+		StackFrame sf = th.getTopFrame();
+		ElementInfo ei = th.getElementInfo(sf.peek());
+		StringSymbolic symbolicStr = new StringSymbolic();
+		StringExpression resultExpr = symbolicStr;
+		if (ei != null
+				&& ei.hasFieldAttr()) { //to handle the case where we have String.valueOf(O) where O is a concrete object that has symbolic fields, i.e., a charArray where the charArray is concrete but the chars are symbolic
+			//we make a new symbolic string that is constrained by the elements of the char array.
+			char[] concreteChar = ei.asCharArray();
+			for (int i = 0; i < concreteChar.length; i++) {
+				Object fieldAttr = ei.getElementAttr(i);
+				if (fieldAttr != null) {
+					resultExpr = resultExpr._concat((IntegerExpression) fieldAttr);
+				} else { //some of the fields are concrete
+					resultExpr = resultExpr._concat(new StringConstant(Character.toString(concreteChar[i])));
+				}
+			}
+			sf.pop();
+			int objRef = th.getHeap().newString("", th).getObjectRef(); /*
+			 * dummy
+			 * String
+			 * Object
+			 */
+			sf.push(objRef, true);
+			sf.setOperandAttr(resultExpr);
+			return null;
+		}
 		throw new RuntimeException("ERROR: symbolic string method not Implemented - CharArrayValueof");
 	}
 

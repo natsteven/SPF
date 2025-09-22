@@ -256,9 +256,9 @@ class Manager extends TranslationManager {
                 }
             });
 
-            map(StringOrOperation.REPLACE, ReplaceTemplate.apply("(str.replace_all"));
-            map(StringOrOperation.REPLACEALL, ReplaceTemplate.apply("(str.replace_all"));
-            map(StringOrOperation.REPLACEFIRST, ReplaceTemplate.apply("(str.replace"));
+			map(StringOrOperation.REPLACE, ReplaceTemplate.apply("(str.replace"));
+			map(StringOrOperation.REPLACEALL, ReplaceTemplate.apply("(replaceAll"));
+			map(StringOrOperation.REPLACEFIRST, ReplaceTemplate.apply("(replaceFirst"));
 
             map(StringOrOperation.TRIM, (expr) -> {
                 final DerivedStringExpression dse = (DerivedStringExpression) expr;
@@ -317,29 +317,33 @@ class Manager extends TranslationManager {
                 return arg;
             });
 
-            map(StringOrOperation.VALUEOF, (expr) -> {
-                String arg = null;
-                final DerivedStringExpression dse = (DerivedStringExpression) expr;
-                if (dse.oprlist[0] instanceof StringExpression) {
-                    arg = manager.strExpr.collect((StringExpression) dse.oprlist[0]);
-                } else if (dse.oprlist[0] instanceof IntegerExpression) {
-                    if ((dse.oprlist[0] instanceof SymbolicInteger) && !(dse.oprlist[0] instanceof SymbolicCharAtInteger)) {
-                        SymbolicInteger op = (SymbolicInteger) dse.oprlist[0];
-                        if (op._min == 0 && op._max == 65535)
-                            arg = "(str.from_code " + manager.numExpr.collect((IntegerExpression) dse.oprlist[0]) + ")";
-                        else
-                            arg = ValueOfInt.apply(expr);
-                    } else if (dse.oprlist[0] instanceof SymbolicCharAtInteger) {
-                        arg = manager.numExpr.collect((IntegerExpression) dse.oprlist[0]);
-                    } else if (dse.oprlist[0] instanceof BinaryLinearIntegerExpression) {
-                        BinaryLinearIntegerExpression op = (BinaryLinearIntegerExpression) dse.oprlist[0];
-                        if (op.getOp().name().equals("AND") && (op.getLeft() instanceof SymbolicCharAtInteger || op.getRight() instanceof SymbolicCharAtInteger)) {
-                            arg = manager.numExpr.collect((IntegerExpression) dse.oprlist[0]);
-                        } else
-                            arg = ValueOfInt.apply(expr);
-                    } else
-                        arg = ValueOfInt.apply(expr);
-                }
+			map(StringOrOperation.VALUEOF, (expr) -> {
+				String arg = null;
+				final DerivedStringExpression dse = (DerivedStringExpression) expr;
+				if (dse.oprlist[0] instanceof StringExpression) {
+					arg = manager.strExpr.collect((StringExpression) dse.oprlist[0]);
+				} else if (dse.oprlist[0] instanceof IntegerExpression) {
+					if ((dse.oprlist[0] instanceof SymbolicInteger) && !(dse.oprlist[0] instanceof SymbolicCharAtInteger)) {
+						SymbolicInteger op = (SymbolicInteger)dse.oprlist[0];
+						if(op._min == 0 && op._max == 65535)
+							arg = "(str.from_code " + manager.numExpr.collect((IntegerExpression) dse.oprlist[0]) + ")";
+						else
+							arg = ValueOfInt.apply(expr);
+					}
+					else if(dse.oprlist[0] instanceof SymbolicCharAtInteger){
+						arg = manager.numExpr.collect((IntegerExpression) dse.oprlist[0]);
+					}
+					else if (dse.oprlist[0] instanceof BinaryLinearIntegerExpression){
+						BinaryLinearIntegerExpression op = (BinaryLinearIntegerExpression)dse.oprlist[0];
+						if(op.getOp().name().equals("AND") && (op.getLeft() instanceof SymbolicCharAtInteger || op.getRight() instanceof SymbolicCharAtInteger)){
+							arg = manager.numExpr.collect((IntegerExpression) dse.oprlist[0]);
+						}
+						else
+							arg = ValueOfInt.apply(expr);
+					}
+					else
+						arg = ValueOfInt.apply(expr);
+				}
 
                 try {
                     Integer.parseInt(arg);
@@ -385,18 +389,63 @@ class Manager extends TranslationManager {
             });
         }
     }
+				try {
+					Integer.parseInt(arg);
+					return "\"" + arg + "\"";
+				} catch (NumberFormatException e) {
+					return arg;
+				}
+			});
 
-    public Manager() {
-        super();
-        this.numCons = new NumericConstraints(this);
-        this.numExpr = new NumericExpressions(this);
-        this.strCons = new StringConstraints(this);
-        this.strExpr = new StringExpressions(this);
-    }
+			map(StringOrOperation.DELETE, (expr) -> {
+				final DerivedStringExpression dse = (DerivedStringExpression) expr;
+				final String in_str = manager.strExpr.collect((StringExpression) dse.oprlist[0]);
+				final String arg1 = manager.numExpr.collect((IntegerExpression) dse.oprlist[1]);
+				final String arg2 = manager.numExpr.collect((IntegerExpression) dse.oprlist[2]);
+				Results.constraints.add("(assert (<= " + arg2 + " (str.len " + in_str + ")))");
+				return "(str.++ (str.substr " + in_str + " 0 " + arg1 + ") (str.substr " + in_str + " " + arg2 + " (str.len " + in_str + ")))";
+			});
+			map(StringOrOperation.INSERT, (expr) -> {
+				final DerivedStringExpression dse = (DerivedStringExpression) expr;
+				final String in_str = manager.strExpr.collect((StringExpression) dse.oprlist[0]);
+				final String insert_str = manager.strExpr.collect((StringExpression) dse.oprlist[1]);
+				final String arg1 = manager.numExpr.collect((IntegerExpression) dse.oprlist[2]);
+				Results.constraints.add("(assert (<= " + arg1 + " (str.len " + in_str + ")))");
+				return "(str.++ (str.substr " + in_str + " 0 " + arg1 + ") " + insert_str + " (str.substr " + in_str + " " + arg1 + " (str.len " + in_str + ")))";
+			});
+			map(StringOrOperation.REVERSE, (expr) -> {
+				final DerivedStringExpression dse = (DerivedStringExpression) expr;
+				final String in_str = manager.strExpr.collect(dse.right);
+				String var = "out_str";
+				Results.stringVariables.add("out_str");
+				Results.constraints.add(
+						"(define-fun-rec reverse ((x String) (y String)) Bool " +
+								"(or (and (= x \"\") (= y \"\")) " +
+								"(and (not (= x \"\")) (not (= y \"\")) " +
+								"(let ((x_head (str.at x 0)) " +
+								"(y_head (str.at y (- (str.len y) 1))) " +
+								"(x_tail (str.substr x 1 (- (str.len x) 1))) " +
+								"(y_tail (str.substr y 0 (- (str.len y) 1)))) " +
+								"(and (= x_head y_head) " +
+								"(reverse x_tail y_tail))))))" +
+								"\n(assert (reverse " + in_str + " out_str))"
+				);
+				return var;
+			});
+		}
+	}
+
+	public Manager() {
+		super();
+		this.numCons = new NumericConstraints(this);
+		this.numExpr = new NumericExpressions(this);
+		this.strCons = new StringConstraints(this);
+		this.strExpr = new StringExpressions(this);
+	}
 }
 
 public class Z3Translator extends Translator<Manager> {
-    public Z3Translator() {
-        super(new Manager());
-    }
+	public Z3Translator() {
+		super(new Manager());
+	}
 }
