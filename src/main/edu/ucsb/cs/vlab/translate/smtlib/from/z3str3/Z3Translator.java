@@ -101,20 +101,19 @@ class Manager extends TranslationManager {
 				Operator op = ((BinaryLinearIntegerExpression) x).getOp();
 				IntegerExpression left = ((BinaryLinearIntegerExpression) x).getLeft();
 				IntegerExpression right = ((BinaryLinearIntegerExpression) x).getRight();
-				if(op.name().equals("AND")){
-					if(left instanceof SymbolicCharAtInteger
+				if (op.name().equals("AND")) {
+					if (left instanceof SymbolicCharAtInteger
 							&& right instanceof IntegerConstant
 							&& ((IntegerConstant)right).value() == 65535) {
+							&& ((IntegerConstant) right).value() == 65535) {
 						return evaluateExpression(SymbolicCharAtInteger.class, left, "str.at $getExpression %getIndex");
-					}
-					else if(right instanceof SymbolicCharAtInteger
+					} else if (right instanceof SymbolicCharAtInteger
 							&& left instanceof IntegerConstant
-							&& ((IntegerConstant) left).value() == 65535){
+							&& ((IntegerConstant) left).value() == 65535) {
 						return evaluateExpression(SymbolicCharAtInteger.class, right, "str.at $getExpression %getIndex");
-					}
-					else
+					} else
 						return evaluateExpression(BinaryLinearIntegerExpression.class, x, "str.from_code ( bv2int ( _getOp (( _ int2bv 32) ( str.to_code %getLeft )) (( _ int2bv 32 ) %getRight )))");
-				}else
+				} else
 					return evaluateExpression(BinaryLinearIntegerExpression.class, x, "_getOp %getLeft %getRight");
 			});
 		}
@@ -131,7 +130,7 @@ class Manager extends TranslationManager {
 		public void init() {
 			final Function<StringConstraint, String> IsInteger = (x) -> {
 				final String in_str = manager.strExpr.collect((StringExpression) x.getRight());
-				return "(or (not (= (str.to_int " + in_str + ") -1)) (and (= (str.at "+ in_str +" 0) \"-\") (not (= (str.to_int (str.substr " + in_str + " 1 (str.len " + in_str + "))) -1))))";
+				return "(or (not (= (str.to_int " + in_str + ") -1)) (and (= (str.at " + in_str + " 0) \"-\") (not (= (str.to_int (str.substr " + in_str + " 1 (str.len " + in_str + "))) -1))))";
 			};
 
 			final Function<String, Function<StringConstraint, String>> RightLeftTemplate = (prefix) -> {
