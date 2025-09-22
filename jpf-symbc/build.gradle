@@ -29,6 +29,7 @@ apply from: "gradle/distribution.gradle"
 apply from: "gradle/source-sets.gradle"
 apply from: "gradle/build-resources.gradle"
 
+
 dependencies {
 
     // Path of jpf-core build directory is declared as a dependencies for jpf-symbc (Line 35-37)
@@ -37,7 +38,7 @@ dependencies {
     def libs = extLibs + jpfLibs
 
     //Following dependencies are pulled from mavenCentral() repositories
-    
+
     //implementation 'org.opt4j:opt4j-core:3.1.4' //Tests are falling after implimetation
     implementation 'org.sat4j:org.sat4j.core:2.3.1'
     implementation 'jaxen:jaxen:1.1'
@@ -48,7 +49,7 @@ dependencies {
     implementation 'bcel:bcel:5.1'
     implementation 'com.googlecode.aima-java:aima-core:0.10.5'
     implementation 'com.martiansoftware:jsap:2.1'
-    
+
     implementation libs
     classesImplementation libs
     peersImplementation libs
@@ -56,7 +57,7 @@ dependencies {
     testImplementation libs
 
     testImplementation "junit:junit:4.12"
-    
+
 }
 
 task compile {
@@ -100,7 +101,7 @@ task createJpfJar(type: Jar) {
     from sourceSets.peers.java.outputDir
     from sourceSets.annotations.java.outputDir
     from sourceSets.classes.java.outputDir
-    from sourceSets.main.resources.srcDirs 
+    from sourceSets.main.resources.srcDirs
 
     manifest {
         attributes "Implementation-Title": "Symbolic Pathfinder system"
@@ -151,13 +152,12 @@ test {
     exclude "**/TestExJPF.class"
     exclude "**/TestLazy*.class"
     exclude "**/TestPathCondition.class"
-//    exclude "**/strings/*.class"
-//    exclude "/gov/nasa/jpf/symbc/strings/*.class"
-//    exclude "**/Test*\$*.class"
+    exclude "**/strings/*.class"
+    exclude "/gov/nasa/jpf/symbc/strings/*.class"
+    exclude "**/Test*\$*.class"
     exclude "**/TestSymbolicListener.class"
     include "**/TestSymbolicOutput.class"
     include "**/TestSymbolicJPF.class"
-//    include "**/strings/TestABCSymString.class"
 
     testLogging {
         events "passed", "skipped", "failed"
@@ -177,8 +177,8 @@ test {
     }
 }
 
-/* This task is provided by the "maven-publish" plugin and it will publish 
-   the Jars for local repository --> 'Users/.m2/gov/nasa' 
+/* This task is provided by the "maven-publish" plugin and it will publish
+   the Jars for local repository --> 'Users/.m2/gov/nasa'
     */
 
 publishing {
