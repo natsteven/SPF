@@ -2,31 +2,23 @@
 (declare-const s1_1 String)
 (declare-const s2_2 String)
 
-(assert (not (= (str.substr s1_1 5 (- 10 5)) s2_2)))
+(assert (not (= (str.substr s1_1 5 (- 11 5)) s2_2)))
+(assert (>= (str.len s1_1) 10))
 ------------------------------------
 z3str3:
 Satisfiable: true
-s1_1 => ""
-s2_2 => "K"
-
-MAS:
-sat,
-3: "AAAAAAAAAA"
-5: ""
+s1_1 => "BCDEFAGHIJKL"
+s2_2 => ""
 
 ************************************
 (declare-const s1_1 String)
 (declare-const s2_2 String)
 
-(assert (= (str.substr s1_1 5 (- 10 5)) s2_2))
+(assert (= (str.substr s1_1 5 (- 11 5)) s2_2))
+(assert (>= (str.len s1_1) 10))
 ------------------------------------
 z3str3:
 Satisfiable: true
-s1_1 => ""
-s2_2 => ""
-
-MAS:
-sat,
-3: "AAAAAAAAAA"
-5: "AAAAA"
+s1_1 => "ABCDEFGHIJ"
+s2_2 => "FGHIJ"
 

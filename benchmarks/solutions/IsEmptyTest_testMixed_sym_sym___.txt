@@ -1,74 +1,59 @@
 ************************************
-
-------------------------------------
-z3str3:
-Satisfiable: true
-
-MAS:
-unsat
-
-************************************
 (declare-const s1_1 String)
 (declare-const s2_2 String)
 
-(assert (not (= 0 (str.len  s2_2))))
 (assert (not (str.contains s1_1 s2_2)))
-------------------------------------
-z3str3:
-Satisfiable: true
-s1_1 => ""
-s2_2 => "A"
-
-MAS:
-sat,
-1: ""
-2: "A"
-
-************************************
-(declare-const s1_1 String)
-(declare-const s2_2 String)
-
-(assert (= 0 (str.len  s2_2)))
-(assert (not (str.contains s1_1 s2_2)))
+(assert (= (str.len s2_2) 0))
 ------------------------------------
 z3str3:
 Satisfiable: false
 
-MAS:
-unsat
-
 ************************************
 (declare-const s1_1 String)
 (declare-const s2_2 String)
 
-(assert (= 0 (str.len  s2_2)))
 (assert (str.contains s1_1 s2_2))
+(assert (not (= (str.len s2_2) 0)))
 ------------------------------------
 z3str3:
 Satisfiable: true
-s1_1 => ""
-s2_2 => ""
-
-MAS:
-sat,
-1: ""
-2: ""
+s1_1 => "A"
+s2_2 => "A"
 
 ************************************
 (declare-const s1_1 String)
 (declare-const s2_2 String)
 
 (assert (str.contains s1_1 s2_2))
+(assert (= (str.len s2_2) 0))
 ------------------------------------
 z3str3:
 Satisfiable: true
 s1_1 => ""
 s2_2 => ""
 
-MAS:
-sat,
-1: ""
-2: ""
+************************************
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (not (str.contains s1_1 s2_2)))
+(assert (not (= (str.len s2_2) 0)))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => ""
+s2_2 => "A"
+
+************************************
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (str.contains s1_1 s2_2))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => ""
+s2_2 => ""
 
 ************************************
 (declare-const s1_1 String)
@@ -79,23 +64,6 @@ sat,
 z3str3:
 Satisfiable: true
 s1_1 => ""
-s2_2 => "A"
-
-MAS:
-sat,
-1: ""
-2: "A"
-
-************************************
-(declare-const s1_1 String)
-(declare-const s2_2 String)
-
-(assert (not (= 0 (str.len  s2_2))))
-(assert (str.contains s1_1 s2_2))
-------------------------------------
-z3str3:
-Satisfiable: true
-s1_1 => "A"
 s2_2 => "A"
 
 MAS:

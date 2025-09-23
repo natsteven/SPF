@@ -3,16 +3,16 @@
  * Administrator of the National Aeronautics and Space Administration.
  * All rights reserved.
  *
- * Symbolic Pathfinder (jpf-symbc) is licensed under the Apache License, 
+ * Symbolic Pathfinder (jpf-symbc) is licensed under the Apache License,
  * Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
- * 
- *        http://www.apache.org/licenses/LICENSE-2.0. 
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0.
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and 
+ * See the License for the specific language governing permissions and
  * limitations under the License.
  */
 
@@ -56,114 +56,110 @@ import java.util.Map.Entry;
 import gov.nasa.jpf.symbc.numeric.PathCondition;
 
 public class StringPathCondition {
-	  static boolean flagSolved = false;
+	static boolean flagSolved = false;
 
-	  public String smtlib = "";
-	  public Map<String, String> solution = Collections.<String,String>emptyMap();
-	  public StringConstraint header;
-	  int count = 0;
+	public String smtlib = "";
+	public Map<String, String> solution = Collections.<String, String>emptyMap();
+	public StringConstraint header;
+	int count = 0;
 
-	  private PathCondition npc = null;
+	private PathCondition npc = null;
 
-	  public StringPathCondition(PathCondition npc) {
-	    this.setNpc(npc);
-	    header = null;
-	  }
+	public StringPathCondition(PathCondition npc) {
+		this.setNpc(npc);
+		header = null;
+	}
 
-	  public StringPathCondition make_copy(PathCondition npc) {
-	    StringPathCondition pc_new = new StringPathCondition(npc);
-	    pc_new.header = this.header;
-	    pc_new.count = this.count;
-	    return pc_new;
-	  }
+	public StringPathCondition make_copy(PathCondition npc) {
+		StringPathCondition pc_new = new StringPathCondition(npc);
+		pc_new.header = this.header;
+		pc_new.count = this.count;
+		return pc_new;
+	}
 
-	  // constraints on strings
-	  public void _addDet(StringComparator c, StringExpression l, String r) {
-	    flagSolved = false; // C
-	    _addDet(c, l, new StringConstant(r));
-	  }
+	// constraints on strings
+	public void _addDet(StringComparator c, StringExpression l, String r) {
+		flagSolved = false; // C
+		_addDet(c, l, new StringConstant(r));
+	}
 
-	  public void _addDet(StringComparator c, String l, StringExpression r) {
-	    flagSolved = false; // C
-	    _addDet(c, new StringConstant(l), r);
-	  }
+	public void _addDet(StringComparator c, String l, StringExpression r) {
+		flagSolved = false; // C
+		_addDet(c, new StringConstant(l), r);
+	}
 
-	  public void _addDet(StringComparator c,  StringExpression r) {
-		    StringConstraint t;
+	public void _addDet(StringComparator c, StringExpression r) {
+		StringConstraint t;
 
-		    flagSolved = false; // C
+		flagSolved = false; // C
 
-		    t = new StringConstraint(c, r);
+		t = new StringConstraint(c, r);
 
-		    if (!hasConstraint(t)) {
-		      t.and = header;
-		      header = t;
-		      count++;
-		    }
-		  }
+		if (!hasConstraint(t)) {
+			t.and = header;
+			header = t;
+			count++;
+		}
+	}
 
-	  public void _addDet(StringComparator c, StringExpression l, StringExpression r) {
-	    StringConstraint t;
+	public void _addDet(StringComparator c, StringExpression l, StringExpression r) {
+		StringConstraint t;
 
-	    flagSolved = false; // C
+		flagSolved = false; // C
 
-	    t = new StringConstraint(r, c, l);
+		t = new StringConstraint(r, c, l);
 
-	    if (!hasConstraint(t)) {
-	      t.and = header;
-	      header = t;
-	      count++;
-	    }
-	  }
+		if (!hasConstraint(t)) {
+			t.and = header;
+			header = t;
+			count++;
+		}
+	}
 
-	  public int count() {
-	    return count;
-	  }
+	public int count() {
+		return count;
+	}
 
-	  public boolean hasConstraint(StringConstraint c) {
-	    StringConstraint t = header;
+	public boolean hasConstraint(StringConstraint c) {
+		StringConstraint t = header;
 
-	    while (t != null) {
-	      if (c.equals(t)) {
-	        return true;
-	      }
+		while (t != null) {
+			if (c.equals(t)) {
+				return true;
+			}
 
-	      t = t.and;
-	    }
-	    return false;
-	  }
+			t = t.and;
+		}
+		return false;
+	}
 
-	  public boolean solve() {// warning: solve calls simplify
-		  SymbolicStringConstraintsGeneral solver = new SymbolicStringConstraintsGeneral();
-		  boolean result = solver.isSatisfiable(this);
-		  StringPathCondition.flagSolved = result;
-		  return result;
-	  }
+	public boolean solve() {// warning: solve calls simplify
+		SymbolicStringConstraintsGeneral solver = new SymbolicStringConstraintsGeneral();
+		boolean result = solver.isSatisfiable(this);
+		StringPathCondition.flagSolved = result;
+		return result;
+	}
 
-	  public boolean simplify() {
-	    SymbolicStringConstraintsGeneral solver = new SymbolicStringConstraintsGeneral();
-	    boolean result = solver.isSatisfiable(this);
-	    return result;
-	  }
+	public boolean simplify() {
+		SymbolicStringConstraintsGeneral solver = new SymbolicStringConstraintsGeneral();
+		boolean result = solver.isSatisfiable(this);
+		return result;
+	}
 
-	  public String stringPC() {
-	    return "SPC # = " + count + ((header == null) ? "" : "\n" + header.stringPC()) +"\n"
-	    		+ "NPC "+npc.stringPC();
-	  }
-
-	  public String stringSPC() {
-		    return header.stringPC();
-		  }
-
-	  public String toString() {
-			return "SPC # = " + count + ((header == null) ? "" : "\n" + header.toString()) +"\n"
-					+ "NPC "+npc.toString();
-	  }
-
+	public String stringPC() {
+		return "SPC # = " + count + ((header == null) ? "" : "\n" + header.stringPC()) + "\n"
+				+ "NPC " + npc.stringPC();
+	}
 
 	public String stringSPC() {
 		return header.stringPC();
 	}
+
+	public String toString() {
+		return "SPC # = " + count + ((header == null) ? "" : "\n" + header.toString()) + "\n"
+				+ "NPC " + npc.toString();
+	}
+
 
 	public PathCondition getNpc() {
 		return npc;
@@ -172,20 +168,19 @@ public class StringPathCondition {
 	public void setNpc(PathCondition npc) {
 		this.npc = npc;
 	}
-	
-	public Map<String, String> getSolution(){
+
+	public Map<String, String> getSolution() {
 		return this.solution;
 	}
-	
 
-	public String printableStringSolution(){
+
+	public String printableStringSolution() {
 		StringBuilder b = new StringBuilder();
 		for (Entry<String, String> sol : solution.entrySet()) {
 			b.append(sol.getKey()).append(" : \"").append(sol.getValue()).append("\"");
-	    }
+		}
 		return b.toString();
 	}
-	
-	
+
 
 }
