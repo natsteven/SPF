@@ -458,19 +458,14 @@ public class SymbolicStringConstraintsGeneral {
 			return dpresult.isSAT();
 		}
 
-		else if(solver.equals(Z3STR3)){
-			System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-			System.out.println("Calling Z3str3\n");
-			final Output dpresult = TranslateToZ3str3.solve(pc);
-			constraintCount = constraintCount + 1;
-			return dpresult.isSAT();
-		}
 		else if(solver.equals(MAS)) {
 			System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 			System.out.println("Calling MAS\n");
 			final SolutionSet<Model_Acyclic_Inverse> result = MASInterface.solve(pc);
 			if (result == null) {
 				System.err.println("MAS returned null, returning false");
+				constraintCount = constraintCount + 1;
+				System.out.println("************************************");
 				return false;
 			}
 			constraintCount = constraintCount + 1;
