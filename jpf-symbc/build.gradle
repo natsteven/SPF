@@ -223,6 +223,36 @@ tasks.register('testMAS', Test) {
     }
 }
 
+tasks.register('testSV', Test) {
+    description = "Runs the SV tests."
+
+    dependsOn buildJars
+
+    forkEvery = 1
+    enableAssertions = true
+    maxHeapSize = "1024m"
+    ignoreFailures = true
+
+    include "**/TestSV.class"
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+
+    afterSuite { testDescriptor, result ->
+        if (!testDescriptor.parent) {
+            println "Test Execution: ${result.resultType}"
+
+            def summaryFields = ["${result.testCount} tests",
+                                 "${result.successfulTestCount} passed",
+                                 "${result.failedTestCount} failed",
+                                 "${result.skippedTestCount} skipped"]
+
+            println "Summary: " + summaryFields.join(", ")
+        }
+    }
+}
+
 /* This task is provided by the "maven-publish" plugin and it will publish 
    the Jars for local repository --> 'Users/.m2/gov/nasa' 
     */

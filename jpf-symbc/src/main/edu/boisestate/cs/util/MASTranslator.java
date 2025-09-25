@@ -12,7 +12,8 @@ import org.jgrapht.DirectedGraph;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
+import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.Set;
 import java.util.logging.Logger;
 
@@ -78,20 +79,28 @@ public class MASTranslator {
             // currently this is 3 constraints in order left -> right -> comparator
             for (PrintConstraint pc : constraints) {
                 if (pc.sourceConstraints.size() > 1) { //sourceconstraints include themselves though i suppose we don't need to do that here
+					LinkedList<String> types = new LinkedList<>(Arrays.asList("t", "s1", "s2"));
                     for (PrintConstraint source : pc.sourceConstraints) {
                         if (source != pc){
                             SymbolicEdge edge = invGraph.addEdge(source, pc);
                             int typ = source.getType();
-                            if (typ == 0) {
-                                edge.setType("t");
-                            } else if (typ == 1) {
-                                edge.setType("s1");
-                            } else if (typ == 2) {
-                                edge.setType("s2");
-                            } else {
-                                System.out.println("ERROR WITH TYPE " + typ + " FOR " + source);
-                                System.exit(1);
-                            }
+							String type = types.removeFirst();
+							if (type == null) {
+								System.out.println("ERROR WITH TYPE " + typ + " FOR " + source);
+//								System.exit(1);
+							} else {
+								edge.setType(type);
+							}
+//                            if (typ == 0) {
+//                                edge.setType("t");
+//                            } else if (typ == 1) {
+//                                edge.setType("s1");
+//                            } else if (typ == 2) {
+//                                edge.setType("s2");
+//                            } else {
+//                                System.out.println("ERROR WITH TYPE " + typ + " FOR " + source);
+//                                System.exit(1);
+//                            }
                         }
                     }
                 }

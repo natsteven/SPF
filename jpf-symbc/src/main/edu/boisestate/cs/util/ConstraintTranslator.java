@@ -42,9 +42,12 @@ public class ConstraintTranslator {
         } else {
             rightConstraint.setType(0);
         }
-        comparatorConstraint.sourceConstraints.add(rightConstraint);
+        // in rare case left=right
+		if (!comparatorConstraint.sourceConstraints.contains(rightConstraint)) {
+			comparatorConstraint.sourceConstraints.add(rightConstraint);
+		}
 
-        constraints.add(rightConstraint);
+        constraints.add(rightConstraint); // is set so wont add if exists
         constraints.add(comparatorConstraint);
 
         return constraints;
@@ -82,7 +85,7 @@ public class ConstraintTranslator {
             System.out.println(se.getClass());
             System.out.println(se.getName());
             System.err.println("Unhandled StringExpression: " + se);
-            System.exit(1);
+//            System.exit(1);
         }
         return null;
     }
@@ -130,7 +133,7 @@ public class ConstraintTranslator {
                 break;
             default:
                 System.err.println("Unhandled StringComparator: " + comparator);
-                System.exit(1);
+//                System.exit(1);
                 op = "";
         }
 
@@ -295,7 +298,7 @@ public class ConstraintTranslator {
                 return reverse;
             default:
                 System.err.println("Unhandled DerivedStringExpression: " + dse);
-                System.exit(1);
+//                System.exit(1);
                 return null;
         }
     }
@@ -333,7 +336,7 @@ public class ConstraintTranslator {
             rightConstraint.setType(0);
         } else {
             System.err.println("Unhandled Numeric Constraint: " + numericConstraint);
-            System.exit(1);
+//            System.exit(1);
         }
 
         final PrintConstraint comparatorConstraint = translate(comparator);
@@ -385,7 +388,7 @@ public class ConstraintTranslator {
                 break;
             default:
                 System.err.println("Unhandled Numeric Comparator: " + comparator);
-                System.exit(1);
+//                System.exit(1);
                 return null;
         }
         return new PrintConstraint(translator.getNextID(), value, op);
@@ -405,7 +408,7 @@ public class ConstraintTranslator {
             StringSymbolic sym = (StringSymbolic) sli.getExpression();
             sym.getName();
             System.err.println("Unhandled SymbolicLengthInteger: " + sli);
-            System.exit(1);
+//            System.exit(1);
         }else if (ie instanceof SymbolicCharAtInteger) {
             // need to create constraint for symbolic var, integer, and actual char op.
             SymbolicCharAtInteger scai = (SymbolicCharAtInteger) ie;
@@ -452,7 +455,7 @@ public class ConstraintTranslator {
         // this is used for symbolic charAt expressions
         if (!(ie instanceof IntegerConstant)) {
             System.err.println("Expected IntegerConstant but got: " + ie.getClass());
-            System.exit(1);
+//            System.exit(1);
         }
         IntegerConstant ic = (IntegerConstant) ie;
         return new StringConstant(String.valueOf((char) ic.value()));

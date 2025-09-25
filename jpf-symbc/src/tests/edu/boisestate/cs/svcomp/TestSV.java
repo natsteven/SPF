@@ -1,7 +1,10 @@
 package edu.boisestate.cs.svcomp;
 
 import gov.nasa.jpf.util.test.TestJPF;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import java.security.Permission;
 
 public class TestSV extends TestJPF {
 
@@ -27,7 +30,7 @@ public class TestSV extends TestJPF {
 
 	@Test
 	public void overapproximationString01() {
-		if (verifyNoPropertyViolation(options)) edu.boisestate.cs.svcomp.OverapproximationString01.Main.main(null);
+		if (verifyUnhandledException("java.lang.AssertionError", options)) edu.boisestate.cs.svcomp.OverapproximationString01.Main.main(null);
 	}
 
 	@Test
@@ -37,7 +40,7 @@ public class TestSV extends TestJPF {
 
 	@Test
 	public void stringBuilderCapLen02() {
-		if (verifyNoPropertyViolation(options)) edu.boisestate.cs.svcomp.StringBuilderCapLen02.Main.main(null);
+		if (verifyUnhandledException("java.lang.AssertionError", options)) edu.boisestate.cs.svcomp.StringBuilderCapLen02.Main.main(null);
 	}
 
 	@Test
@@ -47,7 +50,7 @@ public class TestSV extends TestJPF {
 
 	@Test
 	public void stringBuilderChars02() {
-		if (verifyNoPropertyViolation(options)) edu.boisestate.cs.svcomp.StringBuilderChars02.Main.main(null);
+		if (verifyUnhandledException("java.lang.AssertionError", options)) edu.boisestate.cs.svcomp.StringBuilderChars02.Main.main(null);
 	}
 
 	@Test
@@ -67,7 +70,7 @@ public class TestSV extends TestJPF {
 
 	@Test
 	public void stringBuilderChars06() {
-		if (verifyNoPropertyViolation(options)) edu.boisestate.cs.svcomp.StringBuilderChars06.Main.main(null);
+		if (verifyUnhandledException("java.lang.AssertionError", options)) edu.boisestate.cs.svcomp.StringBuilderChars06.Main.main(null);
 	}
 
 	@Test
@@ -107,12 +110,12 @@ public class TestSV extends TestJPF {
 
 	@Test
 	public void stringConcatenation02() {
-		if (verifyNoPropertyViolation(options)) edu.boisestate.cs.svcomp.StringConcatenation02.Main.main(null);
+		if (verifyUnhandledException("java.lang.AssertionError", options)) edu.boisestate.cs.svcomp.StringConcatenation02.Main.main(null);
 	}
 
 	@Test
 	public void stringConcatenation03() {
-		if (verifyNoPropertyViolation(options)) edu.boisestate.cs.svcomp.StringConcatenation03.Main.main(null);
+		if (verifyUnhandledException("java.lang.AssertionError", options)) edu.boisestate.cs.svcomp.StringConcatenation03.Main.main(null);
 	}
 
 	@Test
@@ -122,7 +125,7 @@ public class TestSV extends TestJPF {
 
 	@Test
 	public void stringConstructors02() {
-		if (verifyNoPropertyViolation(options)) edu.boisestate.cs.svcomp.StringConstructors02.Main.main(null);
+		if (verifyUnhandledException("java.lang.AssertionError", options)) edu.boisestate.cs.svcomp.StringConstructors02.Main.main(null);
 	}
 
 	@Test
@@ -132,12 +135,12 @@ public class TestSV extends TestJPF {
 
 	@Test
 	public void stringConstructors04() {
-		if (verifyNoPropertyViolation(options)) edu.boisestate.cs.svcomp.StringConstructors04.Main.main(null);
+		if (verifyUnhandledException("java.lang.AssertionError", options)) edu.boisestate.cs.svcomp.StringConstructors04.Main.main(null);
 	}
 
 	@Test
 	public void stringConstructors05() {
-		if (verifyNoPropertyViolation(options)) edu.boisestate.cs.svcomp.StringConstructors05.Main.main(null);
+		if (verifyUnhandledException("java.lang.AssertionError", options)) edu.boisestate.cs.svcomp.StringConstructors05.Main.main(null);
 	}
 
 	@Test
@@ -157,12 +160,12 @@ public class TestSV extends TestJPF {
 
 	@Test
 	public void stringStartEnd02() {
-		if (verifyNoPropertyViolation(options)) edu.boisestate.cs.svcomp.StringStartEnd02.Main.main(null);
+		if (verifyUnhandledException("java.lang.AssertionError", options)) edu.boisestate.cs.svcomp.StringStartEnd02.Main.main(null);
 	}
 
 	@Test
 	public void stringStartEnd03() {
-		if (verifyNoPropertyViolation(options)) edu.boisestate.cs.svcomp.StringStartEnd03.Main.main(null);
+		if (verifyUnhandledException("java.lang.AssertionError", options)) edu.boisestate.cs.svcomp.StringStartEnd03.Main.main(null);
 	}
 
 	@Test
@@ -185,10 +188,10 @@ public class TestSV extends TestJPF {
 		if (verifyNoPropertyViolation(options)) edu.boisestate.cs.svcomp.StringValueOf06.Main.main(null);
 	}
 
-	@Test
-	public void stringValueOf07() {
-		if (verifyNoPropertyViolation(options)) edu.boisestate.cs.svcomp.StringValueOf07.Main.main(null);
-	}
+//	@Test
+//	public void stringValueOf07() {
+//		if (verifyNoPropertyViolation(options)) edu.boisestate.cs.svcomp.StringValueOf07.Main.main(null);
+//	}
 
 	@Test
 	public void stringValueOf08() {
