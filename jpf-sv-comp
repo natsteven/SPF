@@ -12,6 +12,7 @@ FIND_OPTIONS="-name '*.java'"
 while [ -n "$1" ] ; do
   case "$1" in
     --32|--64) BIT_WIDTH="${1##--}" ; shift 1 ;;
+    --string-dp) STRING_DP="$2" ; shift 2 ;;
     --propertyfile) PROP_FILE="$2" ; shift 2 ;;
     --graphml-witness) WITNESS_FILE="$2" ; shift 2 ;;
     --version) date -r jpf-symbc/build/jpf-symbc.jar ; exit 0 ;;
@@ -61,7 +62,7 @@ echo "symbolic.dp=z3bitvector" >> $DIR/config.jpf
 echo "symbolic.bvlength=64" >> $DIR/config.jpf
 echo "search.depth_limit=13" >> $DIR/config.jpf
 echo "symbolic.strings=true" >> $DIR/config.jpf
-echo "symbolic.string_dp=MAS" >> $DIR/config.jpf
+echo "symbolic.string_dp=$STRING_DP" >> $DIR/config.jpf
 echo "nullPointer.exception=false" >> $DIR/config.jpf
 echo "symbolic.string_dp_timeout_ms=3000" >> $DIR/config.jpf
 echo "symbolic.lazy=on" >> $DIR/config.jpf

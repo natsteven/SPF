@@ -82,8 +82,8 @@ public class ConstraintTranslator {
             DerivedStringExpression dse = (DerivedStringExpression) se;
             return translate(dse);
         } else {
-            System.out.println(se.getClass());
-            System.out.println(se.getName());
+            System.err.println(se.getClass());
+            System.err.println(se.getName());
             System.err.println("Unhandled StringExpression: " + se);
 //            System.exit(1);
         }
