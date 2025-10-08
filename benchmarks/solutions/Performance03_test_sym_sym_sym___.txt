@@ -1,0 +1,1085 @@
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 5) "c"))
+(assert (not (= (str.at a_1 5) "b")))
+(assert (not (= (str.at a_1 5) "a")))
+(assert (= (str.at a_1 4) "a"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaaac"
+b_2 => "aaaaBC"
+c_3 => "DAaaac"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (not (= (str.at a_1 5) "b")))
+(assert (not (= (str.at a_1 5) "a")))
+(assert (= (str.at a_1 4) "b"))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaab"
+b_2 => "aaaaB"
+c_3 => "Aaaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (not (= (str.at a_1 3) "a")))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaa"
+b_2 => "aaB"
+c_3 => "DEA"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 5) "a"))
+(assert (= (str.at a_1 4) "b"))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaaba"
+b_2 => "aaaaBC"
+c_3 => "DAaaba"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 4) "c"))
+(assert (not (= (str.at a_1 4) "b")))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaacA"
+b_2 => "aCDHMP"
+c_3 => "JNQRSB"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (not (= (str.at a_1 5) "b")))
+(assert (not (= (str.at a_1 5) "a")))
+(assert (= (str.at a_1 4) "a"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaaa"
+b_2 => "aaaaB"
+c_3 => "DAaaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (not (= (str.at a_1 6) "a")))
+(assert (= (str.at a_1 5) "a"))
+(assert (= (str.at a_1 4) "a"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaaaa"
+b_2 => "aaaaaB"
+c_3 => "DEFGAa"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (not (= (str.at a_1 5) "b")))
+(assert (not (= (str.at a_1 5) "a")))
+(assert (= (str.at a_1 4) "b"))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaab"
+b_2 => "aaaaB"
+c_3 => "Aaaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaa"
+b_2 => "BCE"
+c_3 => "DFA"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (str.suffixof a_1 c_3))
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 5) "a"))
+(assert (= (str.at a_1 4) "a"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 4) "a"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaaaEB"
+b_2 => "aaaaaEC"
+c_3 => "DAaaaEB"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (not (= (str.at a_1 5) "a")))
+(assert (= (str.at a_1 4) "c"))
+(assert (not (= (str.at a_1 4) "b")))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaac"
+b_2 => "aBDFH"
+c_3 => "EGAac"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 5) "d"))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (not (= (str.at a_1 5) "b")))
+(assert (not (= (str.at a_1 5) "a")))
+(assert (= (str.at a_1 4) "a"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaaad"
+b_2 => "aaaaBC"
+c_3 => "DAaaad"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 5) "b"))
+(assert (not (= (str.at a_1 5) "a")))
+(assert (= (str.at a_1 4) "a"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaaab"
+b_2 => "aaaaBC"
+c_3 => "DAaaab"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (not (= (str.at a_1 5) "a")))
+(assert (= (str.at a_1 4) "a"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaaa"
+b_2 => "aaaaB"
+c_3 => "DEAaa"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (str.suffixof a_1 c_3))
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 4) "a"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 6) "a"))
+(assert (= (str.at a_1 5) "a"))
+(assert (= (str.at a_1 4) "a"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaaaaa"
+b_2 => "aaaaCKL"
+c_3 => ""
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaa"
+b_2 => "aaaB"
+c_3 => "DEFA"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (str.prefixof a_1 b_2))
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 5) "b"))
+(assert (not (= (str.at a_1 5) "a")))
+(assert (= (str.at a_1 4) "a"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aa"
+b_2 => "aB"
+c_3 => "CA"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 5) "a"))
+(assert (= (str.at a_1 4) "c"))
+(assert (not (= (str.at a_1 4) "b")))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaaca"
+b_2 => "aaaaBC"
+c_3 => "DAaaca"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 5) "c"))
+(assert (not (= (str.at a_1 5) "b")))
+(assert (not (= (str.at a_1 5) "a")))
+(assert (= (str.at a_1 4) "b"))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaabc"
+b_2 => "aBGKIN"
+c_3 => "JHLMOA"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (not (= (str.at a_1 1) "a")))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "a"
+b_2 => "B"
+c_3 => "A"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "a"
+b_2 => "B"
+c_3 => "A"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "a"
+b_2 => "A"
+c_3 => ""
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 4) "d"))
+(assert (not (= (str.at a_1 4) "c")))
+(assert (not (= (str.at a_1 4) "b")))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaadA"
+b_2 => "aCDHMP"
+c_3 => "JNQRSB"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (not (= (str.at a_1 5) "b")))
+(assert (not (= (str.at a_1 5) "a")))
+(assert (= (str.at a_1 4) "a"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaaa"
+b_2 => "aaBDG"
+c_3 => "EFHIA"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+
+(assert (not (= (str.at a_1 0) "a")))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => ""
+b_2 => ""
+c_3 => ""
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 5) "a"))
+(assert (= (str.at a_1 4) "a"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaaaa"
+b_2 => "aaaaaB"
+c_3 => "DFIJKA"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (not (= (str.at a_1 5) "a")))
+(assert (= (str.at a_1 4) "b"))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaab"
+b_2 => "aBDFH"
+c_3 => "EGAab"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (str.prefixof a_1 b_2))
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 4) "c"))
+(assert (not (= (str.at a_1 4) "b")))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 5) "b"))
+(assert (not (= (str.at a_1 5) "a")))
+(assert (= (str.at a_1 4) "c"))
+(assert (not (= (str.at a_1 4) "b")))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaacb"
+b_2 => "aBGKIN"
+c_3 => "JHLMOA"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (str.prefixof a_1 b_2))
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 5) "a"))
+(assert (= (str.at a_1 4) "b"))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (not (= (str.at a_1 2) "a")))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aa"
+b_2 => "BD"
+c_3 => "Aa"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (str.prefixof a_1 b_2))
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 5) "a"))
+(assert (= (str.at a_1 4) "a"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (not (= (str.at a_1 4) "c")))
+(assert (not (= (str.at a_1 4) "b")))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaa"
+b_2 => "aaaB"
+c_3 => "DEFA"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (not (= (str.at a_1 5) "b")))
+(assert (not (= (str.at a_1 5) "a")))
+(assert (= (str.at a_1 4) "c"))
+(assert (not (= (str.at a_1 4) "b")))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaacELC"
+b_2 => "aaaacELD"
+c_3 => ""
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 5) "b"))
+(assert (not (= (str.at a_1 5) "a")))
+(assert (= (str.at a_1 4) "b"))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaabb"
+b_2 => "aaaaBC"
+c_3 => "DAaabb"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (not (= (str.at a_1 4) "b")))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaa"
+b_2 => "aaaB"
+c_3 => "DEFA"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (str.prefixof a_1 b_2))
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 4) "b"))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (str.suffixof a_1 c_3))
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 4) "b"))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (not (= (str.at a_1 5) "d")))
+(assert (not (= (str.at a_1 5) "c")))
+(assert (not (= (str.at a_1 5) "b")))
+(assert (not (= (str.at a_1 5) "a")))
+(assert (= (str.at a_1 4) "a"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaaa"
+b_2 => "aaBDG"
+c_3 => "EFHIA"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (not (= (str.at a_1 4) "d")))
+(assert (not (= (str.at a_1 4) "c")))
+(assert (not (= (str.at a_1 4) "b")))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaa"
+b_2 => "aaaB"
+c_3 => "DEFA"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaa"
+b_2 => "aaBC"
+c_3 => "EGIA"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 4) "b"))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aaaabA"
+b_2 => "aCDHMP"
+c_3 => "JNQRSB"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (str.prefixof a_1 b_2))
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 4) "a"))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (str.suffixof a_1 c_3))
+(assert (not (str.suffixof a_1 c_3)))
+(assert (not (str.prefixof a_1 b_2)))
+(assert (= (str.at a_1 4) "c"))
+(assert (not (= (str.at a_1 4) "b")))
+(assert (not (= (str.at a_1 4) "a")))
+(assert (= (str.at a_1 3) "a"))
+(assert (= (str.at a_1 2) "a"))
+(assert (= (str.at a_1 1) "a"))
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+
+(assert (= (str.at a_1 0) "a"))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "a"
+b_2 => ""
+c_3 => ""
+
