@@ -85,7 +85,7 @@ public class ConstraintTranslator {
 			System.err.println(se.getClass());
 			System.err.println(se.getName());
 			System.err.println("Unhandled StringExpression: " + se);
-//            System.exit(1);
+            System.exit(1);
 		}
 		return null;
 	}
@@ -133,7 +133,7 @@ public class ConstraintTranslator {
 				break;
 			default:
 				System.err.println("Unhandled StringComparator: " + comparator);
-//                System.exit(1);
+                System.exit(1);
 				op = "";
 		}
 
@@ -326,11 +326,12 @@ public class ConstraintTranslator {
 					return translate((IntegerExpression) expr);
 				} else {
 					System.err.println("Unhandled ValueOf in ConstraintTranslator");
+					System.exit(1);
 					return null;
 				}
 			default:
 				System.err.println("Unhandled DerivedStringExpression: " + dse);
-//                System.exit(1);
+                System.exit(1);
 				return null;
 		}
 	}
@@ -374,6 +375,7 @@ public class ConstraintTranslator {
 				rightConstraint.setType(1);
 			} else {
 				System.err.println("Unhandled Numeric Constraint with SymbolicLengthInteger and non-IntegerConstant: " + numericConstraint);
+				System.exit(1);
 			}
 		} else if (right instanceof SymbolicLengthInteger) {
 			if (left instanceof IntegerConstant) {
@@ -383,10 +385,11 @@ public class ConstraintTranslator {
 				rightConstraint.setType(0);
 			} else {
 				System.err.println("Unhandled Numeric Constraint with SymbolicLengthInteger and non-IntegerConstant: " + numericConstraint);
+				System.exit(1);
 			}
 		} else {
 			System.err.println("Unhandled Numeric Constraint: " + numericConstraint);
-//            System.exit(1);
+            System.exit(1);
 		}
 
 		final PrintConstraint comparatorConstraint = translate(comparator);
@@ -438,7 +441,7 @@ public class ConstraintTranslator {
 				break;
 			default:
 				System.err.println("Unhandled Numeric Comparator: " + comparator);
-//                System.exit(1);
+                System.exit(1);
 				return null;
 		}
 		return new PrintConstraint(translator.getNextID(), value, op);
@@ -510,6 +513,7 @@ public class ConstraintTranslator {
 //			System.err.println("MAS does not support symbolic integer reasoning yet: " + ie);
 		} else {
 			System.err.println("Unhandled IntegerExpression: " + ie);
+			System.exit(1);
 		}
 		return null;
 	}

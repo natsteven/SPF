@@ -49,7 +49,7 @@ public class MASTranslator {
             System.out.println("Numeric Path Condition Exists: " + npc.header.toString());
             while (pc!=null){
                 ct.translate(pc); // constraint translator will add the numeric constraints but wait to return till after string constraints are processed
-                pc = npc.header.and;
+                pc = pc.and;
             }
         }
 

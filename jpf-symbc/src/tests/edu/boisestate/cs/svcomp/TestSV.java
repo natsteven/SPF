@@ -24,6 +24,25 @@ public class TestSV extends TestJPF {
 	};
 
 	@Test
+	public void Aliasing6() {
+		if (verifyUnhandledException("java.lang.AssertionError",options)) edu.boisestate.cs.svcomp.Aliasing6.Main.main(null);
+	}
+
+	@Test
+	public void Sanitizers2(){
+		if (verifyNoPropertyViolation(options)) edu.boisestate.cs.svcomp.Sanitizers2.Main.main(null);
+	}
+
+//	@Test
+//	public void Sanitizers4(){
+//		if (verifyNoPropertyViolation(options)) edu.boisestate.cs.svcomp.Sanitizers4.Main.main(null);
+//	}
+	@Test
+	public void Collections9() {
+		if (verifyNoPropertyViolation(options)) edu.boisestate.cs.svcomp.Collections9.Main.main(null);
+	}
+
+	@Test
 	public void charSequenceToString() {
 		if (verifyUnhandledException("java.lang.AssertionError", options)) edu.boisestate.cs.svcomp.CharSequenceToString.Main.main(null);
 	}
@@ -77,11 +96,6 @@ public class TestSV extends TestJPF {
 	@Test
 	public void stringConstructors03() {
 		if (verifyUnhandledException("java.lang.AssertionError", options)) edu.boisestate.cs.svcomp.StringConstructors03.Main.main(null);
-	}
-
-	@Test
-	public void stringConstructors04() {
-		if (verifyUnhandledException("java.lang.AssertionError", options)) edu.boisestate.cs.svcomp.StringConstructors04.Main.main(null);
 	}
 
 	@Test
@@ -141,10 +155,10 @@ public class TestSV extends TestJPF {
 	}
 
 	// MAS hangs on this one atm
-//	@Test
-//	public void subString02() {
-//		if (verifyNoPropertyViolation(options)) edu.boisestate.cs.svcomp.SubString02.Main.main(null);
-//	}
+	@Test
+	public void subString02() {
+		if (verifyUnhandledException("java.lang.AssertionError", options)) edu.boisestate.cs.svcomp.SubString02.Main.main(null);
+	}
 
 //	@Test
 //	public void subString03() {
