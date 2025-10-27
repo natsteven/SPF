@@ -1,21 +1,19 @@
 package edu.boisestate.cs;
 
 import edu.boisestate.cs.graph.InvDefaultDirectedGraph;
-import edu.boisestate.cs.modelling.MASOutput;
+import edu.boisestate.cs.util.MASCache;
 import edu.boisestate.cs.util.MASProcessor;
 import edu.boisestate.cs.util.MASTranslator;
 import edu.boisestate.cs.automatonModel.Model_Acyclic_Inverse;
 import edu.boisestate.cs.graph.SolutionSet;
-import edu.boisestate.cs.util.NaiveIntegration;
 import edu.ucsb.cs.vlab.translate.smtlib.from.z3str3.Z3Translator;
 import gov.nasa.jpf.symbc.SymbolicInstructionFactory;
 import gov.nasa.jpf.symbc.string.StringPathCondition;
-import gov.nasa.jpf.util.LogManager;
-import org.jgrapht.DirectedGraph;
 
-import java.util.logging.Logger;
+import java.util.HashMap;
 
 public class MASInterface {
+	private static MASCache cache = new MASCache();
 
 	public static SolutionSet<Model_Acyclic_Inverse> solve(StringPathCondition pc) {
 
@@ -31,6 +29,13 @@ public class MASInterface {
 				System.out.println(lines[i++]);
 			}
 			System.out.println("=======================================");
+		}
+
+		if (!cache.isEmpty()){
+			StringPathCondition hit = cache.findNeg(pc);
+			if (hit != null) {
+				System.out.println("--------------------------------------\n----------------------------------------\n\t\tCACHE HIT\n--------------------------------------------\n---------------------------------------------");
+			}
 		}
 
 		MASTranslator translator = new MASTranslator();
@@ -59,8 +64,12 @@ public class MASInterface {
 			System.out.println("Using bound: " + bound);
 		}
 		System.out.println("*****************************");
+
 		MASProcessor processor = new MASProcessor(false, alpha, bound);
-		return processor.query(graph);
+		SolutionSet<Model_Acyclic_Inverse> sol = processor.query(graph);
+		cache.put(pc, sol);
+
+		return sol;
 	}
 
 }
