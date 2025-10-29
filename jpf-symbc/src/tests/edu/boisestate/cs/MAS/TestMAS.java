@@ -266,7 +266,6 @@ public class TestMAS extends TestJPF {
         }
     }
 
-    // trivial/usless test as SPF handles valueOf internally, i.e. the constraints have them as stirng constants
     @Test
     public void valueOfTest() {
         clas = "ValueOfTest";
