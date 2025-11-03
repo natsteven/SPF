@@ -9,9 +9,6 @@
 z3str3:
 Satisfiable: false
 
-MAS:
-unsat
-
 ************************************
 (declare-const s1_1 String)
 
@@ -23,7 +20,7 @@ s1_1 => ""
 
 MAS:
 sat,
-1: ""
+s1_1[**UNDEFINED**]: ""
 
 ************************************
 (declare-const s1_1 String)
@@ -39,7 +36,7 @@ s1_1 => "Aello"
 
 MAS:
 sat,
-4: "0ello"
+s1_1: "0ello"
 
 ************************************
 (declare-const s1_1 String)
@@ -49,10 +46,6 @@ sat,
 z3str3:
 Satisfiable: true
 s1_1 => "Hello"
-
-MAS:
-sat,
-1: "Hello"
 
 ************************************
 (declare-const s1_1 String)
@@ -65,10 +58,6 @@ sat,
 z3str3:
 Satisfiable: true
 s1_1 => "Hello"
-
-MAS:
-sat,
-4: "Hello"
 
 ************************************
 (declare-const s1_1 String)
@@ -84,5 +73,5 @@ s1_1 => "AB"
 
 MAS:
 sat,
-4: "0"
+s1_1: "0"
 

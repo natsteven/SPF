@@ -13,8 +13,29 @@ s1_1 => "hEllOWoRlD"
 out_str => "HELLOWORLD"
 
 MAS:
+s1.toUpperCase() equals "HELLOWORLD"
+string analysis: SPC # = 1
+(.touppercase(s1_1_SYMSTRING) equals CONST_HELLOWORLD)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+(declare-const out_str String)
+
+(assert (= out_str "HELLOWORLD"))
+
+(define-fun-rec toUpper ((x String) (y String)) Bool (or (and (= x "") (= y "")) (and (not (= x "")) (not (= y "")) (let ((x_head (str.at x 0)) (y_head (str.at y 0)) (x_tail (str.substr x 1 (- (str.len x) 1))) (y_tail (str.substr y 1 (- (str.len y) 1)))) (and (= (str.to_code y_head) (ite (and (<= 97 (str.to_code x_head)) (<= (str.to_code x_head) 122)) (- (str.to_code x_head) 32) (str.to_code x_head))) (toUpper x_tail y_tail))))))
+(assert (toUpper s1_1 out_str))
+=======================================
+---------------------------------------
+---------------------------------------
+			CACHE HIT
+---------------------------------------
+---------------------------------------
 sat,
-1: "HELLOWORLD"
+s1_1: "HELLOWORLD"
 
 ************************************
 (declare-const s1_1 String)
@@ -32,5 +53,5 @@ out_str => ""
 
 MAS:
 sat,
-1: ""
+s1_1: ""
 

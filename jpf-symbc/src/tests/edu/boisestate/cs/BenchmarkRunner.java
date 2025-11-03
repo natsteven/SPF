@@ -201,7 +201,7 @@ public class BenchmarkRunner {
 
     private static void parseDirectoryBenchmarks(Path dir) throws Exception {
         List<Benchmark> loaded = new ArrayList<>();
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, "*.java")) { // FILTER with glob as necessary!!
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, "*Test.java")) { // FILTER with glob as necessary!!
             for (Path entry : stream) {
                 String root = System.getProperty("user.dir");
                 String fqcn = null;

@@ -3,30 +3,6 @@
 (declare-const b_2 String)
 (declare-const c_3 String)
 
-(assert (str.prefixof a_1 b_2))
-(assert (not (str.suffixof a_1 c_3)))
-(assert (not (str.prefixof a_1 b_2)))
-(assert (= (str.at a_1 4) "e"))
-(assert (not (= (str.at a_1 4) "d")))
-(assert (not (= (str.at a_1 4) "c")))
-(assert (not (= (str.at a_1 4) "b")))
-(assert (not (= (str.at a_1 4) "a")))
-(assert (= (str.at a_1 3) "a"))
-(assert (= (str.at a_1 2) "a"))
-(assert (= (str.at a_1 1) "a"))
-(assert (= (str.at a_1 0) "a"))
-(assert (< (str.len c_3) 10))
-(assert (< (str.len b_2) 10))
-(assert (< (str.len a_1) 10))
-------------------------------------
-z3str3:
-Satisfiable: false
-
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-(declare-const c_3 String)
-
 (assert (not (str.suffixof a_1 c_3)))
 (assert (not (str.prefixof a_1 b_2)))
 (assert (not (= (str.at a_1 3) "a")))
@@ -368,55 +344,6 @@ c_3 => "Aa"
 (declare-const b_2 String)
 (declare-const c_3 String)
 
-(assert (not (str.suffixof a_1 c_3)))
-(assert (not (str.prefixof a_1 b_2)))
-(assert (= (str.at a_1 4) "e"))
-(assert (not (= (str.at a_1 4) "d")))
-(assert (not (= (str.at a_1 4) "c")))
-(assert (not (= (str.at a_1 4) "b")))
-(assert (not (= (str.at a_1 4) "a")))
-(assert (= (str.at a_1 3) "a"))
-(assert (= (str.at a_1 2) "a"))
-(assert (= (str.at a_1 1) "a"))
-(assert (= (str.at a_1 0) "a"))
-(assert (< (str.len c_3) 10))
-(assert (< (str.len b_2) 10))
-(assert (< (str.len a_1) 10))
-------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "aaaaeA"
-b_2 => "aCDHMP"
-c_3 => "JNQRSB"
-
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-(declare-const c_3 String)
-
-(assert (str.prefixof a_1 b_2))
-(assert (not (str.suffixof a_1 c_3)))
-(assert (not (str.prefixof a_1 b_2)))
-(assert (= (str.at a_1 4) "d"))
-(assert (not (= (str.at a_1 4) "c")))
-(assert (not (= (str.at a_1 4) "b")))
-(assert (not (= (str.at a_1 4) "a")))
-(assert (= (str.at a_1 3) "a"))
-(assert (= (str.at a_1 2) "a"))
-(assert (= (str.at a_1 1) "a"))
-(assert (= (str.at a_1 0) "a"))
-(assert (< (str.len c_3) 10))
-(assert (< (str.len b_2) 10))
-(assert (< (str.len a_1) 10))
-------------------------------------
-z3str3:
-Satisfiable: false
-
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-(declare-const c_3 String)
-
 (assert (str.prefixof a_1 b_2))
 (assert (not (str.suffixof a_1 c_3)))
 (assert (not (str.prefixof a_1 b_2)))
@@ -616,33 +543,6 @@ Satisfiable: true
 a_1 => "aaaab"
 b_2 => "aaaaB"
 c_3 => "Aaaab"
-
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-(declare-const c_3 String)
-
-(assert (not (str.suffixof a_1 c_3)))
-(assert (not (str.prefixof a_1 b_2)))
-(assert (= (str.at a_1 4) "f"))
-(assert (not (= (str.at a_1 4) "e")))
-(assert (not (= (str.at a_1 4) "d")))
-(assert (not (= (str.at a_1 4) "c")))
-(assert (not (= (str.at a_1 4) "b")))
-(assert (not (= (str.at a_1 4) "a")))
-(assert (= (str.at a_1 3) "a"))
-(assert (= (str.at a_1 2) "a"))
-(assert (= (str.at a_1 1) "a"))
-(assert (= (str.at a_1 0) "a"))
-(assert (< (str.len c_3) 10))
-(assert (< (str.len b_2) 10))
-(assert (< (str.len a_1) 10))
-------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "aaaafA"
-b_2 => "aCDHMP"
-c_3 => "JNQRSB"
 
 ************************************
 (declare-const a_1 String)
@@ -907,34 +807,6 @@ c_3 => "JHLMOA"
 
 (assert (not (str.suffixof a_1 c_3)))
 (assert (not (str.prefixof a_1 b_2)))
-(assert (not (= (str.at a_1 4) "g")))
-(assert (not (= (str.at a_1 4) "f")))
-(assert (not (= (str.at a_1 4) "e")))
-(assert (not (= (str.at a_1 4) "d")))
-(assert (not (= (str.at a_1 4) "c")))
-(assert (not (= (str.at a_1 4) "b")))
-(assert (not (= (str.at a_1 4) "a")))
-(assert (= (str.at a_1 3) "a"))
-(assert (= (str.at a_1 2) "a"))
-(assert (= (str.at a_1 1) "a"))
-(assert (= (str.at a_1 0) "a"))
-(assert (< (str.len c_3) 10))
-(assert (< (str.len b_2) 10))
-(assert (< (str.len a_1) 10))
-------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "aaaa"
-b_2 => "aaaB"
-c_3 => "DEFA"
-
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-(declare-const c_3 String)
-
-(assert (not (str.suffixof a_1 c_3)))
-(assert (not (str.prefixof a_1 b_2)))
 (assert (= (str.at a_1 0) "a"))
 (assert (< (str.len c_3) 10))
 (assert (< (str.len b_2) 10))
@@ -1017,29 +889,6 @@ c_3 => "EFHIA"
 (declare-const b_2 String)
 (declare-const c_3 String)
 
-(assert (str.suffixof a_1 c_3))
-(assert (not (str.suffixof a_1 c_3)))
-(assert (not (str.prefixof a_1 b_2)))
-(assert (= (str.at a_1 4) "d"))
-(assert (not (= (str.at a_1 4) "c")))
-(assert (not (= (str.at a_1 4) "b")))
-(assert (not (= (str.at a_1 4) "a")))
-(assert (= (str.at a_1 3) "a"))
-(assert (= (str.at a_1 2) "a"))
-(assert (= (str.at a_1 1) "a"))
-(assert (= (str.at a_1 0) "a"))
-(assert (< (str.len c_3) 10))
-(assert (< (str.len b_2) 10))
-(assert (< (str.len a_1) 10))
-------------------------------------
-z3str3:
-Satisfiable: false
-
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-(declare-const c_3 String)
-
 
 (assert (not (= (str.at a_1 0) "a")))
 (assert (< (str.len c_3) 10))
@@ -1054,17 +903,17 @@ c_3 => ""
 
 MAS:
 WARNING: Unhandled constraint in Reporter_Inverse.buildICG_r3() of type... UNDEFINED  6  lt!!I!:!0
-WARNING: Unhandled constraint in Reporter_Inverse.buildICG_r3() of type... UNDEFINED  10  lt!!I!:!0
+WARNING: Unhandled constraint in Reporter_Inverse.buildICG_r3() of type... UNDEFINED  9  lt!!I!:!0
 WARNING: Unhandled constraint in Reporter_Inverse.buildICG_r3() of type... UNDEFINED  13  lt!!I!:!0
 WARNING: UNDEFINED constraint in Reporter_Inverse.buildICG_r3() of type... 6  lt!!I!:!0
-WARNING: UNDEFINED constraint in Reporter_Inverse.buildICG_r3() of type... 10  lt!!I!:!0
+WARNING: UNDEFINED constraint in Reporter_Inverse.buildICG_r3() of type... 9  lt!!I!:!0
 WARNING: UNDEFINED constraint in Reporter_Inverse.buildICG_r3() of type... 13  lt!!I!:!0
 java.lang.NullPointerException
 	at edu.boisestate.cs.reporting.Reporter_Inverse_BFS.solveInputs(Reporter_Inverse_BFS.java:127)
 	at edu.boisestate.cs.reporting.Reporter_Inverse.calculateStats(Reporter_Inverse.java:300)
 	at edu.boisestate.cs.reporting.A_Reporter.run(A_Reporter.java:254)
 	at edu.boisestate.cs.util.MASProcessor.query(MASProcessor.java:41)
-	at edu.boisestate.cs.MASInterface.solve(MASInterface.java:70)
+	at edu.boisestate.cs.MASInterface.solve(MASInterface.java:96)
 	at gov.nasa.jpf.symbc.string.SymbolicStringConstraintsGeneral.inner_isSatisfiable(SymbolicStringConstraintsGeneral.java:464)
 	at gov.nasa.jpf.symbc.string.SymbolicStringConstraintsGeneral.isSatisfiable(SymbolicStringConstraintsGeneral.java:382)
 	at gov.nasa.jpf.symbc.string.StringPathCondition.simplify(StringPathCondition.java:145)
@@ -1116,33 +965,6 @@ c_3 => "DFIJKA"
 
 (assert (not (str.suffixof a_1 c_3)))
 (assert (not (str.prefixof a_1 b_2)))
-(assert (not (= (str.at a_1 4) "f")))
-(assert (not (= (str.at a_1 4) "e")))
-(assert (not (= (str.at a_1 4) "d")))
-(assert (not (= (str.at a_1 4) "c")))
-(assert (not (= (str.at a_1 4) "b")))
-(assert (not (= (str.at a_1 4) "a")))
-(assert (= (str.at a_1 3) "a"))
-(assert (= (str.at a_1 2) "a"))
-(assert (= (str.at a_1 1) "a"))
-(assert (= (str.at a_1 0) "a"))
-(assert (< (str.len c_3) 10))
-(assert (< (str.len b_2) 10))
-(assert (< (str.len a_1) 10))
-------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "aaaa"
-b_2 => "aaaB"
-c_3 => "DEFA"
-
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-(declare-const c_3 String)
-
-(assert (not (str.suffixof a_1 c_3)))
-(assert (not (str.prefixof a_1 b_2)))
 (assert (not (= (str.at a_1 5) "a")))
 (assert (= (str.at a_1 4) "b"))
 (assert (not (= (str.at a_1 4) "a")))
@@ -1159,60 +981,6 @@ Satisfiable: true
 a_1 => "aaaab"
 b_2 => "aBDFH"
 c_3 => "EGAab"
-
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-(declare-const c_3 String)
-
-(assert (not (str.suffixof a_1 c_3)))
-(assert (not (str.prefixof a_1 b_2)))
-(assert (= (str.at a_1 4) "g"))
-(assert (not (= (str.at a_1 4) "f")))
-(assert (not (= (str.at a_1 4) "e")))
-(assert (not (= (str.at a_1 4) "d")))
-(assert (not (= (str.at a_1 4) "c")))
-(assert (not (= (str.at a_1 4) "b")))
-(assert (not (= (str.at a_1 4) "a")))
-(assert (= (str.at a_1 3) "a"))
-(assert (= (str.at a_1 2) "a"))
-(assert (= (str.at a_1 1) "a"))
-(assert (= (str.at a_1 0) "a"))
-(assert (< (str.len c_3) 10))
-(assert (< (str.len b_2) 10))
-(assert (< (str.len a_1) 10))
-------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "aaaagA"
-b_2 => "aCDHMP"
-c_3 => "JNQRSB"
-
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-(declare-const c_3 String)
-
-(assert (not (str.suffixof a_1 c_3)))
-(assert (not (str.prefixof a_1 b_2)))
-(assert (not (= (str.at a_1 4) "e")))
-(assert (not (= (str.at a_1 4) "d")))
-(assert (not (= (str.at a_1 4) "c")))
-(assert (not (= (str.at a_1 4) "b")))
-(assert (not (= (str.at a_1 4) "a")))
-(assert (= (str.at a_1 3) "a"))
-(assert (= (str.at a_1 2) "a"))
-(assert (= (str.at a_1 1) "a"))
-(assert (= (str.at a_1 0) "a"))
-(assert (< (str.len c_3) 10))
-(assert (< (str.len b_2) 10))
-(assert (< (str.len a_1) 10))
-------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "aaaa"
-b_2 => "aaaB"
-c_3 => "DEFA"
 
 ************************************
 (declare-const a_1 String)

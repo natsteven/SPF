@@ -8,6 +8,9 @@
 z3str3:
 Satisfiable: false
 
+MAS:
+unsat
+
 ************************************
 (declare-const s1_1 String)
 (declare-const s2_2 String)
@@ -19,6 +22,11 @@ z3str3:
 Satisfiable: true
 s1_1 => "A"
 s2_2 => "A"
+
+MAS:
+sat,
+s1_1: "A"
+s2_2: "A"
 
 ************************************
 (declare-const s1_1 String)
@@ -32,6 +40,11 @@ Satisfiable: true
 s1_1 => ""
 s2_2 => ""
 
+MAS:
+sat,
+s1_1[**UNDEFINED**]: ""
+s2_2[**UNDEFINED**]: ""
+
 ************************************
 (declare-const s1_1 String)
 (declare-const s2_2 String)
@@ -44,6 +57,11 @@ Satisfiable: true
 s1_1 => ""
 s2_2 => "A"
 
+MAS:
+sat,
+s1_1: ""
+s2_2: "A"
+
 ************************************
 (declare-const s1_1 String)
 (declare-const s2_2 String)
@@ -54,6 +72,11 @@ z3str3:
 Satisfiable: true
 s1_1 => ""
 s2_2 => ""
+
+MAS:
+sat,
+s1_1[**UNDEFINED**]: ""
+s2_2[**UNDEFINED**]: ""
 
 ************************************
 (declare-const s1_1 String)
@@ -68,6 +91,6 @@ s2_2 => "A"
 
 MAS:
 sat,
-1: ""
-2: "A"
+s1_1[**UNDEFINED**]: ""
+s2_2[**UNDEFINED**]: "A"
 

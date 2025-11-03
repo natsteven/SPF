@@ -7,8 +7,27 @@ z3str3:
 Satisfiable: false
 
 MAS:
+s2 equals "muggy"
+string analysis: SPC # = 1
+(.replace[(s1_1_SYMSTRING)(CONST_Ǉ)(CONST_ǅ)] equals CONST_aa)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+
+(assert (= (str.replace_all s1_1 "Ǉ" "ǅ") "aa"))
+
+
+=======================================
+---------------------------------------
+---------------------------------------
+			CACHE HIT
+---------------------------------------
+---------------------------------------
 sat,
-3: "aa"
+s1_1: "aa"
 
 ************************************
 (declare-const s1_1 String)
@@ -20,5 +39,5 @@ Satisfiable: false
 
 MAS:
 sat,
-3: ""
+s1_1: ""
 

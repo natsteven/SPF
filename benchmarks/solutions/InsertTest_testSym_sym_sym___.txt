@@ -14,8 +14,8 @@ s2_2 => "Wo"
 
 MAS:
 sat,
-1: ""
-4: "HelloWorld"
+s2_2: ""
+s1_1: "HelloWorld"
 
 ************************************
 (declare-const s1_1 String)
@@ -33,8 +33,8 @@ s2_2 => "!0!"
 
 MAS:
 sat,
-1: ""
-4: "00000"
+s2_2: ""
+s1_1: "00000"
 
 ************************************
 (declare-const s1_1 String)
@@ -47,7 +47,7 @@ s1_1 => ""
 
 MAS:
 sat,
-1: ""
+s1_1[**UNDEFINED**]: ""
 
 ************************************
 (declare-const s1_1 String)
@@ -63,11 +63,6 @@ Satisfiable: true
 s1_1 => "Hello"
 s2_2 => ""
 
-MAS:
-sat,
-1: ""
-4: "Hello"
-
 ************************************
 (declare-const s1_1 String)
 
@@ -76,10 +71,6 @@ sat,
 z3str3:
 Satisfiable: true
 s1_1 => "Hello"
-
-MAS:
-sat,
-1: "Hello"
 
 ************************************
 (declare-const s1_1 String)
@@ -94,9 +85,4 @@ z3str3:
 Satisfiable: true
 s1_1 => "Hello"
 s2_2 => "World"
-
-MAS:
-sat,
-1: "World"
-4: "Hello"
 

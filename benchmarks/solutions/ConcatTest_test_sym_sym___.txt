@@ -11,8 +11,8 @@ var_1_1 => ""
 
 MAS:
 sat,
-1: ""
-2: ""
+var_2_2: ""
+var_1_1: ""
 
 ************************************
 (declare-const var_2_2 String)
@@ -27,6 +27,6 @@ var_1_1 => "H"
 
 MAS:
 sat,
-1: "HelloWorld"
-2: ""
+var_2_2: "HelloWorld"
+var_1_1: ""
 

@@ -7,10 +7,6 @@ z3str3:
 Satisfiable: true
 s_1 => " "
 
-MAS:
-sat,
-1: " "
-
 ************************************
 (declare-const s_1 String)
 (declare-const out_str String)
@@ -33,7 +29,7 @@ ws => ""
 
 MAS:
 sat,
-2: ""
+s_1: ""
 
 ************************************
 (declare-const s_1 String)
@@ -57,7 +53,7 @@ ws => ""
 
 MAS:
 sat,
-2: "Hi"
+s_1: "Hi"
 
 ************************************
 (declare-const s_1 String)
@@ -79,10 +75,6 @@ out_str => ""
 nwc => "\u{0}" " ")))
 ws => ""
 
-MAS:
-sat,
-2: " "
-
 ************************************
 (declare-const s_1 String)
 (declare-const out_str String)
@@ -103,9 +95,6 @@ out_str => "Hi"
 nwc => "\u{0}" " ")))
 ws => ""
 
-MAS:
-unsat
-
 ************************************
 (declare-const s_1 String)
 
@@ -117,5 +106,5 @@ s_1 => ""
 
 MAS:
 sat,
-1: ""
+s_1[**UNDEFINED**]: ""
 

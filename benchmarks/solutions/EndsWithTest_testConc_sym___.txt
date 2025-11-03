@@ -8,8 +8,6 @@ Satisfiable: true
 s2_1 => "BArld"
 
 MAS:
-sat,
-1: ""
 
 ************************************
 (declare-const s2_1 String)
@@ -19,8 +17,4 @@ sat,
 z3str3:
 Satisfiable: true
 s2_1 => "World"
-
-MAS:
-sat,
-1: "World"
 

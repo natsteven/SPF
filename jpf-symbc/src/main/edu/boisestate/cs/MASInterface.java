@@ -54,6 +54,9 @@ public class MASInterface {
 				if (s.model.isEmpty()) {
 					sol.setSAT(false);
 				}
+				if (cache.wasLastHitCharAt()) {
+					s.model.removeEmptyString();
+				}
 
 				s.example = s.model.getAcceptedStringExample();
 				System.out.println(sol.getResult());
@@ -87,7 +90,7 @@ public class MASInterface {
 		// maybe the depth of the tree, i.e. we can reason about how long strings can/would be given the number of operations/type of ops
 
 		if (SymbolicInstructionFactory.debugMode) {
-			System.out.println("Using Alphabet: " + alpha.getCharSet());
+			System.out.println("Using Alphabet: " + alpha.getCharSetString());
 			System.out.println("Using bound: " + bound);
 		}
 		System.out.println("*****************************");

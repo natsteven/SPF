@@ -8,8 +8,27 @@ Satisfiable: true
 a_1 => "true"
 
 MAS:
+Symbolic Exp [ CONST_Boolean value: .concat(a_1_SYMSTRING)]
+string analysis: SPC # = 1
+(a_1_SYMSTRING equals CONST_true)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+
+(assert (= a_1 "true"))
+
+
+=======================================
+---------------------------------------
+---------------------------------------
+			CACHE HIT
+---------------------------------------
+---------------------------------------
 sat,
-1: "true"
+a_1: "true"
 
 ************************************
 (declare-const a_1 String)
@@ -24,7 +43,7 @@ a_1 => ""
 
 MAS:
 sat,
-3: ""
+a_1[**UNDEFINED**]: ""
 
 ************************************
 (declare-const a_1 String)
@@ -38,7 +57,7 @@ a_1 => "123"
 
 MAS:
 sat,
-2: "123"
+a_1: "123"
 
 ************************************
 (declare-const a_1 String)
@@ -53,7 +72,7 @@ a_1 => "45.67"
 
 MAS:
 sat,
-3: "45.67"
+a_1: "45.67"
 
 ************************************
 (declare-const a_1 String)
@@ -67,7 +86,7 @@ a_1 => ""
 
 MAS:
 sat,
-2: ""
+a_1[**UNDEFINED**]: ""
 
 ************************************
 (declare-const a_1 String)
@@ -84,7 +103,7 @@ a_1 => "Hello"
 
 MAS:
 sat,
-5: "Hello"
+a_1: "Hello"
 
 ************************************
 (declare-const a_1 String)
@@ -101,7 +120,7 @@ a_1 => ""
 
 MAS:
 sat,
-5: ""
+a_1: ""
 
 ************************************
 (declare-const a_1 String)
@@ -114,7 +133,7 @@ a_1 => ""
 
 MAS:
 sat,
-1: ""
+a_1[**UNDEFINED**]: ""
 
 ************************************
 (declare-const a_1 String)
@@ -130,7 +149,7 @@ a_1 => "a"
 
 MAS:
 sat,
-4: "a"
+a_1: "a"
 
 ************************************
 (declare-const a_1 String)
@@ -146,5 +165,5 @@ a_1 => ""
 
 MAS:
 sat,
-4: ""
+a_1[**UNDEFINED**]: ""
 

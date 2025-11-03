@@ -2,7 +2,7 @@ package edu.boisestate.cs.util;
 
 import edu.boisestate.cs.automatonModel.Model_Acyclic_Inverse;
 import edu.boisestate.cs.graph.SolutionSet;
-import gov.nasa.jpf.symbc.numeric.Expression;
+import gov.nasa.jpf.symbc.numeric.*;
 import gov.nasa.jpf.symbc.string.*;
 
 import java.util.HashMap;
@@ -16,7 +16,9 @@ import java.util.Set;
 
 public class MASCache {
 	HashMap<StringPathCondition, SolutionSet<Model_Acyclic_Inverse>> cache = new HashMap<>();
+	HashMap<String, Set<String>> varDependencies = new HashMap<>();
 	final int MAX_CACHE_SIZE = 1024;
+	boolean lastHitWasCharAt = false;
 
 	// starting simple, check whether the pc is equals except for one negated comparator
 	// returns old pc and var involved in negation
@@ -30,46 +32,78 @@ public class MASCache {
 			int varRefs = 0;
 			StringConstraint SC = pc.header;
 			StringConstraint oldSC = old.header;
-			if (SC == null)
-				System.out.println("SC is null");
-			//check for negation
-			if (oldSC.contradicts(SC)) {
-				// set var ref if only one variable involved
-				Set<String> vars = findVars(SC);
-				if (vars.size() == 1) {
-					var = vars.iterator().next();
-					varRefs++;
-				}
-				contradictions++;
-			}
-			// compare each SC in old and new SPC
-			while (oldSC.and() != null) {
-				oldSC = oldSC.and();
-				SC = pc.header;
-				while (SC.and() != null) {
-					SC = SC.and();
-					if (oldSC.contradicts(SC)) {
-						// set var ref if first contradiction
-						if (contradictions == 0) {
-							Set<String> vars = findVars(SC);
-							if (vars.size() == 1) {
-								var = vars.iterator().next();
-								varRefs++;
-							}
+			// handle numerics
+			if (pc.getNpc().header != null) {
+				// happens when no string constriant but numeric constraint, i.e. charAt
+				// TODO: doesnt handle multiple numeric constraints...
+				if (old.getNpc().header != null) {
+					// shuold never not be: now check whether it contradicts
+					Constraint oldNpc = old.getNpc().header;
+					Constraint Npc = pc.getNpc().header;
+					Set<String> vars = findVars(Npc);
+					if (numericContradicts(oldNpc, Npc)) {
+						if (vars.size() == 1) {
+							var = vars.iterator().next();
+						} else {
+							// more than one var involved, cannot use cache
+							return null;
 						}
 						contradictions++;
 					}
-					Set<String> vars = findVars(SC);
 					if (vars.contains(var)) {
 						varRefs++;
 					}
+				} else {
+					return null;
 				}
+			}
+			//check for negation
+			if (SC != null && oldSC != null) {
+				Set<String> vars = findVars(SC);
+				if (oldSC.contradicts(SC)) {
+					if (contradictions == 0) { // set var ref if first contradiction
+						if (vars.size() == 1) {
+							var = vars.iterator().next();
+						} else {
+							// more than one var involved, cannot use cache
+							return null;
+						}
+					}
+					contradictions++;
+				}
+				if (vars.contains(var)) {
+					varRefs++;
+				}
+				// compare each SC in old and new SPC
+				while (oldSC.and() != null) {
+					oldSC = oldSC.and();
+					SC = pc.header;
+					while (SC.and() != null) {
+						SC = SC.and();
+						vars = findVars(SC);
+						if (oldSC.contradicts(SC)) {
+							// set var ref if first contradiction
+							if (contradictions == 0) {
+								if (vars.size() == 1) {
+									var = vars.iterator().next();
+								}
+							}
+							contradictions++;
+						}
+						if (vars.contains(var)) {
+							varRefs++;
+						}
+					}
+				}
+			} else if (SC != null || oldSC != null) {
+				return null;
 			}
 			// only return if exactly one negated predicate and related variable is not in other predicates
 			if (contradictions == 1 && varRefs == 1) {
 				return new Tuple<>(old, var);
 			}
 		}
+		lastHitWasCharAt = false;
 		return null;
 	}
 
@@ -81,7 +115,7 @@ public class MASCache {
 		for (StringExpression se : ops) {
 			if (se instanceof StringSymbolic) {
 				vars.add(se.toString().replace("_SYMSTRING", ""));
-			} else if(se instanceof DerivedStringExpression) {
+			} else if (se instanceof DerivedStringExpression) {
 				// recurse if needed
 				vars.addAll(findVars(se));
 			}
@@ -89,16 +123,58 @@ public class MASCache {
 		return vars;
 	}
 
-	private Set<String> findVars(StringExpression SE){
-		DerivedStringExpression dSE = (DerivedStringExpression) SE;
+	private Set<String> findVars(StringExpression SE) {
 		Set<String> vars = new HashSet<>();
-		Set<Expression> ops = dSE.getOperands();
-		for (Expression e : ops) {
-			if (e instanceof StringSymbolic) {
-				vars.add(e.toString().replace("_SYMSTRING", ""));
-			} else if (e instanceof DerivedStringExpression) {
-				vars.addAll(findVars((StringExpression) e));
+		if (SE instanceof DerivedStringExpression) {
+			DerivedStringExpression dSE = (DerivedStringExpression) SE;
+			Set<Expression> ops = dSE.getOperands();
+			for (Expression e : ops) {
+				if (e instanceof StringSymbolic) {
+					vars.add(e.toString().replace("_SYMSTRING", ""));
+				} else if (e instanceof DerivedStringExpression) {
+					vars.addAll(findVars((StringExpression) e));
+				}
 			}
+		} else if (SE instanceof StringSymbolic) {
+			vars.add(SE.toString().replace("_SYMSTRING", ""));
+		} else {
+			System.out.println("Unhandled StringExpression type in findVars: " + SE.getClass().getName());
+			System.err.println("Unhandled var check");
+		}
+
+		return vars;
+	}
+
+	private Set<String> findVars(Constraint c) {
+		if (!(c instanceof LinearIntegerConstraint)) {
+			System.out.println("Unhandled Constraint type in findVars: " + c.getClass().getName());
+			System.err.println("Unhandled var check");
+			return new HashSet<>();
+		}
+		LinearIntegerConstraint lic = (LinearIntegerConstraint) c;
+		Set<String> vars = new HashSet<>();
+		IntegerExpression left = lic.getLeft();
+		IntegerExpression right = lic.getRight();
+		vars.addAll(findVars(left));
+		vars.addAll(findVars(right));
+		return vars;
+	}
+
+	private Set<String> findVars(IntegerExpression ie) {
+		Set<String> vars = new HashSet<>();
+		if (ie instanceof SymbolicCharAtInteger) {
+			lastHitWasCharAt = true;
+			SymbolicCharAtInteger sca = (SymbolicCharAtInteger) ie;
+			StringExpression se = sca.getExpression();
+			vars.addAll(findVars(se));
+		} else if (ie instanceof SymbolicInteger) {
+			SymbolicInteger si = (SymbolicInteger) ie;
+			vars.add(si.toString().replace("_SYMINT", ""));
+		} else if (ie instanceof IntegerConstant) {
+			// do nothing
+		} else {
+			System.out.println("Unhandled IntegerExpression type in findVars: " + ie.getClass().getName());
+			System.err.println("Unhandled var check");
 		}
 		return vars;
 	}
@@ -114,6 +190,22 @@ public class MASCache {
 			cache.remove(cache.keySet().iterator().next());
 		}
 		cache.put(pc, solSet);
+		// here we analyze variable and predicate dependencies for future use
+	}
+
+	public boolean numericContradicts(Constraint c1, Constraint c2) {
+		Comparator comp1 = c1.getComparator();
+		Comparator comp2 = c2.getComparator();
+		if (comp1.not().equals(comp2)) {
+			return c1.getLeft().equals(c2.getLeft()) && c1.getRight().equals(c2.getRight());
+		}
+		return false;
+	}
+
+	public boolean wasLastHitCharAt() {
+		boolean ret = lastHitWasCharAt;
+		lastHitWasCharAt = false;
+		return ret;
 	}
 
 	public boolean isEmpty() {
