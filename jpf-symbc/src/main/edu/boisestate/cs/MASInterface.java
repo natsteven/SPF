@@ -39,17 +39,28 @@ public class MASInterface {
 			if (hit != null) {
 				System.out.println("---------------------------------------\n---------------------------------------\n\t\t\tCACHE HIT\n---------------------------------------\n---------------------------------------");
 				// for now we will check that the negated constraints related input has no other predicate dependencies...
-				SolutionSet<Model_Acyclic_Inverse> sol = cache.get(hit.get1());
+				SolutionSet<Model_Acyclic_Inverse> sol = cache.get(hit.get1()).clone();
 				String var = hit.get2();
 				// so we can just take the complement model (assuming no partitioning inverses)
 				// need to find the solution that matches the input we negate :D
+				// could clone and put in new cache entry?
 				Solution s = sol.getSolutionForVar(var);
 				// change solution to complement
 				A_Model tmp = s.model;
 				s.model = s.comp;
 				s.comp = tmp;
+
+				// check complement model exists
+				if (s.model.isEmpty()) {
+					sol.setSAT(false);
+				}
+
 				s.example = s.model.getAcceptedStringExample();
 				System.out.println(sol.getResult());
+
+				// add new slightly different pc to cache.... TODO: should we do this?
+				cache.put(pc, sol);
+
 				return sol;
 			}
 		}
