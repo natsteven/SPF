@@ -2,24 +2,26 @@ package edu.boisestate.cs;
 
 import edu.boisestate.cs.automatonModel.A_Model;
 import edu.boisestate.cs.graph.InvDefaultDirectedGraph;
-import edu.boisestate.cs.util.MASCache;
-import edu.boisestate.cs.util.MASProcessor;
-import edu.boisestate.cs.util.MASTranslator;
+import edu.boisestate.cs.util.*;
 import edu.boisestate.cs.automatonModel.Model_Acyclic_Inverse;
 import edu.boisestate.cs.graph.SolutionSet;
 import edu.boisestate.cs.graph.SolutionSet.Solution;
-import edu.boisestate.cs.util.Tuple;
 import edu.ucsb.cs.vlab.translate.smtlib.from.z3str3.Z3Translator;
 import gov.nasa.jpf.symbc.SymbolicInstructionFactory;
 import gov.nasa.jpf.symbc.string.StringPathCondition;
+import gov.nasa.jpf.symbc.string.StringSymbolic;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class MASInterface {
 	private static MASCache cache = new MASCache();
+	private static int runCount = 0;
+	private static int cacheHits = 0;
+	private static HashMap<String, Integer> cacheMisses = new HashMap<>();
 
 	public static SolutionSet<Model_Acyclic_Inverse> solve(StringPathCondition pc) {
-
+		runCount++;
 		if (SymbolicInstructionFactory.debugMode) {
 			// get smtlib query for debugging
 			final Z3Translator t = new Z3Translator();
@@ -34,38 +36,44 @@ public class MASInterface {
 			System.out.println("=======================================");
 		}
 
-		if (!cache.isEmpty()){
-			Tuple<StringPathCondition, String> hit = cache.findSingleNegation(pc);
-			if (hit != null) {
-				System.out.println("---------------------------------------\n---------------------------------------\n\t\t\tCACHE HIT\n---------------------------------------\n---------------------------------------");
-				// for now we will check that the negated constraints related input has no other predicate dependencies...
-				SolutionSet<Model_Acyclic_Inverse> sol = cache.get(hit.get1()).clone();
-				String var = hit.get2();
-				// so we can just take the complement model (assuming no partitioning inverses)
-				// need to find the solution that matches the input we negate :D
-				// could clone and put in new cache entry?
-				Solution s = sol.getSolutionForVar(var);
-				// change solution to complement
-				A_Model tmp = s.model;
-				s.model = s.comp;
-				s.comp = tmp;
+		PathConstraintAnalysis pca = new PathConstraintAnalysis(pc);
+//		pca.printInfo();
 
-				// check complement model exists
-				if (s.model.isEmpty()) {
-					sol.setSAT(false);
+		// currently check exact pca, wouldnt be hard to change to subset/superset
+		Tuple<SolutionSet<Model_Acyclic_Inverse>, Set<StringSymbolic>> cacheHit = cache.findCacheHit(pca);
+		if (cacheHit != null) {
+			cacheHits++;
+			System.out.println();
+			System.out.println("################################################");
+			System.out.println("################################################");
+			System.out.println("################	CACHE HIT	################");
+			System.out.println("################################################");
+			System.out.println("################################################");
+			System.out.println();
+			SolutionSet<Model_Acyclic_Inverse> solSet = cacheHit.get1();
+			Set<StringSymbolic> toComplement = cacheHit.get2();
+			// complement solutions for each variable involved in negated constraints
+			//todo: have method for getting solution given var in SolutionSet
+			for (StringSymbolic symVar : toComplement) {
+				for (Solution s : solSet.getSolutions()) {
+					String n = s.originalName;
+					String nm = symVar.getName().replace("_SYMSTRING", "");
+					if (n.equals(nm)) {
+						// complement model
+						A_Model tmp = s.model;
+						s.model = s.comp;
+						s.comp = tmp;
+						if (s.model.isEmpty()) {
+							solSet.setSAT(false);
+						}
+						s.example = s.model.getAcceptedStringExample();
+						break;
+					}
 				}
-				if (cache.wasLastHitCharAt()) {
-					s.model.removeEmptyString();
-				}
-
-				s.example = s.model.getAcceptedStringExample();
-				System.out.println(sol.getResult());
-
-				// add new slightly different pc to cache.... TODO: should we do this?
-				cache.put(pc, sol);
-
-				return sol;
 			}
+			System.out.println(solSet.getResult());
+			cache.put(pca, solSet);
+			return solSet;
 		}
 
 		MASTranslator translator = new MASTranslator();
@@ -97,7 +105,7 @@ public class MASInterface {
 
 		MASProcessor processor = new MASProcessor(false, alpha, bound);
 		SolutionSet<Model_Acyclic_Inverse> sol = processor.query(graph);
-		cache.put(pc, sol);
+		cache.put(pca, sol);
 
 		return sol;
 	}

@@ -16,7 +16,7 @@ public class BenchmarkRunner {
 
     private static List<Benchmark> programs = new ArrayList<>();
 
-    private static final List<String> SOLVERS = Arrays.asList("z3str3", "MAS");
+    private static final List<String> SOLVERS = Arrays.asList("MAS");
     private static boolean z3OK = true; //for average runtime calc only accumulate when z3 succeeds
 
     private static final long TIMEOUT_SEC = Long.getLong("bench.timeoutSec", 30L);
@@ -39,8 +39,30 @@ public class BenchmarkRunner {
     );
 
     public static void main(String[] args) throws Exception {
+        if (args.length == 2 && args[0].equals("--file")) {
+            Path listFile = Paths.get(args[1]);
+            List<String> lines = Files.readAllLines(listFile, StandardCharsets.UTF_8);
+            for (String line : lines) {
+                String trimmed = line.trim();
+                if (trimmed.isEmpty() || trimmed.startsWith("#")) continue;
+                Path path = Paths.get(trimmed);
+                if (Files.isRegularFile(path)) {
+                    // Existing logic for a single file
+                    String root = System.getProperty("user.dir");
+                    String fqcn = null;
+                    if (path.toString().contains("tests")) {
+                        fqcn = path.toString().substring(10);
+                    } else if (path.toString().contains("examples")) {
+                        fqcn = path.toString().substring(13);
+                    }
+                    fqcn = fqcn.replace(File.separatorChar, '.').replace(".java", "");
+                    for (String sig : methodSignaturesFromReflection(fqcn)) {
+                        programs.add(new Benchmark(fqcn, sig));
+                    }
+                }
+            }
         // load program benchmarks from a directory specified in args
-        if (args.length > 0) {
+        } else if (args.length == 1) {
             Path path = Paths.get(args[0]);
             if (Files.isDirectory(path)) {
                 System.out.println("Processing directory: " + path);
@@ -64,6 +86,7 @@ public class BenchmarkRunner {
             }
         } else {
             System.out.println("Usage: java bench.BenchmarkRunner <benchmarks_directory | benchmark_file>");
+            System.out.println("   or: java bench.BenchmarkRunner --file <list_of_benchmark_files.txt>");
             System.exit(1);
         }
         // Initialize status counts
@@ -81,6 +104,7 @@ public class BenchmarkRunner {
             if (newFile) {
             	w.write("timestamp,program,method,solver,status,wall_ms,exitCode\n");
             }
+            int count = 1;
             for (Benchmark b : programs) {
                 String methodFile = (b.fqcn.substring(b.fqcn.lastIndexOf('.') + 1) + b.methodSig).replaceAll("[^A-Za-z0-9_]+", "_") + "__" + ".txt";
                 HashMap<String, ArrayList<String>> solutions = new HashMap<>();
@@ -89,7 +113,7 @@ public class BenchmarkRunner {
                     Result r = runOnce(b, solver);
                     w.write(String.format(Locale.ROOT, "%s,%s,%s,%s,%s,%d,%d%n", Instant.now(), b.fqcn, b.methodSig, solver, r.status, r.wallMs, r.exitCode));
                     w.flush();
-                    System.out.printf("-> %s in %d ms (exit %d)%n", r.status, r.wallMs, r.exitCode);
+                    System.out.printf("(%d/%d) -> %s in %d ms (exit %d)%n", count, programs.size(), r.status, r.wallMs, r.exitCode);
                     for (Map.Entry<String, String> e : r.sols.entrySet()) {
                         solutions.computeIfAbsent(e.getKey(), k -> new ArrayList<>()).add(solver + ":\n" + e.getValue());
                     }
@@ -97,6 +121,7 @@ public class BenchmarkRunner {
                 try (BufferedWriter solW = Files.newBufferedWriter(solutionsDir.resolve(methodFile), StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)) {
                     solW.write(printSolutions(solutions));
                 }
+                count++;
             }
         }
 
@@ -111,10 +136,10 @@ public class BenchmarkRunner {
         }
         System.out.println("Results written to: " + OUT_CSV.toAbsolutePath());
         System.out.println("Total runtimes (ms): " + runtimes);
-        if (statusCounts.get("MAS")[0] > 0)
-            System.out.println("MAS avg: " + (runtimes.get("MAS") / statusCounts.get("MAS")[0]) + " ms");
-        if (statusCounts.get("MAS")[0] > 0)
-            System.out.println("Z3 avg: " + (runtimes.get("z3str3") / statusCounts.get("z3str3")[0]) + " ms");
+        for (String solver : SOLVERS) {
+            if (statusCounts.get(solver)[0] > 0)
+                System.out.println(solver + " avg: " + (runtimes.get(solver) / statusCounts.get(solver)[0]) + " ms");
+        }
     }
 
 
@@ -201,7 +226,7 @@ public class BenchmarkRunner {
 
     private static void parseDirectoryBenchmarks(Path dir) throws Exception {
         List<Benchmark> loaded = new ArrayList<>();
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, "*Test.java")) { // FILTER with glob as necessary!!
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, "*.java")) { // FILTER with glob as necessary!!
             for (Path entry : stream) {
                 String root = System.getProperty("user.dir");
                 String fqcn = null;

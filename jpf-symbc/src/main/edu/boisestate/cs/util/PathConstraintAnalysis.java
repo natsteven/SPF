@@ -1,58 +1,147 @@
 package edu.boisestate.cs.util;
 
-import gov.nasa.jpf.symbc.numeric.Constraint;
-import gov.nasa.jpf.symbc.numeric.Expression;
-import gov.nasa.jpf.symbc.numeric.IntegerConstant;
-import gov.nasa.jpf.symbc.numeric.IntegerExpression;
-import gov.nasa.jpf.symbc.numeric.LinearIntegerConstraint;
-import gov.nasa.jpf.symbc.string.DerivedStringExpression;
-import gov.nasa.jpf.symbc.string.StringConstraint;
-import gov.nasa.jpf.symbc.string.StringConstant;
-import gov.nasa.jpf.symbc.string.StringExpression;
-import gov.nasa.jpf.symbc.string.StringOperator;
-import gov.nasa.jpf.symbc.string.StringPathCondition;
-import gov.nasa.jpf.symbc.string.StringSymbolic;
-import gov.nasa.jpf.symbc.string.SymbolicCharAtInteger;
-import gov.nasa.jpf.symbc.string.SymbolicIndexOfInteger;
-import gov.nasa.jpf.symbc.string.SymbolicLengthInteger;
+import gov.nasa.jpf.symbc.numeric.*;
+import gov.nasa.jpf.symbc.string.*;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.Comparator;
 
 public class PathConstraintAnalysis {
-	private final Set<Object> predicates; // each entry is a concrete constraint object (string or numeric)
-	private final HashMap<String, Object> predicateStringToObject;
+	private final Set<Object> predicates = new HashSet<>();
+	private final Set<StringSymbolic> symVars = new HashSet<>();
+	private final Set<StringOperator> operations = new HashSet<>();
+	private final Set<StringOperator> badOps = new HashSet<>();
+	private final StringPathCondition spc;
 
-	private final HashMap<StringSymbolic, Set<Object>> symVarToPredicates;
-	private final HashMap<Object, Set<StringSymbolic>> predicateToSymVars;
-	private final HashMap<Tuple<StringSymbolic, Object>, Set<StringOperator>> symVarAndPredToOperations;
+	private final HashMap<StringSymbolic, Set<Object>> symVarToPredicates = new HashMap<>();
+	private final HashMap<Object, Set<StringSymbolic>> predicateToSymVars = new HashMap<>();
+	private final HashMap<Tuple<StringSymbolic, Object>, Set<StringOperator>> symVarAndPredToOperations = new HashMap<>();
 
 	private Object currentPredicate;
 	private Set<StringSymbolic> currentSymVars;
-	private final Deque<StringOperator> opStack;
+	private final Deque<StringOperator> opStack = new ArrayDeque<>();
 
 	public PathConstraintAnalysis(StringPathCondition spc) {
-		predicates = new HashSet<>();
-		predicateStringToObject = new HashMap<>();
-		symVarToPredicates = new HashMap<>();
-		predicateToSymVars = new HashMap<>();
-		symVarAndPredToOperations = new HashMap<>();
-		opStack = new ArrayDeque<>();
-
+		this.spc = spc;
 		// Walk string constraints
 		for (StringConstraint sc = spc.header; sc != null; sc = sc.and()) {
 			analyseStringConstraint(sc);
 		}
-
 		// Walk numeric constraints (guard npc == null)
 		Constraint nc = (spc.getNpc() != null) ? spc.getNpc().header : null;
 		while (nc != null) {
 			analyseNumericConstraint(nc);
 			nc = nc.and;
 		}
+		badOps.add(StringOperator.DELETE);
+		badOps.add(StringOperator.SUBSTRING);
+		badOps.add(StringOperator.INSERT);
+		badOps.add(StringOperator.CHARAT);
+		badOps.add(StringOperator.LENGTH);
+	}
+
+	// check pred is valid and provides info for validation result
+	public void validate(Object predicate, ValidationResult result) {
+		// we are gathering info for invalid cases
+		if (predicate instanceof StringConstraint &&
+				(((StringConstraint) predicate).getComparator() == StringComparator.EMPTY ||
+						((StringConstraint) predicate).getComparator() == StringComparator.NOTEMPTY)) {
+			result.addBadOp(StringOperator.ISEMPTY);
+			result.setValid(false);
+		}
+		Set<StringSymbolic> symVars = predicateToSymVars.get(predicate);
+
+		// if pred->sym map doesnt have key then no sym vars so will just be sat<->unsat flip
+		if (symVars == null || symVars.isEmpty()) return;
+		if (symVars.size() != 1) {
+			result.addMultiSymPred(predicate);
+			result.setValid(false);
+		}
+
+		for (StringSymbolic symVar : symVars) {
+			if (symVarToPredicates.get(symVar).size() != 1) {
+				result.addDependentSymVar(symVar);
+				result.setValid(false);
+			}
+			Set<StringOperator> ops = symVarAndPredToOperations.get(new Tuple<>(symVar, predicate));
+			for (StringOperator op : badOps) {
+				if (ops.contains(op)) {
+					result.addBadOp(op);
+					result.setValid(false);
+				}
+			}
+		}
+
+		if (result.isValid()) {
+			result.addRelevantSymVars(symVars);
+		}
+	}
+
+	// note this would work when old is superset of new, but for now we require same and return contradictions
+	public ValidationResult equalsIgnoreNegationsValid(PathConstraintAnalysis other) {
+		// we check that predicates contradict or are the same
+		if (this.predicates.size() != other.predicates.size()) {
+			return null;
+		}
+		Set<Object> toFind = new HashSet<>(this.predicates);
+		Set<Object> toSearch = new HashSet<>(other.getAllPredicates());
+
+		ValidationResult result = new ValidationResult();
+
+		for (Iterator findIt = toFind.iterator(); findIt.hasNext(); ) {
+			Object pred = findIt.next();
+			boolean handled = false;
+			for (Iterator searchIt = toSearch.iterator(); searchIt.hasNext(); ) {
+				Object otherPred = searchIt.next();
+				// exact match
+				if (pred.equals(otherPred)) {
+					searchIt.remove();     // remove from toSearch
+					findIt.remove();       // remove from toFind
+					handled = true;
+					break;                 // done with this pred
+				}
+				// contradiction?
+				boolean isContradiction = false;
+				if (pred instanceof StringConstraint && otherPred instanceof StringConstraint) {
+					isContradiction = ((StringConstraint) pred).contradicts((StringConstraint) otherPred);
+				} else if (pred instanceof LinearIntegerConstraint && otherPred instanceof LinearIntegerConstraint) {
+					isContradiction = ((Constraint) pred).contradicts((Constraint) otherPred);
+				}
+				if (isContradiction) {
+					validate(pred, result); // validate and gather info for invalid case
+					searchIt.remove();     // remove matched counterpart
+					findIt.remove();       // remove current pred
+					handled = true;
+					break;
+				}
+				// else continue scanning other elements of toSearch
+			}
+			if (!handled) {
+				// no equal or contradictory counterpart found for this pred
+				return null;
+			}
+		}
+		// search over
+		if (toFind.isEmpty()) {
+			// yay its a similar spc
+			return result; // may be invalid but has info
+		}
+		return null;
+	}
+
+	private Set<StringOperator> findBadOps(Object pred) {
+		Set<StringOperator> ops = new HashSet<>();
+		Set<StringOperator> badOpsFound = new HashSet<>();
+		for (StringSymbolic sv : predicateToSymVars.get(pred)) {
+			Tuple<StringSymbolic, Object> key = new Tuple<>(sv, pred);
+			ops.addAll(symVarAndPredToOperations.get(key));
+		}
+		for (StringOperator op : badOps) {
+			if (ops.contains(op)) {
+				badOpsFound.add(op);
+			}
+		}
+		return badOpsFound;
 	}
 
 	private void analyseStringConstraint(StringConstraint sc) {
@@ -61,7 +150,6 @@ public class PathConstraintAnalysis {
 		opStack.clear();
 
 		predicates.add(currentPredicate);
-		predicateStringToObject.put(sc.toString(), currentPredicate);
 
 		for (StringExpression se : sc.getOperands()) {
 			analyseStringExpression(se);
@@ -73,12 +161,11 @@ public class PathConstraintAnalysis {
 	private void analyseNumericConstraint(Constraint nc) {
 		if (nc instanceof LinearIntegerConstraint) {
 			LinearIntegerConstraint lic = (LinearIntegerConstraint) nc;
-			currentPredicate = lic; // use the actual constraint object as key
+			currentPredicate = lic;
 			currentSymVars = new HashSet<>();
 			opStack.clear();
 
 			predicates.add(currentPredicate);
-			predicateStringToObject.put(lic.toString(), currentPredicate);
 
 			analyseIntegerExpression(lic.getLeft());
 			analyseIntegerExpression(lic.getRight());
@@ -93,29 +180,29 @@ public class PathConstraintAnalysis {
 	private void analyseStringExpression(StringExpression se) {
 		if (se instanceof DerivedStringExpression) {
 			DerivedStringExpression dse = (DerivedStringExpression) se;
-			// push op
-			opStack.push(dse.op);
+			StringOperator operator = dse.op;
+			operations.add(operator);
+			opStack.push(operator);
 			for (Expression e : dse.getOperands()) {
 				analyseExpression(e);
 			}
-			// pop op
 			opStack.pop();
 			return;
 		}
 
 		if (se instanceof StringSymbolic) {
+			// TODO: make sure this object is shared for other references
 			StringSymbolic ss = (StringSymbolic) se;
 			currentSymVars.add(ss);
+			symVars.add(ss);
 
-			// update symVar -> predicates
 			symVarToPredicates.computeIfAbsent(ss, k -> new HashSet<>()).add(currentPredicate);
 
-			// capture current operation path as a set (order not required)
 			Set<StringOperator> opsForPath = new HashSet<>(opStack);
 
 			Tuple<StringSymbolic, Object> key = new Tuple<>(ss, currentPredicate);
 			symVarAndPredToOperations
-					.computeIfAbsent(key, k -> new HashSet<>())
+					.computeIfAbsent(key, k -> new HashSet<>()) // in case of multiple paths from sym var to predicate
 					.addAll(opsForPath);
 			return;
 		}
@@ -131,22 +218,27 @@ public class PathConstraintAnalysis {
 		if (ie instanceof IntegerConstant) {
 			return;
 		}
-		// String-dependent integer expressions
 		if (ie instanceof SymbolicCharAtInteger) {
+			opStack.push(StringOperator.CHARAT);
+			operations.add(StringOperator.CHARAT);
 			analyseStringExpression(((SymbolicCharAtInteger) ie).getExpression());
+			opStack.pop();
 			return;
 		}
 		if (ie instanceof SymbolicLengthInteger) {
+			opStack.push(StringOperator.LENGTH);
+			operations.add(StringOperator.LENGTH);
 			analyseStringExpression(((SymbolicLengthInteger) ie).getExpression());
+			opStack.pop();
 			return;
 		}
 		if (ie instanceof SymbolicIndexOfInteger) {
+			opStack.push(StringOperator.INDEXOF);
+			operations.add(StringOperator.INDEXOF);
 			SymbolicIndexOfInteger sio = (SymbolicIndexOfInteger) ie;
-			// source string
 			analyseStringExpression(sio.getSource());
-			// argument can be string expr or constant
-			Expression arg = sio.getExpression();
-			analyseExpression(arg);
+			analyseExpression(sio.getExpression()); //arg
+			opStack.pop();
 			return;
 		}
 		throw new RuntimeException("Unhandled IntegerExpression type: " + ie.toString());
@@ -164,20 +256,88 @@ public class PathConstraintAnalysis {
 		throw new RuntimeException("unexpected expression type: " + e.toString());
 	}
 
-	// Optional getters
-	public Set<Object> getPredicates() {
+	public Set<Object> getAllPredicates() {
 		return predicates;
 	}
 
-	public HashMap<Object, Set<StringSymbolic>> getPredicateToSymVars() {
-		return predicateToSymVars;
+	public void printInfo() {
+		System.out.println("Path Constraint Analysis Info:");
+		System.out.println("	Predicates: " + predicates.size());
+		for (Object p : predicateToSymVars.keySet()) {
+			System.out.println("		Pred: " + p.toString() + " involves " + predicateToSymVars.get(p).size() + " symbolic variables.");
+		}
+		System.out.println("	Symbolic Variables: " + symVars.size());
+		for (StringSymbolic sv : symVarToPredicates.keySet()) {
+			System.out.println("		SymVar: " + sv.getName() + " involved in " + symVarToPredicates.get(sv).size() + " predicates.");
+		}
+		for (StringOperator op : operations) {
+			System.out.println("	Operations involved: " + op.toString());
+		}
 	}
 
-	public HashMap<StringSymbolic, Set<Object>> getSymVarToPredicates() {
-		return symVarToPredicates;
-	}
+	public static class ValidationResult {
+		private boolean valid;
+		private final Set<StringSymbolic> relevantSymVars;
+		private final Set<StringSymbolic> problemSymVars;
+		private final Set<Object> badPredicates;
+		private final Set<StringOperator> badOps;
 
-	public HashMap<Tuple<StringSymbolic, Object>, Set<StringOperator>> getSymVarAndPredToOperations() {
-		return symVarAndPredToOperations;
+		public ValidationResult() {
+			this.valid = true;
+			this.relevantSymVars = new HashSet<>();
+			this.problemSymVars = new HashSet<>();
+			this.badPredicates = new HashSet<>();
+			this.badOps = new HashSet<>();
+		}
+
+		public void setValid(boolean valid) {
+			this.valid = valid;
+		}
+
+		public boolean isValid() {
+			return valid;
+		}
+
+		public Set<StringSymbolic> getRelevantSymVars() {
+			return relevantSymVars;
+		}
+
+		public Set<StringSymbolic> getProblemSymVars() {
+			return problemSymVars;
+		}
+
+		public Set<Object> getBadPredicates() {
+			return badPredicates;
+		}
+
+		public Set<StringOperator> getBadOps(){
+			return badOps;
+		}
+
+		public void addBadOp(StringOperator op){
+			badOps.add(op);
+		}
+
+		public void addMultiSymPred(Object pred){
+			badPredicates.add(pred);
+		}
+
+		public void addDependentSymVar(StringSymbolic symVar){
+			problemSymVars.add(symVar);
+		}
+
+		public void addRelevantSymVars(Set<StringSymbolic> symVars){
+			relevantSymVars.addAll(symVars);
+		}
+
+		@Override
+		public String toString() {
+			if (valid) {
+				return "VALID involving " + relevantSymVars.size() + " relevant symbolic variables.";
+			} else {
+				return "INVALID due to " + problemSymVars.size() + " dependent symbolic variables, "
+						+ badPredicates.size() + " multi-sym predicates, and " + badOps.size() + " bad operations.";
+			}
+		}
 	}
 }

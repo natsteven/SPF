@@ -184,10 +184,13 @@ tasks.register('bench', JavaExec) {
     description = 'Runs solver benchmarks and writes CSV under <project-root>/benchmarks/results.csv'
     classpath = sourceSets.test.runtimeClasspath + files('build/examples') //need to include benchmarks in classpath
     mainClass = 'edu.boisestate.cs.BenchmarkRunner'
-    args "${projectDir}/src/tests/edu/boisestate/cs/MAS" //path to MAS benchmarks (filter TestMas in BenchmarkRunner.java, specify *Test.java)
-//    args "${projectDir}/src/tests/gov/nasa/jpf/symbc/strings" // make sure to add filter for *Test* in BenchmarkRunner.java
-//    args "${projectDir}/src/tests/gov/nasa/jpf/symbc/strings/performance"
-//    args "${projectDir}/src/examples/strings" //path to benchmarks
+//    args "${projectDir}/src/tests/edu/boisestate/cs/MAS" //path to MAS benchmarks (filter TestMas in BenchmarkRunner.java, specify *Test.java)
+//    args "${projectDir}/src/tests/gov/nasa/jpf/symbc/strings" // filter in BenchmarkRunner parseDirectory: stream .java and files not Test*
+//    args "${projectDir}/src/tests/gov/nasa/jpf/symbc/strings/performance" // make sure Test classes aren't skipped
+//    args "${projectDir}/src/examples/strings" //path to benchmarks // as above
+
+    args "--file", "${projectDir}/bench_list.txt"
+
     dependsOn buildJars
 
     jvmArgs '-Dbench.timeoutSec=5'

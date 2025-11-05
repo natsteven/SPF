@@ -64,7 +64,10 @@ public enum StringOperator {
     DELETE("delete"),
     CHARAT("charAt"),
     INSERT("insert"),
-    REVERSE("reverse");
+    REVERSE("reverse"),
+    INDEXOF("indexof"), // only for tracking in path constraint analysis
+    LENGTH("length"), // only for tracking in path analysis
+    ISEMPTY("isempty"); // sorry for this
 
     private final String str;
 

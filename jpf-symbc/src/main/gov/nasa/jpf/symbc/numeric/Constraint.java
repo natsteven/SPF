@@ -208,4 +208,15 @@ public abstract class Constraint implements Comparable<Constraint> {
 		return result;
 	}
 
+	public boolean contradicts(Constraint c) {
+		Comparator comp1 = this.getComparator();
+		Comparator comp2 = c.getComparator();
+
+		if (comp1.not().equals(comp2)) {
+			return this.getLeft().equals(c.getLeft()) && this.getRight().equals(c.getRight());
+		}
+
+		return false;
+	}
+
 }
