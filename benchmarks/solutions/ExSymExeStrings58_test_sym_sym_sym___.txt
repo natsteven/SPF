@@ -1,0 +1,63 @@
+************************************
+(declare-const a_1 String)
+
+(assert (str.prefixof "hello" a_1))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "hello"
+
+************************************
+(declare-const a_1 String)
+
+(assert (str.prefixof "hello" a_1))
+(assert (<= (str.indexof a_1 "ǃ") (- 1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const a_1 String)
+
+(assert (str.prefixof "hello" a_1))
+(assert (> (str.indexof a_1 "ǃ") (- 1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (str.prefixof "hello" a_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "hellA"
+
+MAS:
+## Warning: empty path condition
+### PCs: total:2 sat:2 unsat:0
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING startswith CONST_hello)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+
+(assert (str.prefixof "hello" a_1))
+
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+a_1: "hello"
+

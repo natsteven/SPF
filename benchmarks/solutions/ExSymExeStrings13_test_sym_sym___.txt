@@ -1,0 +1,142 @@
+************************************
+
+------------------------------------
+MAS:
+string analysis: SPC # = 1
+(a_1_SYMSTRING startswith CONST_ )
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+
+(assert (str.prefixof " " a_1))
+
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+a_1: " "
+
+************************************
+(declare-const a_1 String)
+
+(assert (str.prefixof " " a_1))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => " "
+
+************************************
+(declare-const a_1 String)
+(declare-const out_str String)
+
+(assert (= out_str "ab"))
+(assert (str.prefixof " " a_1))
+
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+(assert (and (str.in_re a_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => " ab\u{2}"
+out_str => "ab"
+nwc => "\u{0}" " ")))
+ws => ""
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (str.prefixof " " a_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "A"
+
+MAS:
+## Warning: empty path condition
+### PCs: total:2 sat:2 unsat:0
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING startswith CONST_ )
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+
+(assert (str.prefixof " " a_1))
+
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+a_1: " "
+
+************************************
+(declare-const a_1 String)
+(declare-const out_str String)
+
+(assert (not (= out_str "ab")))
+(assert (str.prefixof " " a_1))
+
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+(assert (and (str.in_re a_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => " "
+out_str => ""
+nwc => "\u{0}" " ")))
+ws => ""
+
+MAS:
+## Warning: empty path condition
+### PCs: total:4 sat:4 unsat:0
+
+string analysis: SPC # = 2
+(.trim(a_1_SYMSTRING) equals CONST_ab) && (a_1_SYMSTRING startswith CONST_ )
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const out_str String)
+
+(assert (= out_str "ab"))
+(assert (str.prefixof " " a_1))
+
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+(assert (and (str.in_re a_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+=======================================
+Cache Hit Invalid reason(s):
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
+---------------------------------------------------------------------
+Using Alphabet:  0ab
+Using bound: 4
+

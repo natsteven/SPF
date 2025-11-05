@@ -3,7 +3,7 @@ package edu.boisestate.cs.MAS;
 public class CharAtTest {
 
     public static void main(String[] args) {
-        test("Hello");
+        test(args[0]);
     }
 
     public static void test(String s1) {

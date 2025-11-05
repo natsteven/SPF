@@ -1,0 +1,78 @@
+************************************
+
+------------------------------------
+MAS:
+s1 contains s2
+Hello World contains s2
+string analysis: SPC # = 1
+(s1_1_SYMSTRING contains s2_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (str.contains s1_1 s2_2))
+
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+s1_1: ""
+s2_2: ""
+
+************************************
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (str.contains s1_1 s2_2))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => ""
+s2_2 => ""
+
+************************************
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (not (str.contains s1_1 s2_2)))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => ""
+s2_2 => "A"
+
+MAS:
+## Warning: empty path condition
+### PCs: total:2 sat:2 unsat:0
+
+string analysis: SPC # = 1
+(s1_1_SYMSTRING contains s2_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (str.contains s1_1 s2_2))
+
+
+=======================================
+Cache Hit Invalid reason(s):
+	INVALID due to 0 dependent symbolic variables, 1 multi-sym predicates, and 0 bad operations.
+	INVALID due to 0 dependent symbolic variables, 1 multi-sym predicates, and 0 bad operations.
+---------------------------------------------------------------------
+Using Alphabet: ABC
+Using bound: 4
+

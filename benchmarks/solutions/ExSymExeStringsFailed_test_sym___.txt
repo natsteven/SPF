@@ -1,0 +1,165 @@
+************************************
+
+------------------------------------
+MAS:
+This is the PC at the end:constraint # = 0
+string analysis: SPC # = 2
+(a_1_SYMSTRING notstartswith CONST_a) && (a_1_SYMSTRING contains CONST_a)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+
+(assert (not (str.prefixof "a" a_1)))
+(assert (str.contains a_1 "a"))
+
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+a_1: "0a"
+
+************************************
+(declare-const a_1 String)
+
+(assert (str.contains a_1 "a"))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "a"
+
+MAS:
+## Warning: empty path condition
+### PCs: total:5 sat:5 unsat:0
+
+string analysis: SPC # = 2
+(a_1_SYMSTRING notstartswith CONST_a) && (a_1_SYMSTRING contains CONST_a)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+
+(assert (not (str.prefixof "a" a_1)))
+(assert (str.contains a_1 "a"))
+
+
+=======================================
+Cache Hit Invalid reason(s):
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
+---------------------------------------------------------------------
+Using Alphabet: 0a
+Using bound: 4
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (str.contains a_1 "a")))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => ""
+
+MAS:
+sat,
+a_1: ""
+
+************************************
+(declare-const a_1 String)
+
+(assert (str.prefixof "a" a_1))
+(assert (not (str.contains a_1 "a")))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const a_1 String)
+
+(assert (str.prefixof "a" a_1))
+(assert (str.contains a_1 "a"))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "a"
+
+MAS:
+string analysis: SPC # = 1
+(a_1_SYMSTRING[**UNDEFINED**] contains CONST_a)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+
+(assert (str.contains a_1 "a"))
+
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+a_1: "a"
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (str.prefixof "a" a_1)))
+(assert (not (str.contains a_1 "a")))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => ""
+
+MAS:
+## Warning: empty path condition
+### PCs: total:3 sat:3 unsat:0
+
+string analysis: SPC # = 2
+(a_1_SYMSTRING startswith CONST_a) && (a_1_SYMSTRING notcontains CONST_a)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+
+(assert (str.prefixof "a" a_1))
+(assert (not (str.contains a_1 "a")))
+
+
+=======================================
+Cache Hit Invalid reason(s):
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
+---------------------------------------------------------------------
+Using Alphabet: 0a
+Using bound: 4
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (str.prefixof "a" a_1)))
+(assert (str.contains a_1 "a"))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "ABa"
+

@@ -1,0 +1,116 @@
+************************************
+
+------------------------------------
+MAS:
+string analysis: SPC # = 1
+(a_1_SYMSTRING startswith CONST_a)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+
+(assert (str.prefixof "a" a_1))
+
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+a_1: "a"
+
+************************************
+(declare-const a_1 String)
+
+(assert (str.prefixof "a" a_1))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "a"
+
+************************************
+(declare-const a_1 String)
+
+(assert (str.prefixof "b" a_1))
+(assert (str.prefixof "a" a_1))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (str.prefixof "b" a_1)))
+(assert (str.prefixof "a" a_1))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "a"
+
+MAS:
+## Warning: empty path condition
+### PCs: total:4 sat:4 unsat:0
+
+string analysis: SPC # = 2
+(a_1_SYMSTRING startswith CONST_b) && (a_1_SYMSTRING startswith CONST_a)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+
+(assert (str.prefixof "b" a_1))
+(assert (str.prefixof "a" a_1))
+
+
+=======================================
+Cache Hit Invalid reason(s):
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
+---------------------------------------------------------------------
+Using Alphabet: 0ab
+Using bound: 4
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (str.prefixof "a" a_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "A"
+
+MAS:
+## Warning: empty path condition
+### PCs: total:2 sat:2 unsat:0
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING startswith CONST_a)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+
+(assert (str.prefixof "a" a_1))
+
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+a_1: "a"
+

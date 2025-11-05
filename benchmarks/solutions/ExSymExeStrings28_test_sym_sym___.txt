@@ -1,0 +1,84 @@
+************************************
+(declare-const b_2 String)
+
+(assert (= (str.++ "a" b_2) "abc"))
+------------------------------------
+z3str3:
+Satisfiable: true
+b_2 => "bc"
+
+MAS:
+
+====================================================== Method Sequences
+[test(**UNDEFINED**,**UNDEFINED**)]
+
+====================================================== JUnit 4.0 test class
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+public class gov_nasa_jpf_symbc_strings_ExSymExeStrings28Test {
+
+	private gov.nasa.jpf.symbc.strings.ExSymExeStrings28 gov_nasa_jpf_symbc_strings_exsymexestrings28;
+
+	@Before
+	public void setUp() throws Exception {
+		gov_nasa_jpf_symbc_strings_exsymexestrings28 = new gov.nasa.jpf.symbc.strings.ExSymExeStrings28();
+	}
+
+	@Test
+	public void test0() {
+		gov_nasa_jpf_symbc_strings_exsymexestrings28.test(**UNDEFINED**,**UNDEFINED**);
+	}
+}
+
+====================================================== results
+no errors detected
+
+====================================================== statistics
+elapsed time:       00:00:00
+states:             new=5,visited=0,backtracked=5,end=2
+search:             maxDepth=3,constraints=0
+choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=2
+heap:               new=476,released=26,maxLive=460,gcCycles=4
+instructions:       6391
+max memory:         477MB
+loaded code:        classes=82,methods=1665
+
+
+************************************
+(declare-const b_2 String)
+
+(assert (not (= (str.++ "a" b_2) "abc")))
+------------------------------------
+z3str3:
+Satisfiable: true
+b_2 => ""
+
+MAS:
+## Warning: empty path condition
+### PCs: total:2 sat:2 unsat:0
+
+string analysis: SPC # = 1
+(CONST_a.concat(b_2_SYMSTRING) equals CONST_abc)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const b_2 String)
+
+(assert (= (str.++ "a" b_2) "abc"))
+
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+b_2: ""
+

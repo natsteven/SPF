@@ -1,0 +1,353 @@
+Running Symbolic PathFinder ...
+symbolic.dp=choco
+symbolic.dp_timeout_ms=5000
+symbolic.string_dp_timeout_ms=0
+symbolic.string_dp_alpha=A-Z
+symbolic.string_dp_alphaSize=26
+symbolic.string_dp_upper=10
+symbolic.string_dp_lower=1
+symbolic.string_dp=z3str3
+symbolic.max_pc_length=2147483647
+symbolic.max_pc_msec=0
+symbolic.bvlength=32
+symbolic.min_int=-2147483648
+symbolic.min_long=-9223372036854775808
+symbolic.min_short=-32768
+symbolic.min_byte=-128
+symbolic.min_char=0
+symbolic.max_int=2147483647
+symbolic.max_long=9223372036854775807
+symbolic.max_short=32767
+symbolic.max_byte=127
+symbolic.max_char=65535
+symbolic.min_double=-1.7976931348623157E308
+symbolic.max_double=1.7976931348623157E308
+JavaPathfinder core system v8.0 (rev da1abb1a52627d8934f0dfe65185834308c83b19) - (C) 2005-2014 United States Government. All rights reserved.
+
+
+====================================================== system under test
+gov.nasa.jpf.symbc.strings.ExSymExeStrings13.main()
+
+====================================================== search started: 11/5/25 10:20 AM
+New sym int a_1_SYMSTRING.length min=-2147483648, max=2147483647
+New sym int b_2_SYMSTRING.length min=-2147483648, max=2147483647
+## Warning: empty path condition
+### PCs: total:1 sat:1 unsat:0
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING notstartswith CONST_ )
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (not (str.prefixof " " a_1)))
+
+
+
+
+======================
+(define-fun a_1 () String
+  "A")
+Returned solutions: 
+(define-fun a_1 () String  "A")
+*************************************
+Satisfiable: true
+a_1 => "A"
+*************************************
+
+This is the PC at the end:constraint # = 0
+string analysis: SPC # = 1
+(a_1_SYMSTRING notstartswith CONST_ )
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (not (str.prefixof " " a_1)))
+
+
+
+
+======================
+(define-fun a_1 () String
+  "A")
+Returned solutions: 
+(define-fun a_1 () String  "A")
+*************************************
+Satisfiable: true
+a_1 => "A"
+*************************************
+
+## Warning: empty path condition
+### PCs: total:2 sat:2 unsat:0
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING startswith CONST_ )
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+
+(assert (str.prefixof " " a_1))
+
+
+
+
+======================
+(define-fun a_1 () String
+  " ")
+Returned solutions: 
+(define-fun a_1 () String  " ")
+*************************************
+Satisfiable: true
+a_1 => " "
+*************************************
+
+## Warning: empty path condition
+### PCs: total:3 sat:3 unsat:0
+
+string analysis: SPC # = 2
+(.trim(a_1_SYMSTRING) notequals CONST_ab) && (a_1_SYMSTRING startswith CONST_ )
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+(declare-const out_str String)
+
+(assert (not (= out_str "ab")))
+(assert (str.prefixof " " a_1))
+
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+(assert (and (str.in_re a_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+
+
+======================
+(define-fun out_str () String
+  "")
+(define-fun a_1 () String
+  " ")
+(define-fun ws () (RegEx String)
+  (re.union (str.to_re "")
+          (re.++ (re.range "\u{0}" " ") (re.* (re.range "\u{0}" " ")))))
+(define-fun nwc () (RegEx String)
+  (re.inter re.allchar (re.comp (re.range "\u{0}" " "))))
+Returned solutions: 
+(define-fun out_str () String  "")
+(define-fun a_1 () String  " ")
+(define-fun ws () (RegEx String)  (re.union (str.to_re "")
+(define-fun nwc () (RegEx String)  (re.inter re.allchar (re.comp (re.range "\u{0}" " "))))
+*************************************
+Satisfiable: true
+a_1 => " "
+out_str => ""
+nwc => "\u{0}" " ")))
+ws => ""
+*************************************
+
+This is the PC at the end:constraint # = 0
+string analysis: SPC # = 2
+(.trim(a_1_SYMSTRING) notequals CONST_ab) && (a_1_SYMSTRING startswith CONST_ )
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+(declare-const out_str String)
+
+(assert (not (= out_str "ab")))
+(assert (str.prefixof " " a_1))
+
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+(assert (and (str.in_re a_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+
+
+======================
+(define-fun out_str () String
+  "")
+(define-fun a_1 () String
+  " ")
+(define-fun ws () (RegEx String)
+  (re.union (str.to_re "")
+          (re.++ (re.range "\u{0}" " ") (re.* (re.range "\u{0}" " ")))))
+(define-fun nwc () (RegEx String)
+  (re.inter re.allchar (re.comp (re.range "\u{0}" " "))))
+Returned solutions: 
+(define-fun out_str () String  "")
+(define-fun a_1 () String  " ")
+(define-fun ws () (RegEx String)  (re.union (str.to_re "")
+(define-fun nwc () (RegEx String)  (re.inter re.allchar (re.comp (re.range "\u{0}" " "))))
+*************************************
+Satisfiable: true
+a_1 => " "
+out_str => ""
+nwc => "\u{0}" " ")))
+ws => ""
+*************************************
+
+## Warning: empty path condition
+### PCs: total:4 sat:4 unsat:0
+
+string analysis: SPC # = 2
+(.trim(a_1_SYMSTRING) equals CONST_ab) && (a_1_SYMSTRING startswith CONST_ )
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+(declare-const out_str String)
+
+(assert (= out_str "ab"))
+(assert (str.prefixof " " a_1))
+
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+(assert (and (str.in_re a_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+
+
+======================
+(define-fun a_1 () String
+  " ab\u{2}")
+(define-fun ws () (RegEx String)
+  (re.union (str.to_re "")
+          (re.++ (re.range "\u{0}" " ") (re.* (re.range "\u{0}" " ")))))
+(define-fun nwc () (RegEx String)
+  (re.inter re.allchar (re.comp (re.range "\u{0}" " "))))
+(define-fun out_str () String
+  "ab")
+Returned solutions: 
+(define-fun a_1 () String  " ab\u{2}")
+(define-fun ws () (RegEx String)  (re.union (str.to_re "")
+(define-fun nwc () (RegEx String)  (re.inter re.allchar (re.comp (re.range "\u{0}" " "))))
+(define-fun out_str () String  "ab")
+*************************************
+Satisfiable: true
+a_1 => " ab\u{2}"
+out_str => "ab"
+nwc => "\u{0}" " ")))
+ws => ""
+*************************************
+
+--------->property violated
+pc 0 constraint # = 0
+string analysis: SPC # = 2
+(.trim(a_1_SYMSTRING) equals CONST_ab) && (a_1_SYMSTRING startswith CONST_ )
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+(declare-const out_str String)
+
+(assert (= out_str "ab"))
+(assert (str.prefixof " " a_1))
+
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+(assert (and (str.in_re a_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+
+
+======================
+(define-fun a_1 () String
+  " ab\u{2}")
+(define-fun ws () (RegEx String)
+  (re.union (str.to_re "")
+          (re.++ (re.range "\u{0}" " ") (re.* (re.range "\u{0}" " ")))))
+(define-fun nwc () (RegEx String)
+  (re.inter re.allchar (re.comp (re.range "\u{0}" " "))))
+(define-fun out_str () String
+  "ab")
+Returned solutions: 
+(define-fun a_1 () String  " ab\u{2}")
+(define-fun ws () (RegEx String)  (re.union (str.to_re "")
+(define-fun nwc () (RegEx String)  (re.inter re.allchar (re.comp (re.range "\u{0}" " "))))
+(define-fun out_str () String  "ab")
+*************************************
+Satisfiable: true
+a_1 => " ab\u{2}"
+out_str => "ab"
+nwc => "\u{0}" " ")))
+ws => ""
+*************************************
+
+
+====================================================== error 1
+gov.nasa.jpf.vm.NoUncaughtExceptionsProperty
+java.lang.RuntimeException: This should happen
+	at gov.nasa.jpf.symbc.strings.ExSymExeStrings13.test(ExSymExeStrings13.java:39)
+	at gov.nasa.jpf.symbc.strings.ExSymExeStrings13.main(ExSymExeStrings13.java:30)
+
+
+====================================================== snapshot #1
+thread java.lang.Thread:{id:0,name:main,status:RUNNING,priority:5,isDaemon:false,lockCount:0,suspendCount:0}
+  call stack:
+	at gov.nasa.jpf.symbc.strings.ExSymExeStrings13.test(ExSymExeStrings13.java:39)
+	at gov.nasa.jpf.symbc.strings.ExSymExeStrings13.main(ExSymExeStrings13.java:30)
+
+
+====================================================== Method Sequences
+[test(**UNDEFINED**,**UNDEFINED**)]
+[(expected = java.lang.RuntimeException.class), test(**UNDEFINED**,**UNDEFINED**), ##EXCEPTION## "java.lang.RuntimeException: This should happen..."]
+
+====================================================== JUnit 4.0 test class
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+public class gov_nasa_jpf_symbc_strings_ExSymExeStrings13Test {
+
+	private gov.nasa.jpf.symbc.strings.ExSymExeStrings13 gov_nasa_jpf_symbc_strings_exsymexestrings13;
+
+	@Before
+	public void setUp() throws Exception {
+		gov_nasa_jpf_symbc_strings_exsymexestrings13 = new gov.nasa.jpf.symbc.strings.ExSymExeStrings13();
+	}
+
+	@Test
+	public void test0() {
+		gov_nasa_jpf_symbc_strings_exsymexestrings13.test(**UNDEFINED**,**UNDEFINED**);
+	}
+
+	@Test(expected = java.lang.RuntimeException.class)
+	public void test1() {
+		gov_nasa_jpf_symbc_strings_exsymexestrings13.test(**UNDEFINED**,**UNDEFINED**);
+		//should lead to ##EXCEPTION## "java.lang.RuntimeException: This should happen..."
+	}
+}
+
+====================================================== results
+error #1: gov.nasa.jpf.vm.NoUncaughtExceptionsProperty "java.lang.RuntimeException: This should happen  at..."
+
+====================================================== statistics
+elapsed time:       00:00:00
+states:             new=8,visited=0,backtracked=4,end=2
+search:             maxDepth=4,constraints=0
+choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=3
+heap:               new=488,released=24,maxLive=456,gcCycles=5
+instructions:       6428
+max memory:         477MB
+loaded code:        classes=86,methods=1701
+
+====================================================== search finished: 11/5/25 10:20 AM
+Runtime(ms) :957

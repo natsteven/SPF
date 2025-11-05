@@ -1,0 +1,96 @@
+************************************
+(declare-const s1_1 String)
+(declare-const out_str String)
+
+(assert (= out_str "desserts"))
+
+(define-fun-rec reverse ((x String) (y String)) Bool (or (and (= x "") (= y "")) (and (not (= x "")) (not (= y "")) (let ((x_head (str.at x 0)) (y_head (str.at y (- (str.len y) 1))) (x_tail (str.substr x 1 (- (str.len x) 1))) (y_tail (str.substr y 0 (- (str.len y) 1)))) (and (= x_head y_head) (reverse x_tail y_tail))))))
+(assert (reverse s1_1 out_str))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => "stressed"
+out_str => "desserts"
+
+MAS:
+
+====================================================== Method Sequences
+[testConc(**UNDEFINED**)]
+
+====================================================== JUnit 4.0 test class
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+public class edu_boisestate_cs_MAS_ReverseTestTest {
+
+	private edu.boisestate.cs.MAS.ReverseTest edu_boisestate_cs_mas_reversetest;
+
+	@Before
+	public void setUp() throws Exception {
+		edu_boisestate_cs_mas_reversetest = new edu.boisestate.cs.MAS.ReverseTest();
+	}
+
+	@Test
+	public void test0() {
+		edu_boisestate_cs_mas_reversetest.testConc(**UNDEFINED**);
+	}
+}
+
+====================================================== results
+no errors detected
+
+====================================================== statistics
+elapsed time:       00:00:00
+states:             new=5,visited=0,backtracked=5,end=2
+search:             maxDepth=3,constraints=0
+choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=2
+heap:               new=477,released=36,maxLive=459,gcCycles=4
+instructions:       6819
+max memory:         477MB
+loaded code:        classes=83,methods=1770
+
+
+************************************
+(declare-const s1_1 String)
+(declare-const out_str String)
+
+(assert (not (= out_str "desserts")))
+
+(define-fun-rec reverse ((x String) (y String)) Bool (or (and (= x "") (= y "")) (and (not (= x "")) (not (= y "")) (let ((x_head (str.at x 0)) (y_head (str.at y (- (str.len y) 1))) (x_tail (str.substr x 1 (- (str.len x) 1))) (y_tail (str.substr y 0 (- (str.len y) 1)))) (and (= x_head y_head) (reverse x_tail y_tail))))))
+(assert (reverse s1_1 out_str))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => ""
+out_str => ""
+
+MAS:
+## Warning: empty path condition
+### PCs: total:2 sat:2 unsat:0
+
+string analysis: SPC # = 1
+(.reverse(s1_1_SYMSTRING) equals CONST_desserts)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+(declare-const out_str String)
+
+(assert (= out_str "desserts"))
+
+(define-fun-rec reverse ((x String) (y String)) Bool (or (and (= x "") (= y "")) (and (not (= x "")) (not (= y "")) (let ((x_head (str.at x 0)) (y_head (str.at y (- (str.len y) 1))) (x_tail (str.substr x 1 (- (str.len x) 1))) (y_tail (str.substr y 0 (- (str.len y) 1)))) (and (= x_head y_head) (reverse x_tail y_tail))))))
+(assert (reverse s1_1 out_str))
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+s1_1: "stressed"
+

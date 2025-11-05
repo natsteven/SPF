@@ -1,0 +1,286 @@
+Running Symbolic PathFinder ...
+symbolic.dp=choco
+symbolic.dp_timeout_ms=5000
+symbolic.string_dp_timeout_ms=0
+symbolic.string_dp_alpha=A-Z
+symbolic.string_dp_alphaSize=26
+symbolic.string_dp_upper=10
+symbolic.string_dp_lower=1
+symbolic.string_dp=MAS
+symbolic.max_pc_length=2147483647
+symbolic.max_pc_msec=0
+symbolic.bvlength=32
+symbolic.min_int=-2147483648
+symbolic.min_long=-9223372036854775808
+symbolic.min_short=-32768
+symbolic.min_byte=-128
+symbolic.min_char=0
+symbolic.max_int=2147483647
+symbolic.max_long=9223372036854775807
+symbolic.max_short=32767
+symbolic.max_byte=127
+symbolic.max_char=65535
+symbolic.min_double=-1.7976931348623157E308
+symbolic.max_double=1.7976931348623157E308
+JavaPathfinder core system v8.0 (rev da1abb1a52627d8934f0dfe65185834308c83b19) - (C) 2005-2014 United States Government. All rights reserved.
+
+
+====================================================== system under test
+edu.boisestate.cs.MAS.EndsWithTest.main()
+
+====================================================== search started: 11/5/25 10:19 AM
+New sym int s1_1_SYMSTRING.length min=-2147483648, max=2147483647
+New sym int s2_2_SYMSTRING.length min=-2147483648, max=2147483647
+## Warning: empty path condition
+### PCs: total:1 sat:1 unsat:0
+
+string analysis: SPC # = 1
+(s1_1_SYMSTRING notendswith s2_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (not (str.suffixof s2_2 s1_1)))
+
+
+=======================================
+Using Alphabet: ABC
+Using bound: 4
+*****************************
+sat,
+s1_1: "A"
+s2_2: "B"
+************************************
+## Warning: empty path condition
+### PCs: total:2 sat:2 unsat:0
+
+string analysis: SPC # = 2
+(s2_2_SYMSTRING notendswith s1_1_SYMSTRING) && (s1_1_SYMSTRING notendswith s2_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (not (str.suffixof s1_1 s2_2)))
+(assert (not (str.suffixof s2_2 s1_1)))
+
+
+=======================================
+Using Alphabet: ABC
+Using bound: 4
+*****************************
+sat,
+s2_2: "B"
+s1_1: "AAAA"
+************************************
+s1 does not start with s2 and s2 does not start with s1
+s2 does not ends with World
+string analysis: SPC # = 2
+(s2_2_SYMSTRING notendswith s1_1_SYMSTRING) && (s1_1_SYMSTRING notendswith s2_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (not (str.suffixof s1_1 s2_2)))
+(assert (not (str.suffixof s2_2 s1_1)))
+
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+s2_2: "B"
+s1_1: "AAAA"
+************************************
+## Warning: empty path condition
+### PCs: total:3 sat:3 unsat:0
+
+string analysis: SPC # = 2
+(s2_2_SYMSTRING endswith s1_1_SYMSTRING) && (s1_1_SYMSTRING notendswith s2_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (str.suffixof s1_1 s2_2))
+(assert (not (str.suffixof s2_2 s1_1)))
+
+
+=======================================
+Cache Hit Invalid reason(s):
+	INVALID due to 2 dependent symbolic variables, 1 multi-sym predicates, and 0 bad operations.
+	INVALID due to 2 dependent symbolic variables, 1 multi-sym predicates, and 0 bad operations.
+---------------------------------------------------------------------
+Using Alphabet: ABC
+Using bound: 4
+*****************************
+sat,
+s2_2: "BA"
+s1_1: "A"
+************************************
+s2 ends with s1
+s2 does not ends with World
+string analysis: SPC # = 2
+(s2_2_SYMSTRING endswith s1_1_SYMSTRING) && (s1_1_SYMSTRING notendswith s2_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (str.suffixof s1_1 s2_2))
+(assert (not (str.suffixof s2_2 s1_1)))
+
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+s2_2: "BA"
+s1_1: "A"
+************************************
+string analysis: SPC # = 1
+(s1_1_SYMSTRING[**UNDEFINED**] notendswith s2_2_SYMSTRING[**UNDEFINED**])
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (not (str.suffixof s2_2 s1_1)))
+
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+s1_1: "A"
+s2_2: "B"
+************************************
+## Warning: empty path condition
+### PCs: total:4 sat:4 unsat:0
+
+string analysis: SPC # = 1
+(s1_1_SYMSTRING endswith s2_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (str.suffixof s2_2 s1_1))
+
+
+=======================================
+Cache Hit Invalid reason(s):
+	INVALID due to 0 dependent symbolic variables, 1 multi-sym predicates, and 0 bad operations.
+	INVALID due to 0 dependent symbolic variables, 1 multi-sym predicates, and 0 bad operations.
+---------------------------------------------------------------------
+Using Alphabet: ABC
+Using bound: 4
+*****************************
+sat,
+s1_1: ""
+s2_2: ""
+************************************
+s1 ends with s2
+s2 does not ends with World
+string analysis: SPC # = 1
+(s1_1_SYMSTRING endswith s2_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (str.suffixof s2_2 s1_1))
+
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+s1_1: ""
+s2_2: ""
+************************************
+
+====================================================== Method Sequences
+[testSym(**UNDEFINED**,**UNDEFINED**)]
+
+====================================================== JUnit 4.0 test class
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+public class edu_boisestate_cs_MAS_EndsWithTestTest {
+
+	private edu.boisestate.cs.MAS.EndsWithTest edu_boisestate_cs_mas_endswithtest;
+
+	@Before
+	public void setUp() throws Exception {
+		edu_boisestate_cs_mas_endswithtest = new edu.boisestate.cs.MAS.EndsWithTest();
+	}
+
+	@Test
+	public void test0() {
+		edu_boisestate_cs_mas_endswithtest.testSym(**UNDEFINED**,**UNDEFINED**);
+	}
+}
+
+====================================================== results
+no errors detected
+
+====================================================== statistics
+elapsed time:       00:00:00
+states:             new=8,visited=0,backtracked=8,end=3
+search:             maxDepth=4,constraints=0
+choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=3
+heap:               new=472,released=31,maxLive=450,gcCycles=5
+instructions:       6455
+max memory:         477MB
+loaded code:        classes=81,methods=1619
+
+====================================================== search finished: 11/5/25 10:19 AM
+Runtime(ms) :854

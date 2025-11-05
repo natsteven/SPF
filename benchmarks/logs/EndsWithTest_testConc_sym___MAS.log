@@ -1,0 +1,54 @@
+Running Symbolic PathFinder ...
+symbolic.dp=choco
+symbolic.dp_timeout_ms=5000
+symbolic.string_dp_timeout_ms=0
+symbolic.string_dp_alpha=A-Z
+symbolic.string_dp_alphaSize=26
+symbolic.string_dp_upper=10
+symbolic.string_dp_lower=1
+symbolic.string_dp=MAS
+symbolic.max_pc_length=2147483647
+symbolic.max_pc_msec=0
+symbolic.bvlength=32
+symbolic.min_int=-2147483648
+symbolic.min_long=-9223372036854775808
+symbolic.min_short=-32768
+symbolic.min_byte=-128
+symbolic.min_char=0
+symbolic.max_int=2147483647
+symbolic.max_long=9223372036854775807
+symbolic.max_short=32767
+symbolic.max_byte=127
+symbolic.max_char=65535
+symbolic.min_double=-1.7976931348623157E308
+symbolic.max_double=1.7976931348623157E308
+JavaPathfinder core system v8.0 (rev da1abb1a52627d8934f0dfe65185834308c83b19) - (C) 2005-2014 United States Government. All rights reserved.
+
+
+====================================================== system under test
+edu.boisestate.cs.MAS.EndsWithTest.main()
+
+====================================================== search started: 11/5/25 10:19 AM
+s1 ends with s2
+New sym int s2_1_SYMSTRING.length min=-2147483648, max=2147483647
+## Warning: empty path condition
+### PCs: total:1 sat:1 unsat:0
+
+string analysis: SPC # = 1
+(s2_1_SYMSTRING notendswith CONST_World)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s2_1 String)
+
+(assert (not (str.suffixof "World" s2_1)))
+
+
+=======================================
+Using Alphabet: 0Wdlor
+Using bound: 6
+*****************************
+NOT A DISJUNCT PAIR in createDisjunct
+Runtime(ms) :789

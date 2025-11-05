@@ -1,0 +1,169 @@
+************************************
+
+------------------------------------
+MAS:
+s1 is Hello
+s1 + s2 equals 'HelloWorld'
+string analysis: SPC # = 2
+(.insert[(s1_1_SYMSTRING)(CONST_World)(CONST_5)] notequals CONST_HelloWorld) && (s1_1_SYMSTRING equals CONST_Hello)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+
+(assert (not (= (str.++ (str.substr s1_1 0 5) "World" (str.substr s1_1 5 (str.len s1_1))) "HelloWorld")))
+(assert (= s1_1 "Hello"))
+
+(assert (<= 5 (str.len s1_1)))
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+s1_1: "Hello"
+
+************************************
+(declare-const s1_1 String)
+
+(assert (= (str.++ (str.substr s1_1 0 5) "World" (str.substr s1_1 5 (str.len s1_1))) "HelloWorld"))
+(assert (= s1_1 "Hello"))
+
+(assert (<= 5 (str.len s1_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => "Hello"
+
+MAS:
+string analysis: SPC # = 1
+(s1_1_SYMSTRING[**UNDEFINED**] equals CONST_Hello)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+
+(assert (= s1_1 "Hello"))
+
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+s1_1: "Hello"
+
+************************************
+(declare-const s1_1 String)
+
+(assert (not (= s1_1 "Hello")))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => ""
+
+MAS:
+sat,
+s1_1: ""
+
+************************************
+(declare-const s1_1 String)
+
+(assert (= (str.++ (str.substr s1_1 0 5) "World" (str.substr s1_1 5 (str.len s1_1))) "HelloWorld"))
+(assert (not (= s1_1 "Hello")))
+
+(assert (<= 5 (str.len s1_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const s1_1 String)
+
+(assert (= s1_1 "Hello"))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => "Hello"
+
+MAS:
+s1 is Hello
+## Warning: empty path condition
+### PCs: total:5 sat:5 unsat:0
+
+string analysis: SPC # = 2
+(.insert[(s1_1_SYMSTRING)(CONST_World)(CONST_5)] notequals CONST_HelloWorld) && (s1_1_SYMSTRING equals CONST_Hello)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+
+(assert (not (= (str.++ (str.substr s1_1 0 5) "World" (str.substr s1_1 5 (str.len s1_1))) "HelloWorld")))
+(assert (= s1_1 "Hello"))
+
+(assert (<= 5 (str.len s1_1)))
+=======================================
+Using Alphabet: 0HWdelor
+Using bound: 11
+
+************************************
+(declare-const s1_1 String)
+
+(assert (not (= (str.++ (str.substr s1_1 0 5) "World" (str.substr s1_1 5 (str.len s1_1))) "HelloWorld")))
+(assert (not (= s1_1 "Hello")))
+
+(assert (<= 5 (str.len s1_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => "ABCDEF"
+
+MAS:
+## Warning: empty path condition
+### PCs: total:3 sat:3 unsat:0
+
+string analysis: SPC # = 2
+(.insert[(s1_1_SYMSTRING)(CONST_World)(CONST_5)] equals CONST_HelloWorld) && (s1_1_SYMSTRING notequals CONST_Hello)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+
+(assert (= (str.++ (str.substr s1_1 0 5) "World" (str.substr s1_1 5 (str.len s1_1))) "HelloWorld"))
+(assert (not (= s1_1 "Hello")))
+
+(assert (<= 5 (str.len s1_1)))
+=======================================
+Cache Hit Invalid reason(s):
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 1 bad operations.
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 1 bad operations.
+---------------------------------------------------------------------
+Using Alphabet: 0HWdelor
+Using bound: 11
+
+************************************
+(declare-const s1_1 String)
+
+(assert (not (= (str.++ (str.substr s1_1 0 5) "World" (str.substr s1_1 5 (str.len s1_1))) "HelloWorld")))
+(assert (= s1_1 "Hello"))
+
+(assert (<= 5 (str.len s1_1)))
+------------------------------------
+z3str3:
+Satisfiable: false
+

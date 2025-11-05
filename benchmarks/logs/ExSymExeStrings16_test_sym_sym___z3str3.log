@@ -1,0 +1,371 @@
+Running Symbolic PathFinder ...
+symbolic.dp=choco
+symbolic.dp_timeout_ms=5000
+symbolic.string_dp_timeout_ms=0
+symbolic.string_dp_alpha=A-Z
+symbolic.string_dp_alphaSize=26
+symbolic.string_dp_upper=10
+symbolic.string_dp_lower=1
+symbolic.string_dp=z3str3
+symbolic.max_pc_length=2147483647
+symbolic.max_pc_msec=0
+symbolic.bvlength=32
+symbolic.min_int=-2147483648
+symbolic.min_long=-9223372036854775808
+symbolic.min_short=-32768
+symbolic.min_byte=-128
+symbolic.min_char=0
+symbolic.max_int=2147483647
+symbolic.max_long=9223372036854775807
+symbolic.max_short=32767
+symbolic.max_byte=127
+symbolic.max_char=65535
+symbolic.min_double=-1.7976931348623157E308
+symbolic.max_double=1.7976931348623157E308
+JavaPathfinder core system v8.0 (rev da1abb1a52627d8934f0dfe65185834308c83b19) - (C) 2005-2014 United States Government. All rights reserved.
+
+
+====================================================== system under test
+gov.nasa.jpf.symbc.strings.ExSymExeStrings16.main()
+
+====================================================== search started: 11/5/25 10:20 AM
+New sym int a_1_SYMSTRING.length min=-2147483648, max=2147483647
+New sym int b_2_SYMSTRING.length min=-2147483648, max=2147483647
+New sym int Length_0_ min=0, max=125
+numeric PC: constraint # = 1
+Length_0_ >= CONST_2 -> true
+
+### PCs: total:1 sat:1 unsat:0
+
+numeric PC: constraint # = 1
+Length_0_[-9223372036854775808] >= CONST_2 -> true
+
+### PCs: total:2 sat:2 unsat:0
+
+string analysis: SPC # = 1
+(.substring[(a_1_SYMSTRING)(CONST_3)(CONST_0)] notequals b_2_SYMSTRING)
+NPC constraint # = 1
+Length_0_[-9223372036854775808] >= CONST_2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (not (= (str.substr a_1 0 (- 3 0)) b_2)))
+(assert (>= (str.len a_1) 2))
+
+
+
+======================
+(define-fun a_1 () String
+  "AB")
+(define-fun b_2 () String
+  "DEF")
+Returned solutions: 
+(define-fun a_1 () String  "AB")
+(define-fun b_2 () String  "DEF")
+*************************************
+Satisfiable: true
+a_1 => "AB"
+b_2 => "DEF"
+*************************************
+
+This is the PC at the end:constraint # = 1
+Length_0_[-9223372036854775808] >= CONST_2
+numeric PC: constraint # = 1
+Length_0_[-9223372036854775808] >= CONST_2 -> true
+
+string analysis: SPC # = 1
+(.substring[(a_1_SYMSTRING)(CONST_3)(CONST_0)] notequals b_2_SYMSTRING)
+NPC constraint # = 1
+Length_0_[2] >= CONST_2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (not (= (str.substr a_1 0 (- 3 0)) b_2)))
+(assert (>= (str.len a_1) 2))
+
+
+
+======================
+(define-fun a_1 () String
+  "AB")
+(define-fun b_2 () String
+  "DEF")
+Returned solutions: 
+(define-fun a_1 () String  "AB")
+(define-fun b_2 () String  "DEF")
+*************************************
+Satisfiable: true
+a_1 => "AB"
+b_2 => "DEF"
+*************************************
+
+numeric PC: constraint # = 1
+Length_0_[2] >= CONST_2 -> true
+
+### PCs: total:3 sat:3 unsat:0
+
+string analysis: SPC # = 1
+(.substring[(a_1_SYMSTRING)(CONST_3)(CONST_0)] equals b_2_SYMSTRING)
+NPC constraint # = 1
+Length_0_[2] >= CONST_2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (= (str.substr a_1 0 (- 3 0)) b_2))
+(assert (>= (str.len a_1) 2))
+
+
+
+======================
+(define-fun a_1 () String
+  "AB")
+(define-fun b_2 () String
+  "AB")
+Returned solutions: 
+(define-fun a_1 () String  "AB")
+(define-fun b_2 () String  "AB")
+*************************************
+Satisfiable: true
+a_1 => "AB"
+b_2 => "AB"
+*************************************
+
+aaa
+This is the PC at the end:constraint # = 1
+Length_0_[2] >= CONST_2
+numeric PC: constraint # = 1
+Length_0_[2] >= CONST_2 -> true
+
+string analysis: SPC # = 1
+(.substring[(a_1_SYMSTRING)(CONST_3)(CONST_0)] equals b_2_SYMSTRING)
+NPC constraint # = 1
+Length_0_[2] >= CONST_2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (= (str.substr a_1 0 (- 3 0)) b_2))
+(assert (>= (str.len a_1) 2))
+
+
+
+======================
+(define-fun a_1 () String
+  "AB")
+(define-fun b_2 () String
+  "AB")
+Returned solutions: 
+(define-fun a_1 () String  "AB")
+(define-fun b_2 () String  "AB")
+*************************************
+Satisfiable: true
+a_1 => "AB"
+b_2 => "AB"
+*************************************
+
+numeric PC: constraint # = 1
+Length_0_[2] >= CONST_2 -> true
+
+numeric PC: constraint # = 1
+Length_0_ >= CONST_2 -> true
+
+### PCs: total:4 sat:4 unsat:0
+
+numeric PC: constraint # = 1
+Length_0_[2] >= CONST_2 -> true
+
+### PCs: total:5 sat:5 unsat:0
+
+string analysis: SPC # = 1
+(.substring[(a_1_SYMSTRING)(CONST_3)(CONST_0)] notequals b_2_SYMSTRING)
+NPC constraint # = 1
+Length_0_[2] >= CONST_2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (not (= (str.substr a_1 0 (- 3 0)) b_2)))
+(assert (>= (str.len a_1) 2))
+
+
+
+======================
+(define-fun a_1 () String
+  "AB")
+(define-fun b_2 () String
+  "DEF")
+Returned solutions: 
+(define-fun a_1 () String  "AB")
+(define-fun b_2 () String  "DEF")
+*************************************
+Satisfiable: true
+a_1 => "AB"
+b_2 => "DEF"
+*************************************
+
+This is the PC at the end:constraint # = 1
+Length_0_[2] >= CONST_2
+numeric PC: constraint # = 1
+Length_0_[2] >= CONST_2 -> true
+
+string analysis: SPC # = 1
+(.substring[(a_1_SYMSTRING)(CONST_3)(CONST_0)] notequals b_2_SYMSTRING)
+NPC constraint # = 1
+Length_0_[2] >= CONST_2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (not (= (str.substr a_1 0 (- 3 0)) b_2)))
+(assert (>= (str.len a_1) 2))
+
+
+
+======================
+(define-fun a_1 () String
+  "AB")
+(define-fun b_2 () String
+  "DEF")
+Returned solutions: 
+(define-fun a_1 () String  "AB")
+(define-fun b_2 () String  "DEF")
+*************************************
+Satisfiable: true
+a_1 => "AB"
+b_2 => "DEF"
+*************************************
+
+numeric PC: constraint # = 1
+Length_0_[2] >= CONST_2 -> true
+
+### PCs: total:6 sat:6 unsat:0
+
+string analysis: SPC # = 1
+(.substring[(a_1_SYMSTRING)(CONST_3)(CONST_0)] equals b_2_SYMSTRING)
+NPC constraint # = 1
+Length_0_[2] >= CONST_2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (= (str.substr a_1 0 (- 3 0)) b_2))
+(assert (>= (str.len a_1) 2))
+
+
+
+======================
+(define-fun a_1 () String
+  "AB")
+(define-fun b_2 () String
+  "AB")
+Returned solutions: 
+(define-fun a_1 () String  "AB")
+(define-fun b_2 () String  "AB")
+*************************************
+Satisfiable: true
+a_1 => "AB"
+b_2 => "AB"
+*************************************
+
+aaa
+This is the PC at the end:constraint # = 1
+Length_0_[2] >= CONST_2
+numeric PC: constraint # = 1
+Length_0_[2] >= CONST_2 -> true
+
+string analysis: SPC # = 1
+(.substring[(a_1_SYMSTRING)(CONST_3)(CONST_0)] equals b_2_SYMSTRING)
+NPC constraint # = 1
+Length_0_[2] >= CONST_2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (= (str.substr a_1 0 (- 3 0)) b_2))
+(assert (>= (str.len a_1) 2))
+
+
+
+======================
+(define-fun a_1 () String
+  "AB")
+(define-fun b_2 () String
+  "AB")
+Returned solutions: 
+(define-fun a_1 () String  "AB")
+(define-fun b_2 () String  "AB")
+*************************************
+Satisfiable: true
+a_1 => "AB"
+b_2 => "AB"
+*************************************
+
+numeric PC: constraint # = 1
+Length_0_[2] >= CONST_2 -> true
+
+
+====================================================== Method Sequences
+[test(**UNDEFINED**,**UNDEFINED**)]
+
+====================================================== JUnit 4.0 test class
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+public class gov_nasa_jpf_symbc_strings_ExSymExeStrings16Test {
+
+	private gov.nasa.jpf.symbc.strings.ExSymExeStrings16 gov_nasa_jpf_symbc_strings_exsymexestrings16;
+
+	@Before
+	public void setUp() throws Exception {
+		gov_nasa_jpf_symbc_strings_exsymexestrings16 = new gov.nasa.jpf.symbc.strings.ExSymExeStrings16();
+	}
+
+	@Test
+	public void test0() {
+		gov_nasa_jpf_symbc_strings_exsymexestrings16.test(**UNDEFINED**,**UNDEFINED**);
+	}
+}
+
+====================================================== results
+no errors detected
+
+====================================================== statistics
+elapsed time:       00:00:00
+states:             new=10,visited=0,backtracked=10,end=4
+search:             maxDepth=4,constraints=0
+choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=4
+heap:               new=478,released=48,maxLive=452,gcCycles=7
+instructions:       6438
+max memory:         477MB
+loaded code:        classes=82,methods=1665
+
+====================================================== search finished: 11/5/25 10:20 AM
+Runtime(ms) :964

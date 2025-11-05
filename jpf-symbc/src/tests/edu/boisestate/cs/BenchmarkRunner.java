@@ -16,7 +16,7 @@ public class BenchmarkRunner {
 
     private static List<Benchmark> programs = new ArrayList<>();
 
-    private static final List<String> SOLVERS = Arrays.asList("MAS");
+    private static final List<String> SOLVERS = Arrays.asList("z3str3", "MAS");
     private static boolean z3OK = true; //for average runtime calc only accumulate when z3 succeeds
 
     private static final long TIMEOUT_SEC = Long.getLong("bench.timeoutSec", 30L);

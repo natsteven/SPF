@@ -1,0 +1,91 @@
+************************************
+
+------------------------------------
+MAS:
+s1 reversed equals s2
+string analysis: SPC # = 1
+(.reverse(s1_1_SYMSTRING) equals s2_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+(declare-const out_str String)
+
+(assert (= out_str s2_2))
+
+(define-fun-rec reverse ((x String) (y String)) Bool (or (and (= x "") (= y "")) (and (not (= x "")) (not (= y "")) (let ((x_head (str.at x 0)) (y_head (str.at y (- (str.len y) 1))) (x_tail (str.substr x 1 (- (str.len x) 1))) (y_tail (str.substr y 0 (- (str.len y) 1)))) (and (= x_head y_head) (reverse x_tail y_tail))))))
+(assert (reverse s1_1 out_str))
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+s2_2: ""
+s1_1: ""
+
+************************************
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+(declare-const out_str String)
+
+(assert (not (= out_str s2_2)))
+
+(define-fun-rec reverse ((x String) (y String)) Bool (or (and (= x "") (= y "")) (and (not (= x "")) (not (= y "")) (let ((x_head (str.at x 0)) (y_head (str.at y (- (str.len y) 1))) (x_tail (str.substr x 1 (- (str.len x) 1))) (y_tail (str.substr y 0 (- (str.len y) 1)))) (and (= x_head y_head) (reverse x_tail y_tail))))))
+(assert (reverse s1_1 out_str))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => ""
+s2_2 => "C"
+out_str => ""
+
+MAS:
+## Warning: empty path condition
+### PCs: total:2 sat:2 unsat:0
+
+string analysis: SPC # = 1
+(.reverse(s1_1_SYMSTRING) equals s2_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+(declare-const out_str String)
+
+(assert (= out_str s2_2))
+
+(define-fun-rec reverse ((x String) (y String)) Bool (or (and (= x "") (= y "")) (and (not (= x "")) (not (= y "")) (let ((x_head (str.at x 0)) (y_head (str.at y (- (str.len y) 1))) (x_tail (str.substr x 1 (- (str.len x) 1))) (y_tail (str.substr y 0 (- (str.len y) 1)))) (and (= x_head y_head) (reverse x_tail y_tail))))))
+(assert (reverse s1_1 out_str))
+=======================================
+Cache Hit Invalid reason(s):
+	INVALID due to 0 dependent symbolic variables, 1 multi-sym predicates, and 0 bad operations.
+	INVALID due to 0 dependent symbolic variables, 1 multi-sym predicates, and 0 bad operations.
+---------------------------------------------------------------------
+Using Alphabet: ABC
+Using bound: 4
+
+************************************
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+(declare-const out_str String)
+
+(assert (= out_str s2_2))
+
+(define-fun-rec reverse ((x String) (y String)) Bool (or (and (= x "") (= y "")) (and (not (= x "")) (not (= y "")) (let ((x_head (str.at x 0)) (y_head (str.at y (- (str.len y) 1))) (x_tail (str.substr x 1 (- (str.len x) 1))) (y_tail (str.substr y 0 (- (str.len y) 1)))) (and (= x_head y_head) (reverse x_tail y_tail))))))
+(assert (reverse s1_1 out_str))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => ""
+s2_2 => ""
+out_str => ""
+

@@ -1,0 +1,419 @@
+Running Symbolic PathFinder ...
+symbolic.dp=choco
+symbolic.dp_timeout_ms=5000
+symbolic.string_dp_timeout_ms=0
+symbolic.string_dp_alpha=A-Z
+symbolic.string_dp_alphaSize=26
+symbolic.string_dp_upper=10
+symbolic.string_dp_lower=1
+symbolic.string_dp=z3str3
+symbolic.max_pc_length=2147483647
+symbolic.max_pc_msec=0
+symbolic.bvlength=32
+symbolic.min_int=-2147483648
+symbolic.min_long=-9223372036854775808
+symbolic.min_short=-32768
+symbolic.min_byte=-128
+symbolic.min_char=0
+symbolic.max_int=2147483647
+symbolic.max_long=9223372036854775807
+symbolic.max_short=32767
+symbolic.max_byte=127
+symbolic.max_char=65535
+symbolic.min_double=-1.7976931348623157E308
+symbolic.max_double=1.7976931348623157E308
+JavaPathfinder core system v8.0 (rev da1abb1a52627d8934f0dfe65185834308c83b19) - (C) 2005-2014 United States Government. All rights reserved.
+
+
+====================================================== system under test
+edu.boisestate.cs.MAS.CharAtTest.main()
+
+====================================================== search started: 11/5/25 11:14 AM
+New sym int s1_1_SYMSTRING.length min=-2147483648, max=2147483647
+New sym int CharAt(CONST_0)_0_ min=0, max=65535
+numeric PC: constraint # = 1
+CharAt(CONST_0)_0_ != CONST_72 -> true
+
+### PCs: total:1 sat:1 unsat:0
+
+string analysis: SPC # = 0
+NPC constraint # = 1
+CharAt(CONST_0)_0_ != CONST_72
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const s1_1 String)
+
+
+(assert (not (= (str.at s1_1 0) "H")))
+
+
+
+======================
+(define-fun s1_1 () String
+  "")
+Returned solutions: 
+(define-fun s1_1 () String  "")
+*************************************
+Satisfiable: true
+s1_1 => ""
+*************************************
+
+numeric PC: constraint # = 1
+CharAt(CONST_0)_0_ == CONST_72 -> true
+
+### PCs: total:2 sat:2 unsat:0
+
+string analysis: SPC # = 0
+NPC constraint # = 1
+CharAt(CONST_0)_0_ == CONST_72
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const s1_1 String)
+
+
+(assert (= (str.at s1_1 0) "H"))
+
+
+
+======================
+(define-fun s1_1 () String
+  "H")
+Returned solutions: 
+(define-fun s1_1 () String  "H")
+*************************************
+Satisfiable: true
+s1_1 => "H"
+*************************************
+
+First character is H
+numeric PC: constraint # = 1
+CharAt(CONST_0)_0_[-9223372036854775808] == CONST_72 -> true
+
+### PCs: total:3 sat:3 unsat:0
+
+string analysis: SPC # = 1
+(s1_1_SYMSTRING notcontains CONST_Hell)
+NPC constraint # = 1
+CharAt(CONST_0)_0_[-9223372036854775808] == CONST_72
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const s1_1 String)
+
+(assert (not (str.contains s1_1 "Hell")))
+(assert (= (str.at s1_1 0) "H"))
+
+
+
+======================
+(define-fun s1_1 () String
+  "H")
+Returned solutions: 
+(define-fun s1_1 () String  "H")
+*************************************
+Satisfiable: true
+s1_1 => "H"
+*************************************
+
+numeric PC: constraint # = 1
+CharAt(CONST_0)_0_[-9223372036854775808] == CONST_72 -> true
+
+string analysis: SPC # = 1
+(s1_1_SYMSTRING notcontains CONST_Hell)
+NPC constraint # = 1
+CharAt(CONST_0)_0_[72] == CONST_72
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const s1_1 String)
+
+(assert (not (str.contains s1_1 "Hell")))
+(assert (= (str.at s1_1 0) "H"))
+
+
+
+======================
+(define-fun s1_1 () String
+  "H")
+Returned solutions: 
+(define-fun s1_1 () String  "H")
+*************************************
+Satisfiable: true
+s1_1 => "H"
+*************************************
+
+numeric PC: constraint # = 1
+CharAt(CONST_0)_0_[72] == CONST_72 -> true
+
+### PCs: total:4 sat:4 unsat:0
+
+string analysis: SPC # = 1
+(s1_1_SYMSTRING contains CONST_Hell)
+NPC constraint # = 1
+CharAt(CONST_0)_0_[72] == CONST_72
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const s1_1 String)
+
+(assert (str.contains s1_1 "Hell"))
+(assert (= (str.at s1_1 0) "H"))
+
+
+
+======================
+(define-fun s1_1 () String
+  "Hell")
+Returned solutions: 
+(define-fun s1_1 () String  "Hell")
+*************************************
+Satisfiable: true
+s1_1 => "Hell"
+*************************************
+
+String contains 'Hell'
+numeric PC: constraint # = 1
+CharAt(CONST_0)_0_[72] == CONST_72 -> true
+
+string analysis: SPC # = 1
+(s1_1_SYMSTRING contains CONST_Hell)
+NPC constraint # = 1
+CharAt(CONST_0)_0_[72] == CONST_72
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const s1_1 String)
+
+(assert (str.contains s1_1 "Hell"))
+(assert (= (str.at s1_1 0) "H"))
+
+
+
+======================
+(define-fun s1_1 () String
+  "Hell")
+Returned solutions: 
+(define-fun s1_1 () String  "Hell")
+*************************************
+Satisfiable: true
+s1_1 => "Hell"
+*************************************
+
+numeric PC: constraint # = 1
+CharAt(CONST_0)_0_[72] == CONST_72 -> true
+
+string analysis: SPC # = 0
+NPC constraint # = 1
+CharAt(CONST_0)_0_[72] == CONST_72
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const s1_1 String)
+
+
+(assert (= (str.at s1_1 0) "H"))
+
+
+
+======================
+(define-fun s1_1 () String
+  "H")
+Returned solutions: 
+(define-fun s1_1 () String  "H")
+*************************************
+Satisfiable: true
+s1_1 => "H"
+*************************************
+
+numeric PC: constraint # = 1
+CharAt(CONST_0)_0_[72] != CONST_72 -> true
+
+### PCs: total:5 sat:5 unsat:0
+
+string analysis: SPC # = 1
+(s1_1_SYMSTRING notcontains CONST_Hell)
+NPC constraint # = 1
+CharAt(CONST_0)_0_[72] != CONST_72
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const s1_1 String)
+
+(assert (not (str.contains s1_1 "Hell")))
+(assert (not (= (str.at s1_1 0) "H")))
+
+
+
+======================
+(define-fun s1_1 () String
+  "")
+Returned solutions: 
+(define-fun s1_1 () String  "")
+*************************************
+Satisfiable: true
+s1_1 => ""
+*************************************
+
+numeric PC: constraint # = 1
+CharAt(CONST_0)_0_[72] != CONST_72 -> true
+
+string analysis: SPC # = 1
+(s1_1_SYMSTRING notcontains CONST_Hell)
+NPC constraint # = 1
+CharAt(CONST_0)_0_[0] != CONST_72
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const s1_1 String)
+
+(assert (not (str.contains s1_1 "Hell")))
+(assert (not (= (str.at s1_1 0) "H")))
+
+
+
+======================
+(define-fun s1_1 () String
+  "")
+Returned solutions: 
+(define-fun s1_1 () String  "")
+*************************************
+Satisfiable: true
+s1_1 => ""
+*************************************
+
+numeric PC: constraint # = 1
+CharAt(CONST_0)_0_[0] != CONST_72 -> true
+
+### PCs: total:6 sat:6 unsat:0
+
+string analysis: SPC # = 1
+(s1_1_SYMSTRING contains CONST_Hell)
+NPC constraint # = 1
+CharAt(CONST_0)_0_[0] != CONST_72
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const s1_1 String)
+
+(assert (str.contains s1_1 "Hell"))
+(assert (not (= (str.at s1_1 0) "H")))
+
+
+
+======================
+(define-fun s1_1 () String
+  "AHell")
+Returned solutions: 
+(define-fun s1_1 () String  "AHell")
+*************************************
+Satisfiable: true
+s1_1 => "AHell"
+*************************************
+
+String contains 'Hell'
+numeric PC: constraint # = 1
+CharAt(CONST_0)_0_[0] != CONST_72 -> true
+
+string analysis: SPC # = 1
+(s1_1_SYMSTRING contains CONST_Hell)
+NPC constraint # = 1
+CharAt(CONST_0)_0_[0] != CONST_72
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const s1_1 String)
+
+(assert (str.contains s1_1 "Hell"))
+(assert (not (= (str.at s1_1 0) "H")))
+
+
+
+======================
+(define-fun s1_1 () String
+  "AHell")
+Returned solutions: 
+(define-fun s1_1 () String  "AHell")
+*************************************
+Satisfiable: true
+s1_1 => "AHell"
+*************************************
+
+numeric PC: constraint # = 1
+CharAt(CONST_0)_0_[0] != CONST_72 -> true
+
+string analysis: SPC # = 0
+NPC constraint # = 1
+CharAt(CONST_0)_0_[0] != CONST_72
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling Z3str3
+
+current query... 
+(declare-const s1_1 String)
+
+
+(assert (not (= (str.at s1_1 0) "H")))
+
+
+
+======================
+(define-fun s1_1 () String
+  "")
+Returned solutions: 
+(define-fun s1_1 () String  "")
+*************************************
+Satisfiable: true
+s1_1 => ""
+*************************************
+
+
+====================================================== Method Sequences
+[test(**UNDEFINED**)]
+
+====================================================== JUnit 4.0 test class
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+public class edu_boisestate_cs_MAS_CharAtTestTest {
+
+	private edu.boisestate.cs.MAS.CharAtTest edu_boisestate_cs_mas_charattest;
+
+	@Before
+	public void setUp() throws Exception {
+		edu_boisestate_cs_mas_charattest = new edu.boisestate.cs.MAS.CharAtTest();
+	}
+
+	@Test
+	public void test0() {
+		edu_boisestate_cs_mas_charattest.test(**UNDEFINED**);
+	}
+}
+
+====================================================== results
+no errors detected
+
+====================================================== statistics
+elapsed time:       00:00:00
+states:             new=10,visited=0,backtracked=10,end=4
+search:             maxDepth=4,constraints=0
+choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=4
+heap:               new=462,released=40,maxLive=452,gcCycles=8
+instructions:       6381
+max memory:         477MB
+loaded code:        classes=81,methods=1618
+
+====================================================== search finished: 11/5/25 11:14 AM
+Runtime(ms) :1083

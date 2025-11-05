@@ -1,0 +1,77 @@
+************************************
+
+------------------------------------
+MAS:
+Symbolic Exp [ var_1_1_SYMSTRING.concat(var_2_2_SYMSTRING)]
+string analysis: SPC # = 1
+(var_1_1_SYMSTRING.concat(var_2_2_SYMSTRING) equals CONST_HelloWorld)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const var_2_2 String)
+(declare-const var_1_1 String)
+
+(assert (= (str.++ var_1_1 var_2_2) "HelloWorld"))
+
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+var_2_2: "HelloWorld"
+var_1_1: ""
+
+************************************
+(declare-const var_2_2 String)
+(declare-const var_1_1 String)
+
+(assert (not (= (str.++ var_1_1 var_2_2) "HelloWorld")))
+------------------------------------
+z3str3:
+Satisfiable: true
+var_2_2 => "A"
+var_1_1 => ""
+
+MAS:
+## Warning: empty path condition
+### PCs: total:2 sat:2 unsat:0
+
+string analysis: SPC # = 1
+(var_1_1_SYMSTRING.concat(var_2_2_SYMSTRING) equals CONST_HelloWorld)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const var_2_2 String)
+(declare-const var_1_1 String)
+
+(assert (= (str.++ var_1_1 var_2_2) "HelloWorld"))
+
+
+=======================================
+Cache Hit Invalid reason(s):
+	INVALID due to 0 dependent symbolic variables, 1 multi-sym predicates, and 0 bad operations.
+	INVALID due to 0 dependent symbolic variables, 1 multi-sym predicates, and 0 bad operations.
+---------------------------------------------------------------------
+Using Alphabet: 0HWdelor
+Using bound: 11
+
+************************************
+(declare-const var_2_2 String)
+(declare-const var_1_1 String)
+
+(assert (= (str.++ var_1_1 var_2_2) "HelloWorld"))
+------------------------------------
+z3str3:
+Satisfiable: true
+var_2_2 => "elloWorld"
+var_1_1 => "H"
+

@@ -1,0 +1,60 @@
+************************************
+(declare-const a_1 String)
+
+(assert (str.suffixof "hello" a_1))
+(assert (= (str.indexof a_1 "aaa") 2))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "aCaaahello"
+
+************************************
+(declare-const a_1 String)
+
+(assert (str.suffixof "hello" a_1))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "hello"
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (str.suffixof "hello" a_1)))
+(assert (= (str.indexof a_1 "aaa") 2))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "ADaaao"
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (str.suffixof "hello" a_1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "BAllo"
+
+MAS:
+
+************************************
+(declare-const a_1 String)
+
+(assert (str.suffixof "hello" a_1))
+(assert (not (= (str.indexof a_1 "aaa") 2)))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "hello"
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (str.suffixof "hello" a_1)))
+(assert (not (= (str.indexof a_1 "aaa") 2)))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => ""
+

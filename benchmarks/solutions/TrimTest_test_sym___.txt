@@ -1,0 +1,212 @@
+************************************
+
+------------------------------------
+MAS:
+string analysis: SPC # = 1
+(s_1_SYMSTRING contains CONST_ )
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s_1 String)
+
+(assert (str.contains s_1 " "))
+
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+s_1: " "
+
+************************************
+(declare-const s_1 String)
+
+(assert (str.contains s_1 " "))
+------------------------------------
+z3str3:
+Satisfiable: true
+s_1 => " "
+
+************************************
+(declare-const s_1 String)
+(declare-const out_str String)
+
+(assert (not (= out_str "Hi")))
+(assert (not (str.contains s_1 " ")))
+
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (and (str.in_re s_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+------------------------------------
+z3str3:
+Satisfiable: true
+s_1 => ""
+out_str => ""
+nwc => "\u{0}" " ")))
+ws => ""
+
+MAS:
+## Warning: empty path condition
+### PCs: total:3 sat:3 unsat:0
+
+string analysis: SPC # = 2
+(.trim(s_1_SYMSTRING) equals CONST_Hi) && (s_1_SYMSTRING notcontains CONST_ )
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s_1 String)
+(declare-const out_str String)
+
+(assert (= out_str "Hi"))
+(assert (not (str.contains s_1 " ")))
+
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (and (str.in_re s_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+=======================================
+Cache Hit Invalid reason(s):
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
+---------------------------------------------------------------------
+Using Alphabet:  0Hi
+Using bound: 4
+
+************************************
+(declare-const s_1 String)
+(declare-const out_str String)
+
+(assert (= out_str "Hi"))
+(assert (not (str.contains s_1 " ")))
+
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (and (str.in_re s_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+------------------------------------
+z3str3:
+Satisfiable: true
+s_1 => "Hi"
+out_str => "Hi"
+nwc => "\u{0}" " ")))
+ws => ""
+
+************************************
+(declare-const s_1 String)
+(declare-const out_str String)
+
+(assert (not (= out_str "Hi")))
+(assert (str.contains s_1 " "))
+
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (and (str.in_re s_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+------------------------------------
+z3str3:
+Satisfiable: true
+s_1 => " "
+out_str => ""
+nwc => "\u{0}" " ")))
+ws => ""
+
+MAS:
+## Warning: empty path condition
+### PCs: total:6 sat:6 unsat:0
+
+string analysis: SPC # = 2
+(.trim(s_1_SYMSTRING) equals CONST_Hi) && (s_1_SYMSTRING contains CONST_ )
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s_1 String)
+(declare-const out_str String)
+
+(assert (= out_str "Hi"))
+(assert (str.contains s_1 " "))
+
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (and (str.in_re s_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+=======================================
+Cache Hit Invalid reason(s):
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
+---------------------------------------------------------------------
+Using Alphabet:  0Hi
+Using bound: 4
+
+************************************
+(declare-const s_1 String)
+(declare-const out_str String)
+
+(assert (= out_str "Hi"))
+(assert (str.contains s_1 " "))
+
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (and (str.in_re s_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+------------------------------------
+z3str3:
+Satisfiable: true
+s_1 => "Hi \u{1}"
+out_str => "Hi"
+nwc => "\u{0}" " ")))
+ws => ""
+
+************************************
+(declare-const s_1 String)
+
+(assert (not (str.contains s_1 " ")))
+------------------------------------
+z3str3:
+Satisfiable: true
+s_1 => ""
+
+MAS:
+## Warning: empty path condition
+### PCs: total:4 sat:4 unsat:0
+
+string analysis: SPC # = 1
+(s_1_SYMSTRING contains CONST_ )
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s_1 String)
+
+(assert (str.contains s_1 " "))
+
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+s_1: " "
+

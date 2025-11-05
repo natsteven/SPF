@@ -24,14 +24,18 @@ public class PathConstraintAnalysis {
 	public PathConstraintAnalysis(StringPathCondition spc) {
 		this.spc = spc;
 		// Walk string constraints
-		for (StringConstraint sc = spc.header; sc != null; sc = sc.and()) {
-			analyseStringConstraint(sc);
-		}
-		// Walk numeric constraints (guard npc == null)
-		Constraint nc = (spc.getNpc() != null) ? spc.getNpc().header : null;
-		while (nc != null) {
-			analyseNumericConstraint(nc);
-			nc = nc.and;
+		try {
+			for (StringConstraint sc = spc.header; sc != null; sc = sc.and()) {
+				analyseStringConstraint(sc);
+			}
+			// Walk numeric constraints (guard npc == null)
+			Constraint nc = (spc.getNpc() != null) ? spc.getNpc().header : null;
+			while (nc != null) {
+				analyseNumericConstraint(nc);
+				nc = nc.and;
+			}
+		} catch (RuntimeException e) {
+			System.err.println("Error during PathConstraintAnalysis: " + e.getMessage());
 		}
 		badOps.add(StringOperator.DELETE);
 		badOps.add(StringOperator.SUBSTRING);
@@ -80,13 +84,25 @@ public class PathConstraintAnalysis {
 	// note this would work when old is superset of new, but for now we require same and return contradictions
 	public ValidationResult equalsIgnoreNegationsValid(PathConstraintAnalysis other) {
 		// we check that predicates contradict or are the same
+		ValidationResult result = new ValidationResult();
+
 		if (this.predicates.size() != other.predicates.size()) {
+//			result.summaryAdd("Predicate size mismatch: " + this.predicates.size() + " vs cached " + other.predicates.size());
+//			result.setValid(false);
 			return null;
 		}
+		// this and above check could be removed for subset/superset checks
+		if (!this.symVars.equals(other.symVars)) {
+//			result.summaryAdd("Symbolic variable sets differ: " + this.symVars.size() + " vs cached " + other.symVars.size());
+//			result.setValid(false);
+			return null;
+		}
+//		if (!result.isValid()) {
+//			return result;
+//		}
 		Set<Object> toFind = new HashSet<>(this.predicates);
 		Set<Object> toSearch = new HashSet<>(other.getAllPredicates());
 
-		ValidationResult result = new ValidationResult();
 
 		for (Iterator findIt = toFind.iterator(); findIt.hasNext(); ) {
 			Object pred = findIt.next();
@@ -122,8 +138,9 @@ public class PathConstraintAnalysis {
 			}
 		}
 		// search over
-		if (toFind.isEmpty()) {
+		if (toFind.isEmpty()) { // uneccessary because of !handled
 			// yay its a similar spc
+			result.setSummary();
 			return result; // may be invalid but has info
 		}
 		return null;
@@ -281,6 +298,7 @@ public class PathConstraintAnalysis {
 		private final Set<StringSymbolic> problemSymVars;
 		private final Set<Object> badPredicates;
 		private final Set<StringOperator> badOps;
+		private String summary;
 
 		public ValidationResult() {
 			this.valid = true;
@@ -288,6 +306,7 @@ public class PathConstraintAnalysis {
 			this.problemSymVars = new HashSet<>();
 			this.badPredicates = new HashSet<>();
 			this.badOps = new HashSet<>();
+			summary = "";
 		}
 
 		public void setValid(boolean valid) {
@@ -315,6 +334,7 @@ public class PathConstraintAnalysis {
 		}
 
 		public void addBadOp(StringOperator op){
+
 			badOps.add(op);
 		}
 
@@ -328,6 +348,29 @@ public class PathConstraintAnalysis {
 
 		public void addRelevantSymVars(Set<StringSymbolic> symVars){
 			relevantSymVars.addAll(symVars);
+		}
+
+		public void setSummary(String summary) {
+			this.summary = summary;
+		}
+
+		private void setSummary(){
+			StringBuilder sb = new StringBuilder();
+			if (valid) {
+				sb.append("VALID, involving ").append(relevantSymVars.size()).append(" symbolic variables.");
+			} else {
+				sb.append("INVALID due to:");
+				if (!problemSymVars.isEmpty()) {
+					sb.append("\n\t").append(problemSymVars.size()).append(" dependent symbolic variables");
+				}
+				if (!badPredicates.isEmpty()) {
+					sb.append("\n\t").append(badPredicates.size()).append(" multi-sym predicates");
+				}
+				if (!badOps.isEmpty()) {
+					sb.append("\n\t").append(badOps.size()).append(" bad operations");
+				}
+			}
+			summary = sb.toString();
 		}
 
 		@Override

@@ -1,0 +1,68 @@
+************************************
+(declare-const b_2 String)
+
+(assert (not (str.suffixof "c" b_2)))
+------------------------------------
+z3str3:
+Satisfiable: true
+b_2 => "A"
+
+MAS:
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (str.prefixof b_2 a_1))
+(assert (not (str.suffixof "c" b_2)))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "A"
+b_2 => "A"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (not (str.prefixof b_2 a_1)))
+(assert (str.suffixof "c" b_2))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "A"
+b_2 => "c"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" b_2)))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "B"
+b_2 => "A"
+
+************************************
+(declare-const b_2 String)
+
+(assert (str.suffixof "c" b_2))
+------------------------------------
+z3str3:
+Satisfiable: true
+b_2 => "c"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (str.prefixof b_2 a_1))
+(assert (str.suffixof "c" b_2))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "c"
+b_2 => "c"
+

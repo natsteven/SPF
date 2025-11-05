@@ -1,0 +1,207 @@
+************************************
+
+------------------------------------
+MAS:
+s2 is empty
+numeric PC: constraint # = 1
+Length_0_ == CONST_0 -> true
+
+string analysis: SPC # = 1
+(s1_1_SYMSTRING[**UNDEFINED**] contains s2_2_SYMSTRING[**UNDEFINED**])
+NPC constraint # = 1
+Length_0_[0] == CONST_0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (str.contains s1_1 s2_2))
+(assert (= (str.len s2_2) 0))
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+s1_1[**UNDEFINED**]: ""
+s2_2[**UNDEFINED**]: ""
+
+************************************
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (not (str.contains s1_1 s2_2)))
+(assert (= (str.len s2_2) 0))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (str.contains s1_1 s2_2))
+(assert (not (= (str.len s2_2) 0)))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => "A"
+s2_2 => "A"
+
+MAS:
+numeric PC: constraint # = 1
+Length_0_ == CONST_0 -> true
+
+### PCs: total:6 sat:6 unsat:0
+
+string analysis: SPC # = 1
+(s1_1_SYMSTRING[**UNDEFINED**] contains s2_2_SYMSTRING[**UNDEFINED**])
+NPC constraint # = 1
+Length_0_ == CONST_0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (str.contains s1_1 s2_2))
+(assert (= (str.len s2_2) 0))
+
+=======================================
+Cache Hit Invalid reason(s):
+	INVALID due to 1 dependent symbolic variables, 1 multi-sym predicates, and 1 bad operations.
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 1 bad operations.
+	INVALID due to 1 dependent symbolic variables, 1 multi-sym predicates, and 0 bad operations.
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 1 bad operations.
+	INVALID due to 1 dependent symbolic variables, 1 multi-sym predicates, and 1 bad operations.
+---------------------------------------------------------------------
+Numeric Path Condition Exists: Length_0_ == CONST_0
+Using Alphabet: ABC
+Using bound: 4
+
+************************************
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (str.contains s1_1 s2_2))
+(assert (= (str.len s2_2) 0))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => ""
+s2_2 => ""
+
+************************************
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (not (str.contains s1_1 s2_2)))
+(assert (not (= (str.len s2_2) 0)))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => ""
+s2_2 => "A"
+
+MAS:
+numeric PC: constraint # = 1
+Length_0_ == CONST_0 -> true
+
+### PCs: total:3 sat:3 unsat:0
+
+string analysis: SPC # = 1
+(s1_1_SYMSTRING[**UNDEFINED**] notcontains s2_2_SYMSTRING[**UNDEFINED**])
+NPC constraint # = 1
+Length_0_ == CONST_0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (not (str.contains s1_1 s2_2)))
+(assert (= (str.len s2_2) 0))
+
+=======================================
+Cache Hit Invalid reason(s):
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 1 bad operations.
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 1 bad operations.
+---------------------------------------------------------------------
+Numeric Path Condition Exists: Length_0_ == CONST_0
+Using Alphabet: ABC
+Using bound: 4
+
+************************************
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (str.contains s1_1 s2_2))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => ""
+s2_2 => ""
+
+MAS:
+
+====================================================== Method Sequences
+[testMixed(**UNDEFINED**,**UNDEFINED**)]
+
+====================================================== JUnit 4.0 test class
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+public class edu_boisestate_cs_MAS_IsEmptyTestTest {
+
+	private edu.boisestate.cs.MAS.IsEmptyTest edu_boisestate_cs_mas_isemptytest;
+
+	@Before
+	public void setUp() throws Exception {
+		edu_boisestate_cs_mas_isemptytest = new edu.boisestate.cs.MAS.IsEmptyTest();
+	}
+
+	@Test
+	public void test0() {
+		edu_boisestate_cs_mas_isemptytest.testMixed(**UNDEFINED**,**UNDEFINED**);
+	}
+}
+
+====================================================== results
+no errors detected
+
+====================================================== statistics
+elapsed time:       00:00:00
+states:             new=11,visited=0,backtracked=11,end=3
+search:             maxDepth=4,constraints=0
+choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=4
+heap:               new=473,released=38,maxLive=460,gcCycles=6
+instructions:       6403
+max memory:         477MB
+loaded code:        classes=83,methods=1770
+
+
+************************************
+(declare-const s1_1 String)
+(declare-const s2_2 String)
+
+(assert (not (str.contains s1_1 s2_2)))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => ""
+s2_2 => "A"
+
+MAS:
+sat,
+s1_1: ""
+s2_2: "A"
+

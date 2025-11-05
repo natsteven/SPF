@@ -1,0 +1,78 @@
+************************************
+
+------------------------------------
+MAS:
+hello
+This is the PC at the end:constraint # = 0
+string analysis: SPC # = 1
+(a_1_SYMSTRING.concat(b_2_SYMSTRING) equals CONST_abc)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (= (str.++ a_1 b_2) "abc"))
+
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+b_2: "abc"
+a_1: ""
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (not (= (str.++ a_1 b_2) "abc")))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => ""
+b_2 => ""
+
+MAS:
+## Warning: empty path condition
+### PCs: total:2 sat:2 unsat:0
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING.concat(b_2_SYMSTRING) equals CONST_abc)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (= (str.++ a_1 b_2) "abc"))
+
+
+=======================================
+Cache Hit Invalid reason(s):
+	INVALID due to 0 dependent symbolic variables, 1 multi-sym predicates, and 0 bad operations.
+	INVALID due to 0 dependent symbolic variables, 1 multi-sym predicates, and 0 bad operations.
+---------------------------------------------------------------------
+Using Alphabet: 0abc
+Using bound: 4
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (= (str.++ a_1 b_2) "abc"))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "a"
+b_2 => "bc"
+

@@ -1,0 +1,567 @@
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+(declare-const out_str String)
+
+(assert (str.contains out_str b_2))
+(assert (not (= b_2 c_3)))
+(assert (not (= a_1 b_2)))
+(assert (str.prefixof c_3 b_2))
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" c_3)))
+(assert (not (str.suffixof "b" b_2)))
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+(assert (and (str.in_re a_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "\u{1}!"
+b_2 => "!"
+c_3 => ""
+out_str => "!"
+nwc => "\u{0}" " ")))
+ws => ""
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+(declare-const out_str String)
+
+(assert (not (str.contains out_str c_3)))
+(assert (not (str.contains out_str b_2)))
+(assert (not (= b_2 c_3)))
+(assert (not (= a_1 b_2)))
+(assert (str.prefixof c_3 b_2))
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" c_3)))
+(assert (not (str.suffixof "b" b_2)))
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (and (str.in_re b_2 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+(assert (and (str.in_re a_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "\u{4042}"
+b_2 => "\u{2}\u{4042}"
+c_3 => "\u{2}"
+out_str => "\u{4042}"
+nwc => "\u{0}" " ")))
+ws => ""
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+(declare-const out_str String)
+
+(assert (not (str.contains out_str b_2)))
+(assert (not (= b_2 c_3)))
+(assert (not (= a_1 b_2)))
+(assert (str.prefixof c_3 b_2))
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" c_3)))
+(assert (not (str.suffixof "b" b_2)))
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+(assert (and (str.in_re a_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => ""
+b_2 => "BD"
+c_3 => "B"
+out_str => ""
+nwc => "\u{0}" " ")))
+ws => ""
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (= b_2 c_3)))
+(assert (not (= a_1 b_2)))
+(assert (str.prefixof c_3 b_2))
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" c_3)))
+(assert (not (str.suffixof "b" b_2)))
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "BA"
+b_2 => "BC"
+c_3 => "B"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (= a_1 b_2))
+(assert (not (str.prefixof c_3 b_2)))
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" c_3)))
+(assert (not (str.suffixof "b" b_2)))
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (= a_1 b_2)))
+(assert (str.prefixof c_3 b_2))
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" c_3)))
+(assert (not (str.suffixof "b" b_2)))
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "GBID"
+b_2 => "GAJC"
+c_3 => "G"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof "b" b_2)))
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "B"
+b_2 => "A"
+c_3 => ""
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+(declare-const out_str String)
+
+(assert (str.contains out_str c_3))
+(assert (not (str.contains out_str b_2)))
+(assert (not (= b_2 c_3)))
+(assert (not (= a_1 b_2)))
+(assert (not (str.prefixof c_3 b_2)))
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" c_3)))
+(assert (not (str.suffixof "b" b_2)))
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (and (str.in_re b_2 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+(assert (and (str.in_re a_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "!"
+b_2 => "\u{1}!"
+c_3 => "!"
+out_str => "!"
+nwc => "\u{0}" " ")))
+ws => ""
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+(declare-const out_str String)
+
+(assert (not (str.contains out_str c_3)))
+(assert (not (str.contains out_str b_2)))
+(assert (not (= b_2 c_3)))
+(assert (not (= a_1 b_2)))
+(assert (not (str.prefixof c_3 b_2)))
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" c_3)))
+(assert (not (str.suffixof "b" b_2)))
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (and (str.in_re b_2 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+(assert (and (str.in_re a_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => ""
+b_2 => "\u{1}"
+c_3 => "A"
+out_str => ""
+nwc => "\u{0}" " ")))
+ws => ""
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" c_3)))
+(assert (not (str.suffixof "b" b_2)))
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "BFE"
+b_2 => "AD"
+c_3 => "C"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.prefixof c_3 b_2)))
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" c_3)))
+(assert (not (str.suffixof "b" b_2)))
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "CI"
+b_2 => "B"
+c_3 => "A"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof "c" c_3)))
+(assert (not (str.suffixof "b" b_2)))
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "C"
+b_2 => "B"
+c_3 => "A"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+(declare-const out_str String)
+
+(assert (str.contains out_str c_3))
+(assert (not (str.contains out_str b_2)))
+(assert (not (= b_2 c_3)))
+(assert (not (= a_1 b_2)))
+(assert (str.prefixof c_3 b_2))
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" c_3)))
+(assert (not (str.suffixof "b" b_2)))
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (and (str.in_re b_2 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+(assert (and (str.in_re a_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => ""
+b_2 => "\u{1}"
+c_3 => ""
+out_str => ""
+nwc => "\u{0}" " ")))
+ws => ""
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (str.prefixof c_3 b_2))
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" c_3)))
+(assert (not (str.suffixof "b" b_2)))
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "BID"
+b_2 => "AHC"
+c_3 => "AHC"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (= a_1 b_2)))
+(assert (not (str.prefixof c_3 b_2)))
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" c_3)))
+(assert (not (str.suffixof "b" b_2)))
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "KCMH"
+b_2 => "KBE"
+c_3 => "KAJ"
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+(declare-const out_str String)
+
+(assert (str.contains out_str b_2))
+(assert (not (= b_2 c_3)))
+(assert (not (= a_1 b_2)))
+(assert (not (str.prefixof c_3 b_2)))
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" c_3)))
+(assert (not (str.suffixof "b" b_2)))
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+(assert (and (str.in_re a_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "!j"
+b_2 => "j"
+c_3 => "A"
+out_str => "!j"
+nwc => "\u{0}" " ")))
+ws => ""
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (= b_2 c_3))
+(assert (not (= a_1 b_2)))
+(assert (not (str.prefixof c_3 b_2)))
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" c_3)))
+(assert (not (str.suffixof "b" b_2)))
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: false
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "A"
+b_2 => ""
+c_3 => ""
+
+MAS:
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+(declare-const out_str String)
+
+(assert (not (str.contains out_str b_2)))
+(assert (not (= b_2 c_3)))
+(assert (not (= a_1 b_2)))
+(assert (not (str.prefixof c_3 b_2)))
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" c_3)))
+(assert (not (str.suffixof "b" b_2)))
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+(assert (and (str.in_re a_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => ""
+b_2 => "C"
+c_3 => "B"
+out_str => ""
+nwc => "\u{0}" " ")))
+ws => ""
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+(declare-const out_str String)
+
+(assert (str.contains out_str c_3))
+(assert (str.contains out_str b_2))
+(assert (not (= b_2 c_3)))
+(assert (not (= a_1 b_2)))
+(assert (not (str.prefixof c_3 b_2)))
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" c_3)))
+(assert (not (str.suffixof "b" b_2)))
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (and (str.in_re b_2 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+(assert (and (str.in_re a_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => " %!\u{1}"
+b_2 => "%!"
+c_3 => "!"
+out_str => "%!"
+nwc => "\u{0}" " ")))
+ws => ""
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+(declare-const out_str String)
+
+(assert (not (str.contains out_str c_3)))
+(assert (str.contains out_str b_2))
+(assert (not (= b_2 c_3)))
+(assert (not (= a_1 b_2)))
+(assert (not (str.prefixof c_3 b_2)))
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" c_3)))
+(assert (not (str.suffixof "b" b_2)))
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+(declare-const nwc RegLan)
+(declare-const ws RegLan)
+(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
+(assert (and (str.in_re b_2 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
+(assert (and (str.in_re a_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "\u{5}!"
+b_2 => "!"
+c_3 => "FD"
+out_str => "!"
+nwc => "\u{0}" " ")))
+ws => ""
+
+************************************
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (= b_2 c_3)))
+(assert (not (= a_1 b_2)))
+(assert (not (str.prefixof c_3 b_2)))
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" c_3)))
+(assert (not (str.suffixof "b" b_2)))
+(assert (not (str.suffixof "a" a_1)))
+(assert (< (str.len c_3) 10))
+(assert (< (str.len b_2) 10))
+(assert (< (str.len a_1) 10))
+------------------------------------
+z3str3:
+Satisfiable: true
+a_1 => "BID"
+b_2 => "A"
+c_3 => "C"
+

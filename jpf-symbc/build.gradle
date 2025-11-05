@@ -189,8 +189,10 @@ tasks.register('bench', JavaExec) {
 //    args "${projectDir}/src/tests/gov/nasa/jpf/symbc/strings/performance" // make sure Test classes aren't skipped
 //    args "${projectDir}/src/examples/strings" //path to benchmarks // as above
 
-    args "--file", "${projectDir}/bench_list.txt"
-
+//    args "--file", "${projectDir}/bench_list.txt"
+//    args "${projectDir}/src/tests/edu/boisestate/cs/MAS/ConcatTest.java"
+//    args "${projectDir}/src/examples/strings/CRIME.java"
+    args "${projectDir}/src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings01.java"
     dependsOn buildJars
 
     jvmArgs '-Dbench.timeoutSec=5'

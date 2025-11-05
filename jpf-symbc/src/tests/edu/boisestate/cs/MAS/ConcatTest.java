@@ -3,7 +3,7 @@ package edu.boisestate.cs.MAS;
 public class ConcatTest {
 
     public static void main(String[] args) {
-        test("Hello", "World");
+        test(args[0], args[1]);
     }
 
     public static void test(String var_1, String var_2) {

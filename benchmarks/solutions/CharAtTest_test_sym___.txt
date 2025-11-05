@@ -1,0 +1,180 @@
+************************************
+
+------------------------------------
+MAS:
+numeric PC: constraint # = 1
+CharAt(CONST_0)_0_[72] != CONST_72 -> true
+
+string analysis: SPC # = 1
+(s1_1_SYMSTRING notcontains CONST_Hell)
+NPC constraint # = 1
+CharAt(CONST_0)_0_[0] != CONST_72
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+
+(assert (not (str.contains s1_1 "Hell")))
+(assert (not (= (str.at s1_1 0) "H")))
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+s1_1: "0"
+
+************************************
+(declare-const s1_1 String)
+
+
+(assert (= (str.at s1_1 0) "H"))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => "H"
+
+MAS:
+numeric PC: constraint # = 1
+CharAt(CONST_0)_0_[72] != CONST_72 -> true
+
+### PCs: total:5 sat:5 unsat:0
+
+string analysis: SPC # = 1
+(s1_1_SYMSTRING notcontains CONST_Hell)
+NPC constraint # = 1
+CharAt(CONST_0)_0_[72] != CONST_72
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+
+(assert (not (str.contains s1_1 "Hell")))
+(assert (not (= (str.at s1_1 0) "H")))
+
+=======================================
+Cache Hit Invalid reason(s):
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 1 bad operations.
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 1 bad operations.
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 1 bad operations.
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 1 bad operations.
+---------------------------------------------------------------------
+Numeric Path Condition Exists: CharAt(CONST_0)_0_[72] != CONST_72
+Using Alphabet: 0Hel
+Using bound: 5
+
+************************************
+(declare-const s1_1 String)
+
+(assert (str.contains s1_1 "Hell"))
+(assert (not (= (str.at s1_1 0) "H")))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => "AHell"
+
+MAS:
+numeric PC: constraint # = 1
+CharAt(CONST_0)_0_[0] != CONST_72 -> true
+
+string analysis: SPC # = 0
+NPC constraint # = 1
+CharAt(CONST_0)_0_[0] != CONST_72
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+
+
+(assert (not (= (str.at s1_1 0) "H")))
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+sat,
+s1_1: "0"
+
+************************************
+(declare-const s1_1 String)
+
+(assert (str.contains s1_1 "Hell"))
+(assert (= (str.at s1_1 0) "H"))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => "Hell"
+
+************************************
+(declare-const s1_1 String)
+
+(assert (not (str.contains s1_1 "Hell")))
+(assert (not (= (str.at s1_1 0) "H")))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => ""
+
+************************************
+(declare-const s1_1 String)
+
+(assert (not (str.contains s1_1 "Hell")))
+(assert (= (str.at s1_1 0) "H"))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => "H"
+
+MAS:
+numeric PC: constraint # = 1
+CharAt(CONST_0)_0_[72] == CONST_72 -> true
+
+### PCs: total:4 sat:4 unsat:0
+
+string analysis: SPC # = 1
+(s1_1_SYMSTRING contains CONST_Hell)
+NPC constraint # = 1
+CharAt(CONST_0)_0_[72] == CONST_72
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const s1_1 String)
+
+(assert (str.contains s1_1 "Hell"))
+(assert (= (str.at s1_1 0) "H"))
+
+=======================================
+Cache Hit Invalid reason(s):
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
+	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
+---------------------------------------------------------------------
+Numeric Path Condition Exists: CharAt(CONST_0)_0_[72] == CONST_72
+Using Alphabet: 0Hel
+Using bound: 5
+
+************************************
+(declare-const s1_1 String)
+
+
+(assert (not (= (str.at s1_1 0) "H")))
+------------------------------------
+z3str3:
+Satisfiable: true
+s1_1 => ""
+
+MAS:
+sat,
+s1_1: "0"
+

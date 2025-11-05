@@ -1,0 +1,428 @@
+************************************
+(declare-const needle_1 String)
+(declare-const haystack_2 String)
+
+(assert (not (= (str.substr haystack_2 5 (- ( +  ( +  (str.len needle_1) 5) 1) 5)) needle_1)))
+(assert (not (= (str.substr haystack_2 4 (- ( +  ( +  (str.len needle_1) 4) 1) 4)) needle_1)))
+(assert (not (= (str.substr haystack_2 3 (- ( +  ( +  (str.len needle_1) 3) 1) 3)) needle_1)))
+(assert (not (= (str.substr haystack_2 2 (- ( +  ( +  (str.len needle_1) 2) 1) 2)) needle_1)))
+(assert (not (= (str.substr haystack_2 1 (- ( +  ( +  (str.len needle_1) 1) 1) 1)) needle_1)))
+(assert (not (= (str.substr haystack_2 0 (- ( +  (str.len needle_1) 1) 0)) needle_1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 5)))
+(assert (< ( +  (str.len needle_1) 5) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 4)))
+(assert (< ( +  (str.len needle_1) 4) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 3)))
+(assert (< ( +  (str.len needle_1) 3) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 2)))
+(assert (< ( +  (str.len needle_1) 2) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 1)))
+(assert (< ( +  (str.len needle_1) 1) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) (str.len needle_1)))
+(assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+needle_1 => "Kdefg"
+haystack_2 => "ABCDhiklmj"
+
+************************************
+(declare-const needle_1 String)
+(declare-const haystack_2 String)
+
+(assert (not (= (str.substr haystack_2 4 (- ( +  ( +  (str.len needle_1) 4) 1) 4)) needle_1)))
+(assert (not (= (str.substr haystack_2 3 (- ( +  ( +  (str.len needle_1) 3) 1) 3)) needle_1)))
+(assert (not (= (str.substr haystack_2 2 (- ( +  ( +  (str.len needle_1) 2) 1) 2)) needle_1)))
+(assert (not (= (str.substr haystack_2 1 (- ( +  ( +  (str.len needle_1) 1) 1) 1)) needle_1)))
+(assert (not (= (str.substr haystack_2 0 (- ( +  (str.len needle_1) 1) 0)) needle_1)))
+(assert (>= ( +  (str.len needle_1) 5) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 4)))
+(assert (< ( +  (str.len needle_1) 4) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 3)))
+(assert (< ( +  (str.len needle_1) 3) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 2)))
+(assert (< ( +  (str.len needle_1) 2) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 1)))
+(assert (< ( +  (str.len needle_1) 1) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) (str.len needle_1)))
+(assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+needle_1 => "HIJR"
+haystack_2 => "ABCSTUW\"
+
+************************************
+(declare-const needle_1 String)
+(declare-const haystack_2 String)
+
+(assert (not (= (str.substr haystack_2 1 (- ( +  ( +  (str.len needle_1) 1) 1) 1)) needle_1)))
+(assert (not (= (str.substr haystack_2 0 (- ( +  (str.len needle_1) 1) 0)) needle_1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 1)))
+(assert (< ( +  (str.len needle_1) 1) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) (str.len needle_1)))
+(assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+needle_1 => ""
+haystack_2 => "ABC"
+
+************************************
+(declare-const needle_1 String)
+(declare-const haystack_2 String)
+
+(assert (not (= (str.substr haystack_2 4 (- ( +  ( +  (str.len needle_1) 4) 1) 4)) needle_1)))
+(assert (not (= (str.substr haystack_2 3 (- ( +  ( +  (str.len needle_1) 3) 1) 3)) needle_1)))
+(assert (not (= (str.substr haystack_2 2 (- ( +  ( +  (str.len needle_1) 2) 1) 2)) needle_1)))
+(assert (not (= (str.substr haystack_2 1 (- ( +  ( +  (str.len needle_1) 1) 1) 1)) needle_1)))
+(assert (not (= (str.substr haystack_2 0 (- ( +  (str.len needle_1) 1) 0)) needle_1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 4)))
+(assert (< ( +  (str.len needle_1) 4) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 3)))
+(assert (< ( +  (str.len needle_1) 3) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 2)))
+(assert (< ( +  (str.len needle_1) 2) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 1)))
+(assert (< ( +  (str.len needle_1) 1) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) (str.len needle_1)))
+(assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+needle_1 => "GH"
+haystack_2 => "ABCFOP"
+
+************************************
+(declare-const needle_1 String)
+(declare-const haystack_2 String)
+
+(assert (not (= (str.substr haystack_2 3 (- ( +  ( +  (str.len needle_1) 3) 1) 3)) needle_1)))
+(assert (not (= (str.substr haystack_2 2 (- ( +  ( +  (str.len needle_1) 2) 1) 2)) needle_1)))
+(assert (not (= (str.substr haystack_2 1 (- ( +  ( +  (str.len needle_1) 1) 1) 1)) needle_1)))
+(assert (not (= (str.substr haystack_2 0 (- ( +  (str.len needle_1) 1) 0)) needle_1)))
+(assert (>= ( +  (str.len needle_1) 4) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 3)))
+(assert (< ( +  (str.len needle_1) 3) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 2)))
+(assert (< ( +  (str.len needle_1) 2) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 1)))
+(assert (< ( +  (str.len needle_1) 1) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) (str.len needle_1)))
+(assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+needle_1 => "EF"
+haystack_2 => "CABDI"
+
+************************************
+(declare-const needle_1 String)
+(declare-const haystack_2 String)
+
+(assert (not (= (str.substr haystack_2 2 (- ( +  ( +  (str.len needle_1) 2) 1) 2)) needle_1)))
+(assert (not (= (str.substr haystack_2 1 (- ( +  ( +  (str.len needle_1) 1) 1) 1)) needle_1)))
+(assert (not (= (str.substr haystack_2 0 (- ( +  (str.len needle_1) 1) 0)) needle_1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 3)))
+(assert (< ( +  (str.len needle_1) 3) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 2)))
+(assert (< ( +  (str.len needle_1) 2) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 1)))
+(assert (< ( +  (str.len needle_1) 1) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) (str.len needle_1)))
+(assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+needle_1 => ""
+haystack_2 => "BAC"
+
+************************************
+(declare-const needle_1 String)
+(declare-const haystack_2 String)
+
+(assert (not (= (str.substr haystack_2 2 (- ( +  ( +  (str.len needle_1) 2) 1) 2)) needle_1)))
+(assert (not (= (str.substr haystack_2 1 (- ( +  ( +  (str.len needle_1) 1) 1) 1)) needle_1)))
+(assert (not (= (str.substr haystack_2 0 (- ( +  (str.len needle_1) 1) 0)) needle_1)))
+(assert (< ( +  (str.len needle_1) 3) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 2)))
+(assert (< ( +  (str.len needle_1) 2) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 1)))
+(assert (< ( +  (str.len needle_1) 1) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) (str.len needle_1)))
+(assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+needle_1 => ""
+haystack_2 => "BAC"
+
+************************************
+(declare-const needle_1 String)
+(declare-const haystack_2 String)
+
+(assert (not (= (str.substr haystack_2 4 (- ( +  ( +  (str.len needle_1) 4) 1) 4)) needle_1)))
+(assert (not (= (str.substr haystack_2 3 (- ( +  ( +  (str.len needle_1) 3) 1) 3)) needle_1)))
+(assert (not (= (str.substr haystack_2 2 (- ( +  ( +  (str.len needle_1) 2) 1) 2)) needle_1)))
+(assert (not (= (str.substr haystack_2 1 (- ( +  ( +  (str.len needle_1) 1) 1) 1)) needle_1)))
+(assert (not (= (str.substr haystack_2 0 (- ( +  (str.len needle_1) 1) 0)) needle_1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 5)))
+(assert (< ( +  (str.len needle_1) 5) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 4)))
+(assert (< ( +  (str.len needle_1) 4) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 3)))
+(assert (< ( +  (str.len needle_1) 3) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 2)))
+(assert (< ( +  (str.len needle_1) 2) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 1)))
+(assert (< ( +  (str.len needle_1) 1) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) (str.len needle_1)))
+(assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+needle_1 => "IJK"
+haystack_2 => "ABCGDMLPH"
+
+************************************
+(declare-const needle_1 String)
+(declare-const haystack_2 String)
+
+(assert (not (= (str.substr haystack_2 1 (- ( +  ( +  (str.len needle_1) 1) 1) 1)) needle_1)))
+(assert (not (= (str.substr haystack_2 0 (- ( +  (str.len needle_1) 1) 0)) needle_1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 2)))
+(assert (< ( +  (str.len needle_1) 2) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 1)))
+(assert (< ( +  (str.len needle_1) 1) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) (str.len needle_1)))
+(assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+needle_1 => "C"
+haystack_2 => "BDA"
+
+************************************
+(declare-const needle_1 String)
+(declare-const haystack_2 String)
+
+(assert (not (= (str.substr haystack_2 0 (- ( +  (str.len needle_1) 1) 0)) needle_1)))
+(assert (>= (str.len haystack_2) (str.len needle_1)))
+(assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+needle_1 => ""
+haystack_2 => "BA"
+
+************************************
+(declare-const needle_1 String)
+(declare-const haystack_2 String)
+
+(assert (not (= (str.substr haystack_2 3 (- ( +  ( +  (str.len needle_1) 3) 1) 3)) needle_1)))
+(assert (not (= (str.substr haystack_2 2 (- ( +  ( +  (str.len needle_1) 2) 1) 2)) needle_1)))
+(assert (not (= (str.substr haystack_2 1 (- ( +  ( +  (str.len needle_1) 1) 1) 1)) needle_1)))
+(assert (not (= (str.substr haystack_2 0 (- ( +  (str.len needle_1) 1) 0)) needle_1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 4)))
+(assert (< ( +  (str.len needle_1) 4) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 3)))
+(assert (< ( +  (str.len needle_1) 3) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 2)))
+(assert (< ( +  (str.len needle_1) 2) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 1)))
+(assert (< ( +  (str.len needle_1) 1) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) (str.len needle_1)))
+(assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+needle_1 => "KOP"
+haystack_2 => "BCAQDSTR"
+
+************************************
+(declare-const needle_1 String)
+(declare-const haystack_2 String)
+
+(assert (not (= (str.substr haystack_2 1 (- ( +  ( +  (str.len needle_1) 1) 1) 1)) needle_1)))
+(assert (not (= (str.substr haystack_2 0 (- ( +  (str.len needle_1) 1) 0)) needle_1)))
+(assert (< ( +  (str.len needle_1) 2) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 1)))
+(assert (< ( +  (str.len needle_1) 1) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) (str.len needle_1)))
+(assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+needle_1 => "C"
+haystack_2 => "BDA"
+
+************************************
+(declare-const needle_1 String)
+(declare-const haystack_2 String)
+
+(assert (not (= (str.substr haystack_2 0 (- ( +  (str.len needle_1) 1) 0)) needle_1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 1)))
+(assert (< ( +  (str.len needle_1) 1) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) (str.len needle_1)))
+(assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+needle_1 => ""
+haystack_2 => "BA"
+
+************************************
+(declare-const needle_1 String)
+(declare-const haystack_2 String)
+
+(assert (not (= (str.substr haystack_2 0 (- ( +  (str.len needle_1) 1) 0)) needle_1)))
+(assert (>= ( +  (str.len needle_1) 1) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) (str.len needle_1)))
+(assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+needle_1 => "A"
+haystack_2 => "B"
+
+************************************
+(declare-const needle_1 String)
+(declare-const haystack_2 String)
+
+(assert (not (= (str.substr haystack_2 2 (- ( +  ( +  (str.len needle_1) 2) 1) 2)) needle_1)))
+(assert (not (= (str.substr haystack_2 1 (- ( +  ( +  (str.len needle_1) 1) 1) 1)) needle_1)))
+(assert (not (= (str.substr haystack_2 0 (- ( +  (str.len needle_1) 1) 0)) needle_1)))
+(assert (>= ( +  (str.len needle_1) 3) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 2)))
+(assert (< ( +  (str.len needle_1) 2) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 1)))
+(assert (< ( +  (str.len needle_1) 1) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) (str.len needle_1)))
+(assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+needle_1 => "DF"
+haystack_2 => "CBEA"
+
+************************************
+(declare-const needle_1 String)
+(declare-const haystack_2 String)
+
+(assert (not (= (str.substr haystack_2 3 (- ( +  ( +  (str.len needle_1) 3) 1) 3)) needle_1)))
+(assert (not (= (str.substr haystack_2 2 (- ( +  ( +  (str.len needle_1) 2) 1) 2)) needle_1)))
+(assert (not (= (str.substr haystack_2 1 (- ( +  ( +  (str.len needle_1) 1) 1) 1)) needle_1)))
+(assert (not (= (str.substr haystack_2 0 (- ( +  (str.len needle_1) 1) 0)) needle_1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 3)))
+(assert (< ( +  (str.len needle_1) 3) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 2)))
+(assert (< ( +  (str.len needle_1) 2) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 1)))
+(assert (< ( +  (str.len needle_1) 1) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) (str.len needle_1)))
+(assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+needle_1 => "D"
+haystack_2 => "CABE"
+
+************************************
+(declare-const needle_1 String)
+(declare-const haystack_2 String)
+
+(assert (not (= (str.substr haystack_2 0 (- ( +  (str.len needle_1) 1) 0)) needle_1)))
+(assert (< ( +  (str.len needle_1) 1) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) (str.len needle_1)))
+(assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+needle_1 => ""
+haystack_2 => "BA"
+
+************************************
+(declare-const needle_1 String)
+(declare-const haystack_2 String)
+
+(assert (not (= (str.substr haystack_2 2 (- ( +  ( +  (str.len needle_1) 2) 1) 2)) needle_1)))
+(assert (not (= (str.substr haystack_2 1 (- ( +  ( +  (str.len needle_1) 1) 1) 1)) needle_1)))
+(assert (not (= (str.substr haystack_2 0 (- ( +  (str.len needle_1) 1) 0)) needle_1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 2)))
+(assert (< ( +  (str.len needle_1) 2) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 1)))
+(assert (< ( +  (str.len needle_1) 1) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) (str.len needle_1)))
+(assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+needle_1 => ""
+haystack_2 => "ABC"
+
+************************************
+(declare-const needle_1 String)
+(declare-const haystack_2 String)
+
+(assert (not (= (str.substr haystack_2 4 (- ( +  ( +  (str.len needle_1) 4) 1) 4)) needle_1)))
+(assert (not (= (str.substr haystack_2 3 (- ( +  ( +  (str.len needle_1) 3) 1) 3)) needle_1)))
+(assert (not (= (str.substr haystack_2 2 (- ( +  ( +  (str.len needle_1) 2) 1) 2)) needle_1)))
+(assert (not (= (str.substr haystack_2 1 (- ( +  ( +  (str.len needle_1) 1) 1) 1)) needle_1)))
+(assert (not (= (str.substr haystack_2 0 (- ( +  (str.len needle_1) 1) 0)) needle_1)))
+(assert (< ( +  (str.len needle_1) 5) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 4)))
+(assert (< ( +  (str.len needle_1) 4) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 3)))
+(assert (< ( +  (str.len needle_1) 3) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 2)))
+(assert (< ( +  (str.len needle_1) 2) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 1)))
+(assert (< ( +  (str.len needle_1) 1) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) (str.len needle_1)))
+(assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+needle_1 => "LWXY"
+haystack_2 => "ABCtuvwx\u{83}S"
+
+************************************
+(declare-const needle_1 String)
+(declare-const haystack_2 String)
+
+(assert (not (= (str.substr haystack_2 1 (- ( +  ( +  (str.len needle_1) 1) 1) 1)) needle_1)))
+(assert (not (= (str.substr haystack_2 0 (- ( +  (str.len needle_1) 1) 0)) needle_1)))
+(assert (>= ( +  (str.len needle_1) 2) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 1)))
+(assert (< ( +  (str.len needle_1) 1) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) (str.len needle_1)))
+(assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+needle_1 => "C"
+haystack_2 => "BD"
+
+************************************
+(declare-const needle_1 String)
+(declare-const haystack_2 String)
+
+(assert (not (= (str.substr haystack_2 3 (- ( +  ( +  (str.len needle_1) 3) 1) 3)) needle_1)))
+(assert (not (= (str.substr haystack_2 2 (- ( +  ( +  (str.len needle_1) 2) 1) 2)) needle_1)))
+(assert (not (= (str.substr haystack_2 1 (- ( +  ( +  (str.len needle_1) 1) 1) 1)) needle_1)))
+(assert (not (= (str.substr haystack_2 0 (- ( +  (str.len needle_1) 1) 0)) needle_1)))
+(assert (< ( +  (str.len needle_1) 4) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 3)))
+(assert (< ( +  (str.len needle_1) 3) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 2)))
+(assert (< ( +  (str.len needle_1) 2) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) ( +  (str.len needle_1) 1)))
+(assert (< ( +  (str.len needle_1) 1) ( +  (str.len haystack_2) 1)))
+(assert (>= (str.len haystack_2) (str.len needle_1)))
+(assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
+------------------------------------
+z3str3:
+Satisfiable: true
+needle_1 => "KOP"
+haystack_2 => "BCAQDSTR"
+
