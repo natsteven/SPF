@@ -22,7 +22,7 @@ public class MASInterface {
 
 	public static SolutionSet<Model_Acyclic_Inverse> solve(StringPathCondition pc) {
 		runCount++;
-		if (SymbolicInstructionFactory.debugMode) {
+//		if (SymbolicInstructionFactory.debugMode) {
 			// get smtlib query for debugging
 			final Z3Translator t = new Z3Translator();
 			final String smtlibQuery = t.translate(pc);
@@ -34,7 +34,7 @@ public class MASInterface {
 				System.out.println(lines[i++]);
 			}
 			System.out.println("=======================================");
-		}
+//		}
 
 		PathConstraintAnalysis pca = new PathConstraintAnalysis(pc);
 //		pca.printInfo();

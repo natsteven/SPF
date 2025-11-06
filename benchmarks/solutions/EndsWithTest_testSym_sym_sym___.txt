@@ -18,6 +18,7 @@ The smtlib query is:
 
 
 =======================================
+PROPER SUBSET
 
 ################################################
 ################################################
@@ -119,6 +120,10 @@ The smtlib query is:
 
 
 =======================================
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
 Cache Hit Invalid reason(s):
 	INVALID due to 0 dependent symbolic variables, 1 multi-sym predicates, and 0 bad operations.
 	INVALID due to 0 dependent symbolic variables, 1 multi-sym predicates, and 0 bad operations.

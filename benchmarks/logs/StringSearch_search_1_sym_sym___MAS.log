@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=-1.7976931348623157E308
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev da1abb1a52627d8934f0dfe65185834308c83b19) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev 971b2284d9c2c2f40e7985fbbe347c26faf4ed71) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 strings.StringSearch.main()
 
-====================================================== search started: 11/5/25 10:23 AM
+====================================================== search started: 11/6/25 1:02 PM
 New sym int needle_1_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int haystack_2_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int Length_0_ min=0, max=125
@@ -82,11 +82,16 @@ The smtlib query is:
 (assert (< (str.len needle_1) ( +  (str.len haystack_2) 1)))
 
 =======================================
-java.lang.RuntimeException: Unhandled IntegerExpression type: (Length_1_ + CONST_1)
-	at edu.boisestate.cs.util.PathConstraintAnalysis.analyseIntegerExpression(PathConstraintAnalysis.java:257)
-	at edu.boisestate.cs.util.PathConstraintAnalysis.analyseNumericConstraint(PathConstraintAnalysis.java:184)
-	at edu.boisestate.cs.util.PathConstraintAnalysis.<init>(PathConstraintAnalysis.java:33)
-	at edu.boisestate.cs.MASInterface.solve(MASInterface.java:39)
+Error during PathConstraintAnalysis: Unhandled IntegerExpression type: (Length_1_ + CONST_1)
+Numeric Path Condition Exists: CharAt(CONST_0)_2_ != CharAt(CONST_0)_3_ &&
+CONST_0 < Length_0_ &&
+Length_0_ < (Length_1_ + CONST_1)
+Expected IntegerConstant but got: class gov.nasa.jpf.symbc.string.SymbolicCharAtInteger
+java.lang.ClassCastException: gov.nasa.jpf.symbc.string.SymbolicCharAtInteger cannot be cast to gov.nasa.jpf.symbc.numeric.IntegerConstant
+	at edu.boisestate.cs.util.ConstraintTranslator.charToString(ConstraintTranslator.java:528)
+	at edu.boisestate.cs.util.ConstraintTranslator.translate(ConstraintTranslator.java:352)
+	at edu.boisestate.cs.util.MASTranslator.translate(MASTranslator.java:51)
+	at edu.boisestate.cs.MASInterface.solve(MASInterface.java:80)
 	at gov.nasa.jpf.symbc.string.SymbolicStringConstraintsGeneral.inner_isSatisfiable(SymbolicStringConstraintsGeneral.java:464)
 	at gov.nasa.jpf.symbc.string.SymbolicStringConstraintsGeneral.isSatisfiable(SymbolicStringConstraintsGeneral.java:382)
 	at gov.nasa.jpf.symbc.string.StringPathCondition.simplify(StringPathCondition.java:145)
@@ -108,4 +113,4 @@ java.lang.RuntimeException: Unhandled IntegerExpression type: (Length_1_ + CONST
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at gov.nasa.jpf.tool.Run.call(Run.java:80)
 	at gov.nasa.jpf.tool.RunJPF.main(RunJPF.java:116)
-Runtime(ms) :741
+Runtime(ms) :768

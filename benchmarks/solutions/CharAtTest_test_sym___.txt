@@ -96,6 +96,12 @@ The smtlib query is:
 (assert (not (= (str.at s1_1 0) "H")))
 
 =======================================
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
 
 ################################################
 ################################################

@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=-1.7976931348623157E308
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev da1abb1a52627d8934f0dfe65185834308c83b19) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev 971b2284d9c2c2f40e7985fbbe347c26faf4ed71) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 gov.nasa.jpf.symbc.strings.ExSymExeStrings31.main()
 
-====================================================== search started: 11/5/25 10:20 AM
+====================================================== search started: 11/6/25 1:00 PM
 New sym int a_1_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int b_2_SYMSTRING.length min=-2147483648, max=2147483647
 ## Warning: empty path condition
@@ -181,6 +181,8 @@ The smtlib query is:
 
 
 =======================================
+PROPER SUBSET
+PROPER SUBSET
 
 ################################################
 ################################################
@@ -207,6 +209,8 @@ The smtlib query is:
 
 
 =======================================
+PROPER SUBSET
+PROPER SUBSET
 
 ################################################
 ################################################
@@ -355,6 +359,12 @@ The smtlib query is:
 
 
 =======================================
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
 
 ################################################
 ################################################
@@ -402,5 +412,5 @@ instructions:       6449
 max memory:         477MB
 loaded code:        classes=82,methods=1665
 
-====================================================== search finished: 11/5/25 10:20 AM
-Runtime(ms) :844
+====================================================== search finished: 11/6/25 1:00 PM
+Runtime(ms) :849

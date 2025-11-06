@@ -26,6 +26,9 @@ public class MASCache {
 		PathConstraintAnalysis match = null;
 		Set<StringSymbolic> toComplement = null;
 		Set<ValidationResult> badresults = new HashSet<>();
+
+		System.out.println("SEARCHING in " + cache.size() + " entries");
+
 		for (PathConstraintAnalysis oldPca : cache.keySet()) {
 			// for now check equivalent, but could easily be a superset
 			ValidationResult result = pca.equalsIgnoreNegationsValid(oldPca);

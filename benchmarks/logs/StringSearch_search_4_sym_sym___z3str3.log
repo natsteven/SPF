@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=-1.7976931348623157E308
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev da1abb1a52627d8934f0dfe65185834308c83b19) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev 971b2284d9c2c2f40e7985fbbe347c26faf4ed71) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 strings.StringSearch.main()
 
-====================================================== search started: 11/5/25 10:22 AM
+====================================================== search started: 11/6/25 1:02 PM
 0
 test: This is a tttest haystack string for testing.
 test This is a tttest haystack string for testing.
@@ -65,4 +65,4 @@ java.lang.RuntimeException: ERROR: symbolic type not Handled: toString
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at gov.nasa.jpf.tool.Run.call(Run.java:80)
 	at gov.nasa.jpf.tool.RunJPF.main(RunJPF.java:116)
-Runtime(ms) :696
+Runtime(ms) :666

@@ -4,7 +4,6 @@ import gov.nasa.jpf.symbc.numeric.*;
 import gov.nasa.jpf.symbc.string.*;
 
 import java.util.*;
-import java.util.Comparator;
 
 public class PathConstraintAnalysis {
 	private final Set<Object> predicates = new HashSet<>();
@@ -82,13 +81,27 @@ public class PathConstraintAnalysis {
 	}
 
 	// note this would work when old is superset of new, but for now we require same and return contradictions
+	// note other is the cached one
 	public ValidationResult equalsIgnoreNegationsValid(PathConstraintAnalysis other) {
 		// we check that predicates contradict or are the same
 		ValidationResult result = new ValidationResult();
 
-		if (this.predicates.size() != other.predicates.size()) {
-//			result.summaryAdd("Predicate size mismatch: " + this.predicates.size() + " vs cached " + other.predicates.size());
+		// proper subset allowing negations/contradictions
+		if (this.isSubSetOf(other)) {
+			System.out.println("is PROPER SUBSET: " + this.predicates.size() + " / " + other.predicates.size());
 //			result.setValid(false);
+//			result.setSummary("SUBSET: " + this.predicates.size() + " / " + other.predicates.size());
+			return result;
+		}
+		if (this.isSuperSetOf(other)) {
+			System.out.println("is PROPER SUPERSET: " + this.predicates.size() + " / " + other.predicates.size());
+//			result.setValid(false);
+//			result.setSummary("SUPERSET: " + this.predicates.size() + " / " + other.predicates.size());
+			return result;
+		}
+
+		if (this.predicates.size() != other.predicates.size()) {
+			// sizes differ
 			return null;
 		}
 		// this and above check could be removed for subset/superset checks
@@ -138,12 +151,102 @@ public class PathConstraintAnalysis {
 			}
 		}
 		// search over
-		if (toFind.isEmpty()) { // uneccessary because of !handled
-			// yay its a similar spc
-			result.setSummary();
-			return result; // may be invalid but has info
+		assert (toFind.isEmpty() && toSearch.isEmpty());
+		// yay its a similar spc
+		result.setSummary();
+		return result; // may be invalid but has info
+	}
+
+	// check if this is proper superset of other
+	private boolean isSuperSetOf(PathConstraintAnalysis other) {
+		if (!this.symVars.containsAll(other.symVars)) {
+			return false;
 		}
-		return null;
+		if (this.predicates.size() <= other.getAllPredicates().size()) {
+			return false;
+		}
+		// same logic as equalsIgnoreNegationsValid
+		// checking to see how big the superset is basically
+		Set<Object> toFind = new HashSet<>(this.predicates);
+		Set<Object> toSearch = new HashSet<>(other.getAllPredicates());
+		for (Iterator<Object> findIt = toFind.iterator(); findIt.hasNext(); ) {
+			Object pred = findIt.next();
+			for (Iterator<Object> searchIt = toSearch.iterator(); searchIt.hasNext(); ) {
+				Object otherPred = searchIt.next();
+				if (pred.equals(otherPred)) {
+					searchIt.remove();     // remove from toSearch
+					findIt.remove();       // remove from toFind
+					break;                 // done with this pred
+				}
+				boolean isContradiction = false;
+				if (pred instanceof StringConstraint && otherPred instanceof StringConstraint) {
+					isContradiction = ((StringConstraint) pred).contradicts((StringConstraint) otherPred);
+				} else if (pred instanceof LinearIntegerConstraint && otherPred instanceof LinearIntegerConstraint) {
+					isContradiction = ((Constraint) pred).contradicts((Constraint) otherPred);
+				}
+				if (isContradiction) {
+					searchIt.remove();     // remove matched counterpart
+					findIt.remove();       // remove current pred
+					break;
+				}
+				// else continue scanning other elements of toSearch
+			}
+		}
+		assert (!toFind.isEmpty());
+		assert (toSearch.isEmpty());
+		// doesnt check validity of preds
+		return true;
+	}
+
+
+	// check if this is proper subset of other
+	private boolean isSubSetOf(PathConstraintAnalysis other) {
+		if (!other.symVars.containsAll(this.symVars)) {
+			return false;
+		}
+		if (this.predicates.size() >= other.getAllPredicates().size()) {
+			return false;
+		}
+		// same logic as equalsIgnoreNegationsValid
+		// reason its releveant is because using a superset to solve the subset is likely underapproximating
+		Set<Object> toFind = new HashSet<>(this.predicates);
+		Set<Object> toSearch = new HashSet<>(other.getAllPredicates());
+		for (Iterator<Object> findIt = toFind.iterator(); findIt.hasNext(); ) {
+			Object pred = findIt.next();
+			boolean handled = false;
+			for (Iterator<Object> searchIt = toSearch.iterator(); searchIt.hasNext(); ) {
+				Object otherPred = searchIt.next();
+				// exact match
+				if (pred.equals(otherPred)) {
+					searchIt.remove();     // remove from toSearch
+					findIt.remove();       // remove from toFind
+					handled = true;
+					break;                 // done with this pred
+				}
+				// contradiction?
+				boolean isContradiction = false;
+				if (pred instanceof StringConstraint && otherPred instanceof StringConstraint) {
+					isContradiction = ((StringConstraint) pred).contradicts((StringConstraint) otherPred);
+				} else if (pred instanceof LinearIntegerConstraint && otherPred instanceof LinearIntegerConstraint) {
+					isContradiction = ((Constraint) pred).contradicts((Constraint) otherPred);
+				}
+				if (isContradiction) {
+					searchIt.remove();     // remove matched counterpart
+					findIt.remove();       // remove current pred
+					handled = true;
+					break;
+				}
+				// else continue scanning other elements of toSearch
+			}
+			if (!handled) {
+				// no equal or contradictory counterpart found for this pred
+				return false;
+			}
+		}
+		assert (toFind.isEmpty());
+		assert (!toSearch.isEmpty());
+		// doesnt check validity of preds
+		return true;
 	}
 
 	private Set<StringOperator> findBadOps(Object pred) {
@@ -329,24 +432,24 @@ public class PathConstraintAnalysis {
 			return badPredicates;
 		}
 
-		public Set<StringOperator> getBadOps(){
+		public Set<StringOperator> getBadOps() {
 			return badOps;
 		}
 
-		public void addBadOp(StringOperator op){
+		public void addBadOp(StringOperator op) {
 
 			badOps.add(op);
 		}
 
-		public void addMultiSymPred(Object pred){
+		public void addMultiSymPred(Object pred) {
 			badPredicates.add(pred);
 		}
 
-		public void addDependentSymVar(StringSymbolic symVar){
+		public void addDependentSymVar(StringSymbolic symVar) {
 			problemSymVars.add(symVar);
 		}
 
-		public void addRelevantSymVars(Set<StringSymbolic> symVars){
+		public void addRelevantSymVars(Set<StringSymbolic> symVars) {
 			relevantSymVars.addAll(symVars);
 		}
 
@@ -354,20 +457,20 @@ public class PathConstraintAnalysis {
 			this.summary = summary;
 		}
 
-		private void setSummary(){
-			StringBuilder sb = new StringBuilder();
+		private void setSummary() {
+			StringBuilder sb = new StringBuilder(summary);
 			if (valid) {
 				sb.append("VALID, involving ").append(relevantSymVars.size()).append(" symbolic variables.");
 			} else {
-				sb.append("INVALID due to:");
+				sb.insert(0,"INVALID due to: ");
 				if (!problemSymVars.isEmpty()) {
-					sb.append("\n\t").append(problemSymVars.size()).append(" dependent symbolic variables");
+					sb.append("\n\t\t").append(problemSymVars.size()).append(" dependent symbolic variables");
 				}
 				if (!badPredicates.isEmpty()) {
-					sb.append("\n\t").append(badPredicates.size()).append(" multi-sym predicates");
+					sb.append("\n\t\t").append(badPredicates.size()).append(" multi-sym predicates");
 				}
 				if (!badOps.isEmpty()) {
-					sb.append("\n\t").append(badOps.size()).append(" bad operations");
+					sb.append("\n\t\t").append(badOps.size()).append(" bad operations");
 				}
 			}
 			summary = sb.toString();
@@ -375,12 +478,7 @@ public class PathConstraintAnalysis {
 
 		@Override
 		public String toString() {
-			if (valid) {
-				return "VALID involving " + relevantSymVars.size() + " relevant symbolic variables.";
-			} else {
-				return "INVALID due to " + problemSymVars.size() + " dependent symbolic variables, "
-						+ badPredicates.size() + " multi-sym predicates, and " + badOps.size() + " bad operations.";
-			}
+			return summary;
 		}
 	}
 }

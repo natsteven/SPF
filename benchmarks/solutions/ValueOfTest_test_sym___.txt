@@ -17,6 +17,16 @@ The smtlib query is:
 
 
 =======================================
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
 
 ################################################
 ################################################
@@ -105,6 +115,14 @@ The smtlib query is:
 
 
 =======================================
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
 Cache Hit Invalid reason(s):
 	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
 	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
@@ -161,6 +179,18 @@ The smtlib query is:
 
 
 =======================================
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
 Cache Hit Invalid reason(s):
 	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
 	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
@@ -248,6 +278,8 @@ The smtlib query is:
 
 
 =======================================
+PROPER SUBSET
+PROPER SUBSET
 
 ################################################
 ################################################
@@ -302,6 +334,10 @@ The smtlib query is:
 
 
 =======================================
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
+PROPER SUBSET
 Cache Hit Invalid reason(s):
 	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
 	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
