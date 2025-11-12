@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=-1.7976931348623157E308
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 971b2284d9c2c2f40e7985fbbe347c26faf4ed71) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev 6a090698f11a9cc3be48deaf17c1c120a561c439) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 gov.nasa.jpf.symbc.strings.ExSymExeStrings62.main()
 
-====================================================== search started: 11/6/25 1:01 PM
+====================================================== search started: 11/11/25 12:48 PM
 New sym int str_1_SYMSTRING.length min=-2147483648, max=2147483647
 ## Warning: empty path condition
 ### PCs: total:1 sat:1 unsat:0
@@ -39,139 +39,24 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling Z3str3
 
-current query... 
-(declare-const str_1 String)
-
-(assert (not (str.contains str_1 "a")))
-
-
-
-
-======================
-(define-fun str_1 () String
-  "")
-Returned solutions: 
-(define-fun str_1 () String  "")
-*************************************
-Satisfiable: true
-str_1 => ""
-*************************************
-
-This is the PC at the end:constraint # = 0
-string analysis: SPC # = 1
-(str_1_SYMSTRING notcontains CONST_a)
-NPC constraint # = 0
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling Z3str3
-
-current query... 
-(declare-const str_1 String)
-
-(assert (not (str.contains str_1 "a")))
-
-
-
-
-======================
-(define-fun str_1 () String
-  "")
-Returned solutions: 
-(define-fun str_1 () String  "")
-*************************************
-Satisfiable: true
-str_1 => ""
-*************************************
-
-## Warning: empty path condition
-### PCs: total:2 sat:2 unsat:0
-
-string analysis: SPC # = 1
-(str_1_SYMSTRING contains CONST_a)
-NPC constraint # = 0
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling Z3str3
-
-current query... 
-(declare-const str_1 String)
-
-(assert (str.contains str_1 "a"))
-
-
-
-
-======================
-(define-fun str_1 () String
-  "a")
-Returned solutions: 
-(define-fun str_1 () String  "a")
-*************************************
-Satisfiable: true
-str_1 => "a"
-*************************************
-
-New sym int Length_0_ min=0, max=125
-numeric PC: constraint # = 1
-Length_0_ >= CONST_3 -> true
-
-### PCs: total:3 sat:3 unsat:0
-
-string analysis: SPC # = 1
-(str_1_SYMSTRING contains CONST_a)
-NPC constraint # = 1
-Length_0_ >= CONST_3
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling Z3str3
-
-current query... 
-(declare-const str_1 String)
-
-(assert (str.contains str_1 "a"))
-(assert (>= (str.len str_1) 3))
-
-
-
-======================
-(define-fun str_1 () String
-  "ABa")
-Returned solutions: 
-(define-fun str_1 () String  "ABa")
-*************************************
-Satisfiable: true
-str_1 => "ABa"
-*************************************
-
-numeric PC: constraint # = 1
-Length_0_ < CONST_3 -> true
-
-### PCs: total:4 sat:4 unsat:0
-
-string analysis: SPC # = 1
-(str_1_SYMSTRING contains CONST_a)
-NPC constraint # = 1
-Length_0_ < CONST_3
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling Z3str3
-
-current query... 
-(declare-const str_1 String)
-
-(assert (str.contains str_1 "a"))
-(assert (< (str.len str_1) 3))
-
-
-
-======================
-(define-fun str_1 () String
-  "a")
-Returned solutions: 
-(define-fun str_1 () String  "a")
-*************************************
-Satisfiable: true
-str_1 => "a"
-*************************************
-
-java.lang.ClassCastException: gov.nasa.jpf.symbc.string.DerivedStringExpression cannot be cast to gov.nasa.jpf.symbc.numeric.IntegerExpression
-	at gov.nasa.jpf.symbc.bytecode.optimization.IF_ICMPGE.execute(IF_ICMPGE.java:59)
+java.lang.UnsatisfiedLinkError: no libz3java in java.library.path
+	at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1863)
+	at java.lang.Runtime.loadLibrary0(Runtime.java:871)
+	at java.lang.System.loadLibrary(System.java:1122)
+	at com.microsoft.z3.Native.<clinit>(Native.java:17)
+	at com.microsoft.z3.Context.<init>(Context.java:42)
+	at edu.ucsb.cs.vlab.versions.Z3String3Processor.getOutput(Z3String3Processor.java:46)
+	at gov.nasa.jpf.symbc.string.translate.TranslateToZ3str3.solve(TranslateToZ3str3.java:30)
+	at gov.nasa.jpf.symbc.string.SymbolicStringConstraintsGeneral.inner_isSatisfiable(SymbolicStringConstraintsGeneral.java:456)
+	at gov.nasa.jpf.symbc.string.SymbolicStringConstraintsGeneral.isSatisfiable(SymbolicStringConstraintsGeneral.java:382)
+	at gov.nasa.jpf.symbc.string.StringPathCondition.simplify(StringPathCondition.java:145)
+	at gov.nasa.jpf.symbc.numeric.PathCondition.simplifyOld(PathCondition.java:414)
+	at gov.nasa.jpf.symbc.numeric.PathCondition.simplify(PathCondition.java:339)
+	at gov.nasa.jpf.symbc.bytecode.SymbolicStringHandler.handleBooleanStringInstructions(SymbolicStringHandler.java:1262)
+	at gov.nasa.jpf.symbc.bytecode.SymbolicStringHandler.handleContains(SymbolicStringHandler.java:1326)
+	at gov.nasa.jpf.symbc.bytecode.SymbolicStringHandler.handleSymbolicStrings(SymbolicStringHandler.java:218)
+	at gov.nasa.jpf.symbc.bytecode.BytecodeUtils.execute(BytecodeUtils.java:218)
+	at gov.nasa.jpf.symbc.bytecode.INVOKEVIRTUAL.execute(INVOKEVIRTUAL.java:51)
 	at gov.nasa.jpf.vm.ThreadInfo.executeInstruction(ThreadInfo.java:1908)
 	at gov.nasa.jpf.vm.ThreadInfo.executeTransition(ThreadInfo.java:1859)
 	at gov.nasa.jpf.vm.SystemState.executeNextTransition(SystemState.java:765)
@@ -186,4 +71,4 @@ java.lang.ClassCastException: gov.nasa.jpf.symbc.string.DerivedStringExpression 
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at gov.nasa.jpf.tool.Run.call(Run.java:80)
 	at gov.nasa.jpf.tool.RunJPF.main(RunJPF.java:116)
-Runtime(ms) :889
+Runtime(ms) :1193

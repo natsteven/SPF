@@ -1,126 +1,32 @@
 ************************************
-(declare-const a_1 String)
 
-(assert (not (= a_1 "aaa")))
-(assert (= a_1 "aaa"))
 ------------------------------------
-z3str3:
-Satisfiable: false
-
 MAS:
-
-====================================================== error 1
-gov.nasa.jpf.vm.NoUncaughtExceptionsProperty
-java.lang.RuntimeException: This should not happen
-	at gov.nasa.jpf.symbc.strings.ExSymExeStrings52.test(ExSymExeStrings52.java:49)
-	at gov.nasa.jpf.symbc.strings.ExSymExeStrings52.main(ExSymExeStrings52.java:32)
-
-
-====================================================== snapshot #1
-thread java.lang.Thread:{id:0,name:main,status:RUNNING,priority:5,isDaemon:false,lockCount:0,suspendCount:0}
-  call stack:
-	at gov.nasa.jpf.symbc.strings.ExSymExeStrings52.test(ExSymExeStrings52.java:49)
-	at gov.nasa.jpf.symbc.strings.ExSymExeStrings52.main(ExSymExeStrings52.java:32)
-
-
-====================================================== Method Sequences
-[test(**UNDEFINED**,**UNDEFINED**,-9223372036854775808)]
-[(expected = java.lang.RuntimeException.class), test(**UNDEFINED**,**UNDEFINED**,-9223372036854775808), ##EXCEPTION## "java.lang.RuntimeException: This should not happen..."]
-
-====================================================== JUnit 4.0 test class
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.Test;
-
-public class gov_nasa_jpf_symbc_strings_ExSymExeStrings52Test {
-
-	private gov.nasa.jpf.symbc.strings.ExSymExeStrings52 gov_nasa_jpf_symbc_strings_exsymexestrings52;
-
-	@Before
-	public void setUp() throws Exception {
-		gov_nasa_jpf_symbc_strings_exsymexestrings52 = new gov.nasa.jpf.symbc.strings.ExSymExeStrings52();
-	}
-
-	@Test
-	public void test0() {
-		gov_nasa_jpf_symbc_strings_exsymexestrings52.test(**UNDEFINED**,**UNDEFINED**,-9223372036854775808);
-	}
-
-	@Test(expected = java.lang.RuntimeException.class)
-	public void test1() {
-		gov_nasa_jpf_symbc_strings_exsymexestrings52.test(**UNDEFINED**,**UNDEFINED**,-9223372036854775808);
-		//should lead to ##EXCEPTION## "java.lang.RuntimeException: This should not happen..."
-	}
-}
-
-====================================================== results
-error #1: gov.nasa.jpf.vm.NoUncaughtExceptionsProperty "java.lang.RuntimeException: This should not happen..."
-
-====================================================== statistics
-elapsed time:       00:00:00
-states:             new=10,visited=0,backtracked=6,end=1
-search:             maxDepth=4,constraints=0
-choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=4
-heap:               new=483,released=13,maxLive=454,gcCycles=5
-instructions:       6454
-max memory:         477MB
-loaded code:        classes=86,methods=1701
-
-
-************************************
-(declare-const a_1 String)
-
-(assert (= a_1 "aaa"))
-------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "aaa"
 
 ************************************
 (declare-const a_1 String)
 
 (assert (not (= a_1 "aaa")))
-------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => ""
-
-MAS:
-## Warning: empty path condition
-### PCs: total:4 sat:4 unsat:0
-
-string analysis: SPC # = 1
-(a_1_SYMSTRING equals CONST_aaa)
-NPC constraint # = 0
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling MAS
-
-The smtlib query is: 
-(declare-const a_1 String)
-
 (assert (= a_1 "aaa"))
-
-
-=======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
+------------------------------------
+MAS:
 sat,
 a_1: "aaa"
 
 ************************************
 (declare-const a_1 String)
 
+(assert (not (= a_1 "aaa")))
+------------------------------------
+MAS:
+a_1: ""
+
+************************************
+(declare-const a_1 String)
+
 (assert (= a_1 "aaa"))
 (assert (not (= a_1 "aaa")))
 ------------------------------------
-z3str3:
-Satisfiable: false
-
 MAS:
 unsat
 

@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=-1.7976931348623157E308
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 971b2284d9c2c2f40e7985fbbe347c26faf4ed71) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev 6a090698f11a9cc3be48deaf17c1c120a561c439) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 strings.MSExample.main()
 
-====================================================== search started: 11/6/25 1:02 PM
+====================================================== search started: 11/11/25 12:49 PM
 java.lang.RuntimeException: ERROR: you need to turn debug option on
 	at gov.nasa.jpf.symbc.bytecode.BytecodeUtils.execute(BytecodeUtils.java:257)
 	at gov.nasa.jpf.symbc.bytecode.INVOKESTATIC.execute(INVOKESTATIC.java:45)
@@ -46,4 +46,4 @@ java.lang.RuntimeException: ERROR: you need to turn debug option on
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at gov.nasa.jpf.tool.Run.call(Run.java:80)
 	at gov.nasa.jpf.tool.RunJPF.main(RunJPF.java:116)
-Runtime(ms) :583
+Runtime(ms) :1016

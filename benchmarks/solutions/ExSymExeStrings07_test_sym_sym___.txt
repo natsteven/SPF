@@ -4,13 +4,9 @@
 
 (assert (not (= (str.at a_1 1) "a")))
 ------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => ""
-
 MAS:
 sat,
-a_1: "00"
+a_1[**UNDEFINED**]: "00"
 
 ************************************
 (declare-const a_1 String)
@@ -18,36 +14,7 @@ a_1: "00"
 
 (assert (= (str.at a_1 1) "a"))
 ------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "Aa"
-
 MAS:
-This is the PC at the end:constraint # = 1
-CharAt(CONST_1)_0_ != CONST_97
-numeric PC: constraint # = 1
-CharAt(CONST_1)_0_ != CONST_97 -> true
-
-string analysis: SPC # = 0
-NPC constraint # = 1
-CharAt(CONST_1)_0_[0] != CONST_97
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling MAS
-
-The smtlib query is: 
-(declare-const a_1 String)
-
-
-(assert (not (= (str.at a_1 1) "a")))
-
-=======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
 sat,
-a_1: "00"
+a_1: "0a"
 

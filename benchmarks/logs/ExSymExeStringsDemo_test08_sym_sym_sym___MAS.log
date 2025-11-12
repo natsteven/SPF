@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=-1.7976931348623157E308
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 971b2284d9c2c2f40e7985fbbe347c26faf4ed71) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev 6a090698f11a9cc3be48deaf17c1c120a561c439) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 gov.nasa.jpf.symbc.strings.ExSymExeStringsDemo.main()
 
-====================================================== search started: 11/6/25 1:01 PM
+====================================================== search started: 11/11/25 8:19 PM
 New sym int a_1_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int b_2_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int i_3_SYMINT min=-2147483648, max=2147483647
@@ -74,8 +74,9 @@ The smtlib query is:
 ################################################
 ################################################
 
-sat,
+****** Solutions from cache ******
 b_2: ""
+**********************************
 ************************************
 ## Warning: empty path condition
 ### PCs: total:2 sat:2 unsat:0
@@ -100,8 +101,9 @@ The smtlib query is:
 ################################################
 ################################################
 
-sat,
+****** Solutions from cache ******
 b_2: "c"
+**********************************
 ************************************
 New sym int Length_0_ min=0, max=125
 numeric PC: constraint # = 1
@@ -124,18 +126,38 @@ The smtlib query is:
 (assert (<= (str.len a_1) 2))
 
 =======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+****** Solutions from cache ******
+b_2: "c"
+**********************************
+Solving remaining predicates ...
+The smtlib query is: 
+(declare-const a_1 String)
+
+
+(assert (<= (str.len a_1) 2))
+
+=======================================
 Numeric Path Condition Exists: Length_0_ <= CONST_2
-Using Alphabet: 0c
+No String Constraints
+Using Alphabet: ABC
 Using bound: 4
 *****************************
-WARNING: Unhandled constraint in Reporter_Inverse.buildICG_r3() of type... UNDEFINED  6  le!!I!:!0
-WARNING: UNDEFINED constraint in Reporter_Inverse.buildICG_r3() of type... 6  le!!I!:!0
+WARNING: Unhandled constraint in Reporter_Inverse.buildICG_r3() of type... UNDEFINED  3  le!!I!:!0
+WARNING: UNDEFINED constraint in Reporter_Inverse.buildICG_r3() of type... 3  le!!I!:!0
 java.lang.NullPointerException
 	at edu.boisestate.cs.reporting.Reporter_Inverse_BFS.solveInputs(Reporter_Inverse_BFS.java:127)
 	at edu.boisestate.cs.reporting.Reporter_Inverse.calculateStats(Reporter_Inverse.java:300)
 	at edu.boisestate.cs.reporting.A_Reporter.run(A_Reporter.java:254)
 	at edu.boisestate.cs.util.MASProcessor.query(MASProcessor.java:41)
-	at edu.boisestate.cs.MASInterface.solve(MASInterface.java:107)
+	at edu.boisestate.cs.MASInterface.runPC(MASInterface.java:106)
+	at edu.boisestate.cs.MASInterface.solve(MASInterface.java:59)
 	at gov.nasa.jpf.symbc.string.SymbolicStringConstraintsGeneral.inner_isSatisfiable(SymbolicStringConstraintsGeneral.java:464)
 	at gov.nasa.jpf.symbc.string.SymbolicStringConstraintsGeneral.isSatisfiable(SymbolicStringConstraintsGeneral.java:382)
 	at gov.nasa.jpf.symbc.string.StringPathCondition.simplify(StringPathCondition.java:145)
@@ -157,4 +179,4 @@ java.lang.NullPointerException
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at gov.nasa.jpf.tool.Run.call(Run.java:80)
 	at gov.nasa.jpf.tool.RunJPF.main(RunJPF.java:116)
-Runtime(ms) :810
+Runtime(ms) :1283

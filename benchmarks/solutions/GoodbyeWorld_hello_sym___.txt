@@ -1,47 +1,12 @@
 ************************************
-
-------------------------------------
-MAS:
-numeric PC: constraint # = 1
-CharAt(CONST_1)_0_[72] != CONST_72 -> true
-
-string analysis: SPC # = 1
-(var_1_1_SYMSTRING notequals CONST_Goodbye, World!)
-NPC constraint # = 1
-CharAt(CONST_1)_0_[0] != CONST_72
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling MAS
-
-The smtlib query is: 
-(declare-const var_1_1 String)
-
-(assert (not (= var_1_1 "Goodbye, World!")))
-(assert (not (= (str.at var_1_1 1) "H")))
-
-=======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
-sat,
-var_1_1: "  "
-
-************************************
 (declare-const var_1_1 String)
 
 
 (assert (not (= (str.at var_1_1 1) "H")))
 ------------------------------------
-z3str3:
-Satisfiable: true
-var_1_1 => ""
-
 MAS:
 sat,
-var_1_1: "00"
+var_1_1[**UNDEFINED**]: "00"
 
 ************************************
 (declare-const var_1_1 String)
@@ -49,37 +14,9 @@ var_1_1: "00"
 (assert (= var_1_1 "Goodbye, World!"))
 (assert (not (= (str.at var_1_1 1) "H")))
 ------------------------------------
-z3str3:
-Satisfiable: true
-var_1_1 => "Goodbye, World!"
-
 MAS:
-numeric PC: constraint # = 1
-CharAt(CONST_1)_0_[0] != CONST_72 -> true
-
-string analysis: SPC # = 0
-NPC constraint # = 1
-CharAt(CONST_1)_0_[0] != CONST_72
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling MAS
-
-The smtlib query is: 
-(declare-const var_1_1 String)
-
-
-(assert (not (= (str.at var_1_1 1) "H")))
-
-=======================================
-PROPER SUBSET
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
 sat,
-var_1_1: "00"
+var_1_1: "Goodbye, World!"
 
 ************************************
 (declare-const var_1_1 String)
@@ -87,9 +24,9 @@ var_1_1: "00"
 (assert (not (= var_1_1 "Goodbye, World!")))
 (assert (not (= (str.at var_1_1 1) "H")))
 ------------------------------------
-z3str3:
-Satisfiable: true
-var_1_1 => ""
+MAS:
+sat,
+var_1_1: "  "
 
 ************************************
 (declare-const var_1_1 String)
@@ -97,31 +34,7 @@ var_1_1 => ""
 
 (assert (= (str.at var_1_1 1) "H"))
 ------------------------------------
-z3str3:
-Satisfiable: true
-var_1_1 => "AH"
-
 MAS:
-numeric PC: constraint # = 1
-CharAt(CONST_1)_0_[72] != CONST_72 -> true
-
-### PCs: total:3 sat:3 unsat:0
-
-string analysis: SPC # = 1
-(var_1_1_SYMSTRING notequals CONST_Goodbye, World!)
-NPC constraint # = 1
-CharAt(CONST_1)_0_[72] != CONST_72
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling MAS
-
-The smtlib query is: 
-(declare-const var_1_1 String)
-
-(assert (not (= var_1_1 "Goodbye, World!")))
-(assert (not (= (str.at var_1_1 1) "H")))
-
-=======================================
-Numeric Path Condition Exists: CharAt(CONST_1)_0_[72] != CONST_72
-Using Alphabet:  !,0GHWbdelory
-Using bound: 16
+sat,
+var_1_1: "0H"
 

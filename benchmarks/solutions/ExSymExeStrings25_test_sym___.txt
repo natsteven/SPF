@@ -3,9 +3,50 @@
 
 (assert (str.prefixof "a" a_1))
 ------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "a"
+MAS:
+a_1: "a"
+
+************************************
+
+------------------------------------
+MAS:
+
+====================================================== Method Sequences
+[test(**UNDEFINED**)]
+
+====================================================== JUnit 4.0 test class
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+public class gov_nasa_jpf_symbc_strings_ExSymExeStrings25Test {
+
+	private gov.nasa.jpf.symbc.strings.ExSymExeStrings25 gov_nasa_jpf_symbc_strings_exsymexestrings25;
+
+	@Before
+	public void setUp() throws Exception {
+		gov_nasa_jpf_symbc_strings_exsymexestrings25 = new gov.nasa.jpf.symbc.strings.ExSymExeStrings25();
+	}
+
+	@Test
+	public void test0() {
+		gov_nasa_jpf_symbc_strings_exsymexestrings25.test(**UNDEFINED**);
+	}
+}
+
+====================================================== results
+no errors detected
+
+====================================================== statistics
+elapsed time:       00:00:01
+states:             new=11,visited=0,backtracked=11,end=4
+search:             maxDepth=4,constraints=0
+choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=4
+heap:               new=490,released=40,maxLive=460,gcCycles=8
+instructions:       6450
+max memory:         245MB
+loaded code:        classes=82,methods=1665
+
 
 ************************************
 (declare-const a_1 String)
@@ -13,31 +54,6 @@ a_1 => "a"
 (assert (not (str.suffixof "b" a_1)))
 (assert (not (str.prefixof "a" a_1)))
 ------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "A"
-
-MAS:
-
-************************************
-(declare-const a_1 String)
-
-(assert (str.suffixof "b" a_1))
-(assert (str.prefixof "a" a_1))
-------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "ab"
-
-************************************
-(declare-const a_1 String)
-
-(assert (not (str.prefixof "a" a_1)))
-------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "A"
-
 MAS:
 sat,
 a_1: ""
@@ -46,11 +62,29 @@ a_1: ""
 (declare-const a_1 String)
 
 (assert (str.suffixof "b" a_1))
+(assert (str.prefixof "a" a_1))
+------------------------------------
+MAS:
+sat,
+a_1: "ab"
+
+************************************
+(declare-const a_1 String)
+
 (assert (not (str.prefixof "a" a_1)))
 ------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "b"
+MAS:
+a_1: ""
+
+************************************
+(declare-const a_1 String)
+
+(assert (str.suffixof "b" a_1))
+(assert (not (str.prefixof "a" a_1)))
+------------------------------------
+MAS:
+sat,
+a_1: "b"
 
 ************************************
 (declare-const a_1 String)
@@ -58,7 +92,7 @@ a_1 => "b"
 (assert (not (str.suffixof "b" a_1)))
 (assert (str.prefixof "a" a_1))
 ------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "a"
+MAS:
+sat,
+a_1: "a"
 

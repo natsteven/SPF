@@ -199,4 +199,8 @@ public class StringConstraint {
 	    if (and!=null) and.accept(visitor);
 			visitor.postVisit(this);
 	}
+
+	public void setAnd(StringConstraint and) {
+		this.and = and;
+	}
 }

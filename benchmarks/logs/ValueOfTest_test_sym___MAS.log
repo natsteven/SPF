@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=-1.7976931348623157E308
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 971b2284d9c2c2f40e7985fbbe347c26faf4ed71) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev 6a090698f11a9cc3be48deaf17c1c120a561c439) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 edu.boisestate.cs.MAS.ValueOfTest.main()
 
-====================================================== search started: 11/6/25 12:59 PM
+====================================================== search started: 11/11/25 8:17 PM
 New sym int a_1_SYMSTRING.length min=-2147483648, max=2147483647
 ## Warning: empty path condition
 ### PCs: total:1 sat:1 unsat:0
@@ -168,13 +168,9 @@ The smtlib query is:
 
 
 =======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
+Using Alphabet: .01234567Haelortu
+Using bound: 6
+*****************************
 sat,
 a_1: ""
 ************************************
@@ -198,10 +194,6 @@ The smtlib query is:
 
 
 =======================================
-Cache Hit Invalid reason(s):
-	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
-	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
----------------------------------------------------------------------
 Using Alphabet: .01234567Haelortu
 Using bound: 6
 *****************************
@@ -226,13 +218,9 @@ The smtlib query is:
 
 
 =======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
+Using Alphabet: .01234567Haelortu
+Using bound: 6
+*****************************
 sat,
 a_1: "Hello"
 ************************************
@@ -252,15 +240,11 @@ The smtlib query is:
 
 
 =======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
+Using Alphabet: .01234567aertu
+Using bound: 6
+*****************************
 sat,
-a_1: ""
+a_1[**UNDEFINED**]: ""
 ************************************
 ## Warning: empty path condition
 ### PCs: total:7 sat:7 unsat:0
@@ -281,14 +265,6 @@ The smtlib query is:
 
 
 =======================================
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-Cache Hit Invalid reason(s):
-	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
-	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
----------------------------------------------------------------------
 Using Alphabet: .01234567aertu
 Using bound: 6
 *****************************
@@ -312,13 +288,9 @@ The smtlib query is:
 
 
 =======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
+Using Alphabet: .01234567aertu
+Using bound: 6
+*****************************
 sat,
 a_1: "a"
 ************************************
@@ -337,15 +309,11 @@ The smtlib query is:
 
 
 =======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
+Using Alphabet: .01234567ertu
+Using bound: 6
+*****************************
 sat,
-a_1: ""
+a_1[**UNDEFINED**]: ""
 ************************************
 ## Warning: empty path condition
 ### PCs: total:8 sat:8 unsat:0
@@ -365,18 +333,6 @@ The smtlib query is:
 
 
 =======================================
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-Cache Hit Invalid reason(s):
-	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
-	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
----------------------------------------------------------------------
 Using Alphabet: .01234567ertu
 Using bound: 6
 *****************************
@@ -399,19 +355,9 @@ The smtlib query is:
 
 
 =======================================
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
+Using Alphabet: .01234567ertu
+Using bound: 6
+*****************************
 sat,
 a_1: "45.67"
 ************************************
@@ -429,27 +375,11 @@ The smtlib query is:
 
 
 =======================================
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
+Using Alphabet: 0123ertu
+Using bound: 5
+*****************************
 sat,
-a_1: ""
+a_1[**UNDEFINED**]: ""
 ************************************
 ## Warning: empty path condition
 ### PCs: total:9 sat:9 unsat:0
@@ -468,22 +398,6 @@ The smtlib query is:
 
 
 =======================================
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-Cache Hit Invalid reason(s):
-	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
-	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
----------------------------------------------------------------------
 Using Alphabet: 0123ertu
 Using bound: 5
 *****************************
@@ -505,23 +419,9 @@ The smtlib query is:
 
 
 =======================================
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
+Using Alphabet: 0123ertu
+Using bound: 5
+*****************************
 sat,
 a_1: "123"
 ************************************
@@ -538,8 +438,6 @@ The smtlib query is:
 
 
 =======================================
-PROPER SUBSET
-PROPER SUBSET
 
 ################################################
 ################################################
@@ -547,8 +445,9 @@ PROPER SUBSET
 ################################################
 ################################################
 
-sat,
+****** Solutions from cache ******
 a_1: ""
+**********************************
 ************************************
 ## Warning: empty path condition
 ### PCs: total:10 sat:10 unsat:0
@@ -566,8 +465,6 @@ The smtlib query is:
 
 
 =======================================
-PROPER SUBSET
-PROPER SUBSET
 
 ################################################
 ################################################
@@ -575,8 +472,9 @@ PROPER SUBSET
 ################################################
 ################################################
 
-sat,
+****** Solutions from cache ******
 a_1: "true"
+**********************************
 ************************************
 Symbolic Exp [ CONST_Boolean value: .concat(a_1_SYMSTRING)]
 string analysis: SPC # = 1
@@ -592,8 +490,6 @@ The smtlib query is:
 
 
 =======================================
-PROPER SUBSET
-PROPER SUBSET
 
 ################################################
 ################################################
@@ -601,8 +497,9 @@ PROPER SUBSET
 ################################################
 ################################################
 
-sat,
+****** Solutions from cache ******
 a_1: "true"
+**********************************
 ************************************
 
 ====================================================== Method Sequences
@@ -632,14 +529,14 @@ public class edu_boisestate_cs_MAS_ValueOfTestTest {
 no errors detected
 
 ====================================================== statistics
-elapsed time:       00:00:00
+elapsed time:       00:00:01
 states:             new=17,visited=0,backtracked=17,end=6
 search:             maxDepth=7,constraints=0
 choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=6
 heap:               new=549,released=114,maxLive=451,gcCycles=12
 instructions:       6605
-max memory:         477MB
+max memory:         245MB
 loaded code:        classes=84,methods=1949
 
-====================================================== search finished: 11/6/25 12:59 PM
-Runtime(ms) :938
+====================================================== search finished: 11/11/25 8:17 PM
+Runtime(ms) :1983

@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=-1.7976931348623157E308
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 971b2284d9c2c2f40e7985fbbe347c26faf4ed71) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev 6a090698f11a9cc3be48deaf17c1c120a561c439) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 gov.nasa.jpf.symbc.strings.ExSymExeStrings24.main()
 
-====================================================== search started: 11/6/25 1:00 PM
+====================================================== search started: 11/11/25 8:18 PM
 New sym int a_1_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int b_2_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int c_3_SYMSTRING.length min=-2147483648, max=2147483647
@@ -77,5 +77,524 @@ The smtlib query is:
 Using Alphabet: 0a
 Using bound: 4
 *****************************
-NOT A DISJUNCT PAIR in createDisjunct
-Runtime(ms) :789
+sat,
+b_2: ""
+a_1: "0"
+************************************
+## Warning: empty path condition
+### PCs: total:3 sat:3 unsat:0
+
+string analysis: SPC # = 3
+(b_2_SYMSTRING notstartswith c_3_SYMSTRING) && (a_1_SYMSTRING notstartswith CONST_aa) && (a_1_SYMSTRING notequals b_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.prefixof c_3 b_2)))
+(assert (not (str.prefixof "aa" a_1)))
+(assert (not (= a_1 b_2)))
+
+
+=======================================
+Using Alphabet: 0a
+Using bound: 4
+*****************************
+Warning, Solver.startsWith(): base model is empty
+unsat
+************************************
+## Warning: empty path condition
+### PCs: total:4 sat:4 unsat:0
+
+string analysis: SPC # = 3
+(b_2_SYMSTRING startswith c_3_SYMSTRING) && (a_1_SYMSTRING notstartswith CONST_aa) && (a_1_SYMSTRING notequals b_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (str.prefixof c_3 b_2))
+(assert (not (str.prefixof "aa" a_1)))
+(assert (not (= a_1 b_2)))
+
+
+=======================================
+Using Alphabet: 0a
+Using bound: 4
+*****************************
+sat,
+c_3: ""
+a_1: ""
+b_2: "aa"
+************************************
+ccc
+This is the PC at the end:constraint # = 0
+string analysis: SPC # = 3
+(b_2_SYMSTRING startswith c_3_SYMSTRING) && (a_1_SYMSTRING notstartswith CONST_aa) && (a_1_SYMSTRING notequals b_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (str.prefixof c_3 b_2))
+(assert (not (str.prefixof "aa" a_1)))
+(assert (not (= a_1 b_2)))
+
+
+=======================================
+Using Alphabet: 0a
+Using bound: 4
+*****************************
+sat,
+c_3: ""
+a_1: ""
+b_2: "aa"
+************************************
+string analysis: SPC # = 2
+(a_1_SYMSTRING[**UNDEFINED**] notstartswith CONST_aa) && (a_1_SYMSTRING[**UNDEFINED**] notequals b_2_SYMSTRING[**UNDEFINED**])
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (not (str.prefixof "aa" a_1)))
+(assert (not (= a_1 b_2)))
+
+
+=======================================
+Using Alphabet: 0a
+Using bound: 4
+*****************************
+sat,
+b_2[**UNDEFINED**]: ""
+a_1[**UNDEFINED**]: "0"
+************************************
+## Warning: empty path condition
+### PCs: total:5 sat:5 unsat:0
+
+string analysis: SPC # = 2
+(a_1_SYMSTRING startswith CONST_aa) && (a_1_SYMSTRING notequals b_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (str.prefixof "aa" a_1))
+(assert (not (= a_1 b_2)))
+
+
+=======================================
+Using Alphabet: 0a
+Using bound: 4
+*****************************
+unsat
+************************************
+string analysis: SPC # = 1
+(a_1_SYMSTRING notequals b_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (not (= a_1 b_2)))
+
+
+=======================================
+Using Alphabet: ABC
+Using bound: 4
+*****************************
+sat,
+a_1: "A"
+b_2: ""
+************************************
+## Warning: empty path condition
+### PCs: total:6 sat:6 unsat:0
+
+string analysis: SPC # = 1
+(a_1_SYMSTRING equals b_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (= a_1 b_2))
+
+
+=======================================
+Using Alphabet: ABC
+Using bound: 4
+*****************************
+sat,
+a_1: ""
+b_2: ""
+************************************
+aaa
+## Warning: empty path condition
+### PCs: total:7 sat:7 unsat:0
+
+string analysis: SPC # = 2
+(a_1_SYMSTRING notstartswith CONST_aa) && (a_1_SYMSTRING equals b_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (not (str.prefixof "aa" a_1)))
+(assert (= a_1 b_2))
+
+
+=======================================
+Using Alphabet: 0a
+Using bound: 4
+*****************************
+sat,
+b_2: ""
+a_1: ""
+************************************
+## Warning: empty path condition
+### PCs: total:8 sat:8 unsat:0
+
+string analysis: SPC # = 3
+(b_2_SYMSTRING notstartswith c_3_SYMSTRING) && (a_1_SYMSTRING notstartswith CONST_aa) && (a_1_SYMSTRING equals b_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.prefixof c_3 b_2)))
+(assert (not (str.prefixof "aa" a_1)))
+(assert (= a_1 b_2))
+
+
+=======================================
+Using Alphabet: 0a
+Using bound: 4
+*****************************
+sat,
+c_3: "aa"
+a_1: ""
+b_2: ""
+************************************
+This is the PC at the end:constraint # = 0
+string analysis: SPC # = 3
+(b_2_SYMSTRING notstartswith c_3_SYMSTRING) && (a_1_SYMSTRING notstartswith CONST_aa) && (a_1_SYMSTRING equals b_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.prefixof c_3 b_2)))
+(assert (not (str.prefixof "aa" a_1)))
+(assert (= a_1 b_2))
+
+
+=======================================
+Using Alphabet: 0a
+Using bound: 4
+*****************************
+sat,
+c_3: "aa"
+a_1: ""
+b_2: ""
+************************************
+## Warning: empty path condition
+### PCs: total:9 sat:9 unsat:0
+
+string analysis: SPC # = 3
+(b_2_SYMSTRING startswith c_3_SYMSTRING) && (a_1_SYMSTRING notstartswith CONST_aa) && (a_1_SYMSTRING equals b_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (str.prefixof c_3 b_2))
+(assert (not (str.prefixof "aa" a_1)))
+(assert (= a_1 b_2))
+
+
+=======================================
+Using Alphabet: 0a
+Using bound: 4
+*****************************
+sat,
+c_3: ""
+a_1: ""
+b_2: ""
+************************************
+ccc
+This is the PC at the end:constraint # = 0
+string analysis: SPC # = 3
+(b_2_SYMSTRING startswith c_3_SYMSTRING) && (a_1_SYMSTRING notstartswith CONST_aa) && (a_1_SYMSTRING equals b_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (str.prefixof c_3 b_2))
+(assert (not (str.prefixof "aa" a_1)))
+(assert (= a_1 b_2))
+
+
+=======================================
+Using Alphabet: 0a
+Using bound: 4
+*****************************
+sat,
+c_3: ""
+a_1: ""
+b_2: ""
+************************************
+string analysis: SPC # = 2
+(a_1_SYMSTRING[**UNDEFINED**] notstartswith CONST_aa) && (a_1_SYMSTRING[**UNDEFINED**] equals b_2_SYMSTRING[**UNDEFINED**])
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (not (str.prefixof "aa" a_1)))
+(assert (= a_1 b_2))
+
+
+=======================================
+Using Alphabet: 0a
+Using bound: 4
+*****************************
+sat,
+b_2[**UNDEFINED**]: ""
+a_1[**UNDEFINED**]: ""
+************************************
+## Warning: empty path condition
+### PCs: total:10 sat:10 unsat:0
+
+string analysis: SPC # = 2
+(a_1_SYMSTRING startswith CONST_aa) && (a_1_SYMSTRING equals b_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (str.prefixof "aa" a_1))
+(assert (= a_1 b_2))
+
+
+=======================================
+Using Alphabet: 0a
+Using bound: 4
+*****************************
+sat,
+b_2: "aa"
+a_1: "aa"
+************************************
+bbb
+## Warning: empty path condition
+### PCs: total:11 sat:11 unsat:0
+
+string analysis: SPC # = 3
+(b_2_SYMSTRING notstartswith c_3_SYMSTRING) && (a_1_SYMSTRING startswith CONST_aa) && (a_1_SYMSTRING equals b_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (not (str.prefixof c_3 b_2)))
+(assert (str.prefixof "aa" a_1))
+(assert (= a_1 b_2))
+
+
+=======================================
+Using Alphabet: 0a
+Using bound: 4
+*****************************
+Warning, Solver.startsWith(): base model is empty
+unsat
+************************************
+## Warning: empty path condition
+### PCs: total:12 sat:12 unsat:0
+
+string analysis: SPC # = 3
+(b_2_SYMSTRING startswith c_3_SYMSTRING) && (a_1_SYMSTRING startswith CONST_aa) && (a_1_SYMSTRING equals b_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (str.prefixof c_3 b_2))
+(assert (str.prefixof "aa" a_1))
+(assert (= a_1 b_2))
+
+
+=======================================
+Using Alphabet: 0a
+Using bound: 4
+*****************************
+sat,
+c_3: ""
+a_1: "aa"
+b_2: "aa"
+************************************
+ccc
+This is the PC at the end:constraint # = 0
+string analysis: SPC # = 3
+(b_2_SYMSTRING startswith c_3_SYMSTRING) && (a_1_SYMSTRING startswith CONST_aa) && (a_1_SYMSTRING equals b_2_SYMSTRING)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+(declare-const c_3 String)
+
+(assert (str.prefixof c_3 b_2))
+(assert (str.prefixof "aa" a_1))
+(assert (= a_1 b_2))
+
+
+=======================================
+Using Alphabet: 0a
+Using bound: 4
+*****************************
+sat,
+c_3: ""
+a_1: "aa"
+b_2: "aa"
+************************************
+string analysis: SPC # = 2
+(a_1_SYMSTRING[**UNDEFINED**] startswith CONST_aa) && (a_1_SYMSTRING[**UNDEFINED**] equals b_2_SYMSTRING[**UNDEFINED**])
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (str.prefixof "aa" a_1))
+(assert (= a_1 b_2))
+
+
+=======================================
+Using Alphabet: 0a
+Using bound: 4
+*****************************
+sat,
+b_2[**UNDEFINED**]: "aa"
+a_1[**UNDEFINED**]: "aa"
+************************************
+string analysis: SPC # = 1
+(a_1_SYMSTRING[**UNDEFINED**] equals b_2_SYMSTRING[**UNDEFINED**])
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (= a_1 b_2))
+
+
+=======================================
+Using Alphabet: ABC
+Using bound: 4
+*****************************
+sat,
+a_1[**UNDEFINED**]: ""
+b_2[**UNDEFINED**]: ""
+************************************
+
+====================================================== Method Sequences
+[test(**UNDEFINED**,**UNDEFINED**,**UNDEFINED**)]
+
+====================================================== JUnit 4.0 test class
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+public class gov_nasa_jpf_symbc_strings_ExSymExeStrings24Test {
+
+	private gov.nasa.jpf.symbc.strings.ExSymExeStrings24 gov_nasa_jpf_symbc_strings_exsymexestrings24;
+
+	@Before
+	public void setUp() throws Exception {
+		gov_nasa_jpf_symbc_strings_exsymexestrings24 = new gov.nasa.jpf.symbc.strings.ExSymExeStrings24();
+	}
+
+	@Test
+	public void test0() {
+		gov_nasa_jpf_symbc_strings_exsymexestrings24.test(**UNDEFINED**,**UNDEFINED**,**UNDEFINED**);
+	}
+}
+
+====================================================== results
+no errors detected
+
+====================================================== statistics
+elapsed time:       00:00:01
+states:             new=20,visited=0,backtracked=20,end=4
+search:             maxDepth=5,constraints=0
+choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=7
+heap:               new=482,released=40,maxLive=456,gcCycles=10
+instructions:       6483
+max memory:         245MB
+loaded code:        classes=82,methods=1665
+
+====================================================== search finished: 11/11/25 8:18 PM
+Runtime(ms) :1623

@@ -1,12 +1,6 @@
 ************************************
-(declare-const b_2 String)
 
-(assert (= (str.++ "a" b_2) "abc"))
 ------------------------------------
-z3str3:
-Satisfiable: true
-b_2 => "bc"
-
 MAS:
 
 ====================================================== Method Sequences
@@ -42,43 +36,23 @@ search:             maxDepth=3,constraints=0
 choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=2
 heap:               new=476,released=26,maxLive=460,gcCycles=4
 instructions:       6391
-max memory:         477MB
+max memory:         245MB
 loaded code:        classes=82,methods=1665
 
 
 ************************************
 (declare-const b_2 String)
 
-(assert (not (= (str.++ "a" b_2) "abc")))
+(assert (= (str.++ "a" b_2) "abc"))
 ------------------------------------
-z3str3:
-Satisfiable: true
-b_2 => ""
-
 MAS:
-## Warning: empty path condition
-### PCs: total:2 sat:2 unsat:0
+b_2: ""
 
-string analysis: SPC # = 1
-(CONST_a.concat(b_2_SYMSTRING) equals CONST_abc)
-NPC constraint # = 0
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling MAS
-
-The smtlib query is: 
+************************************
 (declare-const b_2 String)
 
-(assert (= (str.++ "a" b_2) "abc"))
-
-
-=======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
-sat,
-b_2: ""
+(assert (not (= (str.++ "a" b_2) "abc")))
+------------------------------------
+MAS:
+b_2: "0000"
 

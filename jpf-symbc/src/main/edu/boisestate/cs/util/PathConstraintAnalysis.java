@@ -11,6 +11,7 @@ public class PathConstraintAnalysis {
 	private final Set<StringOperator> operations = new HashSet<>();
 	private final Set<StringOperator> badOps = new HashSet<>();
 	private final StringPathCondition spc;
+	private final PathCondition npc;
 
 	private final HashMap<StringSymbolic, Set<Object>> symVarToPredicates = new HashMap<>();
 	private final HashMap<Object, Set<StringSymbolic>> predicateToSymVars = new HashMap<>();
@@ -22,6 +23,7 @@ public class PathConstraintAnalysis {
 
 	public PathConstraintAnalysis(StringPathCondition spc) {
 		this.spc = spc;
+		this.npc = spc.getNpc();
 		// Walk string constraints
 		try {
 			for (StringConstraint sc = spc.header; sc != null; sc = sc.and()) {
@@ -34,6 +36,7 @@ public class PathConstraintAnalysis {
 				nc = nc.and;
 			}
 		} catch (RuntimeException e) {
+			this.clear();
 			System.err.println("Error during PathConstraintAnalysis: " + e.getMessage());
 		}
 		badOps.add(StringOperator.DELETE);
@@ -41,6 +44,20 @@ public class PathConstraintAnalysis {
 		badOps.add(StringOperator.INSERT);
 		badOps.add(StringOperator.CHARAT);
 		badOps.add(StringOperator.LENGTH);
+		badOps.add(StringOperator.ISEMPTY);
+	}
+
+	private void clear() {
+		predicates.clear();
+//		symVars.clear();
+//		operations.clear();
+//		symVarToPredicates.clear();
+//		predicateToSymVars.clear();
+//		symVarAndPredToOperations.clear();
+	}
+
+	public boolean isEmpty() {
+		return predicates.isEmpty();
 	}
 
 	// check pred is valid and provides info for validation result
@@ -88,16 +105,16 @@ public class PathConstraintAnalysis {
 
 		// proper subset allowing negations/contradictions
 		if (this.isSubSetOf(other)) {
-			System.out.println("is PROPER SUBSET: " + this.predicates.size() + " / " + other.predicates.size());
-//			result.setValid(false);
-//			result.setSummary("SUBSET: " + this.predicates.size() + " / " + other.predicates.size());
+//			System.out.println("is PROPER SUBSET: " + this.predicates.size() + " / " + other.predicates.size());
+			result.setValid(false);
+			result.setSummary("SUBSET: " + this.predicates.size() + " / " + other.predicates.size());
 			return result;
 		}
 		if (this.isSuperSetOf(other)) {
 			System.out.println("is PROPER SUPERSET: " + this.predicates.size() + " / " + other.predicates.size());
 //			result.setValid(false);
 //			result.setSummary("SUPERSET: " + this.predicates.size() + " / " + other.predicates.size());
-			return result;
+			return null;
 		}
 
 		if (this.predicates.size() != other.predicates.size()) {
@@ -249,6 +266,24 @@ public class PathConstraintAnalysis {
 		return true;
 	}
 
+	private boolean isValid(Object pred) {
+		Set<StringSymbolic> symVars = predicateToSymVars.get(pred);
+		if (symVars == null || symVars.isEmpty()) {
+			// no symbolic variables involved, so just sat<->unsat flip
+			return true;
+		}
+		if (symVars.size() != 1) {
+			return false;
+		}
+		for (StringSymbolic symVar : symVars) {
+			if (symVarToPredicates.get(symVar).size() != 1) {
+				return false;
+			}
+		}
+		Set<StringOperator> badOpsFound = findBadOps(pred);
+		return badOpsFound.isEmpty();
+	}
+
 	private Set<StringOperator> findBadOps(Object pred) {
 		Set<StringOperator> ops = new HashSet<>();
 		Set<StringOperator> badOpsFound = new HashSet<>();
@@ -270,6 +305,11 @@ public class PathConstraintAnalysis {
 		opStack.clear();
 
 		predicates.add(currentPredicate);
+
+		if (sc.getComparator() == StringComparator.EMPTY || sc.getComparator() == StringComparator.NOTEMPTY) {
+			operations.add(StringOperator.ISEMPTY);
+			opStack.push(StringOperator.ISEMPTY);
+		}
 
 		for (StringExpression se : sc.getOperands()) {
 			analyseStringExpression(se);
@@ -380,6 +420,34 @@ public class PathConstraintAnalysis {
 		return predicates;
 	}
 
+	public Set<Object> getValidPredicates() {
+		Set<Object> validPreds = new HashSet<>();
+		for (Object p : predicates) {
+			if (isValid(p)){
+				validPreds.add(p);
+			}
+		}
+		return validPreds;
+	}
+
+	public String getSymVarNameForValidPred(Object pred){
+		Set<StringSymbolic> symVars = predicateToSymVars.get(pred);
+		if (symVars != null && symVars.size() == 1) {
+			for (StringSymbolic sv : symVars) {
+				return sv.getName();
+			}
+		}
+		return null;
+	}
+
+	public StringPathCondition getSPC() {
+		return spc;
+	}
+
+	public PathCondition getNPC() {
+		return npc;
+	}
+
 	public void printInfo() {
 		System.out.println("Path Constraint Analysis Info:");
 		System.out.println("	Predicates: " + predicates.size());
@@ -458,7 +526,7 @@ public class PathConstraintAnalysis {
 		}
 
 		private void setSummary() {
-			StringBuilder sb = new StringBuilder(summary);
+			StringBuilder sb = new StringBuilder();
 			if (valid) {
 				sb.append("VALID, involving ").append(relevantSymVars.size()).append(" symbolic variables.");
 			} else {

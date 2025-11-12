@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=-1.7976931348623157E308
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 971b2284d9c2c2f40e7985fbbe347c26faf4ed71) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev 6a090698f11a9cc3be48deaf17c1c120a561c439) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 gov.nasa.jpf.symbc.strings.ExSymExeStrings05.main()
 
-====================================================== search started: 11/6/25 12:59 PM
+====================================================== search started: 11/11/25 8:17 PM
 New sym int a_1_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int b_2_SYMSTRING.length min=-2147483648, max=2147483647
 ## Warning: empty path condition
@@ -84,7 +84,8 @@ java.lang.NullPointerException
 	at edu.boisestate.cs.reporting.Reporter_Inverse.calculateStats(Reporter_Inverse.java:300)
 	at edu.boisestate.cs.reporting.A_Reporter.run(A_Reporter.java:254)
 	at edu.boisestate.cs.util.MASProcessor.query(MASProcessor.java:41)
-	at edu.boisestate.cs.MASInterface.solve(MASInterface.java:107)
+	at edu.boisestate.cs.MASInterface.runPC(MASInterface.java:106)
+	at edu.boisestate.cs.MASInterface.solve(MASInterface.java:65)
 	at gov.nasa.jpf.symbc.string.SymbolicStringConstraintsGeneral.inner_isSatisfiable(SymbolicStringConstraintsGeneral.java:464)
 	at gov.nasa.jpf.symbc.string.SymbolicStringConstraintsGeneral.isSatisfiable(SymbolicStringConstraintsGeneral.java:382)
 	at gov.nasa.jpf.symbc.string.StringPathCondition.simplify(StringPathCondition.java:145)
@@ -106,4 +107,4 @@ java.lang.NullPointerException
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at gov.nasa.jpf.tool.Run.call(Run.java:80)
 	at gov.nasa.jpf.tool.RunJPF.main(RunJPF.java:116)
-Runtime(ms) :804
+Runtime(ms) :1413

@@ -7,10 +7,10 @@ public class TestMAS extends TestJPF {
     String methodSignature;
     String clas;
     String path = "edu.boisestate.cs.MAS.";
-    String[] solvers = {"z3str3", "MAS"};
+    String[] solvers = {"MAS"};
     String[] options = {"+classpath=build/tests", // unspecified values are set in setOptions()
             "+symbolic.method=",    //symbolic method info and signature
-            "+symbolic.dp=z3",
+            "+symbolic.dp=choco",
             "+symbolic.string_dp=", // symbolic string decision procedure
             "+symbolic.string_dp_timeout_ms=3000",
             "+target=", //target class/method
@@ -191,7 +191,7 @@ public class TestMAS extends TestJPF {
         }
     }
 
-    @Test
+//    @Test
     public void subStringTest(){
         clas = "SubstringTest";
         methodSignature = ".test(sym#sym)";

@@ -1,11 +1,7 @@
 ************************************
-(declare-const str_1 String)
 
-(assert (str.contains str_1 "a"))
 ------------------------------------
-z3str3:
-Satisfiable: true
-str_1 => "a"
+MAS:
 
 ************************************
 (declare-const str_1 String)
@@ -13,10 +9,6 @@ str_1 => "a"
 (assert (str.contains str_1 "a"))
 (assert (>= (str.len str_1) 3))
 ------------------------------------
-z3str3:
-Satisfiable: true
-str_1 => "ABa"
-
 MAS:
 WARNING: Unhandled constraint in Reporter_Inverse.buildICG_r3() of type... UNDEFINED  5  ge!!I!:!0
 WARNING: UNDEFINED constraint in Reporter_Inverse.buildICG_r3() of type... 5  ge!!I!:!0
@@ -25,7 +17,8 @@ java.lang.NullPointerException
 	at edu.boisestate.cs.reporting.Reporter_Inverse.calculateStats(Reporter_Inverse.java:300)
 	at edu.boisestate.cs.reporting.A_Reporter.run(A_Reporter.java:254)
 	at edu.boisestate.cs.util.MASProcessor.query(MASProcessor.java:41)
-	at edu.boisestate.cs.MASInterface.solve(MASInterface.java:107)
+	at edu.boisestate.cs.MASInterface.runPC(MASInterface.java:106)
+	at edu.boisestate.cs.MASInterface.solve(MASInterface.java:65)
 	at gov.nasa.jpf.symbc.string.SymbolicStringConstraintsGeneral.inner_isSatisfiable(SymbolicStringConstraintsGeneral.java:464)
 	at gov.nasa.jpf.symbc.string.SymbolicStringConstraintsGeneral.isSatisfiable(SymbolicStringConstraintsGeneral.java:382)
 	at gov.nasa.jpf.symbc.string.StringPathCondition.simplify(StringPathCondition.java:145)
@@ -52,44 +45,6 @@ java.lang.NullPointerException
 
 (assert (not (str.contains str_1 "a")))
 ------------------------------------
-z3str3:
-Satisfiable: true
-str_1 => ""
-
 MAS:
-## Warning: empty path condition
-### PCs: total:2 sat:2 unsat:0
-
-string analysis: SPC # = 1
-(str_1_SYMSTRING contains CONST_a)
-NPC constraint # = 0
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling MAS
-
-The smtlib query is: 
-(declare-const str_1 String)
-
-(assert (str.contains str_1 "a"))
-
-
-=======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
-sat,
-str_1: "a"
-
-************************************
-(declare-const str_1 String)
-
-(assert (str.contains str_1 "a"))
-(assert (< (str.len str_1) 3))
-------------------------------------
-z3str3:
-Satisfiable: true
-str_1 => "a"
+str_1: ""
 

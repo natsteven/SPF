@@ -5,11 +5,6 @@
 (assert (not (= (str.substr s1_1 5 (- 11 5)) s2_2)))
 (assert (>= (str.len s1_1) 10))
 ------------------------------------
-z3str3:
-Satisfiable: true
-s1_1 => "BCDEFAGHIJKL"
-s2_2 => ""
-
 MAS:
 WARNING: Unhandled constraint in Reporter_Inverse.buildICG_r3() of type... UNDEFINED  8  ge!!I!:!0
 WARNING: UNDEFINED constraint in Reporter_Inverse.buildICG_r3() of type... 8  ge!!I!:!0
@@ -18,7 +13,8 @@ java.lang.NullPointerException
 	at edu.boisestate.cs.reporting.Reporter_Inverse.calculateStats(Reporter_Inverse.java:300)
 	at edu.boisestate.cs.reporting.A_Reporter.run(A_Reporter.java:254)
 	at edu.boisestate.cs.util.MASProcessor.query(MASProcessor.java:41)
-	at edu.boisestate.cs.MASInterface.solve(MASInterface.java:107)
+	at edu.boisestate.cs.MASInterface.runPC(MASInterface.java:106)
+	at edu.boisestate.cs.MASInterface.solve(MASInterface.java:65)
 	at gov.nasa.jpf.symbc.string.SymbolicStringConstraintsGeneral.inner_isSatisfiable(SymbolicStringConstraintsGeneral.java:464)
 	at gov.nasa.jpf.symbc.string.SymbolicStringConstraintsGeneral.isSatisfiable(SymbolicStringConstraintsGeneral.java:382)
 	at gov.nasa.jpf.symbc.string.StringPathCondition.simplify(StringPathCondition.java:145)
@@ -43,16 +39,4 @@ java.lang.NullPointerException
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at gov.nasa.jpf.tool.Run.call(Run.java:80)
-
-************************************
-(declare-const s1_1 String)
-(declare-const s2_2 String)
-
-(assert (= (str.substr s1_1 5 (- 11 5)) s2_2))
-(assert (>= (str.len s1_1) 10))
-------------------------------------
-z3str3:
-Satisfiable: true
-s1_1 => "ABCDEFGHIJ"
-s2_2 => "FGHIJ"
 

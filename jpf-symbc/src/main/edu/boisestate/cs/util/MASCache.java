@@ -2,251 +2,203 @@ package edu.boisestate.cs.util;
 
 import edu.boisestate.cs.automatonModel.Model_Acyclic_Inverse;
 import edu.boisestate.cs.graph.SolutionSet;
-import gov.nasa.jpf.symbc.numeric.*;
-import gov.nasa.jpf.symbc.string.*;
-import edu.boisestate.cs.util.PathConstraintAnalysis.ValidationResult;
+import edu.boisestate.cs.graph.SolutionSet.Solution;
+import gov.nasa.jpf.symbc.numeric.Constraint;
+import gov.nasa.jpf.symbc.numeric.LinearIntegerConstraint;
+import gov.nasa.jpf.symbc.numeric.PathCondition;
+import gov.nasa.jpf.symbc.string.StringConstraint;
+import gov.nasa.jpf.symbc.string.StringPathCondition;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
- * Initial simple cache for integration with SPF
- * Cache of PCs to see if we can do simple automaton operations for results
+ * now we are going to cache based on predicates, as handled by our PathConstraintAnalysis
+ * basically when we query the cache we will get some number of solutions back, and some number of remaining predicates to solve
+ * so we need to handle storing our predicate objects when they are valid (respectively independent symVar and pred)
+ * and returning any remaing predicates to be solved (without the ands..)
+ * so we just use ands to traverse from the original.
+ *
+ * in fact we store valid preds, and our pca itself can give us the set of valid or set of invalid preds
+ * we query the cache on the valid preds and get back solutions for those preds, and any remaining preds to solve
+ *
+ * the invalid pred set from pca we know we need to solve, and the non-cached valid preds we also need to solve.
+ * properly connecting these will be an issue essentially. I think because preds are based on the object that SPF gives
+ * us we dont want to chagne that. instead we will take all our preds and clone them with our own links (ands)
+ * then pass that to translation/solver.
+ *
+ * note then we need ot make sure we are outputting our solutions from MAS as well as the solutions from cache.
  */
 
 public class MASCache {
-	HashMap<PathConstraintAnalysis, SolutionSet<Model_Acyclic_Inverse>> cache = new HashMap<>();
+	// note that this quickly breaks with related preds as pred equals pred doesn't include ands
+	final HashMap<Object, Model_Acyclic_Inverse> cache = new HashMap<>();
 	final int MAX_CACHE_SIZE = 1024;
 
-	public Tuple<SolutionSet<Model_Acyclic_Inverse>, Set<StringSymbolic>> findCacheHit(PathConstraintAnalysis pca) {
-		if (cache.isEmpty()) {
-			return null;
+	/**
+	 * These needs to go through the predicates and find ones that are valid and in cache and return those solutions
+	 * and also return the remaining predicates to be solved. IMPORTANT to note that it returns complement on predicates
+	 * that are negations
+	 * @param pca
+	 * @return
+	 */
+	public CacheResult get(PathConstraintAnalysis pca) {
+		CacheResult result = new CacheResult();
+		if (cache.isEmpty() || pca.isEmpty()) {
+			return result; // empty result
 		}
-		PathConstraintAnalysis match = null;
-		Set<StringSymbolic> toComplement = null;
-		Set<ValidationResult> badresults = new HashSet<>();
 
-		System.out.println("SEARCHING in " + cache.size() + " entries");
+		Set<Object> validPreds = pca.getValidPredicates();
+		Set<Object> toSolve = new HashSet<>(pca.getAllPredicates());
+		toSolve.removeAll(validPreds);
+		// add back any that didnt get solutions from Cache
 
-		for (PathConstraintAnalysis oldPca : cache.keySet()) {
-			// for now check equivalent, but could easily be a superset
-			ValidationResult result = pca.equalsIgnoreNegationsValid(oldPca);
-			if (result != null) {
-				if (result.isValid()){
-					//cache hit
-					toComplement = result.getRelevantSymVars();
-					match = oldPca;
+		for (Object pred : validPreds) {
+			// search cache :/ cause for now we dont want ot adjust SPF clases too much
+			// here we check for equivalence or contradiciton and add solutions accordingly
+			String varName = pca.getSymVarNameForValidPred(pred);
+			boolean foundInCache = false;
+			for (Object cachedPred : cache.keySet()) {
+				if (pred.equals(cachedPred)) {
+					result.addSolution(varName, cache.get(pred));
+					foundInCache = true;
 					break;
-				} else{
-					// invalidated by some condition
-					badresults.add(result);
-				}
-			}
-		}
-		// now we have a match for the path constraint, and the negated predicates (constraints)
-		// we checked they are valid and provided variables involved
-		if (match != null) {
-			SolutionSet<Model_Acyclic_Inverse> solSet = cache.get(match);
-			return new Tuple<>(solSet.clone(), toComplement);
-		} else if (!badresults.isEmpty()){
-			// for debugging, print why cache didnt hit
-			System.out.println("Cache Hit Invalid reason(s):");
-			for (ValidationResult vr : badresults){
-				System.out.println("\t" + vr);
-			}
-			System.out.println("---------------------------------------------------------------------");
-		}
-		return null;
-	}
-//
-//	// returns old pc and var involved in negation
-//	public Tuple<StringPathCondition, String> findSingleNegation(StringPathCondition pc) {
-//		if (cache.isEmpty()) {
-//			return null;
-//		}
-//		for (StringPathCondition old : cache.keySet()) {
-//			int contradictions = 0;
-//			String var = null;
-//			int varRefs = 0;
-//			StringConstraint SC = pc.header;
-//			StringConstraint oldSC = old.header;
-//			// handle numerics
-//			if (pc.getNpc().header != null) {
-//				// happens when no string constriant but numeric constraint, i.e. charAt
-//				// TODO: doesnt handle multiple numeric constraints...
-//				if (old.getNpc().header != null) {
-//					// shuold never not be: now check whether it contradicts
-//					Constraint oldNpc = old.getNpc().header;
-//					Constraint Npc = pc.getNpc().header;
-//					Set<String> vars = findVars(Npc);
-//					if (numericContradicts(oldNpc, Npc)) {
-//						if (vars.size() == 1) {
-//							var = vars.iterator().next();
-//						} else {
-//							// more than one var involved, cannot use cache
-//							return null;
-//						}
-//						contradictions++;
-//					}
-//					if (vars.contains(var)) {
-//						varRefs++;
-//					}
-//				} else {
-//					return null;
-//				}
-//			}
-//			//check for negation
-//			if (SC != null && oldSC != null) {
-//				Set<String> vars = findVars(SC);
-//				if (oldSC.contradicts(SC)) {
-//					if (contradictions == 0) { // set var ref if first contradiction
-//						if (vars.size() == 1) {
-//							var = vars.iterator().next();
-//						} else {
-//							// more than one var involved, cannot use cache
-//							return null;
-//						}
-//					}
-//					contradictions++;
-//				}
-//				if (vars.contains(var)) {
-//					varRefs++;
-//				}
-//				// compare each SC in old and new SPC
-//				while (oldSC.and() != null) {
-//					oldSC = oldSC.and();
-//					SC = pc.header;
-//					while (SC.and() != null) {
-//						SC = SC.and();
-//						vars = findVars(SC);
-//						if (oldSC.contradicts(SC)) {
-//							// set var ref if first contradiction
-//							if (contradictions == 0) {
-//								if (vars.size() == 1) {
-//									var = vars.iterator().next();
-//								}
-//							}
-//							contradictions++;
-//						}
-//						if (vars.contains(var)) {
-//							varRefs++;
-//						}
-//					}
-//				}
-//			} else if (SC != null || oldSC != null) {
-//				return null;
-//			}
-//			// only return if exactly one negated predicate and related variable is not in other predicates
-//			if (contradictions == 1 && varRefs == 1) {
-//				return new Tuple<>(old, var);
-//			}
-//		}
-//		lastHitWasCharAt = false;
-//		return null;
-//	}
-//
-//	private Set<String> findVars(StringConstraint sc) {
-//		// get variable involved in contradiction
-//		Set<String> vars = new HashSet<>();
-//		Set<StringExpression> ops = sc.getOperands();
-//		// TODO: should be recursive?
-//		for (StringExpression se : ops) {
-//			if (se instanceof StringSymbolic) {
-//				vars.add(se.toString().replace("_SYMSTRING", ""));
-//			} else if (se instanceof DerivedStringExpression) {
-//				// recurse if needed
-//				vars.addAll(findVars(se));
-//			}
-//		}
-//		return vars;
-//	}
-//
-//	private Set<String> findVars(StringExpression SE) {
-//		Set<String> vars = new HashSet<>();
-//		if (SE instanceof DerivedStringExpression) {
-//			DerivedStringExpression dSE = (DerivedStringExpression) SE;
-//			Set<Expression> ops = dSE.getOperands();
-//			for (Expression e : ops) {
-//				if (e instanceof StringSymbolic) {
-//					vars.add(e.toString().replace("_SYMSTRING", ""));
-//				} else if (e instanceof DerivedStringExpression) {
-//					vars.addAll(findVars((StringExpression) e));
-//				}
-//			}
-//		} else if (SE instanceof StringSymbolic) {
-//			vars.add(SE.toString().replace("_SYMSTRING", ""));
-//		} else {
-//			System.out.println("Unhandled StringExpression type in findVars: " + SE.getClass().getName());
-//			System.err.println("Unhandled var check");
-//		}
-//
-//		return vars;
-//	}
-//
-//	private Set<String> findVars(Constraint c) {
-//		if (!(c instanceof LinearIntegerConstraint)) {
-//			System.out.println("Unhandled Constraint type in findVars: " + c.getClass().getName());
-//			System.err.println("Unhandled var check");
-//			return new HashSet<>();
-//		}
-//		LinearIntegerConstraint lic = (LinearIntegerConstraint) c;
-//		Set<String> vars = new HashSet<>();
-//		IntegerExpression left = lic.getLeft();
-//		IntegerExpression right = lic.getRight();
-//		vars.addAll(findVars(left));
-//		vars.addAll(findVars(right));
-//		return vars;
-//	}
-//
-//	private Set<String> findVars(IntegerExpression ie) {
-//		Set<String> vars = new HashSet<>();
-//		if (ie instanceof SymbolicCharAtInteger) {
-//			lastHitWasCharAt = true;
-//			SymbolicCharAtInteger sca = (SymbolicCharAtInteger) ie;
-//			StringExpression se = sca.getExpression();
-//			vars.addAll(findVars(se));
-//		} else if (ie instanceof SymbolicInteger) {
-//			SymbolicInteger si = (SymbolicInteger) ie;
-//			vars.add(si.toString().replace("_SYMINT", ""));
-//		} else if (ie instanceof IntegerConstant) {
-//			// do nothing
-//		} else {
-//			System.out.println("Unhandled IntegerExpression type in findVars: " + ie.getClass().getName());
-//			System.err.println("Unhandled var check");
-//		}
-//		return vars;
-//	}
+				} else if (pred instanceof StringConstraint && cachedPred instanceof StringConstraint) {
+					StringConstraint predSc = (StringConstraint) pred;
+					StringConstraint cachedPredSC = (StringConstraint)  cachedPred;
+					if (!predSc.contradicts(cachedPredSC)) {
+						continue;
+					}
+				} else if (pred instanceof LinearIntegerConstraint && cachedPred instanceof LinearIntegerConstraint) {
+					LinearIntegerConstraint predSc = (LinearIntegerConstraint) pred;
+					LinearIntegerConstraint cachedPredSC = (LinearIntegerConstraint)  cachedPred;
+					if (!predSc.contradicts(cachedPredSC)) {
+						continue;
+					}
 
-//	public SolutionSet<Model_Acyclic_Inverse> get(StringPathCondition pc) {
-//		SolutionSet<Model_Acyclic_Inverse> sol = cache.get(pc);
-//		return sol.clone();
-//	}
+				} else {
+					continue;
+				}
+				// add complement as solution for contradicting predicates
+				Model_Acyclic_Inverse complement = cache.get(cachedPred).complement();
+				result.addSolution(varName, complement);
+				foundInCache = true;
+				break;
+			}
+			if (!foundInCache) {
+				toSolve.add(pred);
+			}
+		}
+
+		// generate new SPC for remaining preds with help from original SPC (trying to edit SPF as little as possible)
+		StringPathCondition newSPC = createRemainingSPC(toSolve, pca.getSPC());
+
+		result.setRemainingSPC(newSPC);
+		result.setSolutionSet();
+		return result;
+	}
 
 	public void put(PathConstraintAnalysis pca, SolutionSet<Model_Acyclic_Inverse> solSet) {
 		if (cache.size() >= MAX_CACHE_SIZE) {
 			// TODO: better eviction policy
 			cache.remove(cache.keySet().iterator().next());
 		}
-		cache.put(pca, solSet);
+		//given a pca, store valid variables and their solutions
+		for (Object pred : pca.getValidPredicates()){
+			String varName = pca.getSymVarNameForValidPred(pred);
+			Solution sol = solSet.getSolutionForVar(varName);
+			if (varName != null && sol != null)
+				cache.put(pred, (Model_Acyclic_Inverse) sol.model);
+//				Object negation;
+//				if (pred instanceof StringConstraint) {
+//					StringConstraint predSC = (StringConstraint) pred;
+//					Object negation = predSC.getContradiction();
+//				}
+//				Model_Acyclic_Inverse model = (Model_Acyclic_Inverse) sol.model;
+//				Model_Acyclic_Inverse complement = model.complement();
+//				cache.put(negation, complement);
+		}
 	}
 
-//	public boolean numericContradicts(Constraint c1, Constraint c2) {
-//		Comparator comp1 = c1.getComparator();
-//		Comparator comp2 = c2.getComparator();
-//		if (comp1.not().equals(comp2)) {
-//			return c1.getLeft().equals(c2.getLeft()) && c1.getRight().equals(c2.getRight());
-//		}
-//		return false;
-//	}
-//
-//	public boolean wasLastHitCharAt() {
-//		boolean ret = lastHitWasCharAt;
-//		lastHitWasCharAt = false;
-//		return ret;
-//	}
+	private StringPathCondition createRemainingSPC(Set<Object> toSolve, StringPathCondition originalSPC) {
+		StringPathCondition newSPC = new StringPathCondition(originalSPC.getNpc());
+		if (originalSPC.header != null) {
+			StringConstraint currSC = new StringConstraint(originalSPC.header);
+			while (currSC != null && !toSolve.contains(currSC)) { // could have only numeric :)
+				currSC = currSC.and();
+			}
+			newSPC.header = currSC;
+			// now our header is set and necessary to solve
+			for (; currSC != null; currSC = currSC.and()) {
+				StringConstraint next = currSC.and();
+				while (next != null && !toSolve.contains(next)) {
+					next = next.and();
+				}
+				currSC.setAnd(next);
+			}
+		}
+		//now need to do numeric constraints
+		PathCondition npc = newSPC.getNpc();
+		Constraint currC = npc == null ? null : npc.header;
+		while (currC != null && !toSolve.contains(currC)) {
+			currC = currC.and;
+		}
+		if (npc != null)
+			npc.header = currC;
+		for (; currC != null; currC = currC.and) {
+			Constraint next = currC.and;
+			while (next != null && !toSolve.contains(next)) {
+				next = next.and;
+			}
+			currC.and = next;
+		}
+
+		return newSPC;
+	}
 
 	public boolean isEmpty() {
 		return cache.isEmpty();
+	}
+
+	/*
+	 * Result per query that provides solutions, if any, and remaining predicates to solve if any
+	 */
+	public class CacheResult {
+
+		private final HashMap<String, Model_Acyclic_Inverse> solutions = new HashMap<>();
+		private SolutionSet<Model_Acyclic_Inverse> solSet;
+		private StringPathCondition remainingSPC;
+
+		private void addSolution(String varName, Model_Acyclic_Inverse sol) {
+			if (varName != null && sol != null)
+				solutions.put(varName, sol);
+		}
+
+		public SolutionSet<Model_Acyclic_Inverse> getSolutions() {
+			return solSet;
+		}
+
+		private void setSolutionSet() {
+			solSet = new SolutionSet<>(solutions.size());
+			int id=0;
+			for (String varName : solutions.keySet()) {
+				Model_Acyclic_Inverse model = solutions.get(varName);
+				solSet.add(id++, varName, model);
+			}
+		}
+
+		private void setRemainingSPC(StringPathCondition spc) {
+			this.remainingSPC = spc;
+		}
+
+		public StringPathCondition getRemainingSPC() {
+			return this.remainingSPC;
+		}
+
+		public boolean isEmpty() {
+			return solutions.isEmpty();
+		}
 	}
 }

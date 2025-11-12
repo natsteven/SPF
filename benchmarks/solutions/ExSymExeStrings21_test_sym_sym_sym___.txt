@@ -6,71 +6,11 @@
 (assert (not (= b_2 c_3)))
 (assert (not (= a_1 b_2)))
 ------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "!2!"
-b_2 => "!0!"
-c_3 => "!1!"
-
 MAS:
-
-====================================================== error 1
-gov.nasa.jpf.vm.NoUncaughtExceptionsProperty
-java.lang.RuntimeException
-	at gov.nasa.jpf.symbc.strings.ExSymExeStrings21.test(ExSymExeStrings21.java:48)
-	at gov.nasa.jpf.symbc.strings.ExSymExeStrings21.main(ExSymExeStrings21.java:31)
-
-
-====================================================== snapshot #1
-thread java.lang.Thread:{id:0,name:main,status:RUNNING,priority:5,isDaemon:false,lockCount:0,suspendCount:0}
-  call stack:
-	at gov.nasa.jpf.symbc.strings.ExSymExeStrings21.test(ExSymExeStrings21.java:48)
-	at gov.nasa.jpf.symbc.strings.ExSymExeStrings21.main(ExSymExeStrings21.java:31)
-
-
-====================================================== Method Sequences
-[test(**UNDEFINED**,**UNDEFINED**,**UNDEFINED**)]
-[(expected = java.lang.RuntimeException.class), test(**UNDEFINED**,**UNDEFINED**,**UNDEFINED**), ##EXCEPTION## "java.lang.RuntimeException..."]
-
-====================================================== JUnit 4.0 test class
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.Test;
-
-public class gov_nasa_jpf_symbc_strings_ExSymExeStrings21Test {
-
-	private gov.nasa.jpf.symbc.strings.ExSymExeStrings21 gov_nasa_jpf_symbc_strings_exsymexestrings21;
-
-	@Before
-	public void setUp() throws Exception {
-		gov_nasa_jpf_symbc_strings_exsymexestrings21 = new gov.nasa.jpf.symbc.strings.ExSymExeStrings21();
-	}
-
-	@Test
-	public void test0() {
-		gov_nasa_jpf_symbc_strings_exsymexestrings21.test(**UNDEFINED**,**UNDEFINED**,**UNDEFINED**);
-	}
-
-	@Test(expected = java.lang.RuntimeException.class)
-	public void test1() {
-		gov_nasa_jpf_symbc_strings_exsymexestrings21.test(**UNDEFINED**,**UNDEFINED**,**UNDEFINED**);
-		//should lead to ##EXCEPTION## "java.lang.RuntimeException..."
-	}
-}
-
-====================================================== results
-error #1: gov.nasa.jpf.vm.NoUncaughtExceptionsProperty "java.lang.RuntimeException  at gov.nasa.jpf.symbc...."
-
-====================================================== statistics
-elapsed time:       00:00:00
-states:             new=6,visited=0,backtracked=2,end=0
-search:             maxDepth=4,constraints=0
-choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=3
-heap:               new=472,released=4,maxLive=452,gcCycles=2
-instructions:       6382
-max memory:         477MB
-loaded code:        classes=85,methods=1654
-
+sat,
+a_1: "A"
+c_3: "A"
+b_2: ""
 
 ************************************
 (declare-const a_1 String)
@@ -78,11 +18,6 @@ loaded code:        classes=85,methods=1654
 
 (assert (not (= a_1 b_2)))
 ------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "!0!"
-b_2 => "!1!"
-
 MAS:
 sat,
 a_1: "A"

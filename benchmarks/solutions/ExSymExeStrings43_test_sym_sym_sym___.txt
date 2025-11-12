@@ -1,55 +1,21 @@
 ************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-
-(assert (not (str.prefixof "boo" b_2)))
-(assert (= (str.indexof "hello" a_1) 2))
-------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "ll"
-b_2 => "boA"
-
-************************************
 (declare-const b_2 String)
 
 (assert (not (str.prefixof "boo" b_2)))
 ------------------------------------
-z3str3:
-Satisfiable: true
-b_2 => "boA"
-
 MAS:
 sat,
 b_2: ""
 
 ************************************
 (declare-const a_1 String)
-(declare-const b_2 String)
 
-(assert (str.prefixof "boo" b_2))
-(assert (= (str.indexof "hello" a_1) 2))
-------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "l"
-b_2 => "boo"
 
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-
-(assert (not (str.prefixof "boo" b_2)))
 (assert (not (= (str.indexof "hello" a_1) 2)))
 ------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "he"
-b_2 => "AUW"
-
 MAS:
-ERROR IN EVALUATE CONCRETE VALUE 5...
-inputs model: Model_Acyclic_Inverse: alphabet: 0behlo boundLength: 0 automaton: singleton: 
+ERROR IN EVALUATE CONCRETE VALUE 2...
+inputs model: Model_Acyclic_Inverse: alphabet: 0ehlo boundLength: 0 automaton: singleton: 
 
 
 input strings: []
@@ -58,20 +24,9 @@ input strings: []
 (declare-const a_1 String)
 (declare-const b_2 String)
 
-(assert (str.prefixof "boo" b_2))
+(assert (not (str.prefixof "boo" b_2)))
 (assert (not (= (str.indexof "hello" a_1) 2)))
 ------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "llOQRS"
-b_2 => "boo"
-
-************************************
-(declare-const b_2 String)
-
-(assert (str.prefixof "boo" b_2))
-------------------------------------
-z3str3:
-Satisfiable: true
-b_2 => "boo"
+MAS:
+b_2: ""
 

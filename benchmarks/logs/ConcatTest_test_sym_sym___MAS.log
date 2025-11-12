@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=-1.7976931348623157E308
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 971b2284d9c2c2f40e7985fbbe347c26faf4ed71) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev 6a090698f11a9cc3be48deaf17c1c120a561c439) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 edu.boisestate.cs.MAS.ConcatTest.main()
 
-====================================================== search started: 11/6/25 12:58 PM
+====================================================== search started: 11/11/25 8:17 PM
 New sym int var_1_1_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int var_2_2_SYMSTRING.length min=-2147483648, max=2147483647
 ## Warning: empty path condition
@@ -69,13 +69,9 @@ The smtlib query is:
 
 
 =======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
+Using Alphabet: 0HWdelor
+Using bound: 11
+*****************************
 sat,
 var_2_2: ""
 var_1_1: ""
@@ -97,10 +93,6 @@ The smtlib query is:
 
 
 =======================================
-Cache Hit Invalid reason(s):
-	INVALID due to 0 dependent symbolic variables, 1 multi-sym predicates, and 0 bad operations.
-	INVALID due to 0 dependent symbolic variables, 1 multi-sym predicates, and 0 bad operations.
----------------------------------------------------------------------
 Using Alphabet: 0HWdelor
 Using bound: 11
 *****************************
@@ -123,13 +115,9 @@ The smtlib query is:
 
 
 =======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
+Using Alphabet: 0HWdelor
+Using bound: 11
+*****************************
 sat,
 var_2_2: "HelloWorld"
 var_1_1: ""
@@ -162,14 +150,14 @@ public class edu_boisestate_cs_MAS_ConcatTestTest {
 no errors detected
 
 ====================================================== statistics
-elapsed time:       00:00:00
+elapsed time:       00:00:02
 states:             new=5,visited=0,backtracked=5,end=2
 search:             maxDepth=3,constraints=0
 choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=2
 heap:               new=460,released=28,maxLive=454,gcCycles=4
 instructions:       6353
-max memory:         477MB
+max memory:         245MB
 loaded code:        classes=81,methods=1618
 
-====================================================== search finished: 11/6/25 12:58 PM
-Runtime(ms) :903
+====================================================== search finished: 11/11/25 8:17 PM
+Runtime(ms) :2737

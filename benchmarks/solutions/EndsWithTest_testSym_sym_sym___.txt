@@ -1,31 +1,10 @@
 ************************************
-
-------------------------------------
-MAS:
-s1 ends with s2
-s2 does not ends with World
-string analysis: SPC # = 1
-(s1_1_SYMSTRING endswith s2_2_SYMSTRING)
-NPC constraint # = 0
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling MAS
-
-The smtlib query is: 
 (declare-const s1_1 String)
 (declare-const s2_2 String)
 
 (assert (str.suffixof s2_2 s1_1))
-
-
-=======================================
-PROPER SUBSET
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
+------------------------------------
+MAS:
 sat,
 s1_1: ""
 s2_2: ""
@@ -34,50 +13,13 @@ s2_2: ""
 (declare-const s1_1 String)
 (declare-const s2_2 String)
 
-(assert (str.suffixof s2_2 s1_1))
-------------------------------------
-z3str3:
-Satisfiable: true
-s1_1 => ""
-s2_2 => ""
-
-************************************
-(declare-const s1_1 String)
-(declare-const s2_2 String)
-
 (assert (not (str.suffixof s1_1 s2_2)))
 (assert (not (str.suffixof s2_2 s1_1)))
 ------------------------------------
-z3str3:
-Satisfiable: true
-s1_1 => "DA"
-s2_2 => "CB"
-
 MAS:
-## Warning: empty path condition
-### PCs: total:3 sat:3 unsat:0
-
-string analysis: SPC # = 2
-(s2_2_SYMSTRING endswith s1_1_SYMSTRING) && (s1_1_SYMSTRING notendswith s2_2_SYMSTRING)
-NPC constraint # = 0
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling MAS
-
-The smtlib query is: 
-(declare-const s1_1 String)
-(declare-const s2_2 String)
-
-(assert (str.suffixof s1_1 s2_2))
-(assert (not (str.suffixof s2_2 s1_1)))
-
-
-=======================================
-Cache Hit Invalid reason(s):
-	INVALID due to 2 dependent symbolic variables, 1 multi-sym predicates, and 0 bad operations.
-	INVALID due to 2 dependent symbolic variables, 1 multi-sym predicates, and 0 bad operations.
----------------------------------------------------------------------
-Using Alphabet: ABC
-Using bound: 4
+sat,
+s2_2: "B"
+s1_1: "AAAA"
 
 ************************************
 (declare-const s1_1 String)
@@ -86,10 +28,10 @@ Using bound: 4
 (assert (str.suffixof s1_1 s2_2))
 (assert (not (str.suffixof s2_2 s1_1)))
 ------------------------------------
-z3str3:
-Satisfiable: true
-s1_1 => "B"
-s2_2 => "CB"
+MAS:
+sat,
+s2_2: "BA"
+s1_1: "A"
 
 ************************************
 (declare-const s1_1 String)
@@ -97,37 +39,8 @@ s2_2 => "CB"
 
 (assert (not (str.suffixof s2_2 s1_1)))
 ------------------------------------
-z3str3:
-Satisfiable: true
-s1_1 => "B"
-s2_2 => "A"
-
 MAS:
-## Warning: empty path condition
-### PCs: total:4 sat:4 unsat:0
-
-string analysis: SPC # = 1
-(s1_1_SYMSTRING endswith s2_2_SYMSTRING)
-NPC constraint # = 0
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling MAS
-
-The smtlib query is: 
-(declare-const s1_1 String)
-(declare-const s2_2 String)
-
-(assert (str.suffixof s2_2 s1_1))
-
-
-=======================================
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-PROPER SUBSET
-Cache Hit Invalid reason(s):
-	INVALID due to 0 dependent symbolic variables, 1 multi-sym predicates, and 0 bad operations.
-	INVALID due to 0 dependent symbolic variables, 1 multi-sym predicates, and 0 bad operations.
----------------------------------------------------------------------
-Using Alphabet: ABC
-Using bound: 4
+sat,
+s1_1[**UNDEFINED**]: "A"
+s2_2[**UNDEFINED**]: "B"
 

@@ -2,41 +2,6 @@
 
 ------------------------------------
 MAS:
-s2 contains Hello World
-string analysis: SPC # = 2
-(s2_1_SYMSTRING contains CONST_HelloWorld) && (CONST_HelloWorld notcontains s2_1_SYMSTRING)
-NPC constraint # = 0
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling MAS
-
-The smtlib query is: 
-(declare-const s2_1 String)
-
-(assert (str.contains s2_1 "HelloWorld"))
-(assert (not (str.contains "HelloWorld" s2_1)))
-
-
-=======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
-sat,
-s2_1: "0HelloWorld"
-
-************************************
-(declare-const s2_1 String)
-
-(assert (str.contains "HelloWorld" s2_1))
-------------------------------------
-z3str3:
-Satisfiable: true
-s2_1 => ""
-
-MAS:
 
 ====================================================== Method Sequences
 [testConc(**UNDEFINED**)]
@@ -65,15 +30,23 @@ public class edu_boisestate_cs_MAS_ContainsTestTest {
 no errors detected
 
 ====================================================== statistics
-elapsed time:       00:00:00
+elapsed time:       00:00:01
 states:             new=8,visited=0,backtracked=8,end=3
 search:             maxDepth=4,constraints=0
 choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=3
 heap:               new=462,released=31,maxLive=454,gcCycles=6
 instructions:       6396
-max memory:         477MB
+max memory:         245MB
 loaded code:        classes=81,methods=1619
 
+
+************************************
+(declare-const s2_1 String)
+
+(assert (str.contains "HelloWorld" s2_1))
+------------------------------------
+MAS:
+s2_1: ""
 
 ************************************
 (declare-const s2_1 String)
@@ -81,45 +54,17 @@ loaded code:        classes=81,methods=1619
 (assert (str.contains s2_1 "HelloWorld"))
 (assert (not (str.contains "HelloWorld" s2_1)))
 ------------------------------------
-z3str3:
-Satisfiable: true
-s2_1 => "AHelloWorld"
+MAS:
+sat,
+s2_1: "0HelloWorld"
 
 ************************************
 (declare-const s2_1 String)
 
 (assert (not (str.contains "HelloWorld" s2_1)))
 ------------------------------------
-z3str3:
-Satisfiable: true
-s2_1 => "A"
-
 MAS:
-## Warning: empty path condition
-### PCs: total:4 sat:4 unsat:0
-
-string analysis: SPC # = 1
-(CONST_HelloWorld contains s2_1_SYMSTRING)
-NPC constraint # = 0
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling MAS
-
-The smtlib query is: 
-(declare-const s2_1 String)
-
-(assert (str.contains "HelloWorld" s2_1))
-
-
-=======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
-sat,
-s2_1: ""
+s2_1: "0"
 
 ************************************
 (declare-const s2_1 String)
@@ -127,32 +72,7 @@ s2_1: ""
 (assert (not (str.contains s2_1 "HelloWorld")))
 (assert (not (str.contains "HelloWorld" s2_1)))
 ------------------------------------
-z3str3:
-Satisfiable: true
-s2_1 => "lloWO"
-
 MAS:
-## Warning: empty path condition
-### PCs: total:3 sat:3 unsat:0
-
-string analysis: SPC # = 2
-(s2_1_SYMSTRING contains CONST_HelloWorld) && (CONST_HelloWorld notcontains s2_1_SYMSTRING)
-NPC constraint # = 0
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling MAS
-
-The smtlib query is: 
-(declare-const s2_1 String)
-
-(assert (str.contains s2_1 "HelloWorld"))
-(assert (not (str.contains "HelloWorld" s2_1)))
-
-
-=======================================
-Cache Hit Invalid reason(s):
-	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
-	INVALID due to 1 dependent symbolic variables, 0 multi-sym predicates, and 0 bad operations.
----------------------------------------------------------------------
-Using Alphabet: 0HWdelor
-Using bound: 11
+sat,
+s2_1: "0"
 

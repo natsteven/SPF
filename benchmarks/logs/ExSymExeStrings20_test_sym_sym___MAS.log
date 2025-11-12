@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=-1.7976931348623157E308
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 971b2284d9c2c2f40e7985fbbe347c26faf4ed71) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev 6a090698f11a9cc3be48deaf17c1c120a561c439) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 gov.nasa.jpf.symbc.strings.ExSymExeStrings20.main()
 
-====================================================== search started: 11/6/25 1:00 PM
+====================================================== search started: 11/11/25 8:18 PM
 New sym int a_1_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int b_2_SYMSTRING.length min=-2147483648, max=2147483647
 ## Warning: empty path condition
@@ -50,5 +50,315 @@ The smtlib query is:
 Using Alphabet: 0c
 Using bound: 4
 *****************************
-NOT A DISJUNCT PAIR in createDisjunct
-Runtime(ms) :801
+sat,
+b_2: ""
+************************************
+## Warning: empty path condition
+### PCs: total:2 sat:2 unsat:0
+
+string analysis: SPC # = 2
+(a_1_SYMSTRING notstartswith b_2_SYMSTRING) && (b_2_SYMSTRING notendswith CONST_c)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" b_2)))
+
+
+=======================================
+Using Alphabet: 0c
+Using bound: 4
+*****************************
+sat,
+a_1: "0"
+b_2: "c0"
+************************************
+This is the PC at the end:constraint # = 0
+string analysis: SPC # = 2
+(a_1_SYMSTRING notstartswith b_2_SYMSTRING) && (b_2_SYMSTRING notendswith CONST_c)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (not (str.prefixof b_2 a_1)))
+(assert (not (str.suffixof "c" b_2)))
+
+
+=======================================
+Using Alphabet: 0c
+Using bound: 4
+*****************************
+sat,
+a_1: "0"
+b_2: "c0"
+************************************
+## Warning: empty path condition
+### PCs: total:3 sat:3 unsat:0
+
+string analysis: SPC # = 2
+(a_1_SYMSTRING startswith b_2_SYMSTRING) && (b_2_SYMSTRING notendswith CONST_c)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (str.prefixof b_2 a_1))
+(assert (not (str.suffixof "c" b_2)))
+
+
+=======================================
+Using Alphabet: 0c
+Using bound: 4
+*****************************
+sat,
+a_1: ""
+b_2: ""
+************************************
+bbb
+This is the PC at the end:constraint # = 0
+string analysis: SPC # = 2
+(a_1_SYMSTRING startswith b_2_SYMSTRING) && (b_2_SYMSTRING notendswith CONST_c)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (str.prefixof b_2 a_1))
+(assert (not (str.suffixof "c" b_2)))
+
+
+=======================================
+Using Alphabet: 0c
+Using bound: 4
+*****************************
+sat,
+a_1: ""
+b_2: ""
+************************************
+string analysis: SPC # = 1
+(b_2_SYMSTRING[**UNDEFINED**] notendswith CONST_c)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const b_2 String)
+
+(assert (not (str.suffixof "c" b_2)))
+
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+****** Solutions from cache ******
+b_2: ""
+**********************************
+************************************
+## Warning: empty path condition
+### PCs: total:4 sat:4 unsat:0
+
+string analysis: SPC # = 1
+(b_2_SYMSTRING endswith CONST_c)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const b_2 String)
+
+(assert (str.suffixof "c" b_2))
+
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+****** Solutions from cache ******
+b_2: "c"
+**********************************
+************************************
+aaa
+## Warning: empty path condition
+### PCs: total:5 sat:5 unsat:0
+
+string analysis: SPC # = 2
+(a_1_SYMSTRING notstartswith b_2_SYMSTRING) && (b_2_SYMSTRING endswith CONST_c)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (not (str.prefixof b_2 a_1)))
+(assert (str.suffixof "c" b_2))
+
+
+=======================================
+Using Alphabet: 0c
+Using bound: 4
+*****************************
+sat,
+a_1: "0"
+b_2: "c"
+************************************
+This is the PC at the end:constraint # = 0
+string analysis: SPC # = 2
+(a_1_SYMSTRING notstartswith b_2_SYMSTRING) && (b_2_SYMSTRING endswith CONST_c)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (not (str.prefixof b_2 a_1)))
+(assert (str.suffixof "c" b_2))
+
+
+=======================================
+Using Alphabet: 0c
+Using bound: 4
+*****************************
+sat,
+a_1: "0"
+b_2: "c"
+************************************
+## Warning: empty path condition
+### PCs: total:6 sat:6 unsat:0
+
+string analysis: SPC # = 2
+(a_1_SYMSTRING startswith b_2_SYMSTRING) && (b_2_SYMSTRING endswith CONST_c)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (str.prefixof b_2 a_1))
+(assert (str.suffixof "c" b_2))
+
+
+=======================================
+Using Alphabet: 0c
+Using bound: 4
+*****************************
+sat,
+a_1: "c"
+b_2: "c"
+************************************
+bbb
+This is the PC at the end:constraint # = 0
+string analysis: SPC # = 2
+(a_1_SYMSTRING startswith b_2_SYMSTRING) && (b_2_SYMSTRING endswith CONST_c)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const a_1 String)
+(declare-const b_2 String)
+
+(assert (str.prefixof b_2 a_1))
+(assert (str.suffixof "c" b_2))
+
+
+=======================================
+Using Alphabet: 0c
+Using bound: 4
+*****************************
+sat,
+a_1: "c"
+b_2: "c"
+************************************
+string analysis: SPC # = 1
+(b_2_SYMSTRING[**UNDEFINED**] endswith CONST_c)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+The smtlib query is: 
+(declare-const b_2 String)
+
+(assert (str.suffixof "c" b_2))
+
+
+=======================================
+
+################################################
+################################################
+################	CACHE HIT	################
+################################################
+################################################
+
+****** Solutions from cache ******
+b_2: "c"
+**********************************
+************************************
+
+====================================================== Method Sequences
+[test(**UNDEFINED**,**UNDEFINED**)]
+
+====================================================== JUnit 4.0 test class
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+public class gov_nasa_jpf_symbc_strings_ExSymExeStrings20Test {
+
+	private gov.nasa.jpf.symbc.strings.ExSymExeStrings20 gov_nasa_jpf_symbc_strings_exsymexestrings20;
+
+	@Before
+	public void setUp() throws Exception {
+		gov_nasa_jpf_symbc_strings_exsymexestrings20 = new gov.nasa.jpf.symbc.strings.ExSymExeStrings20();
+	}
+
+	@Test
+	public void test0() {
+		gov_nasa_jpf_symbc_strings_exsymexestrings20.test(**UNDEFINED**,**UNDEFINED**);
+	}
+}
+
+====================================================== results
+no errors detected
+
+====================================================== statistics
+elapsed time:       00:00:01
+states:             new=11,visited=0,backtracked=11,end=4
+search:             maxDepth=4,constraints=0
+choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=4
+heap:               new=476,released=40,maxLive=452,gcCycles=8
+instructions:       6447
+max memory:         245MB
+loaded code:        classes=82,methods=1665
+
+====================================================== search finished: 11/11/25 8:18 PM
+Runtime(ms) :1555

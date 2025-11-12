@@ -9,7 +9,7 @@ import java.security.Permission;
 public class TestSV extends TestJPF {
 
 	String[] options = {"+classpath=build/tests", // unspecified values are set in setOptions()
-			"+symbolic.dp=z3bitvector",
+			"+symbolic.dp=choco",
 			"+symbolic.string_dp=MAS", // symbolic string decision procedure
 			"+symbolic.string_dp_timeout_ms=3000",
 			"+search.depth_limit =13 ",

@@ -5,26 +5,24 @@
 (assert (not (str.prefixof "b" b_2)))
 (assert (not (str.prefixof "a" a_1)))
 ------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "B"
-b_2 => "A"
-
 MAS:
-sat,
 a_1: ""
-b_2: ""
 
 ************************************
 (declare-const a_1 String)
 
 (assert (not (str.prefixof "a" a_1)))
 ------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "A"
-
 MAS:
 sat,
 a_1: ""
+
+************************************
+(declare-const b_2 String)
+
+(assert (not (str.prefixof "b" b_2)))
+------------------------------------
+MAS:
+sat,
+b_2: ""
 

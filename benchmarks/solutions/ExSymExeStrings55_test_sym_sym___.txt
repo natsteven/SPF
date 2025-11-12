@@ -4,10 +4,6 @@
 
 (assert (not (= (str.at a_1 0) "<")))
 ------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => ""
-
 MAS:
 sat,
 a_1: "0"
@@ -18,10 +14,6 @@ a_1: "0"
 
 (assert (= (str.at a_1 0) "<"))
 ------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "<"
-
 MAS:
 sat,
 a_1: "<"
@@ -30,24 +22,9 @@ a_1: "<"
 (declare-const a_1 String)
 
 
-(assert (< 14 (str.len a_1)))
-(assert (= (str.at a_1 0) "<"))
-------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "<ABCDEFGHIJKLMN"
-
-************************************
-(declare-const a_1 String)
-
-
 (assert (>= 14 (str.len a_1)))
 (assert (= (str.at a_1 0) "<"))
 ------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "<"
-
 MAS:
 WARNING: Unhandled constraint in Reporter_Inverse.buildICG_r3() of type... UNDEFINED  7  ge!!I!:!0
 WARNING: UNDEFINED constraint in Reporter_Inverse.buildICG_r3() of type... 7  ge!!I!:!0
@@ -56,7 +33,8 @@ java.lang.NullPointerException
 	at edu.boisestate.cs.reporting.Reporter_Inverse.calculateStats(Reporter_Inverse.java:300)
 	at edu.boisestate.cs.reporting.A_Reporter.run(A_Reporter.java:254)
 	at edu.boisestate.cs.util.MASProcessor.query(MASProcessor.java:41)
-	at edu.boisestate.cs.MASInterface.solve(MASInterface.java:107)
+	at edu.boisestate.cs.MASInterface.runPC(MASInterface.java:106)
+	at edu.boisestate.cs.MASInterface.solve(MASInterface.java:65)
 	at gov.nasa.jpf.symbc.string.SymbolicStringConstraintsGeneral.inner_isSatisfiable(SymbolicStringConstraintsGeneral.java:464)
 	at gov.nasa.jpf.symbc.string.SymbolicStringConstraintsGeneral.isSatisfiable(SymbolicStringConstraintsGeneral.java:382)
 	at gov.nasa.jpf.symbc.string.StringPathCondition.simplify(StringPathCondition.java:145)

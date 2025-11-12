@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=-1.7976931348623157E308
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 971b2284d9c2c2f40e7985fbbe347c26faf4ed71) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev 6a090698f11a9cc3be48deaf17c1c120a561c439) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 gov.nasa.jpf.symbc.strings.ExSymExeStringsDemo.main()
 
-====================================================== search started: 11/6/25 1:01 PM
+====================================================== search started: 11/11/25 12:49 PM
 New sym int a_1_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int b_2_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int i_3_SYMINT min=-2147483648, max=2147483647
@@ -41,317 +41,24 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling Z3str3
 
-current query... 
-(declare-const b_2 String)
-
-(assert (not (str.prefixof "c" b_2)))
-
-
-
-
-======================
-(define-fun b_2 () String
-  "A")
-Returned solutions: 
-(define-fun b_2 () String  "A")
-*************************************
-Satisfiable: true
-b_2 => "A"
-*************************************
-
-string analysis: SPC # = 1
-(b_2_SYMSTRING notstartswith CONST_c)
-NPC constraint # = 0
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling Z3str3
-
-current query... 
-(declare-const b_2 String)
-
-(assert (not (str.prefixof "c" b_2)))
-
-
-
-
-======================
-(define-fun b_2 () String
-  "A")
-Returned solutions: 
-(define-fun b_2 () String  "A")
-*************************************
-Satisfiable: true
-b_2 => "A"
-*************************************
-
-## Warning: empty path condition
-### PCs: total:2 sat:2 unsat:0
-
-string analysis: SPC # = 1
-(b_2_SYMSTRING startswith CONST_c)
-NPC constraint # = 0
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling Z3str3
-
-current query... 
-(declare-const b_2 String)
-
-(assert (str.prefixof "c" b_2))
-
-
-
-
-======================
-(define-fun b_2 () String
-  "c")
-Returned solutions: 
-(define-fun b_2 () String  "c")
-*************************************
-Satisfiable: true
-b_2 => "c"
-*************************************
-
-New sym int Length_0_ min=0, max=125
-numeric PC: constraint # = 1
-Length_0_ <= CONST_2 -> true
-
-### PCs: total:3 sat:3 unsat:0
-
-string analysis: SPC # = 1
-(b_2_SYMSTRING startswith CONST_c)
-NPC constraint # = 1
-Length_0_ <= CONST_2
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling Z3str3
-
-current query... 
-(declare-const a_1 String)
-(declare-const b_2 String)
-
-(assert (str.prefixof "c" b_2))
-(assert (<= (str.len a_1) 2))
-
-
-
-======================
-(define-fun a_1 () String
-  "")
-(define-fun b_2 () String
-  "c")
-Returned solutions: 
-(define-fun a_1 () String  "")
-(define-fun b_2 () String  "c")
-*************************************
-Satisfiable: true
-a_1 => ""
-b_2 => "c"
-*************************************
-
-numeric PC: constraint # = 1
-Length_0_ > CONST_2 -> true
-
-### PCs: total:4 sat:4 unsat:0
-
-string analysis: SPC # = 1
-(b_2_SYMSTRING startswith CONST_c)
-NPC constraint # = 1
-Length_0_ > CONST_2
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling Z3str3
-
-current query... 
-(declare-const a_1 String)
-(declare-const b_2 String)
-
-(assert (str.prefixof "c" b_2))
-(assert (> (str.len a_1) 2))
-
-
-
-======================
-(define-fun a_1 () String
-  "ABC")
-(define-fun b_2 () String
-  "c")
-Returned solutions: 
-(define-fun a_1 () String  "ABC")
-(define-fun b_2 () String  "c")
-*************************************
-Satisfiable: true
-a_1 => "ABC"
-b_2 => "c"
-*************************************
-
-numeric PC: constraint # = 2
-Length_0_ >= CONST_5 &&
-Length_0_ > CONST_2 -> true
-
-### PCs: total:5 sat:5 unsat:0
-
-string analysis: SPC # = 1
-(b_2_SYMSTRING startswith CONST_c)
-NPC constraint # = 2
-Length_0_ >= CONST_5 &&
-Length_0_ > CONST_2
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling Z3str3
-
-current query... 
-(declare-const a_1 String)
-(declare-const b_2 String)
-
-(assert (str.prefixof "c" b_2))
-(assert (>= (str.len a_1) 5))
-(assert (> (str.len a_1) 2))
-
-
-
-======================
-(define-fun a_1 () String
-  "ABCDE")
-(define-fun b_2 () String
-  "c")
-Returned solutions: 
-(define-fun a_1 () String  "ABCDE")
-(define-fun b_2 () String  "c")
-*************************************
-Satisfiable: true
-a_1 => "ABCDE"
-b_2 => "c"
-*************************************
-
-numeric PC: constraint # = 2
-Length_0_ < CONST_5 &&
-Length_0_ > CONST_2 -> true
-
-### PCs: total:6 sat:6 unsat:0
-
-string analysis: SPC # = 1
-(b_2_SYMSTRING startswith CONST_c)
-NPC constraint # = 2
-Length_0_ < CONST_5 &&
-Length_0_ > CONST_2
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling Z3str3
-
-current query... 
-(declare-const a_1 String)
-(declare-const b_2 String)
-
-(assert (str.prefixof "c" b_2))
-(assert (< (str.len a_1) 5))
-(assert (> (str.len a_1) 2))
-
-
-
-======================
-(define-fun a_1 () String
-  "ABC")
-(define-fun b_2 () String
-  "c")
-Returned solutions: 
-(define-fun a_1 () String  "ABC")
-(define-fun b_2 () String  "c")
-*************************************
-Satisfiable: true
-a_1 => "ABC"
-b_2 => "c"
-*************************************
-
-New sym int Length_1_ min=0, max=125
-numeric PC: constraint # = 3
-Length_1_ >= CONST_2 &&
-Length_0_ < CONST_5 &&
-Length_0_ > CONST_2 -> true
-
-### PCs: total:7 sat:7 unsat:0
-
-string analysis: SPC # = 1
-(b_2_SYMSTRING startswith CONST_c)
-NPC constraint # = 3
-Length_1_ >= CONST_2 &&
-Length_0_ < CONST_5 &&
-Length_0_ > CONST_2
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling Z3str3
-
-current query... 
-(declare-const a_1 String)
-(declare-const b_2 String)
-
-(assert (str.prefixof "c" b_2))
-(assert (>= (str.len b_2) 2))
-(assert (< (str.len a_1) 5))
-(assert (> (str.len a_1) 2))
-
-
-
-======================
-(define-fun a_1 () String
-  "ABC")
-(define-fun b_2 () String
-  "cD")
-Returned solutions: 
-(define-fun a_1 () String  "ABC")
-(define-fun b_2 () String  "cD")
-*************************************
-Satisfiable: true
-a_1 => "ABC"
-b_2 => "cD"
-*************************************
-
-numeric PC: constraint # = 3
-Length_1_ < CONST_2 &&
-Length_0_ < CONST_5 &&
-Length_0_ > CONST_2 -> true
-
-### PCs: total:8 sat:8 unsat:0
-
-string analysis: SPC # = 1
-(b_2_SYMSTRING startswith CONST_c)
-NPC constraint # = 3
-Length_1_ < CONST_2 &&
-Length_0_ < CONST_5 &&
-Length_0_ > CONST_2
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling Z3str3
-
-current query... 
-(declare-const a_1 String)
-(declare-const b_2 String)
-
-(assert (str.prefixof "c" b_2))
-(assert (< (str.len b_2) 2))
-(assert (< (str.len a_1) 5))
-(assert (> (str.len a_1) 2))
-
-
-
-======================
-(define-fun a_1 () String
-  "ABC")
-(define-fun b_2 () String
-  "c")
-Returned solutions: 
-(define-fun a_1 () String  "ABC")
-(define-fun b_2 () String  "c")
-*************************************
-Satisfiable: true
-a_1 => "ABC"
-b_2 => "c"
-*************************************
-
-java.lang.IllegalArgumentException: ## Error Choco Invalid bounds for 'i_3_SYMINT': [-2147483648, 2147483647] exceed safe range [-21474836, 21474836] for Choco.
-	at gov.nasa.jpf.symbc.numeric.solvers.ProblemChoco.makeIntVar(ProblemChoco.java:70)
-	at gov.nasa.jpf.symbc.numeric.solvers.ProblemChoco.makeIntVar(ProblemChoco.java:55)
-	at gov.nasa.jpf.symbc.numeric.PCParser.getExpression(PCParser.java:87)
-	at gov.nasa.jpf.symbc.numeric.PCParser.createDPLinearIntegerConstraint(PCParser.java:746)
-	at gov.nasa.jpf.symbc.numeric.PCParser.addConstraint(PCParser.java:1107)
-	at gov.nasa.jpf.symbc.numeric.PCParser.parse(PCParser.java:1091)
-	at gov.nasa.jpf.symbc.numeric.SymbolicConstraintsGeneral.isSatisfiable(SymbolicConstraintsGeneral.java:128)
-	at gov.nasa.jpf.symbc.numeric.PathCondition.simplifyOld(PathCondition.java:395)
+java.lang.UnsatisfiedLinkError: no libz3java in java.library.path
+	at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1863)
+	at java.lang.Runtime.loadLibrary0(Runtime.java:871)
+	at java.lang.System.loadLibrary(System.java:1122)
+	at com.microsoft.z3.Native.<clinit>(Native.java:17)
+	at com.microsoft.z3.Context.<init>(Context.java:42)
+	at edu.ucsb.cs.vlab.versions.Z3String3Processor.getOutput(Z3String3Processor.java:46)
+	at gov.nasa.jpf.symbc.string.translate.TranslateToZ3str3.solve(TranslateToZ3str3.java:30)
+	at gov.nasa.jpf.symbc.string.SymbolicStringConstraintsGeneral.inner_isSatisfiable(SymbolicStringConstraintsGeneral.java:456)
+	at gov.nasa.jpf.symbc.string.SymbolicStringConstraintsGeneral.isSatisfiable(SymbolicStringConstraintsGeneral.java:382)
+	at gov.nasa.jpf.symbc.string.StringPathCondition.simplify(StringPathCondition.java:145)
+	at gov.nasa.jpf.symbc.numeric.PathCondition.simplifyOld(PathCondition.java:414)
 	at gov.nasa.jpf.symbc.numeric.PathCondition.simplify(PathCondition.java:339)
-	at gov.nasa.jpf.symbc.bytecode.optimization.util.IFInstrSymbHelper.getNextInstructionAndSetPCChoice(IFInstrSymbHelper.java:490)
-	at gov.nasa.jpf.symbc.bytecode.optimization.IFLT.execute(IFLT.java:45)
+	at gov.nasa.jpf.symbc.bytecode.SymbolicStringHandler.handleBooleanStringInstructions(SymbolicStringHandler.java:1262)
+	at gov.nasa.jpf.symbc.bytecode.SymbolicStringHandler.handleStartsWith(SymbolicStringHandler.java:1332)
+	at gov.nasa.jpf.symbc.bytecode.SymbolicStringHandler.handleSymbolicStrings(SymbolicStringHandler.java:208)
+	at gov.nasa.jpf.symbc.bytecode.BytecodeUtils.execute(BytecodeUtils.java:218)
+	at gov.nasa.jpf.symbc.bytecode.INVOKEVIRTUAL.execute(INVOKEVIRTUAL.java:51)
 	at gov.nasa.jpf.vm.ThreadInfo.executeInstruction(ThreadInfo.java:1908)
 	at gov.nasa.jpf.vm.ThreadInfo.executeTransition(ThreadInfo.java:1859)
 	at gov.nasa.jpf.vm.SystemState.executeNextTransition(SystemState.java:765)
@@ -366,4 +73,4 @@ java.lang.IllegalArgumentException: ## Error Choco Invalid bounds for 'i_3_SYMIN
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at gov.nasa.jpf.tool.Run.call(Run.java:80)
 	at gov.nasa.jpf.tool.RunJPF.main(RunJPF.java:116)
-Runtime(ms) :939
+Runtime(ms) :1191

@@ -82,12 +82,12 @@ public class ConstraintTranslator {
 			DerivedStringExpression dse = (DerivedStringExpression) se;
 			return translate(dse);
 		} else {
-			System.err.println(se.getClass());
-			System.err.println(se.getName());
-			System.err.println("Unhandled StringExpression: " + se);
-            System.exit(1);
+//			System.err.println(se.getClass());
+//			System.err.println(se.getName());
+//			System.err.println("Unhandled StringExpression: " + se);
+//            System.exit(1);
+			throw new RuntimeException("Unhandled StringExpression: " + se);
 		}
-		return null;
 	}
 
 	public PrintConstraint translate(StringComparator comparator) {
@@ -132,9 +132,9 @@ public class ConstraintTranslator {
 				value = "false";
 				break;
 			default:
-				System.err.println("Unhandled StringComparator: " + comparator);
-                System.exit(1);
-				op = "";
+//				System.err.println("Unhandled StringComparator: " + comparator);
+//                System.exit(1);
+				throw new RuntimeException("Unhandled StringComparator: " + comparator);
 		}
 
 		return new PrintConstraint(translator.getNextID(), value, op);
@@ -188,9 +188,9 @@ public class ConstraintTranslator {
 
 					return substring;
 				} else {
-					System.err.println("Unhandled Substring with " + dse.oprlist.length + " arguments: " + dse);
-					System.exit(1);
-					return null;
+//					System.err.println("Unhandled Substring with " + dse.oprlist.length + " arguments: " + dse);
+//					System.exit(1);
+					throw new RuntimeException("Unhandled Substring with " + dse.oprlist.length + " arguments: " + dse);
 				}
 			case TOLOWERCASE:
 				PrintConstraint toLowerCase = new PrintConstraint(translator.getNextID(), dse.right.toString() + ".toLowerCase()", "toLowerCase!!!:!0");
@@ -325,14 +325,14 @@ public class ConstraintTranslator {
 				} else if (expr instanceof IntegerExpression) {
 					return translate((IntegerExpression) expr);
 				} else {
-					System.err.println("Unhandled ValueOf in ConstraintTranslator");
-					System.exit(1);
-					return null;
+//					System.err.println("Unhandled ValueOf in ConstraintTranslator");
+//					System.exit(1);
+					throw new RuntimeException("Unhandled ValueOf in ConstraintTranslator");
 				}
 			default:
-				System.err.println("Unhandled DerivedStringExpression: " + dse);
-                System.exit(1);
-				return null;
+//				System.err.println("Unhandled DerivedStringExpression: " + dse);
+//                System.exit(1);
+				throw new RuntimeException("Unhandled DerivedStringExpression: " + dse);
 		}
 	}
 
@@ -374,8 +374,9 @@ public class ConstraintTranslator {
 				leftConstraint.setType(0);
 				rightConstraint.setType(1);
 			} else {
-				System.err.println("Unhandled Numeric Constraint with SymbolicLengthInteger and non-IntegerConstant: " + numericConstraint);
-				System.exit(1);
+//				System.err.println("Unhandled Numeric Constraint with SymbolicLengthInteger and non-IntegerConstant: " + numericConstraint);
+//				System.exit(1);
+				throw new RuntimeException("Unhandled Numeric Constraint with SymbolicLengthInteger and non-IntegerConstant: " + numericConstraint);
 			}
 		} else if (right instanceof SymbolicLengthInteger) {
 			if (left instanceof IntegerConstant) {
@@ -384,12 +385,14 @@ public class ConstraintTranslator {
 				leftConstraint.setType(1);
 				rightConstraint.setType(0);
 			} else {
-				System.err.println("Unhandled Numeric Constraint with SymbolicLengthInteger and non-IntegerConstant: " + numericConstraint);
-				System.exit(1);
+//				System.err.println("Unhandled Numeric Constraint with SymbolicLengthInteger and non-IntegerConstant: " + numericConstraint);
+//				System.exit(1);
+				throw new RuntimeException("Unhandled Numeric Constraint with SymbolicLengthInteger and non-IntegerConstant: " + numericConstraint);
 			}
 		} else {
-			System.err.println("Unhandled Numeric Constraint: " + numericConstraint);
-            System.exit(1);
+//			System.err.println("Unhandled Numeric Constraint: " + numericConstraint);
+//            System.exit(1);
+			throw new RuntimeException("Unhandled Numeric Constraint: " + numericConstraint);
 		}
 
 		final PrintConstraint comparatorConstraint = translate(comparator);
@@ -440,9 +443,10 @@ public class ConstraintTranslator {
 				value = "true";
 				break;
 			default:
-				System.err.println("Unhandled Numeric Comparator: " + comparator);
-                System.exit(1);
-				return null;
+//				System.err.println("Unhandled Numeric Comparator: " + comparator);
+//                System.exit(1);
+				throw new RuntimeException("Unhandled Numeric Comparator: " + comparator);
+//				return null;
 		}
 		return new PrintConstraint(translator.getNextID(), value, op);
 	}
@@ -512,10 +516,10 @@ public class ConstraintTranslator {
 			return symConstraint;
 //			System.err.println("MAS does not support symbolic integer reasoning yet: " + ie);
 		} else {
-			System.err.println("Unhandled IntegerExpression: " + ie);
-			System.exit(1);
+//			System.err.println("Unhandled IntegerExpression: " + ie);
+//			System.exit(1);
+			throw new RuntimeException("Unhandled IntegerExpression: " + ie);
 		}
-		return null;
 	}
 
 	public StringConstant charToString(IntegerExpression ie) {

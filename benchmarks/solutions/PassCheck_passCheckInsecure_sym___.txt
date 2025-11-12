@@ -2,324 +2,12 @@
 (declare-const p_1 String)
 
 
-(assert (< 2 (str.len p_1)))
-(assert (= (str.at p_1 1) "a"))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "PaBACDFE"
-
-************************************
-(declare-const p_1 String)
-
-
 (assert (not (= (str.at p_1 0) "P")))
 (assert (= (str.len p_1) 8))
 ------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "ACBDEFHG"
-
 MAS:
-numeric PC: constraint # = 3
-CONST_1 >= Length_0_ &&
-CharAt(CONST_0)_1_ == CONST_80 &&
-Length_0_ == CONST_8 -> false
-
-### PCs: total:7 sat:5 unsat:2
-
-numeric PC: constraint # = 3
-CONST_1 < Length_0_ &&
-CharAt(CONST_0)_1_ == CONST_80 &&
-Length_0_ == CONST_8 -> true
-
-### PCs: total:8 sat:6 unsat:2
-
-string analysis: SPC # = 0
-NPC constraint # = 3
-CONST_1 < Length_0_ &&
-CharAt(CONST_0)_1_ == CONST_80 &&
-Length_0_ == CONST_8
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling MAS
-
-The smtlib query is: 
-(declare-const p_1 String)
-
-
-(assert (< 1 (str.len p_1)))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-
-=======================================
-Numeric Path Condition Exists: CONST_1 < Length_0_ &&
-CharAt(CONST_0)_1_ == CONST_80 &&
-Length_0_ == CONST_8
-No String Constraints
-Using Alphabet: 0P
-Using bound: 9
-
-************************************
-(declare-const p_1 String)
-
-
-(assert (= (str.at p_1 2) "$"))
-(assert (= (str.at p_1 1) "a"))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "Pa$BACED"
-
-************************************
-(declare-const p_1 String)
-
-
-(assert (= (str.at p_1 4) "w"))
-(assert (= (str.at p_1 3) "$"))
-(assert (= (str.at p_1 2) "$"))
-(assert (= (str.at p_1 1) "a"))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "Pa$$wBCA"
-
-************************************
-(declare-const p_1 String)
-
-
-(assert (= (str.at p_1 6) "r"))
-(assert (= (str.at p_1 5) "0"))
-(assert (= (str.at p_1 4) "w"))
-(assert (= (str.at p_1 3) "$"))
-(assert (= (str.at p_1 2) "$"))
-(assert (= (str.at p_1 1) "a"))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "Pa$$w0rA"
-
-************************************
-(declare-const p_1 String)
-
-
-(assert (not (= (str.at p_1 2) "$")))
-(assert (= (str.at p_1 1) "a"))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "PaACBDFE"
-
-************************************
-(declare-const p_1 String)
-
-
-(assert (not (= (str.at p_1 4) "w")))
-(assert (= (str.at p_1 3) "$"))
-(assert (= (str.at p_1 2) "$"))
-(assert (= (str.at p_1 1) "a"))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "Pa$$ACDB"
-
-************************************
-(declare-const p_1 String)
-
-
-(assert (< 4 (str.len p_1)))
-(assert (= (str.at p_1 3) "$"))
-(assert (= (str.at p_1 2) "$"))
-(assert (= (str.at p_1 1) "a"))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "Pa$$BADC"
-
-************************************
-(declare-const p_1 String)
-
-
-(assert (not (= (str.at p_1 7) "d")))
-(assert (= (str.at p_1 6) "r"))
-(assert (= (str.at p_1 5) "0"))
-(assert (= (str.at p_1 4) "w"))
-(assert (= (str.at p_1 3) "$"))
-(assert (= (str.at p_1 2) "$"))
-(assert (= (str.at p_1 1) "a"))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "Pa$$w0rA"
-
-************************************
-(declare-const p_1 String)
-
-
-(assert (not (= (str.at p_1 5) "0")))
-(assert (= (str.at p_1 4) "w"))
-(assert (= (str.at p_1 3) "$"))
-(assert (= (str.at p_1 2) "$"))
-(assert (= (str.at p_1 1) "a"))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "Pa$$wABC"
-
-************************************
-(declare-const p_1 String)
-
-
-(assert (= (str.at p_1 7) "d"))
-(assert (= (str.at p_1 6) "r"))
-(assert (= (str.at p_1 5) "0"))
-(assert (= (str.at p_1 4) "w"))
-(assert (= (str.at p_1 3) "$"))
-(assert (= (str.at p_1 2) "$"))
-(assert (= (str.at p_1 1) "a"))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "Pa$$w0rd"
-
-************************************
-(declare-const p_1 String)
-
-
-(assert (= (str.at p_1 1) "a"))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "PaBACDFE"
-
-************************************
-(declare-const p_1 String)
-
-
-(assert (>= 8 (str.len p_1)))
-(assert (= (str.at p_1 7) "d"))
-(assert (= (str.at p_1 6) "r"))
-(assert (= (str.at p_1 5) "0"))
-(assert (= (str.at p_1 4) "w"))
-(assert (= (str.at p_1 3) "$"))
-(assert (= (str.at p_1 2) "$"))
-(assert (= (str.at p_1 1) "a"))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "Pa$$w0rd"
-
-************************************
-(declare-const p_1 String)
-
-
-(assert (< 7 (str.len p_1)))
-(assert (= (str.at p_1 6) "r"))
-(assert (= (str.at p_1 5) "0"))
-(assert (= (str.at p_1 4) "w"))
-(assert (= (str.at p_1 3) "$"))
-(assert (= (str.at p_1 2) "$"))
-(assert (= (str.at p_1 1) "a"))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "Pa$$w0rA"
-
-************************************
-(declare-const p_1 String)
-
-
-(assert (= (str.at p_1 3) "$"))
-(assert (= (str.at p_1 2) "$"))
-(assert (= (str.at p_1 1) "a"))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "Pa$$BADC"
-
-************************************
-(declare-const p_1 String)
-
-
-(assert (not (= (str.at p_1 1) "a")))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "PACBDEGF"
-
-************************************
-(declare-const p_1 String)
-
-
-(assert (not (= (str.at p_1 3) "$")))
-(assert (= (str.at p_1 2) "$"))
-(assert (= (str.at p_1 1) "a"))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "Pa$ACBED"
-
-************************************
-(declare-const p_1 String)
-
-
-(assert (not (= (str.at p_1 6) "r")))
-(assert (= (str.at p_1 5) "0"))
-(assert (= (str.at p_1 4) "w"))
-(assert (= (str.at p_1 3) "$"))
-(assert (= (str.at p_1 2) "$"))
-(assert (= (str.at p_1 1) "a"))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "Pa$$w0AB"
-
-************************************
-(declare-const p_1 String)
-
-
-(assert (< 3 (str.len p_1)))
-(assert (= (str.at p_1 2) "$"))
-(assert (= (str.at p_1 1) "a"))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "Pa$BACED"
+sat,
+p_1: "00000000"
 
 ************************************
 (declare-const p_1 String)
@@ -329,58 +17,36 @@ p_1 => "Pa$BACED"
 (assert (= (str.at p_1 0) "P"))
 (assert (= (str.len p_1) 8))
 ------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "PBACDEGF"
-
-************************************
-(declare-const p_1 String)
-
-
-(assert (< 6 (str.len p_1)))
-(assert (= (str.at p_1 5) "0"))
-(assert (= (str.at p_1 4) "w"))
-(assert (= (str.at p_1 3) "$"))
-(assert (= (str.at p_1 2) "$"))
-(assert (= (str.at p_1 1) "a"))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "Pa$$w0AB"
-
-************************************
-(declare-const p_1 String)
-
-
-(assert (= (str.at p_1 5) "0"))
-(assert (= (str.at p_1 4) "w"))
-(assert (= (str.at p_1 3) "$"))
-(assert (= (str.at p_1 2) "$"))
-(assert (= (str.at p_1 1) "a"))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "Pa$$w0BA"
-
-************************************
-(declare-const p_1 String)
-
-
-(assert (< 5 (str.len p_1)))
-(assert (= (str.at p_1 4) "w"))
-(assert (= (str.at p_1 3) "$"))
-(assert (= (str.at p_1 2) "$"))
-(assert (= (str.at p_1 1) "a"))
-(assert (= (str.at p_1 0) "P"))
-(assert (= (str.len p_1) 8))
-------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "Pa$$wBCA"
+MAS:
+WARNING: Unhandled constraint in Reporter_Inverse.buildICG_r3() of type... UNDEFINED  10  lt!!I!:!0
+WARNING: UNDEFINED constraint in Reporter_Inverse.buildICG_r3() of type... 10  lt!!I!:!0
+java.lang.NullPointerException
+	at edu.boisestate.cs.reporting.Reporter_Inverse_BFS.solveInputs(Reporter_Inverse_BFS.java:127)
+	at edu.boisestate.cs.reporting.Reporter_Inverse.calculateStats(Reporter_Inverse.java:300)
+	at edu.boisestate.cs.reporting.A_Reporter.run(A_Reporter.java:254)
+	at edu.boisestate.cs.util.MASProcessor.query(MASProcessor.java:41)
+	at edu.boisestate.cs.MASInterface.runPC(MASInterface.java:106)
+	at edu.boisestate.cs.MASInterface.solve(MASInterface.java:65)
+	at gov.nasa.jpf.symbc.string.SymbolicStringConstraintsGeneral.inner_isSatisfiable(SymbolicStringConstraintsGeneral.java:464)
+	at gov.nasa.jpf.symbc.string.SymbolicStringConstraintsGeneral.isSatisfiable(SymbolicStringConstraintsGeneral.java:382)
+	at gov.nasa.jpf.symbc.string.StringPathCondition.simplify(StringPathCondition.java:145)
+	at gov.nasa.jpf.symbc.numeric.PathCondition.simplifyOld(PathCondition.java:414)
+	at gov.nasa.jpf.symbc.numeric.PathCondition.simplify(PathCondition.java:339)
+	at gov.nasa.jpf.symbc.bytecode.optimization.util.IFInstrSymbHelper.getNextInstructionAndSetPCChoice(IFInstrSymbHelper.java:575)
+	at gov.nasa.jpf.symbc.bytecode.optimization.IF_ICMPGE.execute(IF_ICMPGE.java:65)
+	at gov.nasa.jpf.vm.ThreadInfo.executeInstruction(ThreadInfo.java:1908)
+	at gov.nasa.jpf.vm.ThreadInfo.executeTransition(ThreadInfo.java:1859)
+	at gov.nasa.jpf.vm.SystemState.executeNextTransition(SystemState.java:765)
+	at gov.nasa.jpf.vm.VM.forward(VM.java:1722)
+	at gov.nasa.jpf.search.Search.forward(Search.java:937)
+	at gov.nasa.jpf.search.DFSearch.search(DFSearch.java:79)
+	at gov.nasa.jpf.JPF.run(JPF.java:613)
+	at gov.nasa.jpf.JPF.start(JPF.java:189)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at gov.nasa.jpf.tool.Run.call(Run.java:80)
 
 ************************************
 (declare-const p_1 String)
@@ -389,10 +55,6 @@ p_1 => "Pa$$wBCA"
 (assert (= (str.at p_1 0) "P"))
 (assert (= (str.len p_1) 8))
 ------------------------------------
-z3str3:
-Satisfiable: true
-p_1 => "PBACDEGF"
-
 MAS:
 sat,
 p_1: "P0000000"

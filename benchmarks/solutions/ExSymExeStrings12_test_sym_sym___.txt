@@ -1,48 +1,6 @@
 ************************************
-(declare-const a_1 String)
 
-(assert (not (= a_1 "ab")))
 ------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => ""
-
-MAS:
-## Warning: empty path condition
-### PCs: total:2 sat:2 unsat:0
-
-string analysis: SPC # = 1
-(a_1_SYMSTRING equals CONST_ab)
-NPC constraint # = 0
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-Calling MAS
-
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (= a_1 "ab"))
-
-
-=======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
-sat,
-a_1: "ab"
-
-************************************
-(declare-const a_1 String)
-
-(assert (= a_1 "ab"))
-------------------------------------
-z3str3:
-Satisfiable: true
-a_1 => "ab"
-
 MAS:
 
 ====================================================== Method Sequences
@@ -78,7 +36,23 @@ search:             maxDepth=3,constraints=0
 choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=2
 heap:               new=468,released=22,maxLive=452,gcCycles=4
 instructions:       6385
-max memory:         477MB
+max memory:         245MB
 loaded code:        classes=82,methods=1665
 
+
+************************************
+(declare-const a_1 String)
+
+(assert (not (= a_1 "ab")))
+------------------------------------
+MAS:
+a_1: ""
+
+************************************
+(declare-const a_1 String)
+
+(assert (= a_1 "ab"))
+------------------------------------
+MAS:
+a_1: "ab"
 

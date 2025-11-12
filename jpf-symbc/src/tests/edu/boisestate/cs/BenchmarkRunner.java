@@ -16,7 +16,7 @@ public class BenchmarkRunner {
 
     private static List<Benchmark> programs = new ArrayList<>();
 
-    private static final List<String> SOLVERS = Arrays.asList("z3str3", "MAS");
+    private static final List<String> SOLVERS = Arrays.asList("MAS");
     private static boolean z3OK = true; //for average runtime calc only accumulate when z3 succeeds
 
     private static final long TIMEOUT_SEC = Long.getLong("bench.timeoutSec", 30L);
@@ -24,6 +24,7 @@ public class BenchmarkRunner {
 
     private static HashMap<String, int[]> statusCounts = new HashMap<>(); // Solver : OK, UNSUPPORTED, TIMEOUT, ERROR
     private static List<String> errors = new ArrayList<>();
+    private static List<String> unsupported = new ArrayList<>();
     private static HashMap<String, Integer> runtimes = new HashMap<>();
 
     private static final Path OUT_DIR = Paths.get("../benchmarks");
@@ -134,6 +135,9 @@ public class BenchmarkRunner {
         for (String err : errors) {
             System.err.println("Error in : " + err);
         }
+        for (String unsup : unsupported) {
+            System.out.println("Unsupported: " + unsup);
+        }
         System.out.println("Results written to: " + OUT_CSV.toAbsolutePath());
         System.out.println("Total runtimes (ms): " + runtimes);
         for (String solver : SOLVERS) {
@@ -207,8 +211,10 @@ public class BenchmarkRunner {
         if (!finished) {
             statusCounts.get(solver)[2]++;
             if (solver.equals("z3str3")) z3OK = false; // do not accumulate runtime if z3 unsupported
-        } else if (status.equals("ERROR") || status.equals("UNSUPPORTED")) {
+        } else if (status.equals("ERROR")) {
             errors.add(String.format("%s %s %s", b.fqcn, b.methodSig, solver));
+        } else if (status.equals("UNSUPPORTED")) {
+            unsupported.add(String.format("%s %s %s", b.fqcn, b.methodSig, solver));
         }
 
         if (status.equals("OK")) {
@@ -274,7 +280,7 @@ public class BenchmarkRunner {
     }
 
     private static String classify(String out, int exit, String solver) {
-        if (out.contains("unsupported")) {
+        if (out.contains("unsupported") || out.contains("Unhandled")) {
             statusCounts.get(solver)[1]++;
             if (solver.equals("z3str3")) z3OK = false; // do not accumulate runtime if z3 unsupported
             return "UNSUPPORTED";

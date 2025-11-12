@@ -466,6 +466,7 @@ public class SymbolicStringConstraintsGeneral {
 				System.err.println("MAS returned null, returning false");
 				constraintCount = constraintCount + 1;
 				System.out.println("************************************");
+				// unsure how to return unknown
 				return false;
 			}
 			constraintCount = constraintCount + 1;
