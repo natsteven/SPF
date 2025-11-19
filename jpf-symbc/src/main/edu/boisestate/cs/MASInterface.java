@@ -73,37 +73,41 @@ public class MASInterface {
 	private static SolutionSet<Model_Acyclic_Inverse> runPC(StringPathCondition pc) {
 
 //		try {
-			MASTranslator translator = new MASTranslator();
-			InvDefaultDirectedGraph graph = (InvDefaultDirectedGraph) translator.translate(pc);
-			if (graph == null) {
+		MASTranslator translator = new MASTranslator();
+		InvDefaultDirectedGraph graph = (InvDefaultDirectedGraph) translator.translate(pc);
+		if (graph == null) {
 //				System.out.println("No graph was created from the StringPathCondition.");
 //				return null;
-				throw new RuntimeException("No graph was created from the StringPathCondition.");
-			}
+			throw new RuntimeException("No graph was created from the StringPathCondition.");
+		}
 
-			String alph = translator.getAlpha();
-			Alphabet alpha;
-			if (alph.isEmpty()) {
-				alpha = new Alphabet("A,B,C");
-			} else {
-				// ugg that was dumb
-				translator.addWildCardToAlph(); // add character not in queries concrete strings to alphabet
-				alph = translator.getAlpha();
-				alpha = new Alphabet(alph);
-			}
-			int bound = translator.getSuggestedBound();
-			if (bound < 4) bound = 4;// could also reason about concats but for now this is fine
-			// maybe the depth of the tree, i.e. we can reason about how long strings can/would be given the number of operations/type of ops
+		String alph = translator.getAlpha();
+		Alphabet alpha;
+		if (alph.isEmpty()) {
+			alpha = new Alphabet("A,B,C");
+		} else {
+			// ugg that was dumb
+			translator.addWildCardToAlph(); // add character not in queries concrete strings to alphabet
+			alph = translator.getAlpha();
+			alpha = new Alphabet(alph);
+		}
+		int bound = translator.getSuggestedBound();
+		if (bound < 4) bound = 4;// could also reason about concats but for now this is fine
+		// maybe the depth of the tree, i.e. we can reason about how long strings can/would be given the number of operations/type of ops
 
-			if (SymbolicInstructionFactory.debugMode) {
-				System.out.println("Using Alphabet: " + alpha.getCharSetString());
-				System.out.println("Using bound: " + bound);
-			}
-			System.out.println("*****************************");
+		if (SymbolicInstructionFactory.debugMode) {
+			System.out.println("Using Alphabet: " + alpha.getCharSetString());
+			System.out.println("Using bound: " + bound);
+		}
+		System.out.println("*****************************");
 
-			MASProcessor processor = new MASProcessor(false, alpha, bound);
-
-			return processor.query(graph);
+		MASProcessor processor = new MASProcessor(false, alpha, bound);
+		long startTime = System.currentTimeMillis();
+		SolutionSet<Model_Acyclic_Inverse> result = processor.query(graph);
+		long endTime = System.currentTimeMillis();
+		System.out.println("*****************************");
+		System.out.println("A-Str Solver Time (ms):" + (endTime - startTime));
+		return processor.query(graph);
 //		}
 //		catch (Exception e) {
 //			e.printStackTrace();

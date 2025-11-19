@@ -20,6 +20,12 @@ public class TestSPF extends gov.nasa.jpf.util.test.TestJPF {
 	};
 
 	@Test
+	public void testExeSymExeStrings52() {
+		if (verifyNoPropertyViolation(options))
+			gov.nasa.jpf.symbc.strings.ExSymExeStrings52.test(Verifier.nondetString(), Verifier.nondetString(), 1);
+	}
+
+	@Test
 	public void testExeSymExeStrings01() {
 		if (verifyNoPropertyViolation(options))
 			gov.nasa.jpf.symbc.strings.ExSymExeStrings01.test(Verifier.nondetString(), Verifier.nondetString());

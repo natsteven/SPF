@@ -15,12 +15,12 @@ src/tests/edu/boisestate/cs/MAS/TrimTest.java
 src/tests/edu/boisestate/cs/MAS/UpperCaseTest.java
 src/tests/edu/boisestate/cs/MAS/ValueOfTest.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings01.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings02.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings01.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings02.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings03.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings04.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings05.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings06.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings04.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings05.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings06.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings07.java
 # src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings08.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings09.java
@@ -28,9 +28,9 @@ src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings10.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings11.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings12.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings13.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings14.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings14.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings15.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings16.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings16.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings17.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings18.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings19.java
@@ -44,38 +44,38 @@ src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings26.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings27.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings28.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings29.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings30.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings30.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings31.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings32.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings33.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings34.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings35.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings36.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings37.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings38.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings35.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings36.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings37.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings38.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings39.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings40.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings41.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings42.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings41.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings42.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings43.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings44.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings45.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings46.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings47.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings48.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings49.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings50.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings51.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings47.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings48.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings49.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings50.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings51.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings52.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings53.java
 # src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings54.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings55.java
 # src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings56.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings57.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings58.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings57.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings58.java
 # src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings59.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings60.java
-src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings61.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings60.java
+# src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings61.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings62.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings63.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStrings64.java
@@ -87,22 +87,22 @@ src/tests/gov/nasa/jpf/symbc/strings/ExSymExeStringsFailed.java
 src/tests/gov/nasa/jpf/symbc/strings/ExSymStringSimple.java
 # src/tests/gov/nasa/jpf/symbc/strings/MysteryQuestion.java
 src/tests/gov/nasa/jpf/symbc/strings/MysteryQuestionMin.java
-src/tests/gov/nasa/jpf/symbc/strings/performance/Performance01.java
+# src/tests/gov/nasa/jpf/symbc/strings/performance/Performance01.java
 # src/tests/gov/nasa/jpf/symbc/strings/performance/Performance02.java
-src/tests/gov/nasa/jpf/symbc/strings/performance/Performance03.java
+# src/tests/gov/nasa/jpf/symbc/strings/performance/Performance03.java
 # src/examples/strings/CRIME.java
 # src/examples/strings/ChallengeTest.java
-src/examples/strings/DelimSearch.java
+# src/examples/strings/DelimSearch.java
 src/examples/strings/GoodbyeWorld.java
 src/examples/strings/HelloWorld.java
 src/examples/strings/IndexOfTest.java
 # src/examples/strings/LZ77T.java
-src/examples/strings/MSExample.java
-src/examples/strings/MasterMind.java
-src/examples/strings/MysteryQuestionMin.java
-src/examples/strings/NaivePWCheck.java
-src/examples/strings/PassCheck.java
-src/examples/strings/StringSearch.java
-src/examples/strings/SubStringTest.java
+# src/examples/strings/MSExample.java
+# src/examples/strings/MasterMind.java
+# src/examples/strings/MysteryQuestionMin.java
+# src/examples/strings/NaivePWCheck.java
+# src/examples/strings/PassCheck.java
+# src/examples/strings/StringSearch.java
+# src/examples/strings/SubStringTest.java
 # src/examples/strings/Tricky.java
 # src/examples/strings/WU_FTPD.java

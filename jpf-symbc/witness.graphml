@@ -23,13 +23,22 @@
        </node>
 
        <node id="n1">
+       </node>
+
+       <node id="n2">
              <data key="violation">true</data>
        </node>
        <edge source="n0" target="n1">
-         <data key="originfile">TestSV.java</data>
-         <data key="startline">16</data>
-         <data key="assumption">s1.equals("")</data>
-         <data key="assumption.scope">java::Ledu.boisestate.cs.svcomp.TestSV;</data>
+         <data key="originfile">TestSPF.java</data>
+         <data key="startline">25</data>
+         <data key="assumption">string0.equals("")</data>
+         <data key="assumption.scope">java::Ledu.boisestate.cs.TestSPF;</data>
+       </edge>
+       <edge source="n1" target="n2">
+         <data key="originfile">TestSPF.java</data>
+         <data key="startline">25</data>
+         <data key="assumption">string1.equals("")</data>
+         <data key="assumption.scope">java::Ledu.boisestate.cs.TestSPF;</data>
        </edge>
 
   </graph>

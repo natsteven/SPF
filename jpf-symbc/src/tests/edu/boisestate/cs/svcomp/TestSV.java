@@ -24,6 +24,11 @@ public class TestSV extends TestJPF {
 	};
 
 	@Test
+	public void Basic19() {
+		if (verifyNoPropertyViolation(options)) edu.boisestate.cs.svcomp.Basic19.Main.main(null);
+	}
+
+	@Test
 	public void Aliasing6() {
 		if (verifyUnhandledException("java.lang.AssertionError",options)) edu.boisestate.cs.svcomp.Aliasing6.Main.main(null);
 	}
