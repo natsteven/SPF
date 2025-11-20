@@ -23,7 +23,7 @@ public class MASInterface {
 		printSMT(pc);
 
 		PathConstraintAnalysis pca = new PathConstraintAnalysis(pc);
-//		pca.printInfo();
+		pca.printInfo();
 
 		SolutionSet<Model_Acyclic_Inverse> sol = null;
 

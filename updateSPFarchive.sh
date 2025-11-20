@@ -1,5 +1,7 @@
 #!/bin/bash
 
+./gradlew buildJars
+
 ARCHIVE="/home/nat/Repos/bench-defs/archives/spf-verify.zip"
 SPF_PARENT="/home/nat/Repos"
 SPF="SPF"
