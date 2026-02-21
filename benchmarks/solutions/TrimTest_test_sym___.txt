@@ -1,12 +1,4 @@
 ************************************
-(declare-const s_1 String)
-
-(assert (str.contains s_1 " "))
-------------------------------------
-MAS:
-s_1: " "
-
-************************************
 
 ------------------------------------
 MAS:
@@ -38,88 +30,13 @@ public class edu_boisestate_cs_MAS_TrimTestTest {
 no errors detected
 
 ====================================================== statistics
-elapsed time:       00:00:01
+elapsed time:       00:00:00
 states:             new=11,visited=0,backtracked=11,end=3
 search:             maxDepth=4,constraints=0
 choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=4
 heap:               new=516,released=65,maxLive=462,gcCycles=7
 instructions:       6426
-max memory:         245MB
+max memory:         477MB
 loaded code:        classes=83,methods=1769
 
-
-************************************
-(declare-const s_1 String)
-(declare-const out_str String)
-
-(assert (not (= out_str "Hi")))
-(assert (not (str.contains s_1 " ")))
-
-(declare-const nwc RegLan)
-(declare-const ws RegLan)
-(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
-(assert (and (str.in_re s_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
-(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
-------------------------------------
-MAS:
-sat,
-s_1: ""
-
-************************************
-(declare-const s_1 String)
-(declare-const out_str String)
-
-(assert (= out_str "Hi"))
-(assert (not (str.contains s_1 " ")))
-
-(declare-const nwc RegLan)
-(declare-const ws RegLan)
-(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
-(assert (and (str.in_re s_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
-(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
-------------------------------------
-MAS:
-sat,
-s_1: "Hi"
-
-************************************
-(declare-const s_1 String)
-(declare-const out_str String)
-
-(assert (not (= out_str "Hi")))
-(assert (str.contains s_1 " "))
-
-(declare-const nwc RegLan)
-(declare-const ws RegLan)
-(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
-(assert (and (str.in_re s_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
-(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
-------------------------------------
-MAS:
-sat,
-s_1: " "
-
-************************************
-(declare-const s_1 String)
-(declare-const out_str String)
-
-(assert (= out_str "Hi"))
-(assert (str.contains s_1 " "))
-
-(declare-const nwc RegLan)
-(declare-const ws RegLan)
-(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
-(assert (and (str.in_re s_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
-(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
-------------------------------------
-MAS:
-unsat
-
-************************************
-(declare-const s_1 String)
-
-(assert (not (str.contains s_1 " ")))
-------------------------------------
-MAS:
-s_1: ""
 

@@ -2,45 +2,5 @@
 
 ------------------------------------
 MAS:
-
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-
-(assert (not (str.prefixof "bol" b_2)))
-(assert (not (= (str.indexof b_2 a_1) 2)))
-------------------------------------
-MAS:
-sat,
-a_1[**UNDEFINED**]: "0"
-b_2[**UNDEFINED**]: ""
-
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-
-(assert (str.prefixof "bol" b_2))
-(assert (not (= (str.indexof b_2 a_1) 2)))
-------------------------------------
-MAS:
-
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-
-(assert (not (str.prefixof "bol" b_2)))
-(assert (= (str.indexof b_2 a_1) 2))
-------------------------------------
-MAS:
-sat,
-a_1: "0"
-b_2: "000"
-
-************************************
-(declare-const b_2 String)
-
-(assert (not (str.prefixof "bol" b_2)))
-------------------------------------
-MAS:
-b_2: ""
+A-Str Solver Time (ms):1
 

@@ -1,22 +1,6 @@
 ************************************
-(declare-const var_2_2 String)
-(declare-const var_1_1 String)
 
-(assert (not (= (str.++ var_1_1 var_2_2) "HelloWorld")))
 ------------------------------------
 MAS:
-sat,
-var_2_2: ""
-var_1_1: ""
-
-************************************
-(declare-const var_2_2 String)
-(declare-const var_1_1 String)
-
-(assert (= (str.++ var_1_1 var_2_2) "HelloWorld"))
-------------------------------------
-MAS:
-sat,
-var_2_2: "HelloWorld"
-var_1_1: ""
+A-Str Solver Time (ms):9
 

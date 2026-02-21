@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=-1.7976931348623157E308
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 6a090698f11a9cc3be48deaf17c1c120a561c439) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev a949b735aba7ed852115d24065a70b5ccd5ece33) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 gov.nasa.jpf.symbc.strings.ExSymExeStrings40.main()
 
-====================================================== search started: 11/11/25 8:18 PM
+====================================================== search started: 11/25/25 12:13 PM
 New sym int a_1_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int b_2_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int x_3_SYMINT min=-2147483648, max=2147483647
@@ -41,18 +41,13 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (not (str.suffixof "hello" a_1)))
-
-
-=======================================
 Using Alphabet: 0ehlo
 Using bound: 6
 *****************************
 sat,
 a_1: ""
+*****************************
+A-Str Solver Time (ms):22
 ************************************
 New sym int IndexOf_0_ min=-1, max=125
 numeric PC: constraint # = 1
@@ -67,19 +62,14 @@ IndexOf_0_ != CONST_2
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (not (str.suffixof "hello" a_1)))
-(assert (not (= (str.indexof a_1 "aaa") 2)))
-
-=======================================
 Numeric Path Condition Exists: IndexOf_0_ != CONST_2
 Using Alphabet: 0aehlo
 Using bound: 6
 *****************************
 sat,
-a_1: ""
+a_1: "aaa"
+*****************************
+A-Str Solver Time (ms):14
 ************************************
 numeric PC: constraint # = 1
 IndexOf_0_ == CONST_2 -> true
@@ -93,19 +83,14 @@ IndexOf_0_ == CONST_2
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (not (str.suffixof "hello" a_1)))
-(assert (= (str.indexof a_1 "aaa") 2))
-
-=======================================
 Numeric Path Condition Exists: IndexOf_0_ == CONST_2
 Using Alphabet: 0aehlo
 Using bound: 6
 *****************************
 sat,
 a_1: "00aaa"
+*****************************
+A-Str Solver Time (ms):8
 ************************************
 boo
 This is the PC at the end:constraint # = 1
@@ -120,19 +105,14 @@ IndexOf_0_[2] == CONST_2
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (not (str.suffixof "hello" a_1)))
-(assert (= (str.indexof a_1 "aaa") 2))
-
-=======================================
 Numeric Path Condition Exists: IndexOf_0_[2] == CONST_2
 Using Alphabet: 0aehlo
 Using bound: 6
 *****************************
 sat,
 a_1: "00aaa"
+*****************************
+A-Str Solver Time (ms):6
 ************************************
 This is the PC at the end:constraint # = 1
 IndexOf_0_ != CONST_2
@@ -146,19 +126,14 @@ IndexOf_0_[-1] != CONST_2
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (not (str.suffixof "hello" a_1)))
-(assert (not (= (str.indexof a_1 "aaa") 2)))
-
-=======================================
 Numeric Path Condition Exists: IndexOf_0_[-1] != CONST_2
 Using Alphabet: 0aehlo
 Using bound: 6
 *****************************
 sat,
-a_1[**UNDEFINED**]: ""
+a_1[**UNDEFINED**]: "aaa"
+*****************************
+A-Str Solver Time (ms):8
 ************************************
 string analysis: SPC # = 1
 (a_1_SYMSTRING[**UNDEFINED**] notendswith CONST_hello)
@@ -166,23 +141,13 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (not (str.suffixof "hello" a_1)))
-
-
-=======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
-****** Solutions from cache ******
-a_1: ""
-**********************************
+Using Alphabet: 0ehlo
+Using bound: 6
+*****************************
+sat,
+a_1[**UNDEFINED**]: ""
+*****************************
+A-Str Solver Time (ms):3
 ************************************
 ## Warning: empty path condition
 ### PCs: total:4 sat:4 unsat:0
@@ -193,23 +158,13 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (str.suffixof "hello" a_1))
-
-
-=======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
-****** Solutions from cache ******
+Using Alphabet: 0ehlo
+Using bound: 6
+*****************************
+sat,
 a_1: "hello"
-**********************************
+*****************************
+A-Str Solver Time (ms):4
 ************************************
 abc
 New sym int IndexOf_1_ min=-1, max=125
@@ -225,18 +180,14 @@ IndexOf_1_ != CONST_2
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (str.suffixof "hello" a_1))
-(assert (not (= (str.indexof a_1 "aaa") 2)))
-
-=======================================
 Numeric Path Condition Exists: IndexOf_1_ != CONST_2
 Using Alphabet: 0aehlo
 Using bound: 6
 *****************************
-unsat
+sat,
+a_1: "hello"
+*****************************
+A-Str Solver Time (ms):4
 ************************************
 numeric PC: constraint # = 1
 IndexOf_1_ == CONST_2 -> true
@@ -250,20 +201,14 @@ IndexOf_1_ == CONST_2
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (str.suffixof "hello" a_1))
-(assert (= (str.indexof a_1 "aaa") 2))
-
-=======================================
 Numeric Path Condition Exists: IndexOf_1_ == CONST_2
 Using Alphabet: 0aehlo
 Using bound: 6
 *****************************
 unsat
+*****************************
+A-Str Solver Time (ms):2
 ************************************
-boo
 This is the PC at the end:constraint # = 0
 string analysis: SPC # = 1
 (a_1_SYMSTRING endswith CONST_hello)
@@ -271,23 +216,13 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (str.suffixof "hello" a_1))
-
-
-=======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
-****** Solutions from cache ******
+Using Alphabet: 0ehlo
+Using bound: 6
+*****************************
+sat,
 a_1: "hello"
-**********************************
+*****************************
+A-Str Solver Time (ms):2
 ************************************
 
 ====================================================== Method Sequences
@@ -317,14 +252,14 @@ public class gov_nasa_jpf_symbc_strings_ExSymExeStrings40Test {
 no errors detected
 
 ====================================================== statistics
-elapsed time:       00:00:01
+elapsed time:       00:00:00
 states:             new=7,visited=0,backtracked=7,end=3
 search:             maxDepth=4,constraints=0
 choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=3
-heap:               new=485,released=31,maxLive=458,gcCycles=6
-instructions:       6430
-max memory:         245MB
+heap:               new=483,released=31,maxLive=458,gcCycles=6
+instructions:       6425
+max memory:         477MB
 loaded code:        classes=82,methods=1665
 
-====================================================== search finished: 11/11/25 8:18 PM
-Runtime(ms) :1562
+====================================================== search finished: 11/25/25 12:13 PM
+Runtime(ms) :520

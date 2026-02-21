@@ -60,6 +60,11 @@ public class MASCache {
 			// here we check for equivalence or contradiciton and add solutions accordingly
 			String varName = pca.getSymVarNameForValidPred(pred);
 			boolean foundInCache = false;
+			if (cache.get(pred) != null) {
+				result.addSolution(varName, cache.get(pred));
+				foundInCache = true;
+				continue;
+			}
 			for (Object cachedPred : cache.keySet()) {
 				if (pred.equals(cachedPred)) {
 					result.addSolution(varName, cache.get(pred));

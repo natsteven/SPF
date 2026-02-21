@@ -53,6 +53,7 @@ public class Translator<Manager extends TranslationManager> {
 			symbolicStringDeclarations(Results.stringVariables),
 		        symbolicNumericDeclarations(Results.numericVariables)
 		));
+		decls.addAll(Results.declarations);
 		
 		String predecls = decls.stream().collect(Collectors.joining("\n"));
 

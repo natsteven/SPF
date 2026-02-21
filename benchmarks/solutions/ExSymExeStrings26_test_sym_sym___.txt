@@ -1,22 +1,6 @@
 ************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
 
-(assert (not (= (str.++ a_1 b_2) "abc")))
 ------------------------------------
 MAS:
-sat,
-b_2: ""
-a_1: ""
-
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-
-(assert (= (str.++ a_1 b_2) "abc"))
-------------------------------------
-MAS:
-sat,
-b_2: "abc"
-a_1: ""
+A-Str Solver Time (ms):4
 

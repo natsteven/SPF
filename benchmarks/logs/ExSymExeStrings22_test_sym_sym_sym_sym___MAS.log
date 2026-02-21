@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=-1.7976931348623157E308
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 6a090698f11a9cc3be48deaf17c1c120a561c439) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev a949b735aba7ed852115d24065a70b5ccd5ece33) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 gov.nasa.jpf.symbc.strings.ExSymExeStrings22.main()
 
-====================================================== search started: 11/11/25 8:18 PM
+====================================================== search started: 11/25/25 12:13 PM
 New sym int a_1_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int b_2_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int c_3_SYMSTRING.length min=-2147483648, max=2147483647
@@ -42,20 +42,14 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-(declare-const b_2 String)
-
-(assert (not (= a_1 b_2)))
-
-
-=======================================
 Using Alphabet: ABC
 Using bound: 4
 *****************************
 sat,
 a_1: "A"
 b_2: ""
+*****************************
+A-Str Solver Time (ms):25
 ************************************
 ## Warning: empty path condition
 ### PCs: total:2 sat:2 unsat:0
@@ -66,16 +60,6 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-(declare-const b_2 String)
-(declare-const c_3 String)
-
-(assert (not (= b_2 c_3)))
-(assert (not (= a_1 b_2)))
-
-
-=======================================
 Using Alphabet: ABC
 Using bound: 4
 *****************************
@@ -83,6 +67,8 @@ sat,
 a_1: "A"
 c_3: "A"
 b_2: ""
+*****************************
+A-Str Solver Time (ms):6
 ************************************
 ## Warning: empty path condition
 ### PCs: total:3 sat:3 unsat:0
@@ -93,18 +79,6 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-(declare-const b_2 String)
-(declare-const c_3 String)
-(declare-const d_4 String)
-
-(assert (not (= c_3 d_4)))
-(assert (not (= b_2 c_3)))
-(assert (not (= a_1 b_2)))
-
-
-=======================================
 Using Alphabet: ABC
 Using bound: 4
 *****************************
@@ -113,6 +87,8 @@ a_1: "A"
 d_4: ""
 b_2: ""
 c_3: "A"
+*****************************
+A-Str Solver Time (ms):6
 ************************************
 --------->property violated
 pc 0 constraint # = 0
@@ -122,18 +98,6 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-(declare-const b_2 String)
-(declare-const c_3 String)
-(declare-const d_4 String)
-
-(assert (not (= c_3 d_4)))
-(assert (not (= b_2 c_3)))
-(assert (not (= a_1 b_2)))
-
-
-=======================================
 Using Alphabet: ABC
 Using bound: 4
 *****************************
@@ -142,6 +106,8 @@ a_1: "A"
 d_4: ""
 b_2: ""
 c_3: "A"
+*****************************
+A-Str Solver Time (ms):5
 ************************************
 
 ====================================================== error 1
@@ -198,8 +164,8 @@ search:             maxDepth=5,constraints=0
 choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=4
 heap:               new=474,released=4,maxLive=454,gcCycles=3
 instructions:       6391
-max memory:         245MB
+max memory:         477MB
 loaded code:        classes=85,methods=1654
 
-====================================================== search finished: 11/11/25 8:18 PM
-Runtime(ms) :1388
+====================================================== search finished: 11/25/25 12:13 PM
+Runtime(ms) :445

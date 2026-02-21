@@ -20,6 +20,19 @@ public class TestSPF extends gov.nasa.jpf.util.test.TestJPF {
 	};
 
 	@Test
+	public void testExeSymExeStrings40() {
+		if (verifyNoPropertyViolation(options)) {
+			gov.nasa.jpf.symbc.strings.ExSymExeStrings40.test(Verifier.nondetString(), Verifier.nondetString(), 1);
+		}
+	}
+
+	@Test
+	public void testExeSymExeStrings13() {
+		if (verifyUnhandledException("java.lang.RuntimeException", options))
+			gov.nasa.jpf.symbc.strings.ExSymExeStrings13.test(Verifier.nondetString(), Verifier.nondetString());
+	}
+
+	@Test
 	public void testExeSymExeStrings39() {
 		if (verifyNoPropertyViolation(options))
 			gov.nasa.jpf.symbc.strings.ExSymExeStrings39.test(Verifier.nondetString(), Verifier.nondetString(), 1);

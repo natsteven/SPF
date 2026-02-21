@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=-1.7976931348623157E308
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 6a090698f11a9cc3be48deaf17c1c120a561c439) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev a949b735aba7ed852115d24065a70b5ccd5ece33) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 edu.boisestate.cs.MAS.InsertTest.main()
 
-====================================================== search started: 11/11/25 8:17 PM
+====================================================== search started: 11/25/25 12:13 PM
 s1 is Hello
 s1 + 'World' equals 'HelloWorld'
 New sym int s1_1_SYMSTRING.length min=-2147483648, max=2147483647
@@ -42,18 +42,13 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const s1_1 String)
-
-(assert (not (= s1_1 "Hello")))
-
-
-=======================================
 Using Alphabet: 0Helo
 Using bound: 6
 *****************************
 sat,
 s1_1: ""
+*****************************
+A-Str Solver Time (ms):22
 ************************************
 ## Warning: empty path condition
 ### PCs: total:2 sat:2 unsat:0
@@ -64,21 +59,14 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const s1_1 String)
-(declare-const s2_2 String)
-
-(assert (not (= (str.++ (str.substr s1_1 0 5) s2_2 (str.substr s1_1 5 (str.len s1_1))) "HelloWorld")))
-(assert (not (= s1_1 "Hello")))
-
-(assert (<= 5 (str.len s1_1)))
-=======================================
 Using Alphabet: 0HWdelor
 Using bound: 11
 *****************************
 sat,
 s2_2: ""
 s1_1: "00000"
+*****************************
+A-Str Solver Time (ms):38
 ************************************
 string analysis: SPC # = 2
 (.insert[(s1_1_SYMSTRING)(s2_2_SYMSTRING)(CONST_5)] notequals CONST_HelloWorld) && (s1_1_SYMSTRING notequals CONST_Hello)
@@ -86,21 +74,14 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const s1_1 String)
-(declare-const s2_2 String)
-
-(assert (not (= (str.++ (str.substr s1_1 0 5) s2_2 (str.substr s1_1 5 (str.len s1_1))) "HelloWorld")))
-(assert (not (= s1_1 "Hello")))
-
-(assert (<= 5 (str.len s1_1)))
-=======================================
 Using Alphabet: 0HWdelor
 Using bound: 11
 *****************************
 sat,
 s2_2: ""
 s1_1: "00000"
+*****************************
+A-Str Solver Time (ms):23
 ************************************
 ## Warning: empty path condition
 ### PCs: total:3 sat:3 unsat:0
@@ -111,21 +92,14 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const s1_1 String)
-(declare-const s2_2 String)
-
-(assert (= (str.++ (str.substr s1_1 0 5) s2_2 (str.substr s1_1 5 (str.len s1_1))) "HelloWorld"))
-(assert (not (= s1_1 "Hello")))
-
-(assert (<= 5 (str.len s1_1)))
-=======================================
 Using Alphabet: 0HWdelor
 Using bound: 11
 *****************************
 sat,
 s2_2: ""
 s1_1: "HelloWorld"
+*****************************
+A-Str Solver Time (ms):11
 ************************************
 s1 + s2 equals 'HelloWorld'
 string analysis: SPC # = 2
@@ -134,21 +108,14 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const s1_1 String)
-(declare-const s2_2 String)
-
-(assert (= (str.++ (str.substr s1_1 0 5) s2_2 (str.substr s1_1 5 (str.len s1_1))) "HelloWorld"))
-(assert (not (= s1_1 "Hello")))
-
-(assert (<= 5 (str.len s1_1)))
-=======================================
 Using Alphabet: 0HWdelor
 Using bound: 11
 *****************************
 sat,
 s2_2: ""
 s1_1: "HelloWorld"
+*****************************
+A-Str Solver Time (ms):10
 ************************************
 string analysis: SPC # = 1
 (s1_1_SYMSTRING[**UNDEFINED**] notequals CONST_Hello)
@@ -156,23 +123,13 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const s1_1 String)
-
-(assert (not (= s1_1 "Hello")))
-
-
-=======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
-****** Solutions from cache ******
-s1_1: ""
-**********************************
+Using Alphabet: 0Helo
+Using bound: 6
+*****************************
+sat,
+s1_1[**UNDEFINED**]: ""
+*****************************
+A-Str Solver Time (ms):2
 ************************************
 ## Warning: empty path condition
 ### PCs: total:4 sat:4 unsat:0
@@ -183,23 +140,13 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const s1_1 String)
-
-(assert (= s1_1 "Hello"))
-
-
-=======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
-****** Solutions from cache ******
+Using Alphabet: 0Helo
+Using bound: 6
+*****************************
+sat,
 s1_1: "Hello"
-**********************************
+*****************************
+A-Str Solver Time (ms):1
 ************************************
 s1 is Hello
 ## Warning: empty path condition
@@ -211,21 +158,14 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const s1_1 String)
-(declare-const s2_2 String)
-
-(assert (not (= (str.++ (str.substr s1_1 0 5) s2_2 (str.substr s1_1 5 (str.len s1_1))) "HelloWorld")))
-(assert (= s1_1 "Hello"))
-
-(assert (<= 5 (str.len s1_1)))
-=======================================
 Using Alphabet: 0HWdelor
 Using bound: 11
 *****************************
 sat,
 s2_2: ""
 s1_1: "Hello"
+*****************************
+A-Str Solver Time (ms):14
 ************************************
 string analysis: SPC # = 2
 (.insert[(s1_1_SYMSTRING)(s2_2_SYMSTRING)(CONST_5)] notequals CONST_HelloWorld) && (s1_1_SYMSTRING equals CONST_Hello)
@@ -233,21 +173,14 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const s1_1 String)
-(declare-const s2_2 String)
-
-(assert (not (= (str.++ (str.substr s1_1 0 5) s2_2 (str.substr s1_1 5 (str.len s1_1))) "HelloWorld")))
-(assert (= s1_1 "Hello"))
-
-(assert (<= 5 (str.len s1_1)))
-=======================================
 Using Alphabet: 0HWdelor
 Using bound: 11
 *****************************
 sat,
 s2_2: ""
 s1_1: "Hello"
+*****************************
+A-Str Solver Time (ms):21
 ************************************
 ## Warning: empty path condition
 ### PCs: total:6 sat:6 unsat:0
@@ -258,21 +191,14 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const s1_1 String)
-(declare-const s2_2 String)
-
-(assert (= (str.++ (str.substr s1_1 0 5) s2_2 (str.substr s1_1 5 (str.len s1_1))) "HelloWorld"))
-(assert (= s1_1 "Hello"))
-
-(assert (<= 5 (str.len s1_1)))
-=======================================
 Using Alphabet: 0HWdelor
 Using bound: 11
 *****************************
 sat,
 s2_2: "World"
 s1_1: "Hello"
+*****************************
+A-Str Solver Time (ms):12
 ************************************
 s1 + s2 equals 'HelloWorld'
 string analysis: SPC # = 2
@@ -281,21 +207,14 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const s1_1 String)
-(declare-const s2_2 String)
-
-(assert (= (str.++ (str.substr s1_1 0 5) s2_2 (str.substr s1_1 5 (str.len s1_1))) "HelloWorld"))
-(assert (= s1_1 "Hello"))
-
-(assert (<= 5 (str.len s1_1)))
-=======================================
 Using Alphabet: 0HWdelor
 Using bound: 11
 *****************************
 sat,
 s2_2: "World"
 s1_1: "Hello"
+*****************************
+A-Str Solver Time (ms):9
 ************************************
 string analysis: SPC # = 1
 (s1_1_SYMSTRING[**UNDEFINED**] equals CONST_Hello)
@@ -303,23 +222,13 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const s1_1 String)
-
-(assert (= s1_1 "Hello"))
-
-
-=======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
-****** Solutions from cache ******
-s1_1: "Hello"
-**********************************
+Using Alphabet: 0Helo
+Using bound: 6
+*****************************
+sat,
+s1_1[**UNDEFINED**]: "Hello"
+*****************************
+A-Str Solver Time (ms):1
 ************************************
 
 ====================================================== Method Sequences
@@ -349,14 +258,14 @@ public class edu_boisestate_cs_MAS_InsertTestTest {
 no errors detected
 
 ====================================================== statistics
-elapsed time:       00:00:01
+elapsed time:       00:00:00
 states:             new=11,visited=0,backtracked=11,end=4
 search:             maxDepth=4,constraints=0
 choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=4
 heap:               new=483,released=62,maxLive=465,gcCycles=8
 instructions:       6519
-max memory:         245MB
+max memory:         477MB
 loaded code:        classes=83,methods=1770
 
-====================================================== search finished: 11/11/25 8:17 PM
-Runtime(ms) :3145
+====================================================== search finished: 11/25/25 12:13 PM
+Runtime(ms) :581

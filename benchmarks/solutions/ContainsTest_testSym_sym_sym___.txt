@@ -1,22 +1,6 @@
 ************************************
-(declare-const s1_1 String)
-(declare-const s2_2 String)
 
-(assert (str.contains s1_1 s2_2))
 ------------------------------------
 MAS:
-sat,
-s1_1: ""
-s2_2: ""
-
-************************************
-(declare-const s1_1 String)
-(declare-const s2_2 String)
-
-(assert (not (str.contains s1_1 s2_2)))
-------------------------------------
-MAS:
-sat,
-s1_1: ""
-s2_2: "A"
+A-Str Solver Time (ms):2
 

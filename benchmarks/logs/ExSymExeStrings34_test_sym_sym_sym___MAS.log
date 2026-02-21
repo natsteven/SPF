@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=-1.7976931348623157E308
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 6a090698f11a9cc3be48deaf17c1c120a561c439) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev a949b735aba7ed852115d24065a70b5ccd5ece33) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 gov.nasa.jpf.symbc.strings.ExSymExeStrings34.main()
 
-====================================================== search started: 11/11/25 8:18 PM
+====================================================== search started: 11/25/25 12:13 PM
 New sym int a_1_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int b_2_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int x_3_SYMINT min=-2147483648, max=2147483647
@@ -41,18 +41,13 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (not (str.suffixof "aa" a_1)))
-
-
-=======================================
 Using Alphabet: 0a
 Using bound: 4
 *****************************
 sat,
 a_1: ""
+*****************************
+A-Str Solver Time (ms):19
 ************************************
 New sym int CharAt(CONST_0)_0_ min=0, max=65535
 numeric PC: constraint # = 1
@@ -67,19 +62,14 @@ CharAt(CONST_0)_0_ != CONST_97
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (not (str.suffixof "aa" a_1)))
-(assert (not (= (str.at a_1 0) "a")))
-
-=======================================
 Numeric Path Condition Exists: CharAt(CONST_0)_0_ != CONST_97
 Using Alphabet: 0a
 Using bound: 4
 *****************************
 sat,
 a_1: "0"
+*****************************
+A-Str Solver Time (ms):6
 ************************************
 numeric PC: constraint # = 1
 CharAt(CONST_0)_0_ == CONST_97 -> true
@@ -93,19 +83,14 @@ CharAt(CONST_0)_0_ == CONST_97
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (not (str.suffixof "aa" a_1)))
-(assert (= (str.at a_1 0) "a"))
-
-=======================================
 Numeric Path Condition Exists: CharAt(CONST_0)_0_ == CONST_97
 Using Alphabet: 0a
 Using bound: 4
 *****************************
 sat,
 a_1: "a"
+*****************************
+A-Str Solver Time (ms):4
 ************************************
 boo
 This is the PC at the end:constraint # = 1
@@ -120,19 +105,14 @@ CharAt(CONST_0)_0_[97] == CONST_97
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (not (str.suffixof "aa" a_1)))
-(assert (= (str.at a_1 0) "a"))
-
-=======================================
 Numeric Path Condition Exists: CharAt(CONST_0)_0_[97] == CONST_97
 Using Alphabet: 0a
 Using bound: 4
 *****************************
 sat,
 a_1: "a"
+*****************************
+A-Str Solver Time (ms):3
 ************************************
 This is the PC at the end:constraint # = 1
 CharAt(CONST_0)_0_ != CONST_97
@@ -146,19 +126,14 @@ CharAt(CONST_0)_0_[0] != CONST_97
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (not (str.suffixof "aa" a_1)))
-(assert (not (= (str.at a_1 0) "a")))
-
-=======================================
 Numeric Path Condition Exists: CharAt(CONST_0)_0_[0] != CONST_97
 Using Alphabet: 0a
 Using bound: 4
 *****************************
 sat,
 a_1[**UNDEFINED**]: "0"
+*****************************
+A-Str Solver Time (ms):3
 ************************************
 string analysis: SPC # = 1
 (a_1_SYMSTRING[**UNDEFINED**] notendswith CONST_aa)
@@ -166,23 +141,13 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (not (str.suffixof "aa" a_1)))
-
-
-=======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
-****** Solutions from cache ******
-a_1: ""
-**********************************
+Using Alphabet: 0a
+Using bound: 4
+*****************************
+sat,
+a_1[**UNDEFINED**]: ""
+*****************************
+A-Str Solver Time (ms):2
 ************************************
 ## Warning: empty path condition
 ### PCs: total:4 sat:4 unsat:0
@@ -193,23 +158,13 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (str.suffixof "aa" a_1))
-
-
-=======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
-****** Solutions from cache ******
+Using Alphabet: 0a
+Using bound: 4
+*****************************
+sat,
 a_1: "aa"
-**********************************
+*****************************
+A-Str Solver Time (ms):3
 ************************************
 abc
 numeric PC: constraint # = 1
@@ -224,19 +179,14 @@ CharAt(CONST_0)_0_ != CONST_97
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (str.suffixof "aa" a_1))
-(assert (not (= (str.at a_1 0) "a")))
-
-=======================================
 Numeric Path Condition Exists: CharAt(CONST_0)_0_ != CONST_97
 Using Alphabet: 0a
 Using bound: 4
 *****************************
 sat,
 a_1: "0aa"
+*****************************
+A-Str Solver Time (ms):4
 ************************************
 numeric PC: constraint # = 1
 CharAt(CONST_0)_0_ == CONST_97 -> true
@@ -250,19 +200,14 @@ CharAt(CONST_0)_0_ == CONST_97
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (str.suffixof "aa" a_1))
-(assert (= (str.at a_1 0) "a"))
-
-=======================================
 Numeric Path Condition Exists: CharAt(CONST_0)_0_ == CONST_97
 Using Alphabet: 0a
 Using bound: 4
 *****************************
 sat,
 a_1: "aa"
+*****************************
+A-Str Solver Time (ms):3
 ************************************
 boo
 This is the PC at the end:constraint # = 1
@@ -277,19 +222,14 @@ CharAt(CONST_0)_0_[97] == CONST_97
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (str.suffixof "aa" a_1))
-(assert (= (str.at a_1 0) "a"))
-
-=======================================
 Numeric Path Condition Exists: CharAt(CONST_0)_0_[97] == CONST_97
 Using Alphabet: 0a
 Using bound: 4
 *****************************
 sat,
 a_1: "aa"
+*****************************
+A-Str Solver Time (ms):2
 ************************************
 This is the PC at the end:constraint # = 1
 CharAt(CONST_0)_0_ != CONST_97
@@ -303,19 +243,14 @@ CharAt(CONST_0)_0_[0] != CONST_97
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (str.suffixof "aa" a_1))
-(assert (not (= (str.at a_1 0) "a")))
-
-=======================================
 Numeric Path Condition Exists: CharAt(CONST_0)_0_[0] != CONST_97
 Using Alphabet: 0a
 Using bound: 4
 *****************************
 sat,
 a_1[**UNDEFINED**]: "0aa"
+*****************************
+A-Str Solver Time (ms):2
 ************************************
 string analysis: SPC # = 1
 (a_1_SYMSTRING[**UNDEFINED**] endswith CONST_aa)
@@ -323,23 +258,13 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-
-(assert (str.suffixof "aa" a_1))
-
-
-=======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
-****** Solutions from cache ******
-a_1: "aa"
-**********************************
+Using Alphabet: 0a
+Using bound: 4
+*****************************
+sat,
+a_1[**UNDEFINED**]: "aa"
+*****************************
+A-Str Solver Time (ms):2
 ************************************
 
 ====================================================== Method Sequences
@@ -369,14 +294,14 @@ public class gov_nasa_jpf_symbc_strings_ExSymExeStrings34Test {
 no errors detected
 
 ====================================================== statistics
-elapsed time:       00:00:01
+elapsed time:       00:00:00
 states:             new=9,visited=0,backtracked=9,end=4
 search:             maxDepth=4,constraints=0
 choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=4
 heap:               new=486,released=40,maxLive=458,gcCycles=8
 instructions:       6450
-max memory:         245MB
+max memory:         477MB
 loaded code:        classes=82,methods=1665
 
-====================================================== search finished: 11/11/25 8:18 PM
-Runtime(ms) :1628
+====================================================== search finished: 11/25/25 12:13 PM
+Runtime(ms) :489

@@ -1,68 +1,42 @@
 ************************************
-(declare-const s1_1 String)
-(declare-const s2_2 String)
 
-(assert (not (str.contains s1_1 s2_2)))
-(assert (= (str.len s2_2) 0))
 ------------------------------------
 MAS:
-unsat
 
-************************************
-(declare-const s1_1 String)
-(declare-const s2_2 String)
+====================================================== Method Sequences
+[testMixed(**UNDEFINED**,**UNDEFINED**)]
 
-(assert (str.contains s1_1 s2_2))
-(assert (not (= (str.len s2_2) 0)))
-------------------------------------
-MAS:
-sat,
-s1_1: "A"
-s2_2: "A"
+====================================================== JUnit 4.0 test class
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
 
-************************************
-(declare-const s1_1 String)
-(declare-const s2_2 String)
+public class edu_boisestate_cs_MAS_IsEmptyTestTest {
 
-(assert (str.contains s1_1 s2_2))
-(assert (= (str.len s2_2) 0))
-------------------------------------
-MAS:
-sat,
-s1_1[**UNDEFINED**]: ""
-s2_2[**UNDEFINED**]: ""
+	private edu.boisestate.cs.MAS.IsEmptyTest edu_boisestate_cs_mas_isemptytest;
 
-************************************
-(declare-const s1_1 String)
-(declare-const s2_2 String)
+	@Before
+	public void setUp() throws Exception {
+		edu_boisestate_cs_mas_isemptytest = new edu.boisestate.cs.MAS.IsEmptyTest();
+	}
 
-(assert (not (str.contains s1_1 s2_2)))
-(assert (not (= (str.len s2_2) 0)))
-------------------------------------
-MAS:
-sat,
-s1_1: ""
-s2_2: "A"
+	@Test
+	public void test0() {
+		edu_boisestate_cs_mas_isemptytest.testMixed(**UNDEFINED**,**UNDEFINED**);
+	}
+}
 
-************************************
-(declare-const s1_1 String)
-(declare-const s2_2 String)
+====================================================== results
+no errors detected
 
-(assert (str.contains s1_1 s2_2))
-------------------------------------
-MAS:
-sat,
-s1_1[**UNDEFINED**]: ""
-s2_2[**UNDEFINED**]: ""
+====================================================== statistics
+elapsed time:       00:00:00
+states:             new=11,visited=0,backtracked=11,end=3
+search:             maxDepth=4,constraints=0
+choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=4
+heap:               new=473,released=38,maxLive=460,gcCycles=6
+instructions:       6403
+max memory:         477MB
+loaded code:        classes=83,methods=1770
 
-************************************
-(declare-const s1_1 String)
-(declare-const s2_2 String)
-
-(assert (not (str.contains s1_1 s2_2)))
-------------------------------------
-MAS:
-sat,
-s1_1[**UNDEFINED**]: ""
-s2_2[**UNDEFINED**]: "A"
 

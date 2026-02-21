@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=-1.7976931348623157E308
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 6a090698f11a9cc3be48deaf17c1c120a561c439) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev a949b735aba7ed852115d24065a70b5ccd5ece33) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 edu.boisestate.cs.MAS.ReplaceTest.main()
 
-====================================================== search started: 11/11/25 8:17 PM
+====================================================== search started: 11/25/25 12:13 PM
 s2 equals "ba"
 New sym int s1_1_SYMSTRING.length min=-2147483648, max=2147483647
 ## Warning: empty path condition
@@ -40,18 +40,13 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const s1_1 String)
-
-(assert (not (= (str.replace_all s1_1 "Ǉ" "ǅ") "aa")))
-
-
-=======================================
 Using Alphabet: 0aǅǇ
 Using bound: 4
 *****************************
 sat,
 s1_1: ""
+*****************************
+A-Str Solver Time (ms):27
 ************************************
 s2 does not equal "muggy"
 string analysis: SPC # = 1
@@ -60,23 +55,13 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const s1_1 String)
-
-(assert (not (= (str.replace_all s1_1 "Ǉ" "ǅ") "aa")))
-
-
-=======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
-****** Solutions from cache ******
+Using Alphabet: 0aǅǇ
+Using bound: 4
+*****************************
+sat,
 s1_1: ""
-**********************************
+*****************************
+A-Str Solver Time (ms):6
 ************************************
 ## Warning: empty path condition
 ### PCs: total:2 sat:2 unsat:0
@@ -87,23 +72,13 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const s1_1 String)
-
-(assert (= (str.replace_all s1_1 "Ǉ" "ǅ") "aa"))
-
-
-=======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
-****** Solutions from cache ******
+Using Alphabet: 0aǅǇ
+Using bound: 4
+*****************************
+sat,
 s1_1: "aa"
-**********************************
+*****************************
+A-Str Solver Time (ms):3
 ************************************
 s2 equals "muggy"
 string analysis: SPC # = 1
@@ -112,23 +87,13 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const s1_1 String)
-
-(assert (= (str.replace_all s1_1 "Ǉ" "ǅ") "aa"))
-
-
-=======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
-****** Solutions from cache ******
+Using Alphabet: 0aǅǇ
+Using bound: 4
+*****************************
+sat,
 s1_1: "aa"
-**********************************
+*****************************
+A-Str Solver Time (ms):3
 ************************************
 
 ====================================================== Method Sequences
@@ -158,14 +123,14 @@ public class edu_boisestate_cs_MAS_ReplaceTestTest {
 no errors detected
 
 ====================================================== statistics
-elapsed time:       00:00:01
+elapsed time:       00:00:00
 states:             new=5,visited=0,backtracked=5,end=2
 search:             maxDepth=3,constraints=0
 choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=2
 heap:               new=468,released=28,maxLive=458,gcCycles=4
 instructions:       6383
-max memory:         245MB
+max memory:         477MB
 loaded code:        classes=81,methods=1619
 
-====================================================== search finished: 11/11/25 8:17 PM
-Runtime(ms) :1993
+====================================================== search finished: 11/25/25 12:13 PM
+Runtime(ms) :463

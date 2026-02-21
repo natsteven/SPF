@@ -8,8 +8,11 @@ import edu.boisestate.cs.graph.SolutionSet.Solution;
 import edu.ucsb.cs.vlab.translate.smtlib.from.z3str3.Z3Translator;
 import gov.nasa.jpf.symbc.SymbolicInstructionFactory;
 import gov.nasa.jpf.symbc.string.StringPathCondition;
+import java.lang.management.GarbageCollectorMXBean;
+import java.lang.management.ManagementFactory;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class MASInterface {
 	private static final MASCache cache = new MASCache();
@@ -23,7 +26,7 @@ public class MASInterface {
 		printSMT(pc);
 
 		PathConstraintAnalysis pca = new PathConstraintAnalysis(pc);
-		pca.printInfo();
+//		pca.printInfo();
 
 		SolutionSet<Model_Acyclic_Inverse> sol = null;
 
@@ -53,11 +56,11 @@ public class MASInterface {
 			}
 
 			System.out.println("Solving remaining predicates ...");
-			// otherwise we solve for remaining
+//			 otherwise we solve for remaining
 			printSMT(toSolve);
 
 			SolutionSet<Model_Acyclic_Inverse> newSolutions = runPC(toSolve);
-			// merge solutions
+//			 merge solutions
 
 			sol = mergeSolutions(solutionsFromCache, newSolutions);
 
@@ -102,12 +105,13 @@ public class MASInterface {
 		System.out.println("*****************************");
 
 		MASProcessor processor = new MASProcessor(false, alpha, bound);
-		long startTime = System.currentTimeMillis();
+		long startTime = System.nanoTime();
 		SolutionSet<Model_Acyclic_Inverse> result = processor.query(graph);
-		long endTime = System.currentTimeMillis();
+		long endTime = System.nanoTime();
+
 		System.out.println("*****************************");
-		System.out.println("A-Str Solver Time (ms):" + (endTime - startTime));
-		return processor.query(graph);
+		System.out.println("A-Str Solver Time (ms):" + ((endTime - startTime)/1000000));
+		return result;
 //		}
 //		catch (Exception e) {
 //			e.printStackTrace();

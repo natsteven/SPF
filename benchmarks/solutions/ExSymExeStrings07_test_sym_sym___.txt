@@ -1,20 +1,6 @@
 ************************************
-(declare-const a_1 String)
 
-
-(assert (not (= (str.at a_1 1) "a")))
 ------------------------------------
 MAS:
-sat,
-a_1[**UNDEFINED**]: "00"
-
-************************************
-(declare-const a_1 String)
-
-
-(assert (= (str.at a_1 1) "a"))
-------------------------------------
-MAS:
-sat,
-a_1: "0a"
+A-Str Solver Time (ms):2
 

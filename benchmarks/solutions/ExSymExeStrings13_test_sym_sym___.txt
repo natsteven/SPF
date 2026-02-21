@@ -36,56 +36,7 @@ search:             maxDepth=4,constraints=0
 choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=3
 heap:               new=470,released=24,maxLive=456,gcCycles=5
 instructions:       6388
-max memory:         245MB
+max memory:         477MB
 loaded code:        classes=82,methods=1665
 
-
-************************************
-(declare-const a_1 String)
-
-(assert (str.prefixof " " a_1))
-------------------------------------
-MAS:
-a_1: " "
-
-************************************
-(declare-const a_1 String)
-(declare-const out_str String)
-
-(assert (= out_str "ab"))
-(assert (str.prefixof " " a_1))
-
-(declare-const nwc RegLan)
-(declare-const ws RegLan)
-(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
-(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
-(assert (and (str.in_re a_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
-------------------------------------
-MAS:
-unsat
-
-************************************
-(declare-const a_1 String)
-
-(assert (not (str.prefixof " " a_1)))
-------------------------------------
-MAS:
-a_1: ""
-
-************************************
-(declare-const a_1 String)
-(declare-const out_str String)
-
-(assert (not (= out_str "ab")))
-(assert (str.prefixof " " a_1))
-
-(declare-const nwc RegLan)
-(declare-const ws RegLan)
-(assert (= nwc (re.diff re.allchar (re.range (str.from_code 0) (str.from_code 32)))))
-(assert (= ws (re.union (re.+ (re.range (str.from_code 0) (str.from_code 32))) (str.to_re ""))))
-(assert (and (str.in_re a_1 (re.++ ws (str.to_re out_str) ws)) (or (= out_str "")(and (str.in_re out_str (re.++ nwc re.all)) (str.in_re out_str (re.++ re.all nwc))))))
-------------------------------------
-MAS:
-sat,
-a_1: " "
 

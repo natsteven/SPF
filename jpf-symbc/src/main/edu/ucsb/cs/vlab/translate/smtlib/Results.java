@@ -6,11 +6,13 @@ import java.util.Set;
 public class Results {
 	public static final Set<String> stringVariables = new HashSet<String>();
 	public static final Set<String> numericVariables = new HashSet<String>();
+	public static final Set<String> declarations = new HashSet<>();
 	public static final Set<String> constraints = new HashSet<String>();
 	
 	public static void Clear() {
 		stringVariables.clear();
 		numericVariables.clear();
+		declarations.clear();
 		constraints.clear();
 	}
 }

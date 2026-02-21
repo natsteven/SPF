@@ -1,46 +1,6 @@
 ************************************
-(declare-const s1_1 String)
-(declare-const s2_2 String)
 
-(assert (str.suffixof s2_2 s1_1))
 ------------------------------------
 MAS:
-sat,
-s1_1: ""
-s2_2: ""
-
-************************************
-(declare-const s1_1 String)
-(declare-const s2_2 String)
-
-(assert (not (str.suffixof s1_1 s2_2)))
-(assert (not (str.suffixof s2_2 s1_1)))
-------------------------------------
-MAS:
-sat,
-s2_2: "B"
-s1_1: "AAAA"
-
-************************************
-(declare-const s1_1 String)
-(declare-const s2_2 String)
-
-(assert (str.suffixof s1_1 s2_2))
-(assert (not (str.suffixof s2_2 s1_1)))
-------------------------------------
-MAS:
-sat,
-s2_2: "BA"
-s1_1: "A"
-
-************************************
-(declare-const s1_1 String)
-(declare-const s2_2 String)
-
-(assert (not (str.suffixof s2_2 s1_1)))
-------------------------------------
-MAS:
-sat,
-s1_1[**UNDEFINED**]: "A"
-s2_2[**UNDEFINED**]: "B"
+A-Str Solver Time (ms):2
 

@@ -1,32 +1,6 @@
 ************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
 
-(assert (not (str.prefixof "boo" b_2)))
-(assert (not (= (str.indexof "hello " a_1) 2)))
 ------------------------------------
 MAS:
-b_2: ""
-
-************************************
-(declare-const b_2 String)
-
-(assert (not (str.prefixof "boo" b_2)))
-------------------------------------
-MAS:
-sat,
-b_2: ""
-
-************************************
-(declare-const a_1 String)
-
-
-(assert (not (= (str.indexof "hello " a_1) 2)))
-------------------------------------
-MAS:
-ERROR IN EVALUATE CONCRETE VALUE 2...
-inputs model: Model_Acyclic_Inverse: alphabet:  0ehlo boundLength: 0 automaton: singleton: 
-
-
-input strings: []
+A-Str Solver Time (ms):1
 

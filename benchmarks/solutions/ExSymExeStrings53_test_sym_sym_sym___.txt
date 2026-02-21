@@ -1,12 +1,4 @@
 ************************************
-(declare-const a_1 String)
-
-(assert (str.prefixof "a" a_1))
-------------------------------------
-MAS:
-a_1: "a"
-
-************************************
 
 ------------------------------------
 MAS:
@@ -44,34 +36,7 @@ search:             maxDepth=4,constraints=0
 choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=3
 heap:               new=472,released=22,maxLive=458,gcCycles=5
 instructions:       6392
-max memory:         245MB
+max memory:         477MB
 loaded code:        classes=82,methods=1665
 
-
-************************************
-(declare-const a_1 String)
-
-(assert (str.prefixof "b" a_1))
-(assert (str.prefixof "a" a_1))
-------------------------------------
-MAS:
-unsat
-
-************************************
-(declare-const a_1 String)
-
-(assert (not (str.prefixof "b" a_1)))
-(assert (str.prefixof "a" a_1))
-------------------------------------
-MAS:
-sat,
-a_1: "a"
-
-************************************
-(declare-const a_1 String)
-
-(assert (not (str.prefixof "a" a_1)))
-------------------------------------
-MAS:
-a_1: ""
 

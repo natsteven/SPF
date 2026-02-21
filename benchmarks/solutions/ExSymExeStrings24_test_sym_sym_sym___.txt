@@ -1,154 +1,42 @@
 ************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-(declare-const c_3 String)
 
-(assert (not (str.prefixof c_3 b_2)))
-(assert (not (str.prefixof "aa" a_1)))
-(assert (not (= a_1 b_2)))
 ------------------------------------
 MAS:
-Warning, Solver.startsWith(): base model is empty
-unsat
 
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
+====================================================== Method Sequences
+[test(**UNDEFINED**,**UNDEFINED**,**UNDEFINED**)]
 
-(assert (not (str.prefixof "aa" a_1)))
-(assert (= a_1 b_2))
-------------------------------------
-MAS:
-sat,
-b_2[**UNDEFINED**]: ""
-a_1[**UNDEFINED**]: ""
+====================================================== JUnit 4.0 test class
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
 
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-(declare-const c_3 String)
+public class gov_nasa_jpf_symbc_strings_ExSymExeStrings24Test {
 
-(assert (not (str.prefixof c_3 b_2)))
-(assert (str.prefixof "aa" a_1))
-(assert (= a_1 b_2))
-------------------------------------
-MAS:
-Warning, Solver.startsWith(): base model is empty
-unsat
+	private gov.nasa.jpf.symbc.strings.ExSymExeStrings24 gov_nasa_jpf_symbc_strings_exsymexestrings24;
 
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
+	@Before
+	public void setUp() throws Exception {
+		gov_nasa_jpf_symbc_strings_exsymexestrings24 = new gov.nasa.jpf.symbc.strings.ExSymExeStrings24();
+	}
 
-(assert (= a_1 b_2))
-------------------------------------
-MAS:
-sat,
-a_1[**UNDEFINED**]: ""
-b_2[**UNDEFINED**]: ""
+	@Test
+	public void test0() {
+		gov_nasa_jpf_symbc_strings_exsymexestrings24.test(**UNDEFINED**,**UNDEFINED**,**UNDEFINED**);
+	}
+}
 
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
+====================================================== results
+no errors detected
 
-(assert (str.prefixof "aa" a_1))
-(assert (not (= a_1 b_2)))
-------------------------------------
-MAS:
-unsat
+====================================================== statistics
+elapsed time:       00:00:00
+states:             new=20,visited=0,backtracked=20,end=4
+search:             maxDepth=5,constraints=0
+choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=7
+heap:               new=482,released=40,maxLive=456,gcCycles=10
+instructions:       6483
+max memory:         477MB
+loaded code:        classes=82,methods=1665
 
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-(declare-const c_3 String)
-
-(assert (str.prefixof c_3 b_2))
-(assert (str.prefixof "aa" a_1))
-(assert (= a_1 b_2))
-------------------------------------
-MAS:
-sat,
-c_3: ""
-a_1: "aa"
-b_2: "aa"
-
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-(declare-const c_3 String)
-
-(assert (str.prefixof c_3 b_2))
-(assert (not (str.prefixof "aa" a_1)))
-(assert (= a_1 b_2))
-------------------------------------
-MAS:
-sat,
-c_3: ""
-a_1: ""
-b_2: ""
-
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-(declare-const c_3 String)
-
-(assert (not (str.prefixof c_3 b_2)))
-(assert (not (str.prefixof "aa" a_1)))
-(assert (= a_1 b_2))
-------------------------------------
-MAS:
-sat,
-c_3: "aa"
-a_1: ""
-b_2: ""
-
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-(declare-const c_3 String)
-
-(assert (str.prefixof c_3 b_2))
-(assert (not (str.prefixof "aa" a_1)))
-(assert (not (= a_1 b_2)))
-------------------------------------
-MAS:
-sat,
-c_3: ""
-a_1: ""
-b_2: "aa"
-
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-
-(assert (str.prefixof "aa" a_1))
-(assert (= a_1 b_2))
-------------------------------------
-MAS:
-sat,
-b_2[**UNDEFINED**]: "aa"
-a_1[**UNDEFINED**]: "aa"
-
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-
-(assert (not (= a_1 b_2)))
-------------------------------------
-MAS:
-sat,
-a_1: "A"
-b_2: ""
-
-************************************
-(declare-const a_1 String)
-(declare-const b_2 String)
-
-(assert (not (str.prefixof "aa" a_1)))
-(assert (not (= a_1 b_2)))
-------------------------------------
-MAS:
-sat,
-b_2[**UNDEFINED**]: ""
-a_1[**UNDEFINED**]: "0"
 

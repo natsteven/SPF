@@ -1,40 +1,6 @@
 ************************************
-(declare-const var_1_1 String)
 
-
-(assert (not (= (str.at var_1_1 1) "H")))
 ------------------------------------
 MAS:
-sat,
-var_1_1[**UNDEFINED**]: "00"
-
-************************************
-(declare-const var_1_1 String)
-
-(assert (= var_1_1 "Goodbye, World!"))
-(assert (not (= (str.at var_1_1 1) "H")))
-------------------------------------
-MAS:
-sat,
-var_1_1: "Goodbye, World!"
-
-************************************
-(declare-const var_1_1 String)
-
-(assert (not (= var_1_1 "Goodbye, World!")))
-(assert (not (= (str.at var_1_1 1) "H")))
-------------------------------------
-MAS:
-sat,
-var_1_1: "  "
-
-************************************
-(declare-const var_1_1 String)
-
-
-(assert (= (str.at var_1_1 1) "H"))
-------------------------------------
-MAS:
-sat,
-var_1_1: "0H"
+A-Str Solver Time (ms):1
 

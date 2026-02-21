@@ -22,13 +22,13 @@ symbolic.max_byte=127
 symbolic.max_char=65535
 symbolic.min_double=-1.7976931348623157E308
 symbolic.max_double=1.7976931348623157E308
-JavaPathfinder core system v8.0 (rev 6a090698f11a9cc3be48deaf17c1c120a561c439) - (C) 2005-2014 United States Government. All rights reserved.
+JavaPathfinder core system v8.0 (rev a949b735aba7ed852115d24065a70b5ccd5ece33) - (C) 2005-2014 United States Government. All rights reserved.
 
 
 ====================================================== system under test
 gov.nasa.jpf.symbc.strings.ExSymExeStrings43.main()
 
-====================================================== search started: 11/11/25 8:18 PM
+====================================================== search started: 11/25/25 12:13 PM
 New sym int a_1_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int b_2_SYMSTRING.length min=-2147483648, max=2147483647
 New sym int x_3_SYMINT min=-2147483648, max=2147483647
@@ -41,18 +41,13 @@ NPC constraint # = 0
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const b_2 String)
-
-(assert (not (str.prefixof "boo" b_2)))
-
-
-=======================================
 Using Alphabet: 0bo
 Using bound: 4
 *****************************
 sat,
 b_2: ""
+*****************************
+A-Str Solver Time (ms):19
 ************************************
 New sym int IndexOf_0_ min=-1, max=125
 numeric PC: constraint # = 1
@@ -67,41 +62,255 @@ IndexOf_0_ != CONST_2
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 Calling MAS
 
-The smtlib query is: 
-(declare-const a_1 String)
-(declare-const b_2 String)
-
-(assert (not (str.prefixof "boo" b_2)))
-(assert (not (= (str.indexof "hello" a_1) 2)))
-
-=======================================
-
-################################################
-################################################
-################	CACHE HIT	################
-################################################
-################################################
-
-****** Solutions from cache ******
-b_2: ""
-**********************************
-Solving remaining predicates ...
-The smtlib query is: 
-(declare-const a_1 String)
-
-
-(assert (not (= (str.indexof "hello" a_1) 2)))
-
-=======================================
 Numeric Path Condition Exists: IndexOf_0_ != CONST_2
-No String Constraints
-Using Alphabet: 0ehlo
+Using Alphabet: 0behlo
 Using bound: 6
 *****************************
-ERROR IN EVALUATE CONCRETE VALUE 2...
-inputs model: Model_Acyclic_Inverse: alphabet: 0ehlo boundLength: 0 automaton: singleton: 
+sat,
+b_2: ""
+a_1: ""
+*****************************
+A-Str Solver Time (ms):11
+************************************
+numeric PC: constraint # = 1
+IndexOf_0_ == CONST_2 -> true
 
+### PCs: total:3 sat:3 unsat:0
 
-input strings: []
-concrete value: hello
-Runtime(ms) :1323
+string analysis: SPC # = 1
+(b_2_SYMSTRING notstartswith CONST_boo)
+NPC constraint # = 1
+IndexOf_0_ == CONST_2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+Numeric Path Condition Exists: IndexOf_0_ == CONST_2
+Using Alphabet: 0behlo
+Using bound: 6
+*****************************
+sat,
+b_2: ""
+a_1: ""
+*****************************
+A-Str Solver Time (ms):6
+************************************
+boo
+This is the PC at the end:constraint # = 1
+IndexOf_0_ == CONST_2
+numeric PC: constraint # = 1
+IndexOf_0_ == CONST_2 -> true
+
+string analysis: SPC # = 1
+(b_2_SYMSTRING notstartswith CONST_boo)
+NPC constraint # = 1
+IndexOf_0_[2] == CONST_2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+Numeric Path Condition Exists: IndexOf_0_[2] == CONST_2
+Using Alphabet: 0behlo
+Using bound: 6
+*****************************
+sat,
+b_2: ""
+a_1: ""
+*****************************
+A-Str Solver Time (ms):7
+************************************
+This is the PC at the end:constraint # = 1
+IndexOf_0_ != CONST_2
+numeric PC: constraint # = 1
+IndexOf_0_ != CONST_2 -> true
+
+string analysis: SPC # = 1
+(b_2_SYMSTRING[**UNDEFINED**] notstartswith CONST_boo)
+NPC constraint # = 1
+IndexOf_0_[-1] != CONST_2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+Numeric Path Condition Exists: IndexOf_0_[-1] != CONST_2
+Using Alphabet: 0behlo
+Using bound: 6
+*****************************
+sat,
+b_2[**UNDEFINED**]: ""
+a_1[**UNDEFINED**]: ""
+*****************************
+A-Str Solver Time (ms):7
+************************************
+string analysis: SPC # = 1
+(b_2_SYMSTRING[**UNDEFINED**] notstartswith CONST_boo)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+Using Alphabet: 0bo
+Using bound: 4
+*****************************
+sat,
+b_2[**UNDEFINED**]: ""
+*****************************
+A-Str Solver Time (ms):2
+************************************
+## Warning: empty path condition
+### PCs: total:4 sat:4 unsat:0
+
+string analysis: SPC # = 1
+(b_2_SYMSTRING startswith CONST_boo)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+Using Alphabet: 0bo
+Using bound: 4
+*****************************
+sat,
+b_2: "boo"
+*****************************
+A-Str Solver Time (ms):2
+************************************
+aah!
+New sym int IndexOf_1_ min=-1, max=125
+numeric PC: constraint # = 1
+IndexOf_1_ != CONST_2 -> true
+
+### PCs: total:5 sat:5 unsat:0
+
+string analysis: SPC # = 1
+(b_2_SYMSTRING startswith CONST_boo)
+NPC constraint # = 1
+IndexOf_1_ != CONST_2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+Numeric Path Condition Exists: IndexOf_1_ != CONST_2
+Using Alphabet: 0behlo
+Using bound: 6
+*****************************
+sat,
+b_2: "boo"
+a_1: ""
+*****************************
+A-Str Solver Time (ms):8
+************************************
+numeric PC: constraint # = 1
+IndexOf_1_ == CONST_2 -> true
+
+### PCs: total:6 sat:6 unsat:0
+
+string analysis: SPC # = 1
+(b_2_SYMSTRING startswith CONST_boo)
+NPC constraint # = 1
+IndexOf_1_ == CONST_2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+Numeric Path Condition Exists: IndexOf_1_ == CONST_2
+Using Alphabet: 0behlo
+Using bound: 6
+*****************************
+sat,
+b_2: "boo"
+a_1: ""
+*****************************
+A-Str Solver Time (ms):7
+************************************
+boo
+This is the PC at the end:constraint # = 1
+IndexOf_1_ == CONST_2
+numeric PC: constraint # = 1
+IndexOf_1_ == CONST_2 -> true
+
+string analysis: SPC # = 1
+(b_2_SYMSTRING startswith CONST_boo)
+NPC constraint # = 1
+IndexOf_1_[2] == CONST_2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+Numeric Path Condition Exists: IndexOf_1_[2] == CONST_2
+Using Alphabet: 0behlo
+Using bound: 6
+*****************************
+sat,
+b_2: "boo"
+a_1: ""
+*****************************
+A-Str Solver Time (ms):6
+************************************
+This is the PC at the end:constraint # = 1
+IndexOf_1_ != CONST_2
+numeric PC: constraint # = 1
+IndexOf_1_ != CONST_2 -> true
+
+string analysis: SPC # = 1
+(b_2_SYMSTRING[**UNDEFINED**] startswith CONST_boo)
+NPC constraint # = 1
+IndexOf_1_[-1] != CONST_2
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+Numeric Path Condition Exists: IndexOf_1_[-1] != CONST_2
+Using Alphabet: 0behlo
+Using bound: 6
+*****************************
+sat,
+b_2[**UNDEFINED**]: "boo"
+a_1[**UNDEFINED**]: ""
+*****************************
+A-Str Solver Time (ms):3
+************************************
+string analysis: SPC # = 1
+(b_2_SYMSTRING[**UNDEFINED**] startswith CONST_boo)
+NPC constraint # = 0
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+Calling MAS
+
+Using Alphabet: 0bo
+Using bound: 4
+*****************************
+sat,
+b_2[**UNDEFINED**]: "boo"
+*****************************
+A-Str Solver Time (ms):2
+************************************
+
+====================================================== Method Sequences
+[test(**UNDEFINED**,**UNDEFINED**,-9223372036854775808)]
+
+====================================================== JUnit 4.0 test class
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+public class gov_nasa_jpf_symbc_strings_ExSymExeStrings43Test {
+
+	private gov.nasa.jpf.symbc.strings.ExSymExeStrings43 gov_nasa_jpf_symbc_strings_exsymexestrings43;
+
+	@Before
+	public void setUp() throws Exception {
+		gov_nasa_jpf_symbc_strings_exsymexestrings43 = new gov.nasa.jpf.symbc.strings.ExSymExeStrings43();
+	}
+
+	@Test
+	public void test0() {
+		gov_nasa_jpf_symbc_strings_exsymexestrings43.test(**UNDEFINED**,**UNDEFINED**,-9223372036854775808);
+	}
+}
+
+====================================================== results
+no errors detected
+
+====================================================== statistics
+elapsed time:       00:00:00
+states:             new=9,visited=0,backtracked=9,end=4
+search:             maxDepth=4,constraints=0
+choice generators:  thread=1 (signal=0,lock=1,sharedRef=0,threadApi=0,reschedule=0), data=4
+heap:               new=486,released=40,maxLive=460,gcCycles=8
+instructions:       6450
+max memory:         477MB
+loaded code:        classes=82,methods=1665
+
+====================================================== search finished: 11/25/25 12:13 PM
+Runtime(ms) :516
