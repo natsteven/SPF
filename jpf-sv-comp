@@ -5,6 +5,7 @@ declare -a BM
 BM=()
 PROP_FILE=""
 WITNESS_FILE=""
+BENCH="Unknown"
 
 TOOL_BINARY=jpf-core/bin/jpf
 FIND_OPTIONS="-name '*.java'"
@@ -15,7 +16,7 @@ while [ -n "$1" ] ; do
     --string-dp) STRING_DP="$2" ; shift 2 ;;
     --propertyfile) PROP_FILE="$2" ; shift 2 ;;
     --graphml-witness) WITNESS_FILE="$2" ; shift 2 ;;
-    --version) date -r jpf-symbc/build/jpf-symbc.jar ; exit 0 ;;
+    --version) date -r /home/nat/Repos/SPF/jpf-core/build/RunJPF.jar ; exit 0 ;;
     *) SRC=(`eval "find $1 $FIND_OPTIONS"`) ; BM=("${BM[@]}" "${SRC[@]}") ; shift 1 ;;
   esac
 done
@@ -80,7 +81,9 @@ echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
 if test -z "$JVM_FLAGS"; then
   JVM_FLAGS="-Xmx1024m -ea"
 fi
-/usr/lib/jvm/java-8-openjdk-amd64/bin/java $JVM_FLAGS -jar $(pwd)/jpf-core/build/RunJPF.jar $DIR/config.jpf | tee $LOG
+BENCH=$(dirname "${BM[-1]}")
+BENCH=${BENCH#*sv-benchmarks/java/}
+/usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dbenchmark.name="$BENCH" $JVM_FLAGS -jar $(pwd)/jpf-core/build/RunJPF.jar $DIR/config.jpf | tee $LOG
 
 # check the result
 if [ $ASSERTION_MODE = "TRUE" ]; then

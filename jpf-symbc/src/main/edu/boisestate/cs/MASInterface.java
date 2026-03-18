@@ -25,50 +25,50 @@ public class MASInterface {
 
 		printSMT(pc);
 
-		PathConstraintAnalysis pca = new PathConstraintAnalysis(pc);
+//		PathConstraintAnalysis pca = new PathConstraintAnalysis(pc);
 //		pca.printInfo();
 
 		SolutionSet<Model_Acyclic_Inverse> sol = null;
 
 		// so now we actually do both incremental and subset answers
-		MASCache.CacheResult cacheHit = cache.get(pca);
-		if (!cacheHit.isEmpty()) {
-			cacheHits++;
-			System.out.println();
-			System.out.println("################################################");
-			System.out.println("################################################");
-			System.out.println("################	CACHE HIT	################");
-			System.out.println("################################################");
-			System.out.println("################################################");
-			System.out.println();
-
-			SolutionSet<Model_Acyclic_Inverse> solutionsFromCache = cacheHit.getSolutions();
-			StringPathCondition toSolve = cacheHit.getRemainingSPC();
-
-			System.out.println("****** Solutions from cache ******");
-			for (Solution s : solutionsFromCache.getSolutions()) {
-				System.out.println(s);
-			}
-			System.out.println("**********************************");
-
-			if (toSolve.header == null && (toSolve.getNpc() == null || toSolve.getNpc().header == null)) { // cache had all solutions
-				return solutionsFromCache;
-			}
-
-			System.out.println("Solving remaining predicates ...");
-//			 otherwise we solve for remaining
-			printSMT(toSolve);
-
-			SolutionSet<Model_Acyclic_Inverse> newSolutions = runPC(toSolve);
-//			 merge solutions
-
-			sol = mergeSolutions(solutionsFromCache, newSolutions);
-
-		} else {
+//		MASCache.CacheResult cacheHit = cache.get(pca);
+//		if (!cacheHit.isEmpty()) {
+//			cacheHits++;
+//			System.out.println();
+//			System.out.println("################################################");
+//			System.out.println("################################################");
+//			System.out.println("################	CACHE HIT	################");
+//			System.out.println("################################################");
+//			System.out.println("################################################");
+//			System.out.println();
+//
+//			SolutionSet<Model_Acyclic_Inverse> solutionsFromCache = cacheHit.getSolutions();
+//			StringPathCondition toSolve = cacheHit.getRemainingSPC();
+//
+//			System.out.println("****** Solutions from cache ******");
+//			for (Solution s : solutionsFromCache.getSolutions()) {
+//				System.out.println(s);
+//			}
+//			System.out.println("**********************************");
+//
+//			if (toSolve.header == null && (toSolve.getNpc() == null || toSolve.getNpc().header == null)) { // cache had all solutions
+//				return solutionsFromCache;
+//			}
+//
+//			System.out.println("Solving remaining predicates ...");
+////			 otherwise we solve for remaining
+//			printSMT(toSolve);
+//
+//			SolutionSet<Model_Acyclic_Inverse> newSolutions = runPC(toSolve);
+////			 merge solutions
+//
+//			sol = mergeSolutions(solutionsFromCache, newSolutions);
+//
+//		} else {
 			sol = runPC(pc);
-		}
+//		}
 
-		cache.put(pca, sol);
+//		cache.put(pca, sol);
 		return sol;
 	}
 
