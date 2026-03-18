@@ -23,7 +23,7 @@ public class MASInterface {
 	public static SolutionSet<Model_Acyclic_Inverse> solve(StringPathCondition pc) {
 		runCount++;
 
-		printSMT(pc);
+		// printSMT(pc);
 
 //		PathConstraintAnalysis pca = new PathConstraintAnalysis(pc);
 //		pca.printInfo();
@@ -98,19 +98,19 @@ public class MASInterface {
 		if (bound < 4) bound = 4;// could also reason about concats but for now this is fine
 		// maybe the depth of the tree, i.e. we can reason about how long strings can/would be given the number of operations/type of ops
 
-		if (SymbolicInstructionFactory.debugMode) {
-			System.out.println("Using Alphabet: " + alpha.getCharSetString());
-			System.out.println("Using bound: " + bound);
-		}
-		System.out.println("*****************************");
+		// if (SymbolicInstructionFactory.debugMode) {
+		// 	System.out.println("Using Alphabet: " + alpha.getCharSetString());
+		// 	System.out.println("Using bound: " + bound);
+		// }
+		// System.out.println("*****************************");
 
 		MASProcessor processor = new MASProcessor(false, alpha, bound);
-		long startTime = System.nanoTime();
+		// long startTime = System.nanoTime();
 		SolutionSet<Model_Acyclic_Inverse> result = processor.query(graph);
-		long endTime = System.nanoTime();
+		// long endTime = System.nanoTime();
 
-		System.out.println("*****************************");
-		System.out.println("A-Str Solver Time (ms):" + ((endTime - startTime)/1000000));
+		// System.out.println("*****************************");
+		// System.out.println("A-Str Solver Time (ms):" + ((endTime - startTime)/1000000));
 		return result;
 //		}
 //		catch (Exception e) {

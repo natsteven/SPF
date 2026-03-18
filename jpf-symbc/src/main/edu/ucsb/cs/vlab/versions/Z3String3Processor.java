@@ -116,9 +116,9 @@ public class Z3String3Processor {
 				}
 
 				// output returned solutions and populate SPF output model.
-				System.out.println("Returned solutions: ");
+				// System.out.println("Returned solutions: ");
 				for(String s : solutions) {
-					System.out.println(s.trim());
+					// System.out.println(s.trim());
 					int begin = s.indexOf("\"");
 					if(begin >= 0){
 						String value = s.substring(begin, s.length() -1);

@@ -27,10 +27,10 @@ public class TranslateToZ3str3 {
 		
 		// TODO: move this exception handling into Z3String3Processor
 		try {
-			long startTime = System.currentTimeMillis();
+			// long startTime = System.currentTimeMillis();
 			final Output out = stringProcessor.getOutput();
-			long endTime = System.currentTimeMillis();
-			System.out.println("Z3str3 Solver Time (ms):" + (endTime - startTime));
+			// long endTime = System.currentTimeMillis();
+			// System.out.println("Z3str3 Solver Time (ms):" + (endTime - startTime));
 
 			o = new Output(out.isSAT(), out.getModel());
 			HashMap<String, String> solution = new HashMap<String, String>();

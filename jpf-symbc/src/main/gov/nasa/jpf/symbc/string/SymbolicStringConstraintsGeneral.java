@@ -27,7 +27,6 @@ import java.util.logging.Logger;
 import edu.boisestate.cs.MASInterface;
 import edu.boisestate.cs.graph.SolutionSet;
 import edu.boisestate.cs.automatonModel.Model_Acyclic_Inverse;
-import edu.boisestate.cs.util.SolverProfiler;
 import edu.ucsb.cs.vlab.modelling.Output;
 import gov.nasa.jpf.symbc.SymbolicInstructionFactory;
 import gov.nasa.jpf.symbc.numeric.Comparator;
@@ -452,40 +451,38 @@ public class SymbolicStringConstraintsGeneral {
 		}
 
 		else if(solver.equals(Z3STR3)){
-			System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-			System.out.println("Calling Z3str3\n");
+			// System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+			// System.out.println("Calling Z3str3\n");
 
       long startWall = System.nanoTime();
-      long startCpu = SolverProfiler.getCpuTime();
 			final Output dpresult = TranslateToZ3str3.solve(pc);
-      long endCpu = SolverProfiler.getCpuTime();
       long endWall = System.nanoTime();
-      SolverProfiler.recordCall("z3str3", startWall, startCpu, endWall, endCpu);
+      long time = Math.round((endWall - startWall) / 1_000_000.0);
+      System.out.println("Z3str3 Solver Time (ms):" + time);
 
 			constraintCount = constraintCount + 1;
 			return dpresult.isSAT();
 		}
 
 		else if(solver.equals(MAS)) {
-			System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-			System.out.println("Calling MAS\n");
+			// System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+			// System.out.println("Calling MAS\n");
 
+			System.out.println("************************************");
       long startWall = System.nanoTime();
-      long startCpu = SolverProfiler.getCpuTime();
 			final SolutionSet<Model_Acyclic_Inverse> result = MASInterface.solve(pc);
-      long endCpu = SolverProfiler.getCpuTime();
       long endWall = System.nanoTime();
-      SolverProfiler.recordCall("astr",startWall, startCpu, endWall, endCpu);
+      long time = Math.round((endWall - startWall) / 1_000_000.0);
+			System.out.println("************************************");
+      System.out.println("A-Str Solver Time (ms):" + time);
 
 			if (result == null) {
-				System.err.println("MAS returned null, returning false");
+				// System.err.println("MAS returned null, returning false");
 				constraintCount = constraintCount + 1;
-				System.out.println("************************************");
 				// unsure how to return unknown
 				return false;
 			}
 			constraintCount = constraintCount + 1;
-			System.out.println("************************************");
 			return result.isSAT();
 		}
 		TIMEOUT = SymbolicInstructionFactory.stringTimeout;
