@@ -21,6 +21,7 @@ public class TranslateToZ3str3 {
 		final Z3Translator translator = new Z3Translator();
 		final String constraintZ3str3 = translator.translate(pc);
 
+    // System.out.println("SMT QUERY:" + constraintZ3str3.replaceAll("\n","||"));
 		//try (final Processor p = Z3_3.create()) {
 		Z3String3Processor stringProcessor = new Z3String3Processor();
 		stringProcessor.query(constraintZ3str3);
@@ -35,16 +36,21 @@ public class TranslateToZ3str3 {
 			o = new Output(out.isSAT(), out.getModel());
 			HashMap<String, String> solution = new HashMap<String, String>();
 
-			System.out.println("*************************************");
-			System.out.println("Satisfiable: " + o.isSAT());
+			// System.out.println("*************************************");
+			// System.out.println("Satisfiable: " + o.isSAT());
+      // if (o.isSAT()) {
+      //   System.out.println("sat,");
+      // } else {
+      //   System.out.println("unsat");
+      // }
 			for (String k : o.getModel().keySet()) {
-				System.out.println(k + " => " + o.getModel().get(k));
+				// System.out.println(k + ": " + o.getModel().get(k));
 //				this replacement needs to be disabled since we want to carry quotation marks when printing witnesses
 //				solution.put(k, o.getModel().get(k).replaceAll("^\"|\"$", ""));
 				solution.put(k, o.getModel().get(k));
 			}
 			pc.solution = new HashMap<String, String>(solution);
-			System.out.println("*************************************\n");
+			// System.out.println("*************************************\n");
 			
 				} catch (IOException e) {
 			

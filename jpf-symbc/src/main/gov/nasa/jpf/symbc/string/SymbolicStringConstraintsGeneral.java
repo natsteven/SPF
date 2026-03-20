@@ -435,6 +435,12 @@ public class SymbolicStringConstraintsGeneral {
 		}
 		
 		logger.info("Using solver: " + solver);
+
+		System.out.println("************************************");
+		final Z3Translator translator = new Z3Translator();
+		final String constraintZ3str3 = translator.translate(pc);
+    System.out.println("SMT QUERY:" + constraintZ3str3.replaceAll("\n","||"));
+
 //		System.out.println("---------------"+System.getProperty("java.library.path"));
 		if(solver.equals(ABC)){
 			boolean dpresult = TranslateToABC.isSat(pc);
@@ -454,10 +460,21 @@ public class SymbolicStringConstraintsGeneral {
 			// System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 			// System.out.println("Calling Z3str3\n");
 
+			System.out.println("************************************");
       long startWall = System.nanoTime();
 			final Output dpresult = TranslateToZ3str3.solve(pc);
       long endWall = System.nanoTime();
       long time = Math.round((endWall - startWall) / 1_000_000.0);
+
+      if (dpresult.isSAT()) {
+        System.out.println("sat,");
+        for (String var : dpresult.getModel().keySet()) {
+          System.out.println(var + ": " + dpresult.getModel().get(var));
+        }
+      } else {
+        System.out.println("unsat");
+      }
+			System.out.println("************************************");
       System.out.println("Z3str3 Solver Time (ms):" + time);
 
 			constraintCount = constraintCount + 1;
@@ -473,6 +490,8 @@ public class SymbolicStringConstraintsGeneral {
 			final SolutionSet<Model_Acyclic_Inverse> result = MASInterface.solve(pc);
       long endWall = System.nanoTime();
       long time = Math.round((endWall - startWall) / 1_000_000.0);
+
+      System.out.prtinln(result.getResult());
 			System.out.println("************************************");
       System.out.println("A-Str Solver Time (ms):" + time);
 
