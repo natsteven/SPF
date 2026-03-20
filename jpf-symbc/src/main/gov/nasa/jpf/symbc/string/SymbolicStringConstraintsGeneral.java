@@ -28,6 +28,7 @@ import edu.boisestate.cs.MASInterface;
 import edu.boisestate.cs.graph.SolutionSet;
 import edu.boisestate.cs.automatonModel.Model_Acyclic_Inverse;
 import edu.ucsb.cs.vlab.modelling.Output;
+import edu.ucsb.cs.vlab.translate.smtlib.from.z3str3.Z3Translator;
 import gov.nasa.jpf.symbc.SymbolicInstructionFactory;
 import gov.nasa.jpf.symbc.numeric.Comparator;
 import gov.nasa.jpf.symbc.numeric.Constraint;
@@ -491,7 +492,7 @@ public class SymbolicStringConstraintsGeneral {
       long endWall = System.nanoTime();
       long time = Math.round((endWall - startWall) / 1_000_000.0);
 
-      System.out.prtinln(result.getResult());
+      System.out.println(result.getResult());
 			System.out.println("************************************");
       System.out.println("A-Str Solver Time (ms):" + time);
 

@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MASInterface {
-	private static final MASCache cache = new MASCache();
+	// private static final MASCache cache = new MASCache();
 	private static int runCount = 0;
 	private static int cacheHits = 0;
 	private static HashMap<String, Integer> cacheMisses = new HashMap<>();

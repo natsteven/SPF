@@ -46,7 +46,7 @@ public class MASTranslator {
         if (spc.getNpc().header != null) {
             PathCondition npc = spc.getNpc();
             Constraint pc = npc.header;
-            System.out.println("Numeric Path Condition Exists: " + npc.header.toString());
+            // System.out.println("Numeric Path Condition Exists: " + npc.header.toString());
             while (pc!=null){
                 ct.translate(pc); // constraint translator will add the numeric constraints but wait to return till after string constraints are processed
                 pc = pc.and;
@@ -54,7 +54,7 @@ public class MASTranslator {
         }
 
         if (strc == null) {
-            System.out.println("No String Constraints");
+            // System.out.println("No String Constraints");
 //            System.exit(1);
 //            return null;
         }
