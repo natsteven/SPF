@@ -5,11 +5,14 @@ import edu.boisestate.cs.util.*;
 import edu.boisestate.cs.automatonModel.Model_Acyclic_Inverse;
 import edu.boisestate.cs.graph.SolutionSet;
 import edu.boisestate.cs.graph.SolutionSet.Solution;
+import edu.boisestate.cs.AStrBenchmarkBundle;
 import edu.ucsb.cs.vlab.translate.smtlib.from.z3str3.Z3Translator;
 import gov.nasa.jpf.symbc.SymbolicInstructionFactory;
 import gov.nasa.jpf.symbc.string.StringPathCondition;
 import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,15 +22,23 @@ public class MASInterface {
 	private static int runCount = 0;
 	private static int cacheHits = 0;
 	private static HashMap<String, Integer> cacheMisses = new HashMap<>();
+  private static String id;
 
 	public static SolutionSet<Model_Acyclic_Inverse> solve(StringPathCondition pc) {
 		runCount++;
 
 		// printSMT(pc);
 
-//		PathConstraintAnalysis pca = new PathConstraintAnalysis(pc);
-//		pca.printInfo();
+    // PathConstraintAnalysis pca = new PathConstraintAnalysis(pc);
+    // pca.printInfo();
 
+    PathConstraintStats stats = new PathConstraintStats(pc);
+    stats.printStats();
+    stats.printStatsParseable();
+    Z3Translator translator = new Z3Translator();
+    String smt = translator.translate(pc);
+    id = String.format("%08x", smt.hashCode());
+    System.out.println("SMT QUERY:"+id+":" + smt.replaceAll("\n","||"));
 		SolutionSet<Model_Acyclic_Inverse> sol = null;
 
 		// so now we actually do both incremental and subset answers
@@ -103,6 +114,15 @@ public class MASInterface {
 		// 	System.out.println("Using bound: " + bound);
 		// }
 		// System.out.println("*****************************");
+
+    String filename = "query_"+id+".ser";
+    try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+        AStrBenchmarkBundle bundle = new AStrBenchmarkBundle(graph,alpha.toString(),bound);
+        oos.writeObject(bundle);
+        System.out.println("[SAVED]" + filename);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
 
 		MASProcessor processor = new MASProcessor(false, alpha, bound);
 		// long startTime = System.nanoTime();

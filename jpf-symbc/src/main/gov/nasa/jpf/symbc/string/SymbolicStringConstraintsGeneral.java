@@ -437,10 +437,10 @@ public class SymbolicStringConstraintsGeneral {
 		
 		logger.info("Using solver: " + solver);
 
-		System.out.println("************************************");
-		final Z3Translator translator = new Z3Translator();
-		final String constraintZ3str3 = translator.translate(pc);
-    System.out.println("SMT QUERY:" + constraintZ3str3.replaceAll("\n","||"));
+		// System.out.println("************************************");
+		// final Z3Translator translator = new Z3Translator();
+		// final String constraintZ3str3 = translator.translate(pc);
+		//   System.out.println("SMT QUERY:" + constraintZ3str3.replaceAll("\n","||"));
 
 //		System.out.println("---------------"+System.getProperty("java.library.path"));
 		if(solver.equals(ABC)){
